@@ -1,0 +1,17 @@
+/** BASE **/
+
+.margin-top { margin-top: 10px }
+
+#contenedor-logo {
+	padding: 20px 20% 20px 0;
+}
+
+footer {
+	margin-top: 1em;
+	margin-bottom: 0;
+	bottom: 0;
+    padding: 3em 0;
+   
+border-width: 4px 1px 0px 1px;
+border-style: solid;
+}
