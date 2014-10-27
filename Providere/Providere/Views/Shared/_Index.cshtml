@@ -11,6 +11,12 @@
     <script language="javascript" type="text/javascript" src="../../Scripts/js/bootstrap.js"></script>
     <script language="javascript" type="text/javascript" src="../../Scripts/js/bootstrap.min.js"></script>
     <script language="javascript" type="text/javascript" src="../../Scripts/js/jquery.js"></script>
+    <script language="javascript" type="text/javascript">
+        !function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+            if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); }
+        } (document, 'script', 'twitter-wjs');
+    </script>
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/base/css")
@@ -26,26 +32,104 @@
             <div class="col-md-6">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <!-- Single button -->
-                        <img src="../../Content/img/plomero.jpg" alt="usuario" class="img-circle" width="75" />
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                Bienvenido, @User.Identity.Name <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="EditarPerfil.html">Editar perfil</a></li>
-                                <li><a href="Publicaciones.html">Publicaciones</a></li>
-                                <li><a href="#">Calificaciones</a></li>
-                                <li><a href="#">Contrataciones</a></li>
-                                <li class="divider"></li>
-                                <li><a href="Index.html">Cerrar sesion</a></li>
-                            </ul>
+                        <div class="modalBox">
+                            <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-user">
+                            </span>Ingresar</a>
+                            <br />
+                            <br />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="modalBox2">
+                            <a data-toggle="modal" href="#myModal2" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-list">
+                            </span>Registrarme</a>
+                            <br />
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        Ingresar a mi cuenta</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="CorreoElectronico" placeholder="Ingrese su correo electronico">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="Contrasenia" placeholder="Ingrese su contraseña">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-info">Iniciar sesion</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- Modal -->
+    <div class="modal" id="myModal2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        Registrarse en Providere</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="NombreApellido" placeholder="Ingrese su nombre y apellido">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="CorreoElectronico2" placeholder="Ingrese su correo electronico">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="Telefono" placeholder="Ingrese su numero telefonico">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>Seleccione su ubicación</option>
+                            <option>Capital Federal</option>
+                            <option>Mendoza</option>
+                            <option>Cordoba</option>
+                            <option>Santa Fe</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="Contrasenia2" placeholder="Ingrese su contraseña">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="Contrasenia3" placeholder="Ingrese su contraseña nuevamente">
+                    </div>
+                    <div class="form-group">
+                        <label for="text" class="col-sm-2 control-label">
+                            Captcha</label>
+                        <br />
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-info">Registrarme</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
     <div class="container">
         <div class="content">
             <!-- Ejemplo de buscador con dos select -->
