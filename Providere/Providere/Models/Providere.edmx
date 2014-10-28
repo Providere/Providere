@@ -1,0 +1,1293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProvidereModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ProvidereModelStoreContainer">
+          <EntitySet Name="Calificacion" EntityType="ProvidereModel.Store.Calificacion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Contratacion" EntityType="ProvidereModel.Store.Contratacion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Denuncia" EntityType="ProvidereModel.Store.Denuncia" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Estado" EntityType="ProvidereModel.Store.Estado" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Imagen" EntityType="ProvidereModel.Store.Imagen" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PreguntaRespuesta" EntityType="ProvidereModel.Store.PreguntaRespuesta" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Publicacion" EntityType="ProvidereModel.Store.Publicacion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Puntaje" EntityType="ProvidereModel.Store.Puntaje" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Replica" EntityType="ProvidereModel.Store.Replica" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Rubro" EntityType="ProvidereModel.Store.Rubro" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sancion" EntityType="ProvidereModel.Store.Sancion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SubRubro" EntityType="ProvidereModel.Store.SubRubro" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoCalificacion" EntityType="ProvidereModel.Store.TipoCalificacion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoEvaluacion" EntityType="ProvidereModel.Store.TipoEvaluacion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuario" EntityType="ProvidereModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Calificacion_Contratacion" Association="ProvidereModel.Store.FK_Calificacion_Contratacion">
+            <End Role="Contratacion" EntitySet="Contratacion" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calificacion_TipoCalificacion" Association="ProvidereModel.Store.FK_Calificacion_TipoCalificacion">
+            <End Role="TipoCalificacion" EntitySet="TipoCalificacion" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calificacion_TipoEvaluacion" Association="ProvidereModel.Store.FK_Calificacion_TipoEvaluacion">
+            <End Role="TipoEvaluacion" EntitySet="TipoEvaluacion" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calificado_Usuario" Association="ProvidereModel.Store.FK_Calificado_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calificador_Usuario" Association="ProvidereModel.Store.FK_Calificador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contratacion_Publicacion" Association="ProvidereModel.Store.FK_Contratacion_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Contratacion" EntitySet="Contratacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contratacion_Usuario" Association="ProvidereModel.Store.FK_Contratacion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Contratacion" EntitySet="Contratacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Denuncia_Calificacion" Association="ProvidereModel.Store.FK_Denuncia_Calificacion">
+            <End Role="Calificacion" EntitySet="Calificacion" />
+            <End Role="Denuncia" EntitySet="Denuncia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imagen_Publicacion" Association="ProvidereModel.Store.FK_Imagen_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Imagen" EntitySet="Imagen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreguntaRespuesta_Publicacion" Association="ProvidereModel.Store.FK_PreguntaRespuesta_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="PreguntaRespuesta" EntitySet="PreguntaRespuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreguntaRespuesta_Usuario" Association="ProvidereModel.Store.FK_PreguntaRespuesta_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PreguntaRespuesta" EntitySet="PreguntaRespuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publicacion_Rubro" Association="ProvidereModel.Store.FK_Publicacion_Rubro">
+            <End Role="Rubro" EntitySet="Rubro" />
+            <End Role="Publicacion" EntitySet="Publicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publicacion_SubRubro" Association="ProvidereModel.Store.FK_Publicacion_SubRubro">
+            <End Role="SubRubro" EntitySet="SubRubro" />
+            <End Role="Publicacion" EntitySet="Publicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publicacion_Usuario" Association="ProvidereModel.Store.FK_Publicacion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Publicacion" EntitySet="Publicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Puntaje_Publicacion" Association="ProvidereModel.Store.FK_Puntaje_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Puntaje" EntitySet="Puntaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replica_Calificacion" Association="ProvidereModel.Store.FK_Replica_Calificacion">
+            <End Role="Calificacion" EntitySet="Calificacion" />
+            <End Role="Replica" EntitySet="Replica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sancion_Usuario" Association="ProvidereModel.Store.FK_Sancion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Sancion" EntitySet="Sancion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubRubro_Rubro" Association="ProvidereModel.Store.FK_SubRubro_Rubro">
+            <End Role="Rubro" EntitySet="Rubro" />
+            <End Role="SubRubro" EntitySet="SubRubro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Estado" Association="ProvidereModel.Store.FK_Usuario_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Calificacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="IdCalificador" Type="smallint" Nullable="false" />
+          <Property Name="IdCalificado" Type="smallint" Nullable="false" />
+          <Property Name="IdContratacion" Type="smallint" Nullable="false" />
+          <Property Name="IdTipoEvaluacion" Type="smallint" Nullable="false" />
+          <Property Name="IdTipoCalificacion" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contratacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" />
+          <Property Name="IdUsuario" Type="smallint" Nullable="false" />
+          <Property Name="IdPublicacion" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Denuncia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="IdCalificacion" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TipoEstado" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Imagen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="IdPublicacion" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PreguntaRespuesta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Pregunta" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Respuesta" Type="varchar" MaxLength="500" />
+          <Property Name="IdUsuario" Type="smallint" Nullable="false" />
+          <Property Name="IdPublicacion" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Publicacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="Precio" Type="smallmoney" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaEdicion" Type="datetime" Nullable="false" />
+          <Property Name="Estado" Type="tinyint" Nullable="false" />
+          <Property Name="IdUsuario" Type="smallint" Nullable="false" />
+          <Property Name="IdRubro" Type="smallint" Nullable="false" />
+          <Property Name="IdSubRubro" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Puntaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" />
+          <Property Name="Positivo" Type="smallint" Nullable="false" />
+          <Property Name="Neutro" Type="smallint" Nullable="false" />
+          <Property Name="Negativo" Type="smallint" Nullable="false" />
+          <Property Name="Total" Type="smallint" Nullable="false" />
+          <Property Name="IdPublicacion" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Replica">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" />
+          <Property Name="Comentario" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="IdCalificacion" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rubro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sancion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FechaInicio" Type="datetime" Nullable="false" />
+          <Property Name="FechaFin" Type="date" Nullable="false" />
+          <Property Name="IdUsuario" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubRubro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="IdRubro" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoCalificacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TipoDeUsuario" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TipoEvaluacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Mail" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Contrasenia" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Ubicacion" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Telefono" Type="tinyint" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActivacion" Type="datetime" Nullable="false" />
+          <Property Name="CodActivacion" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="FechaCambioEstado" Type="datetime" Nullable="false" />
+          <Property Name="IdEstado" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Calificacion_Contratacion">
+          <End Role="Contratacion" Type="ProvidereModel.Store.Contratacion" Multiplicity="1" />
+          <End Role="Calificacion" Type="ProvidereModel.Store.Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contratacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdContratacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calificacion_TipoCalificacion">
+          <End Role="TipoCalificacion" Type="ProvidereModel.Store.TipoCalificacion" Multiplicity="1" />
+          <End Role="Calificacion" Type="ProvidereModel.Store.Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCalificacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdTipoCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calificacion_TipoEvaluacion">
+          <End Role="TipoEvaluacion" Type="ProvidereModel.Store.TipoEvaluacion" Multiplicity="1" />
+          <End Role="Calificacion" Type="ProvidereModel.Store.Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEvaluacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdTipoEvaluacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calificado_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Store.Usuario" Multiplicity="1" />
+          <End Role="Calificacion" Type="ProvidereModel.Store.Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdCalificado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calificador_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Store.Usuario" Multiplicity="1" />
+          <End Role="Calificacion" Type="ProvidereModel.Store.Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdCalificador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contratacion_Publicacion">
+          <End Role="Publicacion" Type="ProvidereModel.Store.Publicacion" Multiplicity="1" />
+          <End Role="Contratacion" Type="ProvidereModel.Store.Contratacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contratacion">
+              <PropertyRef Name="IdPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contratacion_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Store.Usuario" Multiplicity="1" />
+          <End Role="Contratacion" Type="ProvidereModel.Store.Contratacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contratacion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Denuncia_Calificacion">
+          <End Role="Calificacion" Type="ProvidereModel.Store.Calificacion" Multiplicity="1" />
+          <End Role="Denuncia" Type="ProvidereModel.Store.Denuncia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calificacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Denuncia">
+              <PropertyRef Name="IdCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imagen_Publicacion">
+          <End Role="Publicacion" Type="ProvidereModel.Store.Publicacion" Multiplicity="1" />
+          <End Role="Imagen" Type="ProvidereModel.Store.Imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Imagen">
+              <PropertyRef Name="IdPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreguntaRespuesta_Publicacion">
+          <End Role="Publicacion" Type="ProvidereModel.Store.Publicacion" Multiplicity="1" />
+          <End Role="PreguntaRespuesta" Type="ProvidereModel.Store.PreguntaRespuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PreguntaRespuesta">
+              <PropertyRef Name="IdPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreguntaRespuesta_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Store.Usuario" Multiplicity="1" />
+          <End Role="PreguntaRespuesta" Type="ProvidereModel.Store.PreguntaRespuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PreguntaRespuesta">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Publicacion_Rubro">
+          <End Role="Rubro" Type="ProvidereModel.Store.Rubro" Multiplicity="1" />
+          <End Role="Publicacion" Type="ProvidereModel.Store.Publicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubro">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Publicacion">
+              <PropertyRef Name="IdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Publicacion_SubRubro">
+          <End Role="SubRubro" Type="ProvidereModel.Store.SubRubro" Multiplicity="0..1" />
+          <End Role="Publicacion" Type="ProvidereModel.Store.Publicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubRubro">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Publicacion">
+              <PropertyRef Name="IdSubRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Publicacion_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Store.Usuario" Multiplicity="1" />
+          <End Role="Publicacion" Type="ProvidereModel.Store.Publicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Publicacion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Puntaje_Publicacion">
+          <End Role="Publicacion" Type="ProvidereModel.Store.Publicacion" Multiplicity="1" />
+          <End Role="Puntaje" Type="ProvidereModel.Store.Puntaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Puntaje">
+              <PropertyRef Name="IdPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replica_Calificacion">
+          <End Role="Calificacion" Type="ProvidereModel.Store.Calificacion" Multiplicity="1" />
+          <End Role="Replica" Type="ProvidereModel.Store.Replica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calificacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Replica">
+              <PropertyRef Name="IdCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sancion_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Store.Usuario" Multiplicity="1" />
+          <End Role="Sancion" Type="ProvidereModel.Store.Sancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sancion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubRubro_Rubro">
+          <End Role="Rubro" Type="ProvidereModel.Store.Rubro" Multiplicity="1" />
+          <End Role="SubRubro" Type="ProvidereModel.Store.SubRubro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubro">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubRubro">
+              <PropertyRef Name="IdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Estado">
+          <End Role="Estado" Type="ProvidereModel.Store.Estado" Multiplicity="1" />
+          <End Role="Usuario" Type="ProvidereModel.Store.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProvidereModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ProvidereEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Calificacion" EntityType="ProvidereModel.Calificacion" />
+          <EntitySet Name="Contratacion" EntityType="ProvidereModel.Contratacion" />
+          <EntitySet Name="Denuncia" EntityType="ProvidereModel.Denuncia" />
+          <EntitySet Name="Estado" EntityType="ProvidereModel.Estado" />
+          <EntitySet Name="Imagen" EntityType="ProvidereModel.Imagen" />
+          <EntitySet Name="PreguntaRespuesta" EntityType="ProvidereModel.PreguntaRespuesta" />
+          <EntitySet Name="Publicacion" EntityType="ProvidereModel.Publicacion" />
+          <EntitySet Name="Puntaje" EntityType="ProvidereModel.Puntaje" />
+          <EntitySet Name="Replica" EntityType="ProvidereModel.Replica" />
+          <EntitySet Name="Rubro" EntityType="ProvidereModel.Rubro" />
+          <EntitySet Name="Sancion" EntityType="ProvidereModel.Sancion" />
+          <EntitySet Name="SubRubro" EntityType="ProvidereModel.SubRubro" />
+          <EntitySet Name="TipoCalificacion" EntityType="ProvidereModel.TipoCalificacion" />
+          <EntitySet Name="TipoEvaluacion" EntityType="ProvidereModel.TipoEvaluacion" />
+          <EntitySet Name="Usuario" EntityType="ProvidereModel.Usuario" />
+          <AssociationSet Name="FK_Calificacion_Contratacion" Association="ProvidereModel.FK_Calificacion_Contratacion">
+            <End Role="Contratacion" EntitySet="Contratacion" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calificacion_TipoCalificacion" Association="ProvidereModel.FK_Calificacion_TipoCalificacion">
+            <End Role="TipoCalificacion" EntitySet="TipoCalificacion" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calificacion_TipoEvaluacion" Association="ProvidereModel.FK_Calificacion_TipoEvaluacion">
+            <End Role="TipoEvaluacion" EntitySet="TipoEvaluacion" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calificado_Usuario" Association="ProvidereModel.FK_Calificado_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calificador_Usuario" Association="ProvidereModel.FK_Calificador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Denuncia_Calificacion" Association="ProvidereModel.FK_Denuncia_Calificacion">
+            <End Role="Calificacion" EntitySet="Calificacion" />
+            <End Role="Denuncia" EntitySet="Denuncia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replica_Calificacion" Association="ProvidereModel.FK_Replica_Calificacion">
+            <End Role="Calificacion" EntitySet="Calificacion" />
+            <End Role="Replica" EntitySet="Replica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contratacion_Publicacion" Association="ProvidereModel.FK_Contratacion_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Contratacion" EntitySet="Contratacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contratacion_Usuario" Association="ProvidereModel.FK_Contratacion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Contratacion" EntitySet="Contratacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Estado" Association="ProvidereModel.FK_Usuario_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imagen_Publicacion" Association="ProvidereModel.FK_Imagen_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Imagen" EntitySet="Imagen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreguntaRespuesta_Publicacion" Association="ProvidereModel.FK_PreguntaRespuesta_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="PreguntaRespuesta" EntitySet="PreguntaRespuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreguntaRespuesta_Usuario" Association="ProvidereModel.FK_PreguntaRespuesta_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PreguntaRespuesta" EntitySet="PreguntaRespuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publicacion_Rubro" Association="ProvidereModel.FK_Publicacion_Rubro">
+            <End Role="Rubro" EntitySet="Rubro" />
+            <End Role="Publicacion" EntitySet="Publicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publicacion_SubRubro" Association="ProvidereModel.FK_Publicacion_SubRubro">
+            <End Role="SubRubro" EntitySet="SubRubro" />
+            <End Role="Publicacion" EntitySet="Publicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publicacion_Usuario" Association="ProvidereModel.FK_Publicacion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Publicacion" EntitySet="Publicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Puntaje_Publicacion" Association="ProvidereModel.FK_Puntaje_Publicacion">
+            <End Role="Publicacion" EntitySet="Publicacion" />
+            <End Role="Puntaje" EntitySet="Puntaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubRubro_Rubro" Association="ProvidereModel.FK_SubRubro_Rubro">
+            <End Role="Rubro" EntitySet="Rubro" />
+            <End Role="SubRubro" EntitySet="SubRubro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sancion_Usuario" Association="ProvidereModel.FK_Sancion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Sancion" EntitySet="Sancion" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Calificacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="IdCalificador" Type="Int16" Nullable="false" />
+          <Property Name="IdCalificado" Type="Int16" Nullable="false" />
+          <Property Name="IdContratacion" Type="Int16" Nullable="false" />
+          <Property Name="IdTipoEvaluacion" Type="Int16" Nullable="false" />
+          <Property Name="IdTipoCalificacion" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Contratacion" Relationship="ProvidereModel.FK_Calificacion_Contratacion" FromRole="Calificacion" ToRole="Contratacion" />
+          <NavigationProperty Name="TipoCalificacion" Relationship="ProvidereModel.FK_Calificacion_TipoCalificacion" FromRole="Calificacion" ToRole="TipoCalificacion" />
+          <NavigationProperty Name="TipoEvaluacion" Relationship="ProvidereModel.FK_Calificacion_TipoEvaluacion" FromRole="Calificacion" ToRole="TipoEvaluacion" />
+          <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_Calificado_Usuario" FromRole="Calificacion" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="ProvidereModel.FK_Calificador_Usuario" FromRole="Calificacion" ToRole="Usuario" />
+          <NavigationProperty Name="Denuncia" Relationship="ProvidereModel.FK_Denuncia_Calificacion" FromRole="Calificacion" ToRole="Denuncia" />
+          <NavigationProperty Name="Replica" Relationship="ProvidereModel.FK_Replica_Calificacion" FromRole="Calificacion" ToRole="Replica" />
+        </EntityType>
+        <EntityType Name="Contratacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int16" Nullable="false" />
+          <Property Name="IdPublicacion" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Calificacion_Contratacion" FromRole="Contratacion" ToRole="Calificacion" />
+          <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Contratacion_Publicacion" FromRole="Contratacion" ToRole="Publicacion" />
+          <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_Contratacion_Usuario" FromRole="Contratacion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Denuncia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="IdCalificacion" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Denuncia_Calificacion" FromRole="Denuncia" ToRole="Calificacion" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoEstado" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_Usuario_Estado" FromRole="Estado" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Imagen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="IdPublicacion" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Imagen_Publicacion" FromRole="Imagen" ToRole="Publicacion" />
+        </EntityType>
+        <EntityType Name="PreguntaRespuesta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pregunta" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="Respuesta" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="IdUsuario" Type="Int16" Nullable="false" />
+          <Property Name="IdPublicacion" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_PreguntaRespuesta_Publicacion" FromRole="PreguntaRespuesta" ToRole="Publicacion" />
+          <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_PreguntaRespuesta_Usuario" FromRole="PreguntaRespuesta" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Publicacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" />
+          <Property Name="FechaEdicion" Type="DateTime" Nullable="false" />
+          <Property Name="Estado" Type="Byte" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int16" Nullable="false" />
+          <Property Name="IdRubro" Type="Int16" Nullable="false" />
+          <Property Name="IdSubRubro" Type="Int16" />
+          <NavigationProperty Name="Contratacion" Relationship="ProvidereModel.FK_Contratacion_Publicacion" FromRole="Publicacion" ToRole="Contratacion" />
+          <NavigationProperty Name="Imagen" Relationship="ProvidereModel.FK_Imagen_Publicacion" FromRole="Publicacion" ToRole="Imagen" />
+          <NavigationProperty Name="PreguntaRespuesta" Relationship="ProvidereModel.FK_PreguntaRespuesta_Publicacion" FromRole="Publicacion" ToRole="PreguntaRespuesta" />
+          <NavigationProperty Name="Rubro" Relationship="ProvidereModel.FK_Publicacion_Rubro" FromRole="Publicacion" ToRole="Rubro" />
+          <NavigationProperty Name="SubRubro" Relationship="ProvidereModel.FK_Publicacion_SubRubro" FromRole="Publicacion" ToRole="SubRubro" />
+          <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_Publicacion_Usuario" FromRole="Publicacion" ToRole="Usuario" />
+          <NavigationProperty Name="Puntaje" Relationship="ProvidereModel.FK_Puntaje_Publicacion" FromRole="Publicacion" ToRole="Puntaje" />
+        </EntityType>
+        <EntityType Name="Puntaje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" />
+          <Property Name="Positivo" Type="Int16" Nullable="false" />
+          <Property Name="Neutro" Type="Int16" Nullable="false" />
+          <Property Name="Negativo" Type="Int16" Nullable="false" />
+          <Property Name="Total" Type="Int16" Nullable="false" />
+          <Property Name="IdPublicacion" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Puntaje_Publicacion" FromRole="Puntaje" ToRole="Publicacion" />
+        </EntityType>
+        <EntityType Name="Replica">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" />
+          <Property Name="Comentario" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="IdCalificacion" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Replica_Calificacion" FromRole="Replica" ToRole="Calificacion" />
+        </EntityType>
+        <EntityType Name="Rubro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Publicacion_Rubro" FromRole="Rubro" ToRole="Publicacion" />
+          <NavigationProperty Name="SubRubro" Relationship="ProvidereModel.FK_SubRubro_Rubro" FromRole="Rubro" ToRole="SubRubro" />
+        </EntityType>
+        <EntityType Name="Sancion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" />
+          <Property Name="FechaFin" Type="DateTime" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_Sancion_Usuario" FromRole="Sancion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="SubRubro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IdRubro" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Publicacion_SubRubro" FromRole="SubRubro" ToRole="Publicacion" />
+          <NavigationProperty Name="Rubro" Relationship="ProvidereModel.FK_SubRubro_Rubro" FromRole="SubRubro" ToRole="Rubro" />
+        </EntityType>
+        <EntityType Name="TipoCalificacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoDeUsuario" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Calificacion_TipoCalificacion" FromRole="TipoCalificacion" ToRole="Calificacion" />
+        </EntityType>
+        <EntityType Name="TipoEvaluacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Calificacion_TipoEvaluacion" FromRole="TipoEvaluacion" ToRole="Calificacion" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Mail" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Contrasenia" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Ubicacion" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Telefono" Type="Byte" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" />
+          <Property Name="FechaActivacion" Type="DateTime" Nullable="false" />
+          <Property Name="CodActivacion" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="FechaCambioEstado" Type="DateTime" Nullable="false" />
+          <Property Name="IdEstado" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Calificado_Usuario" FromRole="Usuario" ToRole="Calificacion" />
+          <NavigationProperty Name="Calificacion1" Relationship="ProvidereModel.FK_Calificador_Usuario" FromRole="Usuario" ToRole="Calificacion" />
+          <NavigationProperty Name="Contratacion" Relationship="ProvidereModel.FK_Contratacion_Usuario" FromRole="Usuario" ToRole="Contratacion" />
+          <NavigationProperty Name="Estado" Relationship="ProvidereModel.FK_Usuario_Estado" FromRole="Usuario" ToRole="Estado" />
+          <NavigationProperty Name="PreguntaRespuesta" Relationship="ProvidereModel.FK_PreguntaRespuesta_Usuario" FromRole="Usuario" ToRole="PreguntaRespuesta" />
+          <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Publicacion_Usuario" FromRole="Usuario" ToRole="Publicacion" />
+          <NavigationProperty Name="Sancion" Relationship="ProvidereModel.FK_Sancion_Usuario" FromRole="Usuario" ToRole="Sancion" />
+        </EntityType>
+        <Association Name="FK_Calificacion_Contratacion">
+          <End Role="Contratacion" Type="ProvidereModel.Contratacion" Multiplicity="1" />
+          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contratacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdContratacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calificacion_TipoCalificacion">
+          <End Role="TipoCalificacion" Type="ProvidereModel.TipoCalificacion" Multiplicity="1" />
+          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCalificacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdTipoCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calificacion_TipoEvaluacion">
+          <End Role="TipoEvaluacion" Type="ProvidereModel.TipoEvaluacion" Multiplicity="1" />
+          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEvaluacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdTipoEvaluacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calificado_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Usuario" Multiplicity="1" />
+          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdCalificado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calificador_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Usuario" Multiplicity="1" />
+          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdCalificador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Denuncia_Calificacion">
+          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="1" />
+          <End Role="Denuncia" Type="ProvidereModel.Denuncia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calificacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Denuncia">
+              <PropertyRef Name="IdCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replica_Calificacion">
+          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="1" />
+          <End Role="Replica" Type="ProvidereModel.Replica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calificacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Replica">
+              <PropertyRef Name="IdCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contratacion_Publicacion">
+          <End Role="Publicacion" Type="ProvidereModel.Publicacion" Multiplicity="1" />
+          <End Role="Contratacion" Type="ProvidereModel.Contratacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contratacion">
+              <PropertyRef Name="IdPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contratacion_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Usuario" Multiplicity="1" />
+          <End Role="Contratacion" Type="ProvidereModel.Contratacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contratacion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Estado">
+          <End Role="Estado" Type="ProvidereModel.Estado" Multiplicity="1" />
+          <End Role="Usuario" Type="ProvidereModel.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imagen_Publicacion">
+          <End Role="Publicacion" Type="ProvidereModel.Publicacion" Multiplicity="1" />
+          <End Role="Imagen" Type="ProvidereModel.Imagen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Imagen">
+              <PropertyRef Name="IdPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreguntaRespuesta_Publicacion">
+          <End Role="Publicacion" Type="ProvidereModel.Publicacion" Multiplicity="1" />
+          <End Role="PreguntaRespuesta" Type="ProvidereModel.PreguntaRespuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PreguntaRespuesta">
+              <PropertyRef Name="IdPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreguntaRespuesta_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Usuario" Multiplicity="1" />
+          <End Role="PreguntaRespuesta" Type="ProvidereModel.PreguntaRespuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PreguntaRespuesta">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Publicacion_Rubro">
+          <End Role="Rubro" Type="ProvidereModel.Rubro" Multiplicity="1" />
+          <End Role="Publicacion" Type="ProvidereModel.Publicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubro">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Publicacion">
+              <PropertyRef Name="IdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Publicacion_SubRubro">
+          <End Role="SubRubro" Type="ProvidereModel.SubRubro" Multiplicity="0..1" />
+          <End Role="Publicacion" Type="ProvidereModel.Publicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubRubro">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Publicacion">
+              <PropertyRef Name="IdSubRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Publicacion_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Usuario" Multiplicity="1" />
+          <End Role="Publicacion" Type="ProvidereModel.Publicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Publicacion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Puntaje_Publicacion">
+          <End Role="Publicacion" Type="ProvidereModel.Publicacion" Multiplicity="1" />
+          <End Role="Puntaje" Type="ProvidereModel.Puntaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Puntaje">
+              <PropertyRef Name="IdPublicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubRubro_Rubro">
+          <End Role="Rubro" Type="ProvidereModel.Rubro" Multiplicity="1" />
+          <End Role="SubRubro" Type="ProvidereModel.SubRubro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubro">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubRubro">
+              <PropertyRef Name="IdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sancion_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Usuario" Multiplicity="1" />
+          <End Role="Sancion" Type="ProvidereModel.Sancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sancion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProvidereModelStoreContainer" CdmEntityContainer="ProvidereEntities">
+          <EntitySetMapping Name="Calificacion">
+            <EntityTypeMapping TypeName="ProvidereModel.Calificacion">
+              <MappingFragment StoreEntitySet="Calificacion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdCalificador" ColumnName="IdCalificador" />
+                <ScalarProperty Name="IdCalificado" ColumnName="IdCalificado" />
+                <ScalarProperty Name="IdContratacion" ColumnName="IdContratacion" />
+                <ScalarProperty Name="IdTipoEvaluacion" ColumnName="IdTipoEvaluacion" />
+                <ScalarProperty Name="IdTipoCalificacion" ColumnName="IdTipoCalificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contratacion">
+            <EntityTypeMapping TypeName="ProvidereModel.Contratacion">
+              <MappingFragment StoreEntitySet="Contratacion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdPublicacion" ColumnName="IdPublicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Denuncia">
+            <EntityTypeMapping TypeName="ProvidereModel.Denuncia">
+              <MappingFragment StoreEntitySet="Denuncia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IdCalificacion" ColumnName="IdCalificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="ProvidereModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TipoEstado" ColumnName="TipoEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imagen">
+            <EntityTypeMapping TypeName="ProvidereModel.Imagen">
+              <MappingFragment StoreEntitySet="Imagen">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdPublicacion" ColumnName="IdPublicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PreguntaRespuesta">
+            <EntityTypeMapping TypeName="ProvidereModel.PreguntaRespuesta">
+              <MappingFragment StoreEntitySet="PreguntaRespuesta">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdPublicacion" ColumnName="IdPublicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publicacion">
+            <EntityTypeMapping TypeName="ProvidereModel.Publicacion">
+              <MappingFragment StoreEntitySet="Publicacion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
+                <ScalarProperty Name="IdSubRubro" ColumnName="IdSubRubro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Puntaje">
+            <EntityTypeMapping TypeName="ProvidereModel.Puntaje">
+              <MappingFragment StoreEntitySet="Puntaje">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Positivo" ColumnName="Positivo" />
+                <ScalarProperty Name="Neutro" ColumnName="Neutro" />
+                <ScalarProperty Name="Negativo" ColumnName="Negativo" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IdPublicacion" ColumnName="IdPublicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Replica">
+            <EntityTypeMapping TypeName="ProvidereModel.Replica">
+              <MappingFragment StoreEntitySet="Replica">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="IdCalificacion" ColumnName="IdCalificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rubro">
+            <EntityTypeMapping TypeName="ProvidereModel.Rubro">
+              <MappingFragment StoreEntitySet="Rubro">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sancion">
+            <EntityTypeMapping TypeName="ProvidereModel.Sancion">
+              <MappingFragment StoreEntitySet="Sancion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubRubro">
+            <EntityTypeMapping TypeName="ProvidereModel.SubRubro">
+              <MappingFragment StoreEntitySet="SubRubro">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoCalificacion">
+            <EntityTypeMapping TypeName="ProvidereModel.TipoCalificacion">
+              <MappingFragment StoreEntitySet="TipoCalificacion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TipoDeUsuario" ColumnName="TipoDeUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEvaluacion">
+            <EntityTypeMapping TypeName="ProvidereModel.TipoEvaluacion">
+              <MappingFragment StoreEntitySet="TipoEvaluacion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="ProvidereModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaActivacion" ColumnName="FechaActivacion" />
+                <ScalarProperty Name="CodActivacion" ColumnName="CodActivacion" />
+                <ScalarProperty Name="FechaCambioEstado" ColumnName="FechaCambioEstado" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Providere">
+        <EntityTypeShape EntityType="ProvidereModel.Calificacion" Width="1.5" PointX="5.25" PointY="9.25" Height="3.7109993489583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Contratacion" Width="1.5" PointX="8.25" PointY="10" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Denuncia" Width="1.5" PointX="7.5" PointY="4" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Estado" Width="1.5" PointX="0.75" PointY="10.375" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Imagen" Width="1.5" PointX="10.5" PointY="12.625" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.PreguntaRespuesta" Width="1.5" PointX="8.25" PointY="7" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Publicacion" Width="1.5" PointX="8.25" PointY="13" Height="4.2879036458333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Puntaje" Width="1.5" PointX="10.5" PointY="15.25" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Replica" Width="1.5" PointX="7.5" PointY="18.5" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Rubro" Width="1.5" PointX="6" PointY="13.875" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Sancion" Width="1.5" PointX="5.25" PointY="26.875" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.SubRubro" Width="1.5" PointX="6" PointY="21.375" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.TipoCalificacion" Width="1.5" PointX="3" PointY="6.125" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.TipoEvaluacion" Width="1.5" PointX="3" PointY="14.5" Height="1.5956835937500014" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Usuario" Width="1.5" PointX="3" PointY="8.75" Height="4.6725065104166674" IsExpanded="true" />
+        <AssociationConnector Association="ProvidereModel.FK_Calificacion_Contratacion" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.25" PointY="11.0862939453125" />
+          <ConnectorPoint PointX="8.1458333333333339" PointY="11.0862939453125" />
+          <ConnectorPoint PointX="7.979166666666667" PointY="11.0862939453125" />
+          <ConnectorPoint PointX="7.958333333333333" PointY="11.0862939453125" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="11.0862939453125" />
+          <ConnectorPoint PointX="6.75" PointY="11.0862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Calificacion_TipoCalificacion" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.9228417968750016" />
+          <ConnectorPoint PointX="6" PointY="6.9228417968750016" />
+          <ConnectorPoint PointX="6" PointY="9.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Calificacion_TipoEvaluacion" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="15.910584309895835" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="15.910584309895835" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="15.910584309895835" />
+          <ConnectorPoint PointX="5.59375" PointY="15.910584309895835" />
+          <ConnectorPoint PointX="5.59375" PointY="12.960999348958332" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Calificado_Usuario" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="11.105499674479166" />
+          <ConnectorPoint PointX="5.25" PointY="11.105499674479166" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Calificador_Usuario" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="10.115249837239583" />
+          <ConnectorPoint PointX="5.25" PointY="10.115249837239583" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Denuncia_Calificacion" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.4062525" PointY="9.25" />
+          <ConnectorPoint PointX="6.4062525" PointY="4.8939925130208337" />
+          <ConnectorPoint PointX="7.5" PointY="4.8939925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Replica_Calificacion" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.7968775" PointY="12.960999348958332" />
+          <ConnectorPoint PointX="5.7968775" PointY="19.393992513020834" />
+          <ConnectorPoint PointX="6.635416666666667" PointY="19.393992513020834" />
+          <ConnectorPoint PointX="6.802083333333333" PointY="19.393992513020834" />
+          <ConnectorPoint PointX="7.5" PointY="19.393992513020834" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Contratacion_Publicacion" ManuallyRouted="false">
+          <ConnectorPoint PointX="9" PointY="13" />
+          <ConnectorPoint PointX="9" PointY="12.172587890625" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Contratacion_Usuario" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="13.422506510416667" />
+          <ConnectorPoint PointX="3.75" PointY="13.672506510416667" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="13.672506510416667" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="13.672506510416667" />
+          <ConnectorPoint PointX="5.510416666666667" PointY="13.672506510416667" />
+          <ConnectorPoint PointX="5.677083333333333" PointY="13.672506510416667" />
+          <ConnectorPoint PointX="5.7135441666666669" PointY="13.672506510416667" />
+          <ConnectorPoint PointX="5.8802108333333329" PointY="13.672506510416667" />
+          <ConnectorPoint PointX="7.875" PointY="13.672506510416667" />
+          <ConnectorPoint PointX="7.875" PointY="10.511894972656251" />
+          <ConnectorPoint PointX="7.979166666666667" PointY="10.511894972656251" />
+          <ConnectorPoint PointX="8.1458333333333339" PointY="10.511894972656251" />
+          <ConnectorPoint PointX="8.25" PointY="10.511894972656251" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Usuario_Estado" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="11.172841796875" />
+          <ConnectorPoint PointX="3" PointY="11.172841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Imagen_Publicacion" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="13.706492513020834" />
+          <ConnectorPoint PointX="10.5" PointY="13.706492513020834" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_PreguntaRespuesta_Publicacion" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.3123066923076916" PointY="13" />
+          <ConnectorPoint PointX="8.0625" PointY="12.750193307692308" />
+          <ConnectorPoint PointX="8.0625" PointY="9.5523893229166674" />
+          <ConnectorPoint PointX="8.25" PointY="9.3648893229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_PreguntaRespuesta_Usuario" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.96875" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="8.96875" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="8.96875" />
+          <ConnectorPoint PointX="6.3229191666666669" PointY="8.96875" />
+          <ConnectorPoint PointX="6.4895858333333329" PointY="8.96875" />
+          <ConnectorPoint PointX="8.25" PointY="8.96875" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Publicacion_Rubro" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="14.768992513020834" />
+          <ConnectorPoint PointX="8.25" PointY="14.768992513020834" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Publicacion_SubRubro" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="22.365143229166666" />
+          <ConnectorPoint PointX="9.40625" PointY="22.365143229166666" />
+          <ConnectorPoint PointX="9.40625" PointY="17.287903645833332" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Publicacion_Usuario" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="13.211253255208334" />
+          <ConnectorPoint PointX="5.510416666666667" PointY="13.211253255208334" />
+          <ConnectorPoint PointX="5.677083333333333" PointY="13.211253255208334" />
+          <ConnectorPoint PointX="5.7135441666666669" PointY="13.211253255208334" />
+          <ConnectorPoint PointX="5.8802108333333329" PointY="13.211253255208334" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="13.211253255208334" />
+          <ConnectorPoint PointX="7.958333333333333" PointY="13.211253255208334" />
+          <ConnectorPoint PointX="8.25" PointY="13.211253255208334" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Puntaje_Publicacion" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="16.268951822916666" />
+          <ConnectorPoint PointX="10.5" PointY="16.268951822916666" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_SubRubro_Rubro" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.71875" PointY="15.662985026041667" />
+          <ConnectorPoint PointX="6.71875" PointY="21.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Sancion_Usuario" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="13.422506510416667" />
+          <ConnectorPoint PointX="4.875" PointY="13.797506510416667" />
+          <ConnectorPoint PointX="4.875" PointY="27.865143229166669" />
+          <ConnectorPoint PointX="5.25" PointY="27.865143229166669" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
