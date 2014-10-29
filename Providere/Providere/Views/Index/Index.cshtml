@@ -1,4 +1,6 @@
-﻿@{
+﻿@using BotDetect.Web.UI.Mvc;
+@model Providere.Models.Usuario
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -13,6 +15,8 @@
     <!-- Core Scripts -->
     <script language="javascript" type="text/javascript" src="../../Scripts/js/jquery-1.10.2.js"></script>
     <script language="javascript" type="text/javascript" src="../../Scripts/js/bootstrap.min.js"></script>
+    <link href="../../Content/themes/base/jquery.ui.all.css" media="all" rel="stylesheet"
+        type="text/css" />
     <script language="javascript" type="text/javascript">
         !function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
@@ -59,17 +63,26 @@
                         <h4 class="modal-title">
                             Ingresar a mi cuenta</h4>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="CorreoElectronico" placeholder="Ingrese su correo electronico">
+                    @using (Html.BeginForm("Ingresar", "Usuario", FormMethod.Post, new { @class = "form" }))
+                    {
+                        <div class="modal-body">
+                            @Html.ValidationSummary(true)
+                            <div class="form-group">
+                                @Html.Label("Correo electronico")
+                                @Html.TextBoxFor(model => model.Mail, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Mail)
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Contraseña")
+                                @Html.TextBoxFor(model => model.Contrasenia, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Contrasenia)
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="Contrasenia" placeholder="Ingrese su contraseña">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-info btn-lg btn-block">
+                                Iniciar sesion</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="btn btn-info">Iniciar sesion</a>
-                    </div>
+                    }
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -87,41 +100,61 @@
                         <h4 class="modal-title">
                             Registrarse en Providere</h4>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="NombreApellido" placeholder="Ingrese su nombre y apellido">
+                    @using (Html.BeginForm("Registro", "Usuario", FormMethod.Post, new { @class = "form" }))
+                    {
+                        <div class="modal-body">
+                            <div class="form-group">
+                                @Html.Label("Nombre")
+                                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Nombre)
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Apellido")
+                                @Html.TextBoxFor(m => m.Apellido, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Apellido)
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Correo electronico")
+                                @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Mail)
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Telefono")
+                                @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Telefono)
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Seleccione su ubicación")
+                                <select class="form-control">
+                                    <option>Capital Federal</option>
+                                    <option>Mendoza</option>
+                                    <option>Cordoba</option>
+                                    <option>Santa Fe</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Contraseña")
+                                @Html.TextBoxFor(m => m.Contrasenia, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Contrasenia)
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    @Html.Label("CaptchaCode", "Escriba el código de la imágen:")
+                                    @{ MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha");
+                                       sampleCaptcha.UserInputClientID = "CaptchaCode"; }
+                                    @Html.Captcha(sampleCaptcha)
+                                </div>
+                                <div class="actions">
+                                    @Html.TextBox("CaptchaCode")
+                                    @Html.ValidationMessage("CaptchaCode")
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="CorreoElectronico2" placeholder="Ingrese su correo electronico">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-info btn-lg btn-block">
+                                Registrarme</button>
                         </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="Telefono" placeholder="Ingrese su numero telefonico">
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control">
-                                <option>Seleccione su ubicación</option>
-                                <option>Capital Federal</option>
-                                <option>Mendoza</option>
-                                <option>Cordoba</option>
-                                <option>Santa Fe</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="Contrasenia2" placeholder="Ingrese su contraseña">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="Contrasenia3" placeholder="Ingrese su contraseña nuevamente">
-                        </div>
-                        <div class="form-group">
-                            <label for="text" class="col-sm-2 control-label">
-                                Captcha</label>
-                            <br />
-                            <textarea class="form-control" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="btn btn-info">Registrarme</a>
-                    </div>
+                    }
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -130,7 +163,7 @@
         <!-- /.modal -->
         <div class="container">
             <div class="content">
-                <!-- Ejemplo de buscador con dos select -->
+                <!-- Ejemplo de buscador con  select -->
                 <div id="buscador" class="row">
                     <div class="col-md-5">
                         <select class="form-control">
@@ -251,8 +284,8 @@
                 </div>
                 <div class="col-md-4">
                     <p>
-                        <a data-toggle="modal" href="#myModalFunciona"><em>Como funciona</em></a> <a href="mailto:providere_arg@gmail.com">
-                            <em>Contacto</em></a>
+                        <a data-toggle="modal" href="#myModalFunciona">Como funciona</a> <a href="mailto:providere_arg@gmail.com">
+                            Contacto</a>
                     </p>
                 </div>
                 <div class="col-md-3">
@@ -345,7 +378,6 @@
             <!-- /.modal-dialog -->
         </div>
         <!-- /.modal -->
-    </div>
     </div>
 </body>
 </html>
