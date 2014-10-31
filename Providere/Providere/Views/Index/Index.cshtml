@@ -17,19 +17,49 @@
     <script language="javascript" type="text/javascript" src="../../Scripts/js/bootstrap.min.js"></script>
     <link href="../../Content/themes/base/jquery.ui.all.css" media="all" rel="stylesheet"
         type="text/css" />
+   <!-- Twitter -->
     <script language="javascript" type="text/javascript">
         !function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
             if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); }
         } (document, 'script', 'twitter-wjs');
     </script>
+    <!-- Google Maps -->
+    <script language="javascript" type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+    <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../Scripts/js/jquery.geocomplete.js"></script>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+
+            $("#geocomplete").geocomplete()
+          .bind("geocode:result", function (event, result) {
+              $.log("Result: " + result.formatted_address);
+          })
+          .bind("geocode:error", function (event, status) {
+              $.log("ERROR: " + status);
+          })
+          .bind("geocode:multiple", function (event, results) {
+              $.log("Multiple: " + results.length + " results found");
+          });
+
+            $("#find").click(function () {
+                $("#geocomplete").trigger("geocode");
+            });
+
+
+            $("#examples a").click(function () {
+                $("#geocomplete").val($(this).text()).trigger("geocode");
+                return false;
+            });
+
+        });
+    </script>
 </head>
 <body>
-    <div>
         <div class="header navbar navbar-default">
             <div class="container">
                 <div id="contenedor-logo" class="col-md-6">
-                    <img src="../../Content/img/logo.png" alt="Providere" width="100%" />
+                    <img src="../../Content/img/logotransparente.png" alt="Providere" width="100%" />
                 </div>
                 <div class="col-md-6">
                     <ul class="nav navbar-nav navbar-right">
@@ -52,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <!-- Modal -->
+        <!--Modal -->
         <div class="modal" id="myModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -176,7 +206,7 @@
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="ubicacionMaps" placeholder="Ingrese ubicacion" />
+                             <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion.Ej:San Justo" />
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -277,107 +307,69 @@
             </div>
         </div>
         <br />
-        <div id="footer" class=" navbar-default">
-            <div class="container-fluid">
-                <div class="col-md-3">
-                    <img src="../../Content/img/logoFooter.png" alt="logo" width="15%" />
-                </div>
-                <div class="col-md-4">
-                    <p>
-                        <a data-toggle="modal" href="#myModalFunciona">Como funciona</a> <a href="mailto:providere_arg@gmail.com">
-                            Contacto</a>
-                    </p>
-                </div>
-                <div class="col-md-3">
-                    <a href="#">
-                        <img src="../../Content/img/facebook.gif" alt="facebook" width="12%" /></a>
-                    <a href="#" class="margin-top">
-                        <img src="../../Content/img/twitter.png" alt="twitter" width="12%" /></a>
-                </div>
-                <!--container del footer-->
-            </div>
+       <div id="footer" class=" navbar-default">
+      <div class="container">
+    <div class="col-md-4"> <img  src="../../Content/img/logoFooter.png" alt="logo" width="15%" /> <span class="text-info"> ©2014 | Todos los derechos reservados</span> </div>
+    <div class="col-md-4 text-center">
+          <p> <a data-toggle="modal" href="#myModalFunciona" >C&oacute;mo funciona</a> | <a href="mailto:providere_arg@gmail.com">Contacto</a> </p>
         </div>
-        <!-- Modal Como Funciona-->
-        <div class="modal" id="myModalFunciona">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;</button>
-                        <h4 class="modal-title">
-                            Mas información sobre Providere</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                            <h4>
-                                                ¿Qué es Providere?</h4>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <blockquote>
-                                            <p>
-                                                En Providere, de manera fácil y clara, podes encontrar al profesional autónomo para
-                                                resolver todas aquellas tareas que, de forma circunstancial o programada, necesitas
-                                                atender para el buen funcionamiento de tu hogar.
-                                                <br />
-                                                ¿Necesitas una empleada de hogar, una niñera?
-                                                <br />
-                                                ¿Buscas personal cualificado para atender las necesidades y el cuidado de tus mayores
-                                                o enfermos?
-                                                <br />
-                                                Querés realizar una reforma en tu hogar:¿Necesitas pintor,electricista,carpintero
-                                                o un albañil?
-                                                <br />
-                                                Si eres profesional autónomo o particular, y ofreces cualquier servicio a domicilio,
-                                                este es tu espacio web. Simplemente te registras y ya podes publicar una oferta
-                                                del servicio que prestas.
-                                            </p>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                            <h4>
-                                                ¿Cómo funciona Providere?</h4>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <blockquote>
-                                            <p>
-                                                Providere contiene un motor de búsqueda centrado exclusivamente en los servicios
-                                                a domicilio.<br />
-                                                Te proporcionamos la posibilidad de encontrar al profesional que necesitas en el
-                                                ámbito de los servicios a domicilio de la siguiente manera:
-                                                <br />
-                                                Podes hacer una búsqueda entre los usuarios que hayan publicado el servicio que
-                                                prestan, ordenados por rubros y ubicación.
-                                                <br />
-                                                Tenes que estar registrado en el sistema para poder ponerte en contacto con quien
-                                                vos quieras sin que Providere intervenga en la contratación.
-                                            </p>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
+    <div class="iconos-sociales col-md-4"> <a href="#"> <img src="../../Content/img/facebook.png" alt="facebook" width="12%" /> </a> <a href="#" class="margin-top" > <img src="../../Content/img/twitter.png" alt="twitter" width="12%" /> </a> </div>
+  </div>
+      <!--container del footer--> 
     </div>
+
+<!-- Modal Como Funciona-->
+<div class="modal" id="myModalFunciona">
+      <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Mas información sobre Providere</h4>
+      </div>
+          <div class="modal-body">
+        <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+            <div class="panel-heading">
+                  <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <h4> ¿Qué es Providere?</h4>
+                    </a> </h4>
+                </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                <blockquote>
+                      <p>En Providere, de manera fácil y clara, podes encontrar al profesional autónomo para resolver todas aquellas tareas que, de forma circunstancial o programada, necesitas atender para el buen funcionamiento de tu hogar. <br/>
+                    ¿Necesitas una empleada de hogar, una niñera? <br/>
+                    ¿Buscas personal cualificado para atender las necesidades y el cuidado de tus mayores o enfermos? <br/>
+                    Querés realizar una reforma en tu hogar:¿Necesitas pintor,electricista,carpintero o un albañil? <br/>
+                    Si eres profesional autónomo o particular, y ofreces cualquier servicio a domicilio, este es tu espacio web. Simplemente te registras y ya podes publicar una oferta del servicio que prestas. </p>
+                    </blockquote>
+              </div>
+                </div>
+          </div>
+              <div class="panel panel-default">
+            <div class="panel-heading">
+                  <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    <h4> ¿Cómo funciona Providere?</h4>
+                    </a> </h4>
+                </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                  <div class="panel-body">
+                <blockquote>
+                      <p> Providere contiene un motor de búsqueda centrado exclusivamente en los servicios a domicilio.<br/>
+                    Te proporcionamos la posibilidad de encontrar al profesional que necesitas en el ámbito de los servicios a domicilio de la siguiente manera: <br/>
+                    Podes hacer una búsqueda entre los usuarios que hayan publicado el servicio que prestan, ordenados por rubros y ubicación. <br/>
+                    Tenes que estar registrado en el sistema para poder ponerte en contacto con quien vos quieras sin que Providere intervenga en la contratación. </p>
+                    </blockquote>
+              </div>
+                </div>
+          </div>
+            </div>
+      </div>
+        </div>
+    <!-- /.modal-content --> 
+  </div>
+      <!-- /.modal-dialog --> 
+    </div>
+<!-- /.modal -->
 </body>
 </html>
