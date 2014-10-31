@@ -1,5 +1,4 @@
-﻿@using BotDetect.Web.UI.Mvc;
-@model Providere.Models.Usuario
+﻿@model Providere.Models.Usuario
 @{
     Layout = null;
 }
@@ -17,7 +16,7 @@
     <script language="javascript" type="text/javascript" src="../../Scripts/js/bootstrap.min.js"></script>
     <link href="../../Content/themes/base/jquery.ui.all.css" media="all" rel="stylesheet"
         type="text/css" />
-   <!-- Twitter -->
+    <!-- Twitter -->
     <script language="javascript" type="text/javascript">
         !function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
@@ -56,320 +55,288 @@
     </script>
 </head>
 <body>
-        <div class="header navbar navbar-default">
-            <div class="container">
-                <div id="contenedor-logo" class="col-md-6">
-                    <img src="../../Content/img/logotransparente.png" alt="Providere" width="100%" />
-                </div>
-                <div class="col-md-6">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <div class="modalBox">
-                                <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-user">
-                                </span>Ingresar</a>
-                                <br />
-                                <br />
-                            </div>
-                        </li>
-                        <li>
-                            <div class="modalBox2">
-                                <a data-toggle="modal" href="#myModal2" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-list">
-                                </span>Registrarme</a>
-                                <br />
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--Modal -->
-        <div class="modal" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
-                        <h4 class="modal-title">
-                            Ingresar a mi cuenta</h4>
-                    </div>
-                    @using (Html.BeginForm("Ingresar", "Usuario", FormMethod.Post, new { @class = "form" }))
-                    {
-                        <div class="modal-body">
-                            @Html.ValidationSummary(true)
-                            <div class="form-group">
-                                @Html.Label("Correo electronico")
-                                @Html.TextBoxFor(model => model.Mail, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Mail)
-                            </div>
-                            <div class="form-group">
-                                @Html.Label("Contraseña")
-                                @Html.TextBoxFor(model => model.Contrasenia, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Contrasenia)
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-info btn-lg btn-block">
-                                Iniciar sesion</button>
-                        </div>
-                    }
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-        <!-- Modal -->
-        <div class="modal" id="myModal2">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
-                        <h4 class="modal-title">
-                            Registrarse en Providere</h4>
-                    </div>
-                    @using (Html.BeginForm("Registro", "Usuario", FormMethod.Post, new { @class = "form" }))
-                    {
-                        <div class="modal-body">
-                            <div class="form-group">
-                                @Html.Label("Nombre")
-                                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Nombre)
-                            </div>
-                            <div class="form-group">
-                                @Html.Label("Apellido")
-                                @Html.TextBoxFor(m => m.Apellido, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Apellido)
-                            </div>
-                            <div class="form-group">
-                                @Html.Label("Correo electronico")
-                                @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Mail)
-                            </div>
-                            <div class="form-group">
-                                @Html.Label("Telefono")
-                                @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Telefono)
-                            </div>
-                            <div class="form-group">
-                                @Html.Label("Seleccione su ubicación")
-                                <select class="form-control">
-                                    <option>Capital Federal</option>
-                                    <option>Mendoza</option>
-                                    <option>Cordoba</option>
-                                    <option>Santa Fe</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                @Html.Label("Contraseña")
-                                @Html.TextBoxFor(m => m.Contrasenia, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Contrasenia)
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    @Html.Label("CaptchaCode", "Escriba el código de la imágen:")
-                                    @{ MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha");
-                                       sampleCaptcha.UserInputClientID = "CaptchaCode"; }
-                                    @Html.Captcha(sampleCaptcha)
-                                </div>
-                                <div class="actions">
-                                    @Html.TextBox("CaptchaCode")
-                                    @Html.ValidationMessage("CaptchaCode")
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-info btn-lg btn-block">
-                                Registrarme</button>
-                        </div>
-                    }
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
+    <div class="header navbar navbar-default">
         <div class="container">
-            <div class="content">
-                <!-- Ejemplo de buscador con  select -->
-                <div id="buscador" class="row">
-                    <div class="col-md-5">
-                        <select class="form-control">
-                            <option>Seleccione rubro</option>
-                            <option>Plomeria</option>
-                            <option>Gasista</option>
-                            <option>Electricista</option>
-                            <option>Enfermeria</option>
-                        </select>
-                    </div>
-                    <div class="col-md-5">
+            <div id="contenedor-logo" class="col-md-6">
+                <img src="../../Content/img/logotransparente.png" alt="Providere" width="100%" />
+            </div>
+            <div class="col-md-6">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="modalBox">
+                            <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-user">
+                            </span> Ingresar</a>
+                            <br />
+                            <br />
+                        </div>
+                    </li>
+                    <li>
+                        <div class="modalBox2">
+                            <a href="@Url.Action("RegistrarUsuario","Usuario")" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-list">
+                            </span> Registrarme</a>
+                            <br />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        Ingresar a mi cuenta</h4>
+                </div>
+                @using (Html.BeginForm("IniciarSesion", "Usuario", FormMethod.Post, new { @class = "form" }))
+                {
+                    <div class="modal-body">
+                        @Html.ValidationSummary(true)
                         <div class="form-group">
-                             <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion.Ej:San Justo" />
+                            @Html.Label("Correo electronico")
+                            @Html.TextBoxFor(model => model.Mail, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Mail)
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Contraseña")
+                            @Html.TextBoxFor(model => model.Contrasenia, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Contrasenia)
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <input id="btnBuscar" type="submit" value="Buscar" class="btn btn-primary btn-block" />
-                        <br />
+                    <div class="modal-footer">
+                        <button type="submit" id="btnSesion" class="btn btn-info btn-lg btn-block">
+                            Iniciar sesion</button>
+                    </div>
+                }
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <div class="container">
+        <div class="content">
+            <!-- Ejemplo de buscador con  select -->
+            <div id="buscador" class="row">
+                <div class="col-md-5">
+                    <select class="form-control">
+                        <option>Seleccione rubro</option>
+                        <option>Plomeria</option>
+                        <option>Gasista</option>
+                        <option>Electricista</option>
+                        <option>Enfermeria</option>
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion.Ej:San Justo" />
                     </div>
                 </div>
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <img src="../../Content/img/index.jpg" alt="index" />
-                            <div class="carousel-caption">
-                                <h2>
-                                    Providere es la aplicación de los servicios para el hogar</h2>
+                <div class="col-md-2">
+                    <button type="submit" id="btnBuscar" class="btn btn-primary  btn-block">
+                        <span class="glyphicon glyphicon-search"></span> Buscar
+                    </button>
+                </div>
+            </div>
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="../../Content/img/index.jpg" alt="index" />
+                        <div class="carousel-caption">
+                            <h2>
+                                Providere es la aplicación de los servicios para el hogar</h2>
+                            <br />
+                            <p>
+                                Te proponemos un lugar de encuentro entre las personas que buscan servicios a domicilio,
+                                y aquellos profesionales autónomos que ofrecen estos servicios.</p>
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.providere.com.ar"
+                                data-text="Providere, servicios generales para el hogar. Visita nuestro sitio en:"
+                                data-via="providere_arg" data-hashtags="ProvidereArgentina">Tweet</a>
+                            <br />
+                            <br />
+                            <div class="modalBox2">
+                                  <a href="@Url.Action("RegistrarUsuario","Usuario")" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-list">
+                            </span> Registrarme ahora!</a>
                                 <br />
-                                <p>
-                                    Te proponemos un lugar de encuentro entre las personas que buscan servicios a domicilio,
-                                    y aquellos profesionales autónomos que ofrecen estos servicios.</p>
-                                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.providere.com.ar"
-                                    data-text="Providere, servicios generales para el hogar. Visita nuestro sitio en:"
-                                    data-via="providere_arg" data-hashtags="ProvidereArgentina">Tweet</a>
-                                <br />
-                                <br />
-                                <div class="modalBox2">
-                                    <a data-toggle="modal" href="#myModal2" class="btn btn-primary btn-large">Registrarme
-                                        gratis!</a>
-                                    <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--fin imagen central-->
+            <div id="publicaciones-destacadas">
+                <h2>
+                    Publicaciones destacadas</h2>
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="col-md-3">
+                            <img src="../../Content/img/plomero.jpg" alt="plomero" class="img-thumbnail" width="100%" /></div>
+                        <div class="col-md-9">
+                            <h3>
+                                <a href="#">Pedro Gomez</a></h3>
+                            <span>Plomeria</span> <span class="badge">20</span>
+                            <br />
+                            <br />
+                            <span><a href="#">Gasista Matriculado Plomero Presupuestos Y Visitas Sin Cargo</a></span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="col-md-3">
+                            <img src="../../Content/img/plomero.jpg" alt="electricista" class="img-thumbnail"
+                                width="100%" /></div>
+                        <div class="col-md-9">
+                            <h3>
+                                <a href="#">Marcos Aguirre</a></h3>
+                            <span>Electricista</span> <span class="badge">5</span>
+                            <br>
+                            <br />
+                            <span><a href="#">Electricista Matriculado Zona Sur</a></span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="col-md-3">
+                            <img src="../../Content/img/plomero.jpg" alt="jardinero" class="img-thumbnail" width="100%" /></div>
+                        <div class="col-md-9">
+                            <h3>
+                                <a href="#">Roberto Peralta</a></h3>
+                            <span>Jardineria</span> <span class="badge">100</span>
+                            <br />
+                            <br />
+                            <span><a href="#">Jardinería - Paisajismo - Mantenimientos - Parquizados en zona oeste</a></span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="col-md-3">
+                            <img src="../../Content/img/plomero.jpg" alt="jardinero" class="img-thumbnail" width="100%" /></div>
+                        <div class="col-md-9">
+                            <h3>
+                                <a href="#">Pedro Lanus</a></h3>
+                            <span>Carpinteria</span> <span class="badge">1</span>
+                            <br />
+                            <br />
+                            <span><a href="#">Trabajos de carpinteria en Merlo - San Luis</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div id="footer" class=" navbar-default">
+        <div class="container">
+            <div class="col-md-4">
+                <img src="../../Content/img/logoFooter.png" alt="logo" width="15%" />
+                <span class="text-info">©2014 | Todos los derechos reservados</span>
+            </div>
+            <div class="col-md-4 text-center">
+                <p>
+                    <a data-toggle="modal" href="#myModalFunciona">C&oacute;mo funciona</a> | <a href="mailto:providere_arg@gmail.com">
+                        Contacto</a>
+                </p>
+            </div>
+            <div class="iconos-sociales col-md-4">
+                <a href="#">
+                    <img src="../../Content/img/facebook.png" alt="facebook" width="12%" />
+                </a><a href="#" class="margin-top">
+                    <img src="../../Content/img/twitter.png" alt="twitter" width="12%" />
+                </a>
+            </div>
+        </div>
+        <!--container del footer-->
+    </div>
+    <!-- Modal Como Funciona-->
+    <div class="modal" id="myModalFunciona">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;</button>
+                    <h4 class="modal-title">
+                        Mas información sobre Providere</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        <h4>
+                                            ¿Qué es Providere?</h4>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <blockquote>
+                                        <p>
+                                            En Providere, de manera fácil y clara, podes encontrar al profesional autónomo para
+                                            resolver todas aquellas tareas que, de forma circunstancial o programada, necesitas
+                                            atender para el buen funcionamiento de tu hogar.
+                                            <br />
+                                            ¿Necesitas una empleada de hogar, una niñera?
+                                            <br />
+                                            ¿Buscas personal cualificado para atender las necesidades y el cuidado de tus mayores
+                                            o enfermos?
+                                            <br />
+                                            Querés realizar una reforma en tu hogar:¿Necesitas pintor,electricista,carpintero
+                                            o un albañil?
+                                            <br />
+                                            Si eres profesional autónomo o particular, y ofreces cualquier servicio a domicilio,
+                                            este es tu espacio web. Simplemente te registras y ya podes publicar una oferta
+                                            del servicio que prestas.
+                                        </p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        <h4>
+                                            ¿Cómo funciona Providere?</h4>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <blockquote>
+                                        <p>
+                                            Providere contiene un motor de búsqueda centrado exclusivamente en los servicios
+                                            a domicilio.<br />
+                                            Te proporcionamos la posibilidad de encontrar al profesional que necesitas en el
+                                            ámbito de los servicios a domicilio de la siguiente manera:
+                                            <br />
+                                            Podes hacer una búsqueda entre los usuarios que hayan publicado el servicio que
+                                            prestan, ordenados por rubros y ubicación.
+                                            <br />
+                                            Tenes que estar registrado en el sistema para poder ponerte en contacto con quien
+                                            vos quieras sin que Providere intervenga en la contratación.
+                                        </p>
+                                    </blockquote>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--fin imagen central-->
-                <div id="publicaciones-destacadas">
-                    <h2>
-                        Publicaciones destacadas</h2>
-                    <div class="row">
-                        <div class="col-md-11">
-                            <div class="col-md-3">
-                                <img src="../../Content/img/plomero.jpg" alt="plomero" class="img-thumbnail" width="100%" /></div>
-                            <div class="col-md-9">
-                                <h3>
-                                    <a href="#">Pedro Gomez</a></h3>
-                                <span>Plomeria</span> <span class="badge">20</span>
-                                <br />
-                                <br />
-                                <span><a href="#">Gasista Matriculado Plomero Presupuestos Y Visitas Sin Cargo</a></span>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-11">
-                            <div class="col-md-3">
-                                <img src="../../Content/img/plomero.jpg" alt="electricista" class="img-thumbnail"
-                                    width="100%" /></div>
-                            <div class="col-md-9">
-                                <h3>
-                                    <a href="#">Marcos Aguirre</a></h3>
-                                <span>Electricista</span> <span class="badge">5</span>
-                                <br>
-                                <br />
-                                <span><a href="#">Electricista Matriculado Zona Sur</a></span>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-11">
-                            <div class="col-md-3">
-                                <img src="../../Content/img/plomero.jpg" alt="jardinero" class="img-thumbnail" width="100%" /></div>
-                            <div class="col-md-9">
-                                <h3>
-                                    <a href="#">Roberto Peralta</a></h3>
-                                <span>Jardineria</span> <span class="badge">100</span>
-                                <br />
-                                <br />
-                                <span><a href="#">Jardinería - Paisajismo - Mantenimientos - Parquizados en zona oeste</a></span>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-11">
-                            <div class="col-md-3">
-                                <img src="../../Content/img/plomero.jpg" alt="jardinero" class="img-thumbnail" width="100%" /></div>
-                            <div class="col-md-9">
-                                <h3>
-                                    <a href="#">Pedro Lanus</a></h3>
-                                <span>Carpinteria</span> <span class="badge">1</span>
-                                <br />
-                                <br />
-                                <span><a href="#">Trabajos de carpinteria en Merlo - San Luis</a></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+            <!-- /.modal-content -->
         </div>
-        <br />
-       <div id="footer" class=" navbar-default">
-      <div class="container">
-    <div class="col-md-4"> <img  src="../../Content/img/logoFooter.png" alt="logo" width="15%" /> <span class="text-info"> ©2014 | Todos los derechos reservados</span> </div>
-    <div class="col-md-4 text-center">
-          <p> <a data-toggle="modal" href="#myModalFunciona" >C&oacute;mo funciona</a> | <a href="mailto:providere_arg@gmail.com">Contacto</a> </p>
-        </div>
-    <div class="iconos-sociales col-md-4"> <a href="#"> <img src="../../Content/img/facebook.png" alt="facebook" width="12%" /> </a> <a href="#" class="margin-top" > <img src="../../Content/img/twitter.png" alt="twitter" width="12%" /> </a> </div>
-  </div>
-      <!--container del footer--> 
+        <!-- /.modal-dialog -->
     </div>
-
-<!-- Modal Como Funciona-->
-<div class="modal" id="myModalFunciona">
-      <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Mas información sobre Providere</h4>
-      </div>
-          <div class="modal-body">
-        <div class="panel-group" id="accordion">
-              <div class="panel panel-default">
-            <div class="panel-heading">
-                  <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                    <h4> ¿Qué es Providere?</h4>
-                    </a> </h4>
-                </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
-                  <div class="panel-body">
-                <blockquote>
-                      <p>En Providere, de manera fácil y clara, podes encontrar al profesional autónomo para resolver todas aquellas tareas que, de forma circunstancial o programada, necesitas atender para el buen funcionamiento de tu hogar. <br/>
-                    ¿Necesitas una empleada de hogar, una niñera? <br/>
-                    ¿Buscas personal cualificado para atender las necesidades y el cuidado de tus mayores o enfermos? <br/>
-                    Querés realizar una reforma en tu hogar:¿Necesitas pintor,electricista,carpintero o un albañil? <br/>
-                    Si eres profesional autónomo o particular, y ofreces cualquier servicio a domicilio, este es tu espacio web. Simplemente te registras y ya podes publicar una oferta del servicio que prestas. </p>
-                    </blockquote>
-              </div>
-                </div>
-          </div>
-              <div class="panel panel-default">
-            <div class="panel-heading">
-                  <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                    <h4> ¿Cómo funciona Providere?</h4>
-                    </a> </h4>
-                </div>
-            <div id="collapseTwo" class="panel-collapse collapse">
-                  <div class="panel-body">
-                <blockquote>
-                      <p> Providere contiene un motor de búsqueda centrado exclusivamente en los servicios a domicilio.<br/>
-                    Te proporcionamos la posibilidad de encontrar al profesional que necesitas en el ámbito de los servicios a domicilio de la siguiente manera: <br/>
-                    Podes hacer una búsqueda entre los usuarios que hayan publicado el servicio que prestan, ordenados por rubros y ubicación. <br/>
-                    Tenes que estar registrado en el sistema para poder ponerte en contacto con quien vos quieras sin que Providere intervenga en la contratación. </p>
-                    </blockquote>
-              </div>
-                </div>
-          </div>
-            </div>
-      </div>
-        </div>
-    <!-- /.modal-content --> 
-  </div>
-      <!-- /.modal-dialog --> 
-    </div>
-<!-- /.modal -->
+    <!-- /.modal -->
 </body>
 </html>

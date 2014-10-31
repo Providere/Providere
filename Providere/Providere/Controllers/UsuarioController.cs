@@ -11,20 +11,38 @@ namespace Providere.Controllers
         //
         // GET: /Usuario/
 
-        public ActionResult Index()
+        public ActionResult RegistrarUsuario()
         {
             return View();
         }
 
-        public ActionResult Registrar()
+        //[HttpPost]
+        //public ActionResult RegistrarUsuario()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult IniciarSesion()
         {
             return View();
         }
 
-        public ActionResult Ingresar()
+        //[HttpPost]
+        //public ActionResult IniciarSesion()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult EditarPerfil()
         {
             return View();
         }
+
+        //[HttpPost]
+        //public ActionResult EditarPerfil()
+        //{
+        //    return View();
+        //}
 
     }
 }
