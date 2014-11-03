@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Providere.Models;
+using Providere.Servicios;
+using BotDetect.Web.UI.Mvc;
+using System.Web.Security;
 
 namespace Providere.Controllers
 {
@@ -10,17 +14,28 @@ namespace Providere.Controllers
     {
         //
         // GET: /Usuario/
-
+       
         public ActionResult RegistrarUsuario()
         {
-            return View();
+            Usuario usuario = new Usuario();
+            return View(usuario);
         }
 
-        //[HttpPost]
-        //public ActionResult RegistrarUsuario()
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        [CaptchaValidation("CaptchaCode", "SampleCaptcha", "Codigo incorrecto")]
+        public ActionResult RegistrarUsuario(Usuario model)
+        {
+            bool estado = bool.Parse(Request.Form.GetValues("ckbAcepto")[0]);
+            if (ModelState.IsValid && estado == true) 
+            {
+                return View(model);
+            }
+            else
+            {
+                ModelState.AddModelError("", "Verifique que todos los campos esten completados correctamente");
+                return View(model);
+            }
+        }
 
         public ActionResult IniciarSesion()
         {

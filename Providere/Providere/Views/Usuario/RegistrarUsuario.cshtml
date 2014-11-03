@@ -5,13 +5,13 @@
     Layout = "~/Views/Shared/_Registracion.cshtml";
 }
 <div class="content">
-    @using (Html.BeginForm("Registro", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm("RegistrarUsuario", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
     {
-        @Html.ValidationSummary(true)
+@* @Html.ValidationSummary(true)*@
         <div id="registrarse">
             <h2>
                 Reg&iacute;strate en Providere<small> es totalmente gratis!</small></h2>
-            <span class="glyphicon glyphicon-ok-sign"></span>Todos los datos son obligatorios
+                @Html.ValidationSummary(true)
             <hr>
             <div class="row">
                 @Html.Label("Nombre", new { @class = "col-sm-5 control-label" })
@@ -53,6 +53,7 @@
                 @Html.Label("Lugar de residencia", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
                     <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion.Ej:San Justo" />
+                    @Html.ValidationMessageFor(m => m.Ubicacion)
                     <br />
                 </div>
             </div>
@@ -60,10 +61,10 @@
             <div class="row">
                 @Html.Label("Contraseña", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
-                    @Html.TextBoxFor(m => m.Contrasenia, new { @class = "form-control" })
+                    @Html.PasswordFor(m => m.Contrasenia, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Contrasenia)
                     <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Entre
-                        6 y 12 caracteres alfanumericos</small>
+                        5 y 10 caracteres alfanumericos</small>
                 </div>
             </div>
             <div class="row">
@@ -86,6 +87,7 @@
                 <div class="input">
                     <ul class="inputs-list">
                         @Html.CheckBox("ckbAcepto")
+                        @Html.ValidationMessage("ckbAcepto")
                         Al registrarme, declaro que soy mayor de edad y acepto los<a target="_blank" href="#">
                             Términos y Condiciones de Uso</a>
                     </ul>

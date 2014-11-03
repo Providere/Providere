@@ -14,36 +14,39 @@ namespace Providere.Models
         public class UsuarioModel
         {
             [Required(ErrorMessage = "Campo Obligatorio")]
-            [StringLength(20, ErrorMessage = "Maximo 20 caracteres")]
+            [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Nombre { get; set; }
 
             [Required(ErrorMessage = "Campo Obligatorio")]
-            [StringLength(20, ErrorMessage = "Maximo 20 caracteres")]
+            [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Apellido { get; set; }
 
             [Required(ErrorMessage = "Campo Obligatorio")]
-            [StringLength(25, ErrorMessage = "Maximo 25 caracteres")]
+            [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
             [DataType(DataType.EmailAddress)]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Mail { get; set; }
 
             [Required(ErrorMessage = "Campo Obligatorio")]
-            [StringLength(15, ErrorMessage = "Maximo 15 caracteres")]
-            [RegularExpression("[0-9]", ErrorMessage = "El telefono debe ser solo numerico")]
-            [DisplayFormat(ConvertEmptyStringToNull = false)]
-            public object Telefono { get; set; }
-
-            [DisplayName("Contraseña")]
-            [Required(ErrorMessage = "Campo Obligatorio")]
-            //[StringLength(12, ErrorMessage = "Minimo 6 y maximo 12 caracteres")]
+            [StringLength(10, ErrorMessage = "Minimo 5 y maximo 10 caracteres")]
             [DataType(DataType.Password)]
-            //[Range(6,12)]
-            [RegularExpression("[A-Za-z0-9]{6,12}", ErrorMessage = "La contraseña debe ser alfanumerica. Minimo 6 y maximo 12 caracteres")]
+            [RegularExpression("[A-Za-z0-9]{5,10}", ErrorMessage = "La contraseña debe ser alfanumerica. Minimo 5 y maximo 10 caracteres")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Contrasenia { get; set; }
 
+            //[Required(ErrorMessage = "Campo Obligatorio")]
+            [DisplayFormat(ConvertEmptyStringToNull = false)]
+            public object Ubicacion { get; set; }
+
+            [Required(ErrorMessage = "Campo Obligatorio")]
+            //[RegularExpression("[0-9]*", ErrorMessage = "El telefono debe ser solo numerico")]
+            [DataType(DataType.PhoneNumber)]
+            [DisplayFormat(ConvertEmptyStringToNull = false)]
+            public object Telefono { get; set; }
+
+          
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object FechaCreacion { get; set; }
 
@@ -52,6 +55,13 @@ namespace Providere.Models
 
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object CodActivacion { get; set; }
+
+            [DisplayFormat(ConvertEmptyStringToNull = false)]
+            public object FechaCambioEstado { get; set; }
+
+            [DisplayFormat(ConvertEmptyStringToNull = false)]
+            public object IdEstado { get; set; }
+
 
         }
     }
