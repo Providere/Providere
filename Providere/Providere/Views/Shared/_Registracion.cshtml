@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/core.css" />
+    <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="../../Scripts/js/bootstrap.js"></script>
+    <link href="../../Content/img/logoSolo.png" rel="shortcut icon" type="image/png" />
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" 
+      rel="stylesheet" type="text/css" />
+    <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+    <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.geocomplete.js"></script>
+    <script language="javascript" type="text/javascript">
+        $(function () {
+
+            $("#geocomplete").geocomplete()
+          .bind("geocode:result", function (event, result) {
+              $.log("Result: " + result.formatted_address);
+          })
+          .bind("geocode:error", function (event, status) {
+              $.log("ERROR: " + status);
+          })
+          .bind("geocode:multiple", function (event, results) {
+              $.log("Multiple: " + results.length + " results found");
+          });
+
+            $("#find").click(function () {
+                $("#geocomplete").trigger("geocode");
+            });
+
+
+            $("#examples a").click(function () {
+                $("#geocomplete").val($(this).text()).trigger("geocode");
+                return false;
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div class="header navbar navbar-default">
+        <div class="container">
+            <div id="contenedor-logo" class="col-md-6">
+                <a href="#">
+                    <img src="../../Content/img/logotransparente.png" alt="Providere" width="100%" /></a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <div id="footer" class=" navbar-default">
+        <div class="container">
+            <div class="col-md-4">
+                <img src="../../Content/img/logoFooter.png" alt="logo" width="15%" />
+                <span class="text-info">@Html.ActionLink("Conoce mas acerca de Providere", "Index", "Index")</span>
+            </div>
+        </div>
+        <!--container del footer-->
+    </div>
+</body>
+</html>

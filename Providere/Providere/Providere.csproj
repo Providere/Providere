@@ -270,6 +270,8 @@
     </EntityDeploy>
     <Content Include="Views\Usuario\EditarPerfil.cshtml" />
     <Content Include="Views\Usuario\RegistrarUsuario.cshtml" />
+    <Content Include="Views\Shared\_Registracion.cshtml" />
+    <Content Include="Views\Usuario\Activar.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

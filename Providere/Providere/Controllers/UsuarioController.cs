@@ -44,5 +44,10 @@ namespace Providere.Controllers
         //    return View();
         //}
 
+        public ActionResult Activar()
+        {
+            return View();
+        }
+
     }
 }

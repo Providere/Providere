@@ -1,198 +1,134 @@
 ﻿@model Providere.Models.Usuario
 @using BotDetect.Web.UI.Mvc;
 @{
-    Layout = null;
+    ViewBag.Title = "Registracion";
+    Layout = "~/Views/Shared/_Registracion.cshtml";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Registrarse</title>
-    <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/core.css" />
-    <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.js"></script>
-    <script type="text/javascript" language="javascript" src="../../Scripts/js/bootstrap.js"></script>
-    <link href="../../Content/img/logoSolo.png" rel="shortcut icon" type="image/png" />
-    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" 
-      rel="stylesheet" type="text/css" />
-    <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-    <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.geocomplete.js"></script>
-    <script language="javascript" type="text/javascript">
-        $(function () {
-
-            $("#geocomplete").geocomplete()
-          .bind("geocode:result", function (event, result) {
-              $.log("Result: " + result.formatted_address);
-          })
-          .bind("geocode:error", function (event, status) {
-              $.log("ERROR: " + status);
-          })
-          .bind("geocode:multiple", function (event, results) {
-              $.log("Multiple: " + results.length + " results found");
-          });
-
-            $("#find").click(function () {
-                $("#geocomplete").trigger("geocode");
-            });
-
-
-            $("#examples a").click(function () {
-                $("#geocomplete").val($(this).text()).trigger("geocode");
-                return false;
-            });
-
-        });
-    </script>
-</head>
-<body>
-    <div class="header navbar navbar-default">
-        <div class="container">
-            <div id="contenedor-logo" class="col-md-6">
-                <a href="#">
-                    <img src="../../Content/img/logotransparente.png" alt="Providere" width="100%" /></a>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="content">
-            @using (Html.BeginForm("Registro", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
-            {
-                @Html.ValidationSummary(true)
-                <div id="registrarse">
-                    <h2>
-                        Reg&iacute;strate en Providere<small> es totalmente gratis!</small></h2>
-                    <span class="glyphicon glyphicon-ok-sign"></span>Todos los datos son obligatorios
-                    <hr>
-                    <div class="row">
-                        @Html.Label("Nombre", new { @class = "col-sm-5 control-label" })
-                        <div class="col-xs-3">
-                            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Nombre)
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        @Html.Label("Apellido", new { @class = "col-sm-5 control-label" })
-                        <div class="col-xs-3">
-                            @Html.TextBoxFor(m => m.Apellido, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Apellido)
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        @Html.Label("Correo electronico", new { @class = "col-sm-5 control-label" })
-                        <div class="col-xs-3">
-                            @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Mail)
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        @Html.Label("Numero telefonico", new { @class = "col-sm-5 control-label" })
-                        <div class="col-xs-3">
-                            @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Telefono)
-                            <small class="text-info">Cód. de área + Nº. Ej.: 11 44852680</small>
-                            <br />
-                            <small class="text-info"><span class="glyphicon glyphicon-lock"></span>Solo ser&aacute;
-                                visible por tu contraparte cuando contrates un servicio</small>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        @Html.Label("Lugar de residencia", new { @class = "col-sm-5 control-label" })
-                        <div class="col-xs-3">
-                            <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion.Ej:San Justo" />
-                            <br />
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        @Html.Label("Contraseña", new { @class = "col-sm-5 control-label" })
-                        <div class="col-xs-3">
-                            @Html.TextBoxFor(m => m.Contrasenia, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Contrasenia)
-                            <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Entre
-                                6 y 12 caracteres alfanumericos</small>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-5 control-label">
-                            @Html.Label("CaptchaCode", "Escriba el código de la imágen")
-                        </div>
-                        <div class="col-xs-3">
-                            @{ MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha");
-                               sampleCaptcha.UserInputClientID = "CaptchaCode"; }
-                            @Html.Captcha(sampleCaptcha)
-                            <div class="actions">
-                                @Html.TextBox("CaptchaCode")
-                                @Html.ValidationMessage("CaptchaCode")
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-                    <fieldset class="checkboxes">
-                        <legend>Aclaraci&oacute;n</legend>
-                        <div class="input">
-                            <ul class="inputs-list">
-                                @Html.CheckBox("ckbAcepto")
-                               Al registrarme, declaro que soy mayor de edad y acepto los<a target="_blank"
-                                    href="#"> Términos y Condiciones de Uso</a>
-                            </ul>
-                        </div>
-                        <!-- .input -->
-                    </fieldset>
-                    <br />
-                    <div class="form-group">
-                        <div class="col-md-offset-5">
-                            <button id="btnCrear" type="submit" class="btn btn-info btn-lg">
-                                Crear cuenta</button>
-                            <a data-toggle="modal" href="#myModal" class="btn btn-link">ya tengo una cuenta</a>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-        <!--content del body-->
-    </div>
-    <!--container del body-->
-    <!-- Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title">
-                        Ingresar a mi cuenta</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="CorreoElectronico" placeholder="Ingrese su correo electronico">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="Contrasenia" placeholder="Ingrese su contraseña">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-info">Iniciar sesion</a>
+<div class="content">
+    @using (Html.BeginForm("Registro", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.ValidationSummary(true)
+        <div id="registrarse">
+            <h2>
+                Reg&iacute;strate en Providere<small> es totalmente gratis!</small></h2>
+            <span class="glyphicon glyphicon-ok-sign"></span>Todos los datos son obligatorios
+            <hr>
+            <div class="row">
+                @Html.Label("Nombre", new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-3">
+                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Nombre)
                 </div>
             </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-    <div id="footer" class=" navbar-default">
-        <div class="container">
-            <div class="col-md-4">
-                <img src="../../Content/img/logoFooter.png" alt="logo" width="15%" />
-                <span class="text-info">@Html.ActionLink("Conoce mas acerca de Providere", "Index", "Index")</span>
+            <br />
+            <div class="row">
+                @Html.Label("Apellido", new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-3">
+                    @Html.TextBoxFor(m => m.Apellido, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Apellido)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                @Html.Label("Correo electronico", new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-3">
+                    @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Mail)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                @Html.Label("Numero telefonico", new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-3">
+                    @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Telefono)
+                    <small class="text-info">Cód. de área + Nº. Ej.: 11 44852680</small>
+                    <br />
+                    <small class="text-info"><span class="glyphicon glyphicon-lock"></span>Solo ser&aacute;
+                        visible por tu contraparte cuando contrates un servicio</small>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                @Html.Label("Lugar de residencia", new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-3">
+                    <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion.Ej:San Justo" />
+                    <br />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                @Html.Label("Contraseña", new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-3">
+                    @Html.TextBoxFor(m => m.Contrasenia, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Contrasenia)
+                    <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Entre
+                        6 y 12 caracteres alfanumericos</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5 control-label">
+                    @Html.Label("CaptchaCode", "Escriba el código de la imágen")
+                </div>
+                <div class="col-xs-3">
+                    @{ MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha");
+                       sampleCaptcha.UserInputClientID = "CaptchaCode"; }
+                    @Html.Captcha(sampleCaptcha)
+                    <div class="actions">
+                        @Html.TextBox("CaptchaCode")
+                        @Html.ValidationMessage("CaptchaCode")
+                    </div>
+                </div>
+            </div>
+            <br />
+            <fieldset class="checkboxes">
+                <legend>Aclaraci&oacute;n</legend>
+                <div class="input">
+                    <ul class="inputs-list">
+                        @Html.CheckBox("ckbAcepto")
+                        Al registrarme, declaro que soy mayor de edad y acepto los<a target="_blank" href="#">
+                            Términos y Condiciones de Uso</a>
+                    </ul>
+                </div>
+                <!-- .input -->
+            </fieldset>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-5">
+                    <button id="btnCrear" type="submit" class="btn btn-info btn-lg">
+                        Crear cuenta</button>
+                    <a data-toggle="modal" href="#myModal" class="btn btn-link">ya tengo una cuenta</a>
+                </div>
             </div>
         </div>
-        <!--container del footer-->
+    }
+</div>
+<!--content del body-->
+<!-- Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    Ingresar a mi cuenta</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="email" class="form-control" id="CorreoElectronico" placeholder="Ingrese su correo electronico">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="Contrasenia" placeholder="Ingrese su contraseña">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-info">Iniciar sesion</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
     </div>
-</body>
-</html>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
