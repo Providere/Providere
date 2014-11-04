@@ -41,7 +41,8 @@ namespace Providere.Models
             public object Ubicacion { get; set; }
 
             [Required(ErrorMessage = "Campo Obligatorio")]
-            //[RegularExpression("[0-9]*", ErrorMessage = "El telefono debe ser solo numerico")]
+            [StringLength(20, ErrorMessage = "Maximo 20 caracteres")]
+            [RegularExpression("[0-9]*", ErrorMessage = "El telefono debe ser solo numerico")]
             [DataType(DataType.PhoneNumber)]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Telefono { get; set; }
