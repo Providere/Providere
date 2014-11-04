@@ -40,17 +40,17 @@ namespace Providere.Servicios
             return true;
         }
 
-        //Activar el usuario que esta registrado pero inactivo
+        //Activar el usuario que esta registrado pero inactivo:
         public void ActivarUsuarioInactivo(Usuario model)
         {
-            var user = ur.TraerDatosPorMail(model.Mail);
+            var user = ur.TraerDatosPorMail(model.Mail); //Traigo todos los datos de ese usuario que tengo en la BD
             user.Nombre = model.Nombre;
             user.Apellido = model.Apellido;
             user.Contrasenia = Encryptor.MD5Hash(model.Contrasenia); 
             user.Telefono = model.Telefono;
             user.Ubicacion = model.Ubicacion;
 
-            //Actualizo los datos y le envio el mail de confirmacion:
+            //Le envio el mail de confirmacion y actualizo los datos:
             mailing.EnviarMail(user);
             ur.ModificarUsuario(user);
         }
@@ -58,8 +58,7 @@ namespace Providere.Servicios
         internal void AgregarUsuarioNuevo(Usuario model)
         {
 
-            ur.Crear(model);
-
+            ur.CrearUsuario(model);
             mailing.EnviarMail(model);
         }
 

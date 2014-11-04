@@ -12,6 +12,7 @@ namespace Providere.Repositorios
     {
         ProvidereEntities entities = new ProvidereEntities();
 
+        //Verifico si el email ingresado ya esta en la base y veo su estado:
         internal Usuario EmailExisteActivado(string email)
         {
             var usuario = (from user in entities.Usuario
@@ -45,12 +46,11 @@ namespace Providere.Repositorios
             usuario.Telefono = user.Telefono;
             usuario.Ubicacion = user.Ubicacion;
             //El estado y la fecha de activacion se modifica despues que mando mail y activo la cuenta
-            entities.Usuario.AddObject(usuario);
             entities.SaveChanges();
 
         }
 
-        internal void Crear(Usuario model)
+        internal void CrearUsuario(Usuario model)
         {
             model.Contrasenia = Encryptor.MD5Hash(model.Contrasenia); 
             model.FechaActivacion = DateTime.Now;
@@ -62,11 +62,6 @@ namespace Providere.Repositorios
             entities.SaveChanges();
         }
 
-        //internal Usuario TraerPorCodigoDeActivacion(string codAct)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         internal bool ActivarUsuario(string codAct)
         {
             //Encontrar al propietario del codigo de activacion:
@@ -77,18 +72,17 @@ namespace Providere.Repositorios
             Double TiempoPasadoDesdeLaRegistracion = (DateTime.Now - user.FechaCreacion).TotalMinutes;
 
             // Solo se activa el usuario si la activacion se realiza dentro de los 15 min.
-            if (TiempoPasadoDesdeLaRegistracion < 16)
+            if (TiempoPasadoDesdeLaRegistracion < 15)
             {
 
                 user.IdEstado = Convert.ToInt16(1); //Pasa a estado activo
                 user.FechaActivacion = DateTime.Now;
-                entities.Usuario.AddObject(user);
                 entities.SaveChanges();
                 return true;
             }
             else
             {
-                //Se vencio el plazo de validez:
+                //Se vencio el plazo de validez
                 return false;
             }
         }

@@ -27,7 +27,7 @@ namespace Providere.Servicios
             body += "<br /><a href='"
                  + HttpContext.Current.Request.Url.Scheme
                  + "://"
-                 + HttpContext.Current.Request.Url.Authority + "/Usuario/Activar/"
+                 + HttpContext.Current.Request.Url.Authority + "/Cuenta/Activar/"
                  + model.CodActivacion
                  + "'>Haga click aqui para activar su cuenta</a>";
             body += "<br /><br />Muchas gracias, el equipo de Providere!";

@@ -16,6 +16,7 @@ namespace Providere.Controllers
         // GET: /Usuario/
         Usuario usuario = new Usuario();
         UsuarioServicios us = new UsuarioServicios();
+
         public ActionResult RegistrarUsuario()
         {
             ViewBag.RegistracionExitosa = TempData["Exito"];
@@ -68,7 +69,7 @@ namespace Providere.Controllers
 
             else
             {
-                ModelState.AddModelError("", "Verifique que todos los campos esten completados correctamente");
+                ModelState.AddModelError("", "Verifique que todos los campos esten completados correctamente. Debe aceptar los terminos y condiciones.");
                 return View(model);
             }
         }
@@ -78,11 +79,11 @@ namespace Providere.Controllers
             string msj;
             if (us.ActivarUsuario(codAct))
             {
-                msj = "Muchas gracias por activar su cuenta. El equipo de Providere";
+                msj = "Muchas gracias por activar su cuenta, el equipo de Providere.";
             }
             else
             {
-                msj = "Su tiempo para la activacion ha expirado.El equipo de Providere";
+                msj = "Su tiempo para la activacion ha expirado, el equipo de Providere.";
             }
             ViewBag.msj = msj;
 

@@ -26,13 +26,14 @@ namespace Providere.Models
             [Required(ErrorMessage = "Campo Obligatorio")]
             [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
             [DataType(DataType.EmailAddress)]
+            [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Formato de Correo electronico invalido")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Mail { get; set; }
 
             [Required(ErrorMessage = "Campo Obligatorio")]
             [StringLength(10, ErrorMessage = "Minimo 5 y maximo 10 caracteres")]
             [DataType(DataType.Password)]
-            [RegularExpression("[A-Za-z0-9]{5,10}", ErrorMessage = "La contraseña debe ser alfanumerica. Minimo 5 y maximo 10 caracteres")]
+            [RegularExpression(@"^(?=(.*\d){1})(?=(.*[A-Z]){1}).{5,10}$", ErrorMessage = "Formato invalido")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Contrasenia { get; set; }
 

@@ -18,6 +18,12 @@ namespace Providere
               new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
 
             routes.MapRoute(
+               "ActivarUsuario",
+               "Cuenta/Activar/{codAct}",
+               new { controller = "Usuario", action = "Activar", codAct = UrlParameter.Optional }
+           );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Index", action = "Index", id = UrlParameter.Optional }
