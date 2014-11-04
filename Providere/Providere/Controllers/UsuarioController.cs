@@ -14,10 +14,11 @@ namespace Providere.Controllers
     {
         //
         // GET: /Usuario/
-       
+        Usuario usuario = new Usuario();
+        UsuarioServicios us = new UsuarioServicios();
         public ActionResult RegistrarUsuario()
         {
-            Usuario usuario = new Usuario();
+            ViewBag.RegistracionExitosa = TempData["Exito"];
             return View(usuario);
         }
 
@@ -26,10 +27,45 @@ namespace Providere.Controllers
         public ActionResult RegistrarUsuario(Usuario model)
         {
             bool estado = bool.Parse(Request.Form.GetValues("ckbAcepto")[0]);
-            if (ModelState.IsValid && estado == true) 
+            if (ModelState.IsValid && estado == true)
             {
-                return View(model);
+
+                if (us.EmailExisteActivado(model.Mail))
+                {
+                    ModelState.AddModelError("", "El mail ingresado ya posee una cuenta asociada");
+                    return View(model);
+                }
+                else
+                {
+                    if (us.EmailExisteInactivo(model.Mail))
+                    {
+                        try
+                        {
+                            us.ActivarUsuarioInactivo(model);
+                        }
+                        catch (System.Net.Mail.SmtpException)
+                        {
+                            return RedirectToAction("Error", "Shared");
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            us.AgregarUsuarioNuevo(model);
+                        }
+                        catch (System.Net.Mail.SmtpException)
+                        {
+                            return RedirectToAction("Error", "Shared");
+                        }
+                    }
+
+                    TempData["Exito"] = "La registración fue exitosa. Revise su casilla de mail para activar su cuenta";
+                    return RedirectToAction("RegistrarUsuario");
+
+                }
             }
+
             else
             {
                 ModelState.AddModelError("", "Verifique que todos los campos esten completados correctamente");
@@ -37,8 +73,25 @@ namespace Providere.Controllers
             }
         }
 
+        public ActionResult Activar(string codAct)
+        {
+            string msj;
+            if (us.ActivarUsuario(codAct))
+            {
+                msj = "Muchas gracias por activar su cuenta. El equipo de Providere";
+            }
+            else
+            {
+                msj = "Su tiempo para la activacion ha expirado.El equipo de Providere";
+            }
+            ViewBag.msj = msj;
+
+            return View();
+        }
+
         public ActionResult IniciarSesion()
         {
+           
             return View();
         }
 
@@ -59,10 +112,7 @@ namespace Providere.Controllers
         //    return View();
         //}
 
-        public ActionResult Activar()
-        {
-            return View();
-        }
+    
 
     }
 }
