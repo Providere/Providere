@@ -19,7 +19,7 @@
             <h2>
                 Reg&iacute;strate en Providere<small> es totalmente gratis!</small></h2>
             @Html.ValidationSummary(true)
-            <hr>
+            <hr />
             <div class="row">
                 @Html.Label("Nombre", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
@@ -107,38 +107,9 @@
                 <div class="col-md-offset-5">
                     <button id="btnCrear" type="submit" class="btn btn-info btn-lg">
                         Crear cuenta</button>
-                    <a data-toggle="modal" href="#myModal" class="btn btn-link">ya tengo una cuenta</a>
                 </div>
             </div>
         </div>
     }
 </div>
-<!--content del body-->
-<!-- Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title">
-                    Ingresar a mi cuenta</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <input type="email" class="form-control" id="CorreoElectronico" placeholder="Ingrese su correo electronico">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" id="Contrasenia" placeholder="Ingrese su contraseña">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-info">Iniciar sesion</a>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
+
