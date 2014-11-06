@@ -22,19 +22,29 @@
         </div>
     </div>
     <div class="container">
-        <h3 class="text-danger">
-            <p>
-                Lo sentimos, se produjo un error al procesar la solicitud.</p>
-        </h3>
+        <div class="contenedor-imagen col-md-4">
+            <img alt="" src="../../Content/img/Error.png" />
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-danger">
+                <p>
+                    Lo sentimos, se produjo un error al procesar la solicitud.</p>
+            </h2>
+        </div>
     </div>
     <div id="footer" class=" navbar-default">
         <div class="container">
             <div class="col-md-4">
                 <img src="../../Content/img/logoFooter.png" alt="logo" width="15%" />
-                <span class="text-info">@Html.ActionLink("Providere", "Index", "Index")</span>
+                <span class="text-info">©2014 | Todos los derechos reservados</span>
+            </div>
+            <div class="col-md-4 text-center">
+                <p>
+                    @Html.ActionLink("Volver a la pagina principal", "Home", "Home") | <a href="#">Ayuda</a>
+                </p>
             </div>
         </div>
-        <!--container del footer-->
     </div>
+    <!--container del footer-->
 </body>
 </html>

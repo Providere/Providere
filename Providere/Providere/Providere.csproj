@@ -133,6 +133,7 @@
     <Compile Include="ClientException.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -153,6 +154,7 @@
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\core.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\Error.png" />
     <Content Include="Content\img\facebook.png" />
     <Content Include="Content\img\index.jpg" />
     <Content Include="Content\img\logo.png" />

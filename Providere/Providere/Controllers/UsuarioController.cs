@@ -44,8 +44,9 @@ namespace Providere.Controllers
                         {
                             us.ActivarUsuarioInactivo(model);
                         }
-                        catch (System.Net.Mail.SmtpException)
+                        catch (System.Net.Mail.SmtpException ex)
                         {
+                            ClientException.LogException(ex, "Error al enviar el mail de activacion");
                             return RedirectToAction("Error", "Shared");
                         }
                     }
@@ -55,8 +56,9 @@ namespace Providere.Controllers
                         {
                             us.AgregarUsuarioNuevo(model);
                         }
-                        catch (System.Net.Mail.SmtpException)
+                        catch (System.Net.Mail.SmtpException ex)
                         {
+                            ClientException.LogException(ex, "Error al enviar el mail de activacion");
                             return RedirectToAction("Error", "Shared");
                         }
                     }
