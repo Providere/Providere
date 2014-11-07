@@ -278,6 +278,7 @@
     <Content Include="Views\Usuario\RegistrarUsuario.cshtml" />
     <Content Include="Views\Shared\_Registracion.cshtml" />
     <Content Include="Views\Usuario\Activar.cshtml" />
+    <Content Include="Views\Usuario\IniciarSesion.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

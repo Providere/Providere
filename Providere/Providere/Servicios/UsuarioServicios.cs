@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Providere.Repositorios;
 using Providere.Models;
+using System.Web.Security;
 
 namespace Providere.Servicios
 {
@@ -41,12 +42,12 @@ namespace Providere.Servicios
         }
 
         //Activar el usuario que esta registrado pero inactivo:
-        public void ActivarUsuarioInactivo(Usuario model)
+        internal void ActivarUsuarioInactivo(Usuario model)
         {
             var user = ur.TraerDatosPorMail(model.Mail); //Traigo todos los datos de ese usuario que tengo en la BD
             user.Nombre = model.Nombre;
             user.Apellido = model.Apellido;
-            user.Contrasenia = Encryptor.MD5Hash(model.Contrasenia); 
+            user.Contrasenia = Encryptor.MD5Hash(model.Contrasenia);
             user.Telefono = model.Telefono;
             user.Ubicacion = model.Ubicacion;
 
@@ -67,6 +68,30 @@ namespace Providere.Servicios
         {
 
             return ur.ActivarUsuario(codAct);
+        }
+
+        //Verifica si existe el usuario:
+        public bool UsuarioExistente(Usuario model)
+        {
+            return ur.UsuarioExistente(model);
+        }
+
+        //Verifica si el usuario esta activo:
+        public bool UsuarioActivo(Usuario model)
+        {
+            return ur.UsuarioActivo(model);
+        }
+
+        internal object traerIdUsuario(Usuario model)
+        {
+            Usuario miUsuario = ur.traerDatosPorMail(model.Mail);
+            return miUsuario.Id;
+        }
+
+
+        internal void CrearCookie(Usuario model)
+        {
+            FormsAuthentication.SetAuthCookie(model.Mail, false);
         }
     }
 }

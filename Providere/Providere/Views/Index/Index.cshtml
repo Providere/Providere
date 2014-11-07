@@ -63,16 +63,16 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <div class="modalBox">
-                            <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large"><span class="glyphicon glyphicon-user">
-                            </span> Ingresar</a>
+                            <a href="@Url.Action("RegistrarUsuario", "Usuario")" class="btn btn-primary btn-large">
+                                <span class="glyphicon glyphicon-list"></span>Registrarme</a>
                             <br />
                             <br />
                         </div>
                     </li>
                     <li>
                         <div class="modalBox2">
-                            <a href="@Url.Action("RegistrarUsuario", "Usuario")" class="btn btn-primary btn-large">
-                                <span class="glyphicon glyphicon-list"></span> Registrarme</a>
+                            <a href="@Url.Action("IniciarSesion", "Usuario")" class="btn btn-primary btn-large">
+                                <span class="glyphicon glyphicon-list"></span>Iniciar Sesion</a>
                             <br />
                         </div>
                     </li>
@@ -80,43 +80,6 @@
             </div>
         </div>
     </div>
-    <!--Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title">
-                        Ingresar a mi cuenta</h4>
-                </div>
-                @using (Html.BeginForm("IniciarSesion", "Usuario", FormMethod.Post, new { @class = "form" }))
-                {
-                    <div class="modal-body">
-                        @Html.ValidationSummary(true)
-                        <div class="form-group">
-                            @Html.Label("Correo electronico")
-                            @Html.TextBoxFor(model => model.Mail, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Mail)
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("Contraseña")
-                            @Html.TextBoxFor(model => model.Contrasenia, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Contrasenia)
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="btnSesion" class="btn btn-info btn-lg btn-block">
-                            Iniciar sesion</button>
-                    </div>
-                }
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
     <div class="container">
         <div class="content">
             <!-- Ejemplo de buscador con  select -->
@@ -152,16 +115,13 @@
                             <p>
                                 Te proponemos un lugar de encuentro entre las personas que buscan servicios a domicilio,
                                 y aquellos profesionales autónomos que ofrecen estos servicios.</p>
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.providere.com.ar"
+                            <span><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.providere.com.ar"
                                 data-text="Providere, servicios generales para el hogar. Visita nuestro sitio en:"
                                 data-via="providere_arg" data-hashtags="ProvidereArgentina">Tweet</a>
-                            <br />
-                            <br />
-                            <div class="modalBox2">
-                                <a href="@Url.Action("RegistrarUsuario", "Usuario")" class="btn btn-primary btn-large">
-                                    <span class="glyphicon glyphicon-list"></span>Registrarme ahora!</a>
-                                <br />
-                            </div>
+                                <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fprovidere.com.ar&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=21"
+                                    scrolling="no" frameborder="0" style="border: none; overflow: hidden; height: 21px;"
+                                    allowtransparency="true"></iframe>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -215,7 +175,7 @@
                         </div>
                     </div>
                 </div>
-                <hr/>
+                <hr />
                 <div class="row">
                     <div class="col-md-11">
                         <div class="col-md-3">

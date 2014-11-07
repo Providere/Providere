@@ -52,12 +52,12 @@ namespace Providere.Repositorios
 
         internal void CrearUsuario(Usuario model)
         {
-            model.Contrasenia = Encryptor.MD5Hash(model.Contrasenia); 
+            model.Contrasenia = Encryptor.MD5Hash(model.Contrasenia);
             model.FechaActivacion = DateTime.Now;
             model.FechaCreacion = DateTime.Now;
             model.FechaCambioEstado = DateTime.Now;
             model.IdEstado = Convert.ToInt16(4); //Estado inactivo hasta que confirma su registracion
-            model.CodActivacion = Encryptor.MD5Hash(model.Mail); 
+            model.CodActivacion = Encryptor.MD5Hash(model.Mail);
             entities.Usuario.AddObject(model);
             entities.SaveChanges();
         }
@@ -85,6 +85,26 @@ namespace Providere.Repositorios
                 //Se vencio el plazo de validez
                 return false;
             }
+        }
+
+        internal bool UsuarioExistente(Usuario model)
+        {
+            bool usuarioExiste = entities.Usuario.Any(user => user.Mail == model.Mail && user.Contrasenia == model.Contrasenia);
+            return usuarioExiste;
+        }
+
+        internal bool UsuarioActivo(Usuario model)
+        {
+            bool usuarioActivo = entities.Usuario.Any(user => user.Mail == model.Mail && user.IdEstado == 1);
+            return usuarioActivo;
+        }
+
+        internal Usuario traerDatosPorMail(string p)
+        {
+            var usuario = (from user in entities.Usuario
+                           where user.Mail == p
+                           select user).First();
+            return usuario;
         }
     }
 }

@@ -94,15 +94,53 @@ namespace Providere.Controllers
 
         public ActionResult IniciarSesion()
         {
-           
+
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult IniciarSesion()
-        //{
-        //    return View();
-        //}
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult IniciarSesion(Usuario model, string returnUrl)
+        {
+            int cantidadDeErrores = 0;
+
+            if (cantidadDeErrores == 0)
+            {
+                model.Contrasenia = Encryptor.MD5Hash(model.Contrasenia);
+                if (us.UsuarioExistente(model))
+                {
+                    if (us.UsuarioActivo(model))
+                    {
+                        us.CrearCookie(model);
+                        Session["IdUsuario"] = us.traerIdUsuario(model);
+                        if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Home", "Home");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Usuario inactivo");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Verifique usuario y/o contraseña");
+                }
+            }
+            return View(model);
+        }
+
+        public ActionResult CerrarSesion()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            Session.Clear();
+            return RedirectToAction("Index", "Index");
+        }
 
         public ActionResult EditarPerfil()
         {
@@ -115,7 +153,8 @@ namespace Providere.Controllers
         //    return View();
         //}
 
-    
+
+
 
     }
 }
