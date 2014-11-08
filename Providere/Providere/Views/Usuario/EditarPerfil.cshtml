@@ -1,6 +1,110 @@
-﻿@{
+﻿@model Providere.Models.Usuario
+@{
     ViewBag.Title = "EditarPerfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Editar Perfil</h2>
+<div class="content">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#editar" role="tab" data-toggle="tab">
+            Editar perfil</a></li>
+        <li role="presentation"><a href="#eliminar" role="tab" data-toggle="tab">Eliminar cuenta</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="editar">
+            @using (Html.BeginForm("EditarPerfil", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <div id="page-wrapper">
+                    <h3>
+                        Editar perfil</h3>
+                    <hr />
+                    @Html.ValidationSummary(true)
+                    <div class="row">
+                        @Html.Label("Nombre", new { @class = "col-sm-5 control-label" })
+                        <div class="col-xs-3">
+                            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Nombre)
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        @Html.Label("Apellido", new { @class = "col-sm-5 control-label" })
+                        <div class="col-xs-3">
+                            @Html.TextBoxFor(m => m.Apellido, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Apellido)
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        @Html.Label("Correo electronico", new { @class = "col-sm-5 control-label" })
+                        <div class="col-xs-3">
+                            @Html.TextBoxFor(m => m.Mail, new { @class = "form-control", @readonly = "readonly", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        @Html.Label("Telefono", new { @class = "col-sm-5 control-label" })
+                        <div class="col-xs-3">
+                            @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Telefono)
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        @Html.Label("Lugar de residencia", new { @class = "col-sm-5 control-label" })
+                        <div class="col-xs-3">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        @Html.Label("Ingrese contraseña nueva", new { @class = "col-sm-5 control-label" })
+                        <div class="col-xs-3">
+                            @Html.PasswordFor(m => m.Contrasenia, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Contrasenia)
+                        </div>
+                    </div>
+                    <div class="row">
+                        @Html.Label("Foto de perfil", new { @class = "col-sm-5 control-label" })
+                        <div class="col-xs-3">
+                            <input type="file" id="foto" name="FileUpload" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-offset-5">
+                            <button type="submit" id="btnGuardar" class="btn btn-info btn-sm">
+                                Guardar cambios</button>
+                            @Html.ActionLink("Volver", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="eliminar">
+            @using (Html.BeginForm("EliminarCuenta", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <div id="page-wrapper">
+                    <h3>
+                        ¿Desea eliminar su cuenta?</h3>
+                    <hr />
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="btnEliminar" value="Eliminar">
+                                Si, quiero eliminar mi cuenta
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-5">
+                            <button type="submit" id="btnConfirmar" class="btn btn-info btn-sm">
+                                Confirmar</button>
+                            @Html.ActionLink("Volver", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

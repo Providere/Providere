@@ -116,6 +116,12 @@ namespace Providere.Repositorios
             return usuario;
         }
 
-       
+
+        public Usuario ObtenerUsuarioEditar(int idUsuario)
+        {
+            Usuario usuario = entities.Usuario.Where(e => e.Id == idUsuario).FirstOrDefault();
+
+            return usuario;
+        }
     }
 }

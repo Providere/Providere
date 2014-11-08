@@ -101,6 +101,10 @@ namespace Providere.Servicios
             FormsAuthentication.SetAuthCookie(model.Mail, false);
         }
 
-      
+        //Obtener usuario a traves de su id para editar datos
+        internal Usuario ObtenerUsuarioEditar(int idUsuario)
+        {
+            return ur.ObtenerUsuarioEditar(idUsuario);
+        }
     }
 }

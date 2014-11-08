@@ -163,17 +163,29 @@ namespace Providere.Controllers
 
         public ActionResult EditarPerfil()
         {
-            return View();
+            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+            Usuario usuario = us.ObtenerUsuarioEditar(idUsuario);
+            return View(usuario);
         }
 
         //[HttpPost]
         //public ActionResult EditarPerfil()
         //{
-        //    return View();
+        //    if (ModelState.IsValid)
+        //    {
+        //    }
+        //    else
+        //    {
+        //        return View();
+        //    }
         //}
 
-
-
+        [HttpPost]
+        public ActionResult EliminarCuenta()
+        {
+          
+                return View();
+        }
 
     }
 }
