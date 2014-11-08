@@ -42,10 +42,12 @@ namespace Providere.Repositorios
             Usuario usuario = entities.Usuario.Where(e => e.Id == user.Id).FirstOrDefault();
             usuario.Nombre = user.Nombre;
             usuario.Apellido = user.Apellido;
-            usuario.Contrasenia = Encryptor.MD5Hash(user.Contrasenia);
+            usuario.Contrasenia = user.Contrasenia;
             usuario.Telefono = user.Telefono;
             usuario.Ubicacion = user.Ubicacion;
-            //El estado y la fecha de activacion se modifica despues que mando mail y activo la cuenta
+            usuario.FechaCreacion = DateTime.Now; //se actualiza para mandarle un mail nuevo en caso que hayan pasado los 15' y el estado sea inactivo
+            usuario.CodActivacion = Encryptor.MD5Hash(user.Mail);
+
             entities.SaveChanges();
 
         }
@@ -76,6 +78,7 @@ namespace Providere.Repositorios
             {
 
                 user.IdEstado = Convert.ToInt16(1); //Pasa a estado activo
+                user.FechaCambioEstado = DateTime.Now;
                 user.FechaActivacion = DateTime.Now;
                 entities.SaveChanges();
                 return true;
@@ -93,6 +96,12 @@ namespace Providere.Repositorios
             return usuarioExiste;
         }
 
+        internal bool UsuarioInexistente(Usuario model)
+        {
+            bool usuarioInexistente = entities.Usuario.Any(user => user.Mail != model.Mail);
+            return usuarioInexistente;
+        }
+
         internal bool UsuarioActivo(Usuario model)
         {
             bool usuarioActivo = entities.Usuario.Any(user => user.Mail == model.Mail && user.IdEstado == 1);
@@ -106,5 +115,7 @@ namespace Providere.Repositorios
                            select user).First();
             return usuario;
         }
+
+       
     }
 }

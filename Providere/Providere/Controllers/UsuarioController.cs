@@ -33,7 +33,7 @@ namespace Providere.Controllers
 
                 if (us.EmailExisteActivado(model.Mail))
                 {
-                    ModelState.AddModelError("", "El mail ingresado ya posee una cuenta asociada");
+                    ModelState.AddModelError("", "La direccion de correo electronico ingresado ya posee una cuenta asociada");
                     return View(model);
                 }
                 else
@@ -63,7 +63,7 @@ namespace Providere.Controllers
                         }
                     }
 
-                    TempData["Exito"] = "La registración fue exitosa. Revise su casilla de mail para activar su cuenta";
+                    TempData["Exito"] = "La registración fue exitosa. Revise su correo electronico para activar su cuenta";
                     return RedirectToAction("RegistrarUsuario");
 
                 }
@@ -71,7 +71,7 @@ namespace Providere.Controllers
 
             else
             {
-                ModelState.AddModelError("", "Verifique que todos los campos esten completados correctamente. Debe aceptar los terminos y condiciones.");
+                ModelState.AddModelError("", "Verifique que todos los campos esten completados correctamente. Debe aceptar los terminos y condiciones");
                 return View(model);
             }
         }
@@ -81,11 +81,11 @@ namespace Providere.Controllers
             string msj;
             if (us.ActivarUsuario(codAct))
             {
-                msj = "Muchas gracias por activar su cuenta, el equipo de Providere.";
+                msj = "Su cuenta ha sido activada satisfactoriamente. Ya puede comenzar a utilizar Providere";
             }
             else
             {
-                msj = "Su tiempo para la activacion ha expirado, el equipo de Providere.";
+                msj = "El tiempo para la activacion de su cuenta ha expirado, vuelva a registrarse para recibir un nuevo mail de activacion";
             }
             ViewBag.msj = msj;
 
@@ -103,9 +103,27 @@ namespace Providere.Controllers
         {
             int cantidadDeErrores = 0;
 
+            if (model.Mail.Length > 50)
+            {
+                ModelState.AddModelError("", "Direccion de correo electronico demasiado largo");
+                cantidadDeErrores++;
+            }
+
+            if (model.Contrasenia.Length > 10)
+            {
+                ModelState.AddModelError("", "Contraseña demasiado larga");
+                cantidadDeErrores++;
+            }
+
             if (cantidadDeErrores == 0)
             {
                 model.Contrasenia = Encryptor.MD5Hash(model.Contrasenia);
+                if(us.UsuarioInexistente(model))
+                {
+                    ModelState.AddModelError("", "Usuario inexistente");
+                }
+                else
+                {
                 if (us.UsuarioExistente(model))
                 {
                     if (us.UsuarioActivo(model))
@@ -128,8 +146,9 @@ namespace Providere.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Verifique usuario y/o contraseña");
+                    ModelState.AddModelError("", "Verifique su direccion de correo electronico y/o contraseña");
                 }
+            }
             }
             return View(model);
         }
