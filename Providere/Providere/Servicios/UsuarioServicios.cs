@@ -52,7 +52,7 @@ namespace Providere.Servicios
             user.Ubicacion = model.Ubicacion;
 
             //Le envio el mail de confirmacion y actualizo los datos:
-           
+
             ur.ModificarUsuario(user);
             mailing.EnviarMail(user);
         }
@@ -101,10 +101,22 @@ namespace Providere.Servicios
             FormsAuthentication.SetAuthCookie(model.Mail, false);
         }
 
-        //Obtener usuario a traves de su id para editar datos
+        //Obtener usuario a traves de su id para editar datos:
         internal Usuario ObtenerUsuarioEditar(int idUsuario)
         {
             return ur.ObtenerUsuarioEditar(idUsuario);
+        }
+
+        //Modifico datos personales:
+        internal void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string ubicacion)
+        {
+            ur.ModificarDatosUsuario(id, nombre, apellido, telefono, ubicacion);
+        }
+
+        //Modifico contraseña solo si el usuario desea cambiarla:
+        internal void GuardarContraseniaNueva(int id, string contrasenia)
+        {
+            ur.GuardarContraseniaNueva(id, contrasenia);
         }
     }
 }

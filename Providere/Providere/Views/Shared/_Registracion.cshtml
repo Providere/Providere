@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
     <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/core.css" />
     <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.js"></script>
@@ -39,6 +38,11 @@
 
         });
     </script>
+     <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
     <div class="header navbar navbar-default">
@@ -157,5 +161,7 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+    @Scripts.Render("~/bundles/jqueryui")
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

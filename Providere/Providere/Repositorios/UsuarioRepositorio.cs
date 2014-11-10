@@ -123,5 +123,25 @@ namespace Providere.Repositorios
 
             return usuario;
         }
+
+        //Modifico los datos del usuario:
+        public void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string ubicacion)
+        {
+            Usuario usuario = entities.Usuario.Where(e => e.Id == id).FirstOrDefault();
+            usuario.Nombre = nombre;
+            usuario.Apellido = apellido;
+            usuario.Ubicacion = ubicacion;
+            usuario.Telefono = telefono;
+
+            entities.SaveChanges();
+        }
+
+        //Modifico solo la contrasenia:
+        public void GuardarContraseniaNueva(int id, string contrasenia)
+        {
+            Usuario user = entities.Usuario.Where(e => e.Id == id).FirstOrDefault();
+            user.Contrasenia = Encryptor.MD5Hash(contrasenia);
+            entities.SaveChanges();
+        }
     }
 }

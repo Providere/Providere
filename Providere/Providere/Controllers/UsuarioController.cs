@@ -19,7 +19,7 @@ namespace Providere.Controllers
 
         public ActionResult RegistrarUsuario()
         {
-            ViewBag.RegistracionExitosa = TempData["Exito"];
+
             return View(usuario);
         }
 
@@ -64,7 +64,7 @@ namespace Providere.Controllers
                     }
 
                     TempData["Exito"] = "La registración fue exitosa. Revise su correo electronico para activar su cuenta";
-                    return RedirectToAction("RegistrarUsuario");
+                    return RedirectToAction("Home,Home");
 
                 }
             }
@@ -118,37 +118,37 @@ namespace Providere.Controllers
             if (cantidadDeErrores == 0)
             {
                 model.Contrasenia = Encryptor.MD5Hash(model.Contrasenia);
-                if(us.UsuarioInexistente(model))
+                if (us.UsuarioInexistente(model))
                 {
                     ModelState.AddModelError("", "Usuario inexistente");
                 }
                 else
                 {
-                if (us.UsuarioExistente(model))
-                {
-                    if (us.UsuarioActivo(model))
+                    if (us.UsuarioExistente(model))
                     {
-                        us.CrearCookie(model);
-                        Session["IdUsuario"] = us.traerIdUsuario(model);
-                        if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                        if (us.UsuarioActivo(model))
                         {
-                            return Redirect(returnUrl);
+                            us.CrearCookie(model);
+                            Session["IdUsuario"] = us.traerIdUsuario(model);
+                            if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                            {
+                                return Redirect(returnUrl);
+                            }
+                            else
+                            {
+                                return RedirectToAction("Home", "Home");
+                            }
                         }
                         else
                         {
-                            return RedirectToAction("Home", "Home");
+                            ModelState.AddModelError("", "Usuario inactivo");
                         }
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Usuario inactivo");
+                        ModelState.AddModelError("", "Verifique su direccion de correo electronico y/o contraseña");
                     }
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Verifique su direccion de correo electronico y/o contraseña");
-                }
-            }
             }
             return View(model);
         }
@@ -168,24 +168,59 @@ namespace Providere.Controllers
             return View(usuario);
         }
 
-        //[HttpPost]
-        //public ActionResult EditarPerfil()
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //    }
-        //    else
-        //    {
-        //        return View();
-        //    }
-        //}
+        [HttpPost]
+        public ActionResult EditarPerfil(int id, string nombre, string apellido, string telefono, string ubicacion)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    us.ModificarDatosUsuario(id, nombre, apellido, telefono, ubicacion);
+                    TempData["Exito"] = "Sus datos personales se actualizaron correctamente";
+                    return RedirectToAction("Home", "Home");
+                }
+                catch (Exception ex)
+                {
+                    ClientException.LogException(ex, "Error al modificar sus datos");
+                    return RedirectToAction("Error", "Shared");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "No se puede modificar sus datos, intentelo nuevamente");
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CambiarContrasenia(int id, string contrasenia)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    us.GuardarContraseniaNueva(id, contrasenia);
+                    TempData["Exito"] = "Su contraseña ha sido modificada con exito";
+                    return RedirectToAction("Home", "Home");
+                }
+                catch (Exception ex)
+                {
+                    ClientException.LogException(ex, "Error al modificar su contraseña");
+                    return RedirectToAction("Error", "Shared");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "No se puede modificar su contraseña, intentelo nuevamente");
+                return View();
+            }
+        }
 
         [HttpPost]
         public ActionResult EliminarCuenta()
         {
-          
-                return View();
-        }
 
+            return View(); //Hacer logout
+        }
     }
 }

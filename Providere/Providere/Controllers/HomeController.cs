@@ -13,6 +13,7 @@ namespace Providere.Controllers
 
         public ActionResult Home()
         {
+            ViewBag.Exito = TempData["Exito"];
             return View();
         }
 
