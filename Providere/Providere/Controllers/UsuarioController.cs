@@ -64,7 +64,7 @@ namespace Providere.Controllers
                     }
 
                     TempData["Exito"] = "La registración fue exitosa. Revise su correo electronico para activar su cuenta";
-                    return RedirectToAction("Home,Home");
+                    return RedirectToAction("Home","Home");
 
                 }
             }
