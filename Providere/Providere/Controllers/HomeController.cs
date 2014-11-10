@@ -6,11 +6,10 @@ using System.Web.Mvc;
 
 namespace Providere.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
+        
         public ActionResult Home()
         {
             ViewBag.Exito = TempData["Exito"];

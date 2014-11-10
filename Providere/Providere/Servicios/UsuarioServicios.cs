@@ -77,12 +77,6 @@ namespace Providere.Servicios
             return ur.UsuarioExistente(model);
         }
 
-        //Verifica que el usuario nunca se registro:
-        internal bool UsuarioInexistente(Usuario model)
-        {
-            return ur.UsuarioInexistente(model);
-        }
-
         //Verifica si el usuario esta activo:
         public bool UsuarioActivo(Usuario model)
         {

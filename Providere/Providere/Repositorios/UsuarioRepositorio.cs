@@ -96,12 +96,6 @@ namespace Providere.Repositorios
             return usuarioExiste;
         }
 
-        internal bool UsuarioInexistente(Usuario model)
-        {
-            bool usuarioInexistente = entities.Usuario.Any(user => user.Mail != model.Mail);
-            return usuarioInexistente;
-        }
-
         internal bool UsuarioActivo(Usuario model)
         {
             bool usuarioActivo = entities.Usuario.Any(user => user.Mail == model.Mail && user.IdEstado == 1);
@@ -143,5 +137,6 @@ namespace Providere.Repositorios
             user.Contrasenia = Encryptor.MD5Hash(contrasenia);
             entities.SaveChanges();
         }
+
     }
 }

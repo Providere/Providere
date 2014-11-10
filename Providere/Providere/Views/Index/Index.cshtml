@@ -2,6 +2,14 @@
 @{
     Layout = null;
 }
+@if (ViewBag.Exito != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Exito
+    </div>
+}
 <!DOCTYPE html>
 <html>
 <head>

@@ -12,15 +12,13 @@ namespace Providere.Controllers
 {
     public class UsuarioController : Controller
     {
-        //
-        // GET: /Usuario/
-        Usuario usuario = new Usuario();
+    
         UsuarioServicios us = new UsuarioServicios();
 
         public ActionResult RegistrarUsuario()
         {
 
-            return View(usuario);
+            return View();
         }
 
         [HttpPost]
@@ -64,7 +62,7 @@ namespace Providere.Controllers
                     }
 
                     TempData["Exito"] = "La registración fue exitosa. Revise su correo electronico para activar su cuenta";
-                    return RedirectToAction("Home","Home");
+                    return RedirectToAction("Index","Index");
 
                 }
             }
@@ -118,12 +116,7 @@ namespace Providere.Controllers
             if (cantidadDeErrores == 0)
             {
                 model.Contrasenia = Encryptor.MD5Hash(model.Contrasenia);
-                if (us.UsuarioInexistente(model))
-                {
-                    ModelState.AddModelError("", "Usuario inexistente");
-                }
-                else
-                {
+
                     if (us.UsuarioExistente(model))
                     {
                         if (us.UsuarioActivo(model))
@@ -148,7 +141,6 @@ namespace Providere.Controllers
                     {
                         ModelState.AddModelError("", "Verifique su direccion de correo electronico y/o contraseña");
                     }
-                }
             }
             return View(model);
         }
