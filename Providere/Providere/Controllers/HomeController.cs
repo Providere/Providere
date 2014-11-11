@@ -13,6 +13,8 @@ namespace Providere.Controllers
         public ActionResult Home()
         {
             ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Error = TempData["Error"];
+
             return View();
         }
 

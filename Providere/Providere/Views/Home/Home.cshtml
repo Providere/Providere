@@ -10,6 +10,15 @@
         @ViewBag.Mensaje
     </div>
 }
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
 <div id="ultimas-publicaciones">
     <h3>
         Ultimas publicaciones</h3>

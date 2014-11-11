@@ -180,9 +180,10 @@ namespace Providere.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "No se puede modificar sus datos, intentelo nuevamente");
-                return View();
+                TempData["Error"] = "No se pudo modificar sus datos, intentelo nuevamente";
+                return RedirectToAction("Home", "Home");
             }
+           
         }
 
         [HttpPost]
@@ -209,8 +210,9 @@ namespace Providere.Controllers
                 }
             else
             {
-                TempData["Mensaje"] = "No se pudo cargar la imagen";
+                TempData["Error"] = "No se pudo cargar la imagen, intentelo nuevamente";
                 return RedirectToAction("Home", "Home");
+                      
             }
         }
 
@@ -234,8 +236,8 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Mensaje"] = "Su contraseña no pudo ser modificada";
-                return RedirectToAction("Home", "Home");
+                TempData["Error"] = "Su contraseña no pudo ser modificada, intentelo nuevamente";
+                return RedirectToAction("Home", "Home");             
             }
         }
 
