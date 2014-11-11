@@ -7,12 +7,13 @@ using Providere.Models;
 using Providere.Servicios;
 using BotDetect.Web.UI.Mvc;
 using System.Web.Security;
+using System.IO;
 
 namespace Providere.Controllers
 {
     public class UsuarioController : Controller
     {
-    
+
         UsuarioServicios us = new UsuarioServicios();
 
         public ActionResult RegistrarUsuario()
@@ -61,8 +62,8 @@ namespace Providere.Controllers
                         }
                     }
 
-                    TempData["Exito"] = "La registración fue exitosa. Revise su correo electronico para activar su cuenta";
-                    return RedirectToAction("Index","Index");
+                    TempData["Mensaje"] = "La registración fue exitosa. Revise su correo electronico para activar su cuenta";
+                    return RedirectToAction("Index", "Index");
 
                 }
             }
@@ -117,30 +118,30 @@ namespace Providere.Controllers
             {
                 model.Contrasenia = Encryptor.MD5Hash(model.Contrasenia);
 
-                    if (us.UsuarioExistente(model))
+                if (us.UsuarioExistente(model))
+                {
+                    if (us.UsuarioActivo(model))
                     {
-                        if (us.UsuarioActivo(model))
+                        us.CrearCookie(model);
+                        Session["IdUsuario"] = us.traerIdUsuario(model);
+                        if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                         {
-                            us.CrearCookie(model);
-                            Session["IdUsuario"] = us.traerIdUsuario(model);
-                            if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
-                            {
-                                return Redirect(returnUrl);
-                            }
-                            else
-                            {
-                                return RedirectToAction("Home", "Home");
-                            }
+                            return Redirect(returnUrl);
                         }
                         else
                         {
-                            ModelState.AddModelError("", "Usuario inactivo");
+                            return RedirectToAction("Home", "Home");
                         }
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Verifique su direccion de correo electronico y/o contraseña");
+                        ModelState.AddModelError("", "Usuario inactivo");
                     }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Verifique su direccion de correo electronico y/o contraseña");
+                }
             }
             return View(model);
         }
@@ -168,7 +169,7 @@ namespace Providere.Controllers
                 try
                 {
                     us.ModificarDatosUsuario(id, nombre, apellido, telefono, ubicacion);
-                    TempData["Exito"] = "Sus datos personales se actualizaron correctamente";
+                    TempData["Mensaje"] = "Sus datos personales se actualizaron correctamente";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -185,6 +186,36 @@ namespace Providere.Controllers
         }
 
         [HttpPost]
+        public ActionResult CambiarFotoPerfil(HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+                try
+                {
+                    int id = Convert.ToInt16(this.Session["IdUsuario"]);
+
+                    string extension = Path.GetExtension(file.FileName);
+                    string uniqueFileName = Path.ChangeExtension(file.FileName, Convert.ToString(id));
+                    string path = Path.Combine(Server.MapPath("~/Imagenes/FotoPerfil"),
+                                       Path.GetFileName(uniqueFileName + extension));
+                    file.SaveAs(path);
+
+                    TempData["Mensaje"] = "Su foto de perfil se ha cargado con exito";
+                    return RedirectToAction("Home", "Home");
+                }
+                catch (Exception ex)
+                {
+                    ClientException.LogException(ex, "Error al cargar la imagen");
+                    return RedirectToAction("Error", "Shared");
+                }
+            else
+            {
+                TempData["Mensaje"] = "No se pudo cargar la imagen";
+                return RedirectToAction("Home", "Home");
+            }
+        }
+
+
+        [HttpPost]
         public ActionResult CambiarContrasenia(int id, string contrasenia)
         {
             if (ModelState.IsValid)
@@ -192,7 +223,7 @@ namespace Providere.Controllers
                 try
                 {
                     us.GuardarContraseniaNueva(id, contrasenia);
-                    TempData["Exito"] = "Su contraseña ha sido modificada con exito";
+                    TempData["Mensaje"] = "Su contraseña ha sido modificada con exito";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -203,8 +234,8 @@ namespace Providere.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "No se puede modificar su contraseña, intentelo nuevamente");
-                return View();
+                TempData["Mensaje"] = "Su contraseña no pudo ser modificada";
+                return RedirectToAction("Home", "Home");
             }
         }
 

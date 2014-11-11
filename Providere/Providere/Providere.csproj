@@ -260,6 +260,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Errores\" />
+    <Folder Include="Imagenes\FotoPerfil\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

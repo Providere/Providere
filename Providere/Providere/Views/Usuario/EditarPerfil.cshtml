@@ -1,6 +1,6 @@
 ﻿@model Providere.Models.Usuario
 @{
-    ViewBag.Title = "EditarPerfil";
+    ViewBag.Title = "Configuración";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="content">
@@ -8,8 +8,8 @@
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#editar" role="tab" data-toggle="tab">
             Editar perfil</a></li>
-        <li role="presentation"><a href="#cambiarContrasenia" role="tab" data-toggle="tab">Modificar
-            contraseña</a></li>
+        <li role="presentation"><a href="#cambiarFoto" role="tab" data-toggle="tab">Modificar
+            foto de perfil</a></li>
         <li role="presentation"><a href="#eliminar" role="tab" data-toggle="tab">Eliminar cuenta</a></li>
     </ul>
     <!-- Tab panes -->
@@ -17,7 +17,7 @@
         <div role="tabpanel" class="tab-pane active" id="editar">
             @using (Html.BeginForm("EditarPerfil", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
             {
-                <div id="page-wrapper">
+                <div>
                     <h3>
                         Editar mis datos personales</h3>
                     <hr />
@@ -64,13 +64,6 @@
                         </div>
                     </div>
                     <br />
-                    <div class="row">
-                        @Html.Label("Foto de perfil", new { @class = "col-sm-5 control-label" })
-                        <div class="col-xs-3">
-                            <input type="file" id="foto" name="FileUpload" />
-                        </div>
-                    </div>
-                    <br />
                     <div class="form-group">
                         <div class="col-md-offset-5">
                             <button type="submit" id="btnGuardar" class="btn btn-info btn-sm">
@@ -80,29 +73,51 @@
                     </div>
                 </div>
             }
+            <div>
+                @using (Html.BeginForm("CambiarContrasenia", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div>
+                        <h3>
+                            Modificar contraseña</h3>
+                        <hr />
+                        @Html.ValidationSummary(true)
+                        <div>
+                            @Html.HiddenFor(model => model.Id)
+                        </div>
+                        <div class="row">
+                            @Html.Label("Contraseña nueva", new { @class = "col-sm-5 control-label" })
+                            <div class="col-xs-3">
+                                @Html.PasswordFor(m => m.Contrasenia, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Contrasenia)
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <div class="col-md-offset-5">
+                                <button type="submit" id="btnCambiar" class="btn btn-info btn-sm">
+                                    Confirmar</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="cambiarContrasenia">
-            @using (Html.BeginForm("CambiarContrasenia", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
+        <div role="tabpanel" class="tab-pane" id="cambiarFoto">
+            @using (Html.BeginForm("CambiarFotoPerfil", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <div id="page-wrapper">
                     <h3>
-                        Modificar mi contraseña</h3>
+                        Cambiar mi foto de perfil</h3>
                     <hr />
-                    @Html.ValidationSummary(true)
-                    <div>
-                        @Html.HiddenFor(model => model.Id)
-                    </div>
                     <div class="row">
-                        @Html.Label("Contraseña nueva", new { @class = "col-sm-5 control-label" })
                         <div class="col-xs-3">
-                            @Html.PasswordFor(m => m.Contrasenia, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Contrasenia)
+                            <input type="file" id="file" name="file" />
                         </div>
                     </div>
                     <br />
                     <div class="form-group">
                         <div class="col-md-offset-5">
-                            <button type="submit" id="btnCambiar" class="btn btn-info btn-sm">
+                            <button type="submit" id="btnCambiarFoto" class="btn btn-info btn-sm">
                                 Confirmar cambio</button>
                             @Html.ActionLink("Volver", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
                         </div>
@@ -113,14 +128,14 @@
         <div role="tabpanel" class="tab-pane" id="eliminar">
             @using (Html.BeginForm("EliminarCuenta", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
             {
-                <div id="page-wrapper">
+                <div>
                     <h3>
                         ¿Desea eliminar su cuenta?</h3>
                     <hr />
                     <div class="row">
                         <div class="col-xs-3">
                             <label class="checkbox-inline">
-                                <input type="checkbox" id="btnEliminar" value="Eliminar">
+                                <input type="checkbox" id="btnEliminar" value="Eliminar" />
                                 Si, quiero eliminar mi cuenta
                             </label>
                         </div>
