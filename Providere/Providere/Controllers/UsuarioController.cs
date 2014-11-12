@@ -171,12 +171,13 @@ namespace Providere.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarPerfil(int id, string nombre, string apellido, string telefono, string ubicacion)
+        public ActionResult EditarPerfil(string nombre, string apellido, string telefono, string ubicacion)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    int id = Convert.ToInt16(this.Session["IdUsuario"]);
                     us.ModificarDatosUsuario(id, nombre, apellido, telefono, ubicacion);
                     TempData["Mensaje"] = "Sus datos personales se actualizaron correctamente";
                     return RedirectToAction("Home", "Home");
@@ -268,5 +269,13 @@ namespace Providere.Controllers
                 return RedirectToAction("Home", "Home");
             }
         }
+
+        //public ActionResult mostrarImagenPerfil(int id)
+        //{
+        //    var path = Server.MapPath("~/Imagenes");
+        //    var file = string.Format("{0}", id);
+        //    var fullPath = Path.Combine(path, file);
+        //    return File(fullPath, "Imagenes/FotoPerfil", file);
+        //} 
     }
 }
