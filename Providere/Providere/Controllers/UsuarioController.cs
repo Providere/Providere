@@ -29,6 +29,13 @@ namespace Providere.Controllers
             bool estado = bool.Parse(Request.Form.GetValues("ckbAcepto")[0]);
             if (ModelState.IsValid && estado == true)
             {
+                if(us.UsuarioDadoDeBaja(model.Mail))
+                {
+                    ModelState.AddModelError("", "El usuario registrado con esa direccion de correo electronico fue dado de baja");
+                    return View(model);
+                }
+                else
+                {
 
                 if (us.EmailExisteActivado(model.Mail))
                 {
@@ -67,13 +74,15 @@ namespace Providere.Controllers
 
                 }
             }
-
+            }
             else
             {
                 ModelState.AddModelError("", "Verifique que todos los campos esten completados correctamente. Debe aceptar los terminos y condiciones");
                 return View(model);
             }
+
         }
+
 
         public ActionResult Activar(string codAct)
         {
@@ -135,7 +144,7 @@ namespace Providere.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Usuario inactivo");
+                        ModelState.AddModelError("", "Usuario inactivo o dado de baja");
                     }
                 }
                 else
@@ -244,8 +253,20 @@ namespace Providere.Controllers
         [HttpPost]
         public ActionResult EliminarCuenta()
         {
+            bool estado = bool.Parse(Request.Form.GetValues("ckbEliminar")[0]);
 
-            return View(); //Hacer logout
+            if (estado == true)
+            {
+                int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+                //Actualizar BD nuevo estado:
+                us.DarDeBajaUsuario(idUsuario);
+                return RedirectToAction("CerrarSesion"); 
+            }
+            else
+            {
+                TempData["Error"] = "No se pudo eliminar su cuenta, intentelo nuevamente";
+                return RedirectToAction("Home", "Home");
+            }
         }
     }
 }

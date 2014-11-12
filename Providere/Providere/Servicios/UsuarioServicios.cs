@@ -112,5 +112,25 @@ namespace Providere.Servicios
         {
             ur.GuardarContraseniaNueva(id, contrasenia);
         }
+
+        //Damos de baja al usuario:
+        internal void DarDeBajaUsuario(int idUsuario)
+        {
+            ur.DarDeBajaUsuario(idUsuario);
+        }
+
+        //Verificamos si fue dado de baja:
+        public bool UsuarioDadoDeBaja(string p)
+        {
+            try
+            {
+                Usuario usuario = ur.UsuarioDadoDeBaja(p);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

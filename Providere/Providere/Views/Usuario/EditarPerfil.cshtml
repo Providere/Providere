@@ -68,7 +68,7 @@
                         <div class="col-md-offset-5">
                             <button type="submit" id="btnGuardar" class="btn btn-info btn-sm">
                                 Guardar cambios</button>
-                            @Html.ActionLink("Volver", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Cancelar", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                         <div class="col-md-offset-5">
                             <button type="submit" id="btnCambiarFoto" class="btn btn-info btn-sm">
                                 Confirmar cambio</button>
-                            @Html.ActionLink("Volver", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Cancelar", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
                         </div>
                     </div>
                 </div>
@@ -134,8 +134,8 @@
                     <hr />
                     <div class="row">
                         <div class="col-xs-3">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="btnEliminar" value="Eliminar" />
+                        @Html.CheckBox("ckbEliminar")
+                            <label>
                                 Si, quiero eliminar mi cuenta
                             </label>
                         </div>
@@ -144,7 +144,7 @@
                         <div class="col-md-offset-5">
                             <button type="submit" id="btnConfirmar" class="btn btn-info btn-sm">
                                 Confirmar</button>
-                            @Html.ActionLink("Volver", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Cancelar", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
                         </div>
                     </div>
                 </div>

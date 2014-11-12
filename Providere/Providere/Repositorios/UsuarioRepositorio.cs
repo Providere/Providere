@@ -138,5 +138,21 @@ namespace Providere.Repositorios
             entities.SaveChanges();
         }
 
+
+        internal void DarDeBajaUsuario(int idUsuario)
+        {
+            Usuario miUser = entities.Usuario.Where(e => e.Id == idUsuario).FirstOrDefault();
+            miUser.IdEstado = 3; //Estado deshabilitado
+            entities.SaveChanges();
+        }
+
+        //Verificamos si el usuario que intenta registrarse fue dado de baja:
+        internal Usuario UsuarioDadoDeBaja(string p)
+        {
+            var usuario = (from user in entities.Usuario
+                           where user.Mail == p && user.IdEstado == 3  //Si el estado es 3 significa que esta deshabilitado
+                           select user).First();
+            return usuario;
+        }
     }
 }
