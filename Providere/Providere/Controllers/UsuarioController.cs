@@ -269,13 +269,5 @@ namespace Providere.Controllers
                 return RedirectToAction("Home", "Home");
             }
         }
-
-        //public ActionResult mostrarImagenPerfil(int id)
-        //{
-        //    var path = Server.MapPath("~/Imagenes");
-        //    var file = string.Format("{0}", id);
-        //    var fullPath = Path.Combine(path, file);
-        //    return File(fullPath, "Imagenes/FotoPerfil", file);
-        //} 
     }
 }
