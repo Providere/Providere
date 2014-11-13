@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/core.css" />
     <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.js"></script>
     <script type="text/javascript" language="javascript" src="../../Scripts/js/bootstrap.js"></script>
-    <link href="../../Content/img/logoSolo.png" rel="shortcut icon" type="image/png" />
     <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" 
       rel="stylesheet" type="text/css" />
     <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
@@ -38,8 +37,8 @@
 
         });
     </script>
-     <link href="../../Content/img/logosquare.png" rel="shortcut icon" type="image/png" />
-     <title>@ViewBag.Title</title>
+    <link href="../../Content/img/logosquare.png" rel="shortcut icon" type="image/png" />
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -49,8 +48,7 @@
     <div class="header navbar navbar-default">
         <div class="container">
             <div id="contenedor-logo" class="col-md-6">
-            <a href="@Url.Action("Index", "Index")">
-             
+                <a href="@Url.Action("Index", "Index")">
                     <img src="../../Content/img/logotransparente.png" alt="providere" width="100%" /></a>
             </div>
         </div>
@@ -58,7 +56,7 @@
     <div class="container well">
         @RenderBody()
     </div>
-<footer>
+    <footer>
         <div class="container">
             <div class="col-md-4">
                 <img src="../../Content/img/logoSquare.png" alt="logo" width="12%" />
@@ -161,7 +159,7 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-     <div class="pac-container hdpi" style="display: none; width: 447px; position: absolute;
+    <div class="pac-container hdpi" style="display: none; width: 447px; position: absolute;
         left: 621px; top: 456px;">
     </div>
     @Scripts.Render("~/bundles/jqueryui")
