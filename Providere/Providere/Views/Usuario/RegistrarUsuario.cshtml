@@ -7,7 +7,7 @@
 <div class="content">
     @using (Html.BeginForm("RegistrarUsuario", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
     {
-        <div id="page-wrapper">
+        <div>
             <h2>
                 Reg&iacute;strate en Providere<small> es totalmente gratis!</small></h2>
             @Html.ValidationSummary(true)
@@ -86,10 +86,12 @@
                 <legend>Aclaraci&oacute;n</legend>
                 <div class="input">
                     <ul class="inputs-list">
+                   
                         @Html.CheckBox("ckbAcepto")
                         @Html.ValidationMessage("ckbAcepto")
                         Al registrarme, declaro que soy mayor de edad y acepto los<a target="_blank" href="#">
                             Términos y Condiciones de Uso</a>
+                           
                     </ul>
                 </div>
                 <!-- .input -->

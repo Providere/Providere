@@ -158,10 +158,9 @@
     <Content Include="Content\img\facebook.png" />
     <Content Include="Content\img\index.jpg" />
     <Content Include="Content\img\logo.png" />
-    <Content Include="Content\img\logoFooter.png" />
     <Content Include="Content\img\logoslim.png" />
     <Content Include="Content\img\logoslimnegro.png" />
-    <Content Include="Content\img\logoSolo.png" />
+    <Content Include="Content\img\logosquare.png" />
     <Content Include="Content\img\logotransparente.png" />
     <Content Include="Content\img\plomero-avatar.jpg" />
     <Content Include="Content\img\plomero.jpg" />
