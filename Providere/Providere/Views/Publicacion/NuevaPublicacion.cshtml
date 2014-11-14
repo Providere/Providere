@@ -1,0 +1,83 @@
+﻿@model Providere.Models.Publicacion
+@{
+    ViewBag.Title = "NuevaPublicacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container well">
+    <div class="content">
+        @using (Html.BeginForm("NuevaPublicacion", "Publicacion", FormMethod.Post, new { @class = "form-horizontal" }))
+        {           
+            <h3>
+                Nueva publicación</h3>
+            <hr />
+            @Html.ValidationSummary(true)
+            <div>
+                @Html.Hidden("idUsuario", this.Session["IdUsuario"])
+            </div>
+            <div class="row">
+                @Html.LabelFor(model => model.IdRubro, "Rubro", new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-3">
+                    @Html.DropDownList("IdRubro", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IdRubro)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                @Html.LabelFor(model => model.IdSubRubro, "SubRubro", new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-3">
+                    @Html.DropDownList("IdSubRubro", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IdRubro)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                @Html.LabelFor(model => model.Titulo, new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-3">
+                    @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Titulo)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                @Html.LabelFor(model => model.Descripcion, new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-3">
+                    @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Descripcion)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                @Html.Label("Precio", new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-1">
+                    <div class="radio">
+                        <div>
+                        @Html.RadioButton("Precio", "option1")
+                          
+                         @Html.TextBoxFor(model => model.Precio, new { @class = "form-control" })
+                        </div>
+                        <label>
+                             @Html.RadioButton("A convenir", "option2")
+                         
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                @Html.Label("Cargar imagenes de ultimos trabajos realizados", new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-3">
+                    <input type="file" id="file" name="file" />
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                    <div class="col-md-offset-5">
+                        <button type="submit" id="btnGuardar" class="btn btn-info btn-sm">
+                            Guardar cambios</button>
+                        @Html.ActionLink("Cancelar", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
+                    </div>
+                </div>
+        }
+    </div>
+</div>

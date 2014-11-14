@@ -1,17 +1,101 @@
+/** CLASES GLOBALES **/
+
+.float-left { float:left }
+.margin-top { margin-top: 15px }
+
+
+
 /** BASE **/
 
+body {
+    background: url(http://subtlepatterns.com/patterns/light_grey.png);
+
+}
+.header {
+
+ background: url('../img/index.jpg') no-repeat scroll center center transparent;
+ margin-bottom: 50px;
+
+}
 .margin-top { margin-top: 10px }
 
-#contenedor-logo {
-	padding: 20px 20% 20px 0;
+#contenedor-logo {    padding-top: 18px;
+    padding-bottom: 18px;
 }
 
-footer {
-	margin-top: 1em;
-	margin-bottom: 0;
-	bottom: 0;
-    padding: 3em 0;
-   
-border-width: 4px 1px 0px 1px;
-border-style: solid;
+#buscador {
+	margin-top: -25px;
+}
+
+
+
+#contenedor-botones-index li{
+	margin-left: 10px;margin-top: 37px;
+}
+#contenedor-botones-index span{
+	margin-right: 6px
+}
+
+.portada {
+	background: url('../img/index.jpg') no-repeat center center;
+    padding-bottom: 20px;
+    color: #FFF;
+    text-align: center;
+    font-size: 1.2em;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.portada .container {
+    /* padding: 25px; */
+}
+
+.portada h2{
+    font-size: 3.2em;
+    color: #FFF;
+}
+.portada p {
+    font-size: 1.6em;
+    font-family: 'PT Sans', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.portada .glyphicon-chevron-down{
+    font-size: 1.8em;
+}
+.user-menu {
+	margin-top: 1em
+}
+.iconos-sociales img{
+	float:right;margin-left: 10px;
+}
+
+.avatar img{
+
+    height: auto;
+    float: left;
+    margin-top: 0.5em;
+    margin-right: 1em;
+    position: relative;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+    -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999,
+}
+
+footer {width: 100%;
+    margin-bottom: 0;
+    margin-top: 20px;
+    display: table;
+    border: 0;
+    line-height: 46px;
+    border-style: solid;
+    padding: 10px 0;
+    background-color: rgba(68, 68, 68, 1);
+    border-color: #e7e7e7;
+}
+
+.listado-publicaciones .thumbnail {
+    height: 400px
 }

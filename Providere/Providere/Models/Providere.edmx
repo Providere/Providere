@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProvidereModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="ProvidereModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ProvidereModelStoreContainer">
           <EntitySet Name="Calificacion" EntityType="ProvidereModel.Store.Calificacion" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contratacion" EntityType="ProvidereModel.Store.Contratacion" store:Type="Tables" Schema="dbo" />
@@ -231,9 +231,9 @@
           <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Apellido" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Mail" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Contrasenia" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Contrasenia" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Ubicacion" Type="varchar" Nullable="false" MaxLength="200" />
-          <Property Name="Telefono" Type="tinyint" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
           <Property Name="FechaActivacion" Type="datetime" Nullable="false" />
           <Property Name="CodActivacion" Type="varchar" Nullable="false" MaxLength="100" />
@@ -468,8 +468,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProvidereModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -730,9 +729,9 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Mail" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Contrasenia" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Contrasenia" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Ubicacion" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="Telefono" Type="Byte" Nullable="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" />
           <Property Name="FechaActivacion" Type="DateTime" Nullable="false" />
           <Property Name="CodActivacion" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />

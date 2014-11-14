@@ -1,0 +1,74 @@
+﻿@model  IEnumerable <Providere.Models.Publicacion>
+@{
+    ViewBag.Title = "Publicaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container well">
+    <div class="content">
+        <h3>
+            Publicaciones</h3>
+        <hr />
+        <div class="col-md-3">
+         <a href="@Url.Action("NuevaPublicacion", "Publicacion")" class="btn btn-primary btn-block">
+                                        <span class="glyphicon glyphicon-plus"></span>Nueva publicacion</a>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="col-md-12">
+            <table class="tabla-publicaciones table table-bordered table-hover">
+                <thead>
+                    <tr class="btn-warning">
+                        <th>
+                              @Html.DisplayName("Fecha creacion")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Fecha de modificacion")
+                        </th>
+                        <th>
+                               @Html.DisplayName("Rubro")
+                        </th>
+                        <th>
+                              @Html.DisplayName("Titulo publicacion")
+                        </th>
+                        <th>
+                            Editar
+                        </th>
+                        <th>
+                            Deshabilitar
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>
+                           @Html.DisplayFor(modelItem => item.FechaCreacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaEdicion)
+                        </td>
+                        <td>
+                           @Html.DisplayFor(modelItem => item.Rubro.Nombre)
+                        </td>
+                        <td>
+                            <a href="#"> @Html.DisplayFor(modelItem => item.Titulo)</a>
+                        </td>
+                        <td class="text-center">
+                         @Html.ActionLink("Editar", "", "", new {}, new { @class = "glyphicon glyphicon-pencil" })
+                        </td>
+                        <td>
+                            <label>
+                                @Html.CheckBox("ckbDeshabilitar")
+                                  @Html.ActionLink("Confirmar", "", "", new { }, new { @class = "btn btn-info btn-xs" })
+                            </label>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--content del body-->
+</div>

@@ -3370,7 +3370,7 @@ namespace Providere.Models
         /// <param name="codActivacion">Valor inicial de la propiedad CodActivacion.</param>
         /// <param name="fechaCambioEstado">Valor inicial de la propiedad FechaCambioEstado.</param>
         /// <param name="idEstado">Valor inicial de la propiedad IdEstado.</param>
-        public static Usuario CreateUsuario(global::System.Int16 id, global::System.String nombre, global::System.String apellido, global::System.String mail, global::System.String contrasenia, global::System.String ubicacion, global::System.Byte telefono, global::System.DateTime fechaCreacion, global::System.DateTime fechaActivacion, global::System.String codActivacion, global::System.DateTime fechaCambioEstado, global::System.Int16 idEstado)
+        public static Usuario CreateUsuario(global::System.Int16 id, global::System.String nombre, global::System.String apellido, global::System.String mail, global::System.String contrasenia, global::System.String ubicacion, global::System.String telefono, global::System.DateTime fechaCreacion, global::System.DateTime fechaActivacion, global::System.String codActivacion, global::System.DateTime fechaCambioEstado, global::System.Int16 idEstado)
         {
             Usuario usuario = new Usuario();
             usuario.Id = id;
@@ -3544,7 +3544,7 @@ namespace Providere.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Byte Telefono
+        public global::System.String Telefono
         {
             get
             {
@@ -3554,13 +3554,13 @@ namespace Providere.Models
             {
                 OnTelefonoChanging(value);
                 ReportPropertyChanging("Telefono");
-                _Telefono = StructuralObject.SetValidValue(value);
+                _Telefono = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Telefono");
                 OnTelefonoChanged();
             }
         }
-        private global::System.Byte _Telefono;
-        partial void OnTelefonoChanging(global::System.Byte value);
+        private global::System.String _Telefono;
+        partial void OnTelefonoChanging(global::System.String value);
         partial void OnTelefonoChanged();
     
         /// <summary>

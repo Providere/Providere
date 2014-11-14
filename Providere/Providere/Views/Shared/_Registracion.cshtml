@@ -1,18 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"  content="width=device-width" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="Stylesheet" type="text/css" media="all" href="../../Content/css/bootstrap.css" />
-    <link rel="Stylesheet" type="text/css" media="all" href="../../Content/css/core.css" />
-    <link href="../../Content/img/logosquare.png" rel="shortcut icon" type="image/png" />
-    <!-- Core Scripts -->
-    <script language="javascript" type="text/javascript" src="../../Scripts/js/jquery-1.10.2.js"></script>
-    <script language="javascript" type="text/javascript" src="../../Scripts/js/bootstrap.min.js"></script>
-    <!-- Google Maps -->
-    <script language="javascript" type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-    <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript" src="../../Scripts/js/jquery.geocomplete.js"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/core.css" />
+    <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="../../Scripts/js/bootstrap.js"></script>
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" 
+      rel="stylesheet" type="text/css" />
+    <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+    <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.geocomplete.js"></script>
     <script language="javascript" type="text/javascript">
         $(function () {
 
@@ -39,6 +37,7 @@
 
         });
     </script>
+    <link href="../../Content/img/logosquare.png" rel="shortcut icon" type="image/png" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/base/css")
@@ -46,64 +45,19 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-    <div class="header">
+    <div class="header ">
         <div class="container">
             <div class="col-md-12">
                 <div style="margin-bottom: 29px;" id="contenedor-logo" class="col-md-6">
-                    <a href="@Url.Action("Home", "Home")">
+                    <a href="@Url.Action("Index", "Index")">
                         <img src="../../Content/img/logoslim.png" alt="providere" width="56%" />
                     </a>
-                </div>
-                <div class="col-md-6">
-                    <ul style="margin-top: 10px;" class="pull-right">
-                        <li>
-                            <div class="btn-group user-menu pull-right">
-                                <button class="btn btn-default dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
-                                    @User.Identity.Name <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="@Url.Action("EditarPerfil", "Usuario")">Editar perfil</a></li>
-                                    <li><a href="@Url.Action("ListarPublicaciones", "Publicacion")">Publicaciones</a></li>
-                                    <li><a href="#">Calificaciones</a></li>
-                                    <li><a href="#">Contrataciones</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="@Url.Action("CerrarSesion", "Usuario")">Cerrar sesi&oacute;n</a></li>
-                                </ul>
-                            </div>
-                            <div class="avatar pull-right col-md-2">
-                                <img class="img-responsive" src="../../Content/img/plomero-avatar.jpg" alt="avatar">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Ejemplo de buscador con dos select -->
-            <div class="col-md-12 " id="buscador">
-                <div class="col-md-5">
-                    <select class="form-control">
-                        <option>Seleccione rubro</option>
-                        <option>Plomeria</option>
-                        <option>Gasista</option>
-                        <option>Electricista</option>
-                        <option>Enfermeria</option>
-                    </select>
-                </div>
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion.Ej:San Justo" />
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <input id="btnBuscar" type="submit" value="Buscar" class="btn btn-primary btn-block" />
-                    <br />
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="content">
-            @RenderBody()
-        </div>
+    <div class="container well">
+        @RenderBody()
     </div>
     <footer>
         <div class="container">
@@ -112,7 +66,7 @@
                 <span class="text-info">©2014 | Todos los derechos reservados</span>
             </div>
             <div class="col-md-4 text-center">
-                <p>@Html.ActionLink("Pagina principal", "Home", "Home") |
+                <p>
                     <a data-toggle="modal" href="#myModalFunciona">C&oacute;mo funciona</a> | <a href="mailto:providere_arg@gmail.com">
                         Contacto</a>
                 </p>
@@ -208,6 +162,9 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+    <div class="pac-container hdpi" style="display: none; width: 447px; position: absolute;
+        left: 621px; top: 456px;">
+    </div>
     @Scripts.Render("~/bundles/jqueryui")
     @RenderSection("Scripts", required: false)
 </body>
