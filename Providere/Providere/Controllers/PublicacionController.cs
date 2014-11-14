@@ -29,6 +29,8 @@ namespace Providere.Controllers
 
         public ActionResult NuevaPublicacion()
         {
+            ViewBag.IdRubro = new SelectList(entities.Rubro, "Id", "Nombre");
+            ViewBag.IdSubRubro = new SelectList(entities.SubRubro, "Id", "Nombre");
             return View();
         }
     }
