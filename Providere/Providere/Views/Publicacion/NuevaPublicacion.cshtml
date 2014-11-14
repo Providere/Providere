@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "NuevaPublicacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ <div class="container well">
+    <div class="content">
+      <div id="nueva-publicacion">
+        <h3>Nueva publicación</h3>
+        <hr>
+        <form class="form-horizontal" role="form" method="post">
+          <div class="row">
+            <label for="rubro" class="col-sm-5 control-label">Rubro</label>
+            <div class="col-xs-3">
+              <select class="form-control">
+                <option>Seleccionar</option>
+                <option>Plomeria</option>
+                <option>Gasista</option>
+                <option>Electricista</option>
+                <option>Jardineria</option>
+                <option>Enfermeria</option>
+                <option>Reparador de PC</option>
+              </select>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <label for="titulo" class="col-sm-5 control-label">Título</label>
+            <div class="col-xs-3">
+              <input type="text" class="form-control" id="titulo"/>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <label for="descripcion" class="col-sm-5 control-label">Descripción</label>
+            <div class="col-xs-3">
+              <textarea class="form-control" rows="3" id="descripcion"></textarea>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <label for="precio" class="col-sm-5 control-label">Precio</label>
+            <div class="col-xs-3">
+              <div class="radio">
+                <div>
+                  <input type="radio" name="optionsRadios" id="precio" value="option2">
+                  <input type="text" class="form-control" id="telefono" placeholder="$"/>
+                </div>
+                <label>
+                  <input type="radio" name="optionsRadios" id="convenir" value="option2">
+                  
+                  A convenir </label>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="row">
+              <label for="imagenes" class="col-sm-5 control-label">Cargar imágenes de últimos trabajos realizados</label>
+              <div class="col-xs-3">
+                <input type="file" id="fotoperfil">
+              </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="form-group">
+              <div class="col-md-offset-5">
+                <button type="submit" class="btn btn-info btn-sm">Guardar cambios</button>
+                <button type="submit" class="btn btn-warning btn-sm">Cancelar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--content del body--> 
+    </div>
