@@ -10,14 +10,17 @@
     <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/core.css" />
     <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.js"></script>
     <script type="text/javascript" language="javascript" src="../../Scripts/js/bootstrap.js"></script>
-    <link href="../../Content/img/logoSolo.png" rel="shortcut icon" type="image/png" />
+    <link href="../../Content/img/logosquare.png" rel="shortcut icon" type="image/png" />
 </head>
 <body>
-    <div class="header navbar navbar-default">
+    <div class="header ">
         <div class="container">
-            <div id="contenedor-logo" class="col-md-6">
-                <a href="#">
-                    <img src="../../Content/img/logotransparente.png" alt="Providere" width="100%" /></a>
+            <div class="col-md-12">
+                <div style="margin-bottom: 29px;" id="contenedor-logo" class="col-md-6">
+                    <a href="@Url.Action("Index", "Index")">
+                        <img src="../../Content/img/logotransparente.png" alt="providere" width="90%" />
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -32,19 +35,21 @@
             </h2>
         </div>
     </div>
-    <div id="footer" class=" navbar-default">
+    <footer>
         <div class="container">
             <div class="col-md-4">
-                <img src="../../Content/img/logoFooter.png" alt="logo" width="15%" />
+                <img src="../../Content/img/logoSquare.png" alt="logo" width="12%" />
                 <span class="text-info">©2014 | Todos los derechos reservados</span>
             </div>
-            <div class="col-md-4 text-center">
+             <div class="col-md-4 text-center">
                 <p>
-                    @Html.ActionLink("Volver a la pagina principal", "Home", "Home") | <a href="#">Ayuda</a>
+                    <a data-toggle="modal" href="#myModalFunciona">Ayuda</a> | <a href="mailto:providere_arg@gmail.com">
+                        Contacto</a>
                 </p>
             </div>
         </div>
-    </div>
+        <!--container del footer-->
+    </footer>
     <!--container del footer-->
 </body>
 </html>
