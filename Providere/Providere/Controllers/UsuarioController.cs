@@ -29,7 +29,7 @@ namespace Providere.Controllers
             bool estado = bool.Parse(Request.Form.GetValues("ckbAcepto")[0]);
             if (ModelState.IsValid && estado == true)
             {
-                if(us.UsuarioDadoDeBaja(model.Mail))
+                if (us.UsuarioDadoDeBaja(model.Mail))
                 {
                     ModelState.AddModelError("", "El usuario registrado con esa direccion de correo electronico fue dado de baja");
                     return View(model);
@@ -37,43 +37,43 @@ namespace Providere.Controllers
                 else
                 {
 
-                if (us.EmailExisteActivado(model.Mail))
-                {
-                    ModelState.AddModelError("", "La direccion de correo electronico ingresado ya posee una cuenta asociada");
-                    return View(model);
-                }
-                else
-                {
-                    if (us.EmailExisteInactivo(model.Mail))
+                    if (us.EmailExisteActivado(model.Mail))
                     {
-                        try
-                        {
-                            us.ActivarUsuarioInactivo(model);
-                        }
-                        catch (System.Net.Mail.SmtpException ex)
-                        {
-                            ClientException.LogException(ex, "Error al enviar el mail de activacion");
-                            return RedirectToAction("Error", "Shared");
-                        }
+                        ModelState.AddModelError("", "La direccion de correo electronico ingresado ya posee una cuenta asociada");
+                        return View(model);
                     }
                     else
                     {
-                        try
+                        if (us.EmailExisteInactivo(model.Mail))
                         {
-                            us.AgregarUsuarioNuevo(model);
+                            try
+                            {
+                                us.ActivarUsuarioInactivo(model);
+                            }
+                            catch (System.Net.Mail.SmtpException ex)
+                            {
+                                ClientException.LogException(ex, "Error al enviar el mail de activacion");
+                                return RedirectToAction("Error", "Shared");
+                            }
                         }
-                        catch (System.Net.Mail.SmtpException ex)
+                        else
                         {
-                            ClientException.LogException(ex, "Error al enviar el mail de activacion");
-                            return RedirectToAction("Error", "Shared");
+                            try
+                            {
+                                us.AgregarUsuarioNuevo(model);
+                            }
+                            catch (System.Net.Mail.SmtpException ex)
+                            {
+                                ClientException.LogException(ex, "Error al enviar el mail de activacion");
+                                return RedirectToAction("Error", "Shared");
+                            }
                         }
+
+                        TempData["Mensaje"] = "La registración fue exitosa. Revise su correo electronico para activar su cuenta";
+                        return RedirectToAction("Index", "Index");
+
                     }
-
-                    TempData["Mensaje"] = "La registración fue exitosa. Revise su correo electronico para activar su cuenta";
-                    return RedirectToAction("Index", "Index");
-
                 }
-            }
             }
             else
             {
@@ -193,19 +193,20 @@ namespace Providere.Controllers
                 TempData["Error"] = "No se pudo modificar sus datos, intentelo nuevamente";
                 return RedirectToAction("Home", "Home");
             }
-           
+
         }
 
         [HttpPost]
         public ActionResult CambiarFotoPerfil(HttpPostedFileBase file)
         {
-            if (file != null && file.ContentLength > 0)
+            string verificarExt = Path.GetExtension(file.FileName);
+            if (file != null && file.ContentLength > 0 && verificarExt == ".jpg")
+            {
                 try
                 {
                     int id = Convert.ToInt16(this.Session["IdUsuario"]);
-
                     string extension = Path.GetExtension(file.FileName);
-                    string uniqueFileName = Path.ChangeExtension(file.FileName, Convert.ToString(id));
+                    string uniqueFileName = Path.ChangeExtension("imagen", Convert.ToString(id));
                     string path = Path.Combine(Server.MapPath("~/Imagenes/FotoPerfil"),
                                        Path.GetFileName(uniqueFileName + extension));
                     file.SaveAs(path);
@@ -218,11 +219,11 @@ namespace Providere.Controllers
                     ClientException.LogException(ex, "Error al cargar la imagen");
                     return RedirectToAction("Error", "Shared");
                 }
+            }
             else
             {
-                TempData["Error"] = "No se pudo cargar la imagen, intentelo nuevamente";
+                TempData["Error"] = "No se pudo cargar la imagen, intentelo nuevamente. Debe ser de formato jpg";
                 return RedirectToAction("Home", "Home");
-                      
             }
         }
 
@@ -247,7 +248,7 @@ namespace Providere.Controllers
             else
             {
                 TempData["Error"] = "Su contraseña no pudo ser modificada, intentelo nuevamente";
-                return RedirectToAction("Home", "Home");             
+                return RedirectToAction("Home", "Home");
             }
         }
 
@@ -261,7 +262,7 @@ namespace Providere.Controllers
                 int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
                 //Actualizar BD nuevo estado:
                 us.DarDeBajaUsuario(idUsuario);
-                return RedirectToAction("CerrarSesion"); 
+                return RedirectToAction("CerrarSesion");
             }
             else
             {
@@ -269,5 +270,15 @@ namespace Providere.Controllers
                 return RedirectToAction("Home", "Home");
             }
         }
+
+        public ActionResult MostrarImagen(int id)
+        {
+            var path = Server.MapPath("~/Imagenes/FotoPerfil");
+            var file = string.Format("imagen.{0}.jpg", id);
+            var fullPath = Path.Combine(path, file);
+            return File(fullPath, "Imagenes/FotoPerfil", file);
+        }
+
+
     }
 }
