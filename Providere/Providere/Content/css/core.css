@@ -96,6 +96,33 @@ footer {width: 100%;
     border-color: #e7e7e7;
 }
 
+footer.transparente 
+{
+    background-color: transparent;
+}   
+
+footer.transparente, .footer.transparente .a 
+{
+    
+    color: #2CA6BF;
+
+}
+
+ .footer.transparente .a:hover,
+ .footer.transparente .a:focus
+{
+    
+    color: #155E6D;
+
+}
+
+footer.transparente .container 
+{
+    border-top: 1px dotted rgb(188, 188, 188);
+    padding-top: 20px;
+
+}
+
 .listado-publicaciones .thumbnail {
     height: 400px
 }
