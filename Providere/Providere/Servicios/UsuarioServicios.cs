@@ -85,14 +85,15 @@ namespace Providere.Servicios
 
         internal object traerIdUsuario(Usuario model)
         {
-            Usuario miUsuario = ur.traerDatosPorMail(model.Mail);
+            Usuario miUsuario = ur.TraerDatosPorMail(model.Mail);
             return miUsuario.Id;
         }
 
 
         internal void CrearCookie(Usuario model)
         {
-            FormsAuthentication.SetAuthCookie(model.Mail, false);
+            var user = ur.TraerDatosPorMail(model.Mail);
+            FormsAuthentication.SetAuthCookie(user.Nombre, false);
         }
 
         //Obtener usuario a traves de su id para editar datos:

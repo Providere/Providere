@@ -70,7 +70,7 @@ namespace Providere.Controllers
                         }
 
                         TempData["Mensaje"] = "La registración fue exitosa. Revise su correo electronico para activar su cuenta";
-                        return RedirectToAction("Index", "Index");
+                        return RedirectToAction("IniciarSesion");
 
                     }
                 }
@@ -102,7 +102,7 @@ namespace Providere.Controllers
 
         public ActionResult IniciarSesion()
         {
-
+            ViewBag.Mensaje = TempData["Mensaje"];
             return View();
         }
 
@@ -278,7 +278,5 @@ namespace Providere.Controllers
             var fullPath = Path.Combine(path, file);
             return File(fullPath, "Imagenes/FotoPerfil", file);
         }
-
-
     }
 }

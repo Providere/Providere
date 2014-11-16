@@ -13,7 +13,7 @@ namespace Providere.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Mensaje = TempData["Mensaje"];
+           
             return View();
         }
 
