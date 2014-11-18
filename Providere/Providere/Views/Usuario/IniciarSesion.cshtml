@@ -3,6 +3,14 @@
     ViewBag.Title = "IniciarSesion";
     Layout = "~/Views/Shared/_Registracion.cshtml";
 }
+ @if (ViewBag.Mensaje != null)
+        {
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert">
+                    &times;</button>
+                @ViewBag.Mensaje
+            </div>
+        }
 <div class="content">
     @using (Html.BeginForm("IniciarSesion", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
     {

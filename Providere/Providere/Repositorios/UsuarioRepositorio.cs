@@ -102,13 +102,13 @@ namespace Providere.Repositorios
             return usuarioActivo;
         }
 
-        internal Usuario traerDatosPorMail(string p)
-        {
-            var usuario = (from user in entities.Usuario
-                           where user.Mail == p
-                           select user).First();
-            return usuario;
-        }
+        //internal Usuario traerDatosPorMail(string p)
+        //{
+        //    var usuario = (from user in entities.Usuario
+        //                   where user.Mail == p
+        //                   select user).First();
+        //    return usuario;
+        //}
 
 
         public Usuario ObtenerUsuarioEditar(int idUsuario)
@@ -153,6 +153,11 @@ namespace Providere.Repositorios
                            where user.Mail == p && user.IdEstado == 3  //Si el estado es 3 significa que esta deshabilitado
                            select user).First();
             return usuario;
+        }
+
+        internal object TraerDatos(string p)
+        {
+            throw new NotImplementedException();
         }
     }
 }
