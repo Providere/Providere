@@ -28,7 +28,7 @@
     <script language="javascript" type="text/javascript">
         $(function () {
 
-            $("#geocomplete").geocomplete()
+            $("#geocomplete").geocomplete({ types: ['(cities)'] })
           .bind("geocode:result", function (event, result) {
               $.log("Result: " + result.formatted_address);
           })
