@@ -51,8 +51,13 @@
             <div class="row">
                 @Html.Label("Lugar de residencia", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
-                    @Html.TextBox("geocomplete", null, new { @class = "form-control", autocomplete = "off" })
-                   @* @Html.ValidationMessage("Ubicacion")*@
+               @* Para poder probar la registracion:*@
+                   @Html.TextBoxFor(m => m.Ubicacion, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Ubicacion)
+
+                   @* Con geocomplete pero no guarda:*@
+                   @* @Html.TextBox("geocomplete", null, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessage("Ubicacion")*@
                     <br />
                 </div>
             </div>

@@ -19,8 +19,8 @@
                 @using (Html.BeginForm("EditarPerfil", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
                 {
                     <div>
-                        <h3>
-                            Editar mis datos personales</h3>
+                        <h2>
+                            Editar mis datos personales</h2>
                         <hr />
                         @Html.ValidationSummary(true)
                         <div class="row">
@@ -75,8 +75,8 @@
                     @using (Html.BeginForm("CambiarContrasenia", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
                     {
                         <div>
-                            <h3>
-                                Modificar contraseña</h3>
+                            <h2>
+                                Modificar contraseña</h2>
                             <hr />
                             <div>
                                 @Html.HiddenFor(model => model.Id)
@@ -103,8 +103,8 @@
                 @using (Html.BeginForm("CambiarFotoPerfil", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     <div id="page-wrapper">
-                        <h3>
-                            Modificar mi foto de perfil</h3>
+                        <h2>
+                            Modificar mi foto de perfil</h2>
                         <hr />
                         <div class="row">
                             <div class="col-xs-3">
@@ -126,8 +126,8 @@
                 @using (Html.BeginForm("EliminarCuenta", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
                 {
                     <div>
-                        <h3>
-                            ¿Desea eliminar su cuenta?</h3>
+                        <h2>
+                            ¿Desea eliminar su cuenta?</h2>
                         <hr />
                         <div class="row">
                             <div class="col-xs-3">
