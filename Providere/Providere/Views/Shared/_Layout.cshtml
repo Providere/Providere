@@ -1,7 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"  content="width=device-width" />
     <meta name="viewport" content="width=device-width" />
     <link rel="Stylesheet" type="text/css" media="all" href="../../Content/css/bootstrap.css" />
     <link rel="Stylesheet" type="text/css" media="all" href="../../Content/css/core.css" />
@@ -16,7 +15,7 @@
     <script language="javascript" type="text/javascript">
         $(function () {
 
-            $("#geocomplete").geocomplete()
+            $("#geocomplete").geocomplete({ types: ['(cities)'] })
           .bind("geocode:result", function (event, result) {
               $.log("Result: " + result.formatted_address);
           })
@@ -43,7 +42,7 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
+    @* @Scripts.Render("~/bundles/jquery")*@
 </head>
 <body>
     <div class="header">
@@ -71,7 +70,7 @@
                                 </ul>
                             </div>
                             <div class="avatar pull-right col-md-2">
-                                <img class="img-responsive" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"]})" alt="avatar" />
+                                <img class="img-responsive" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" />
                             </div>
                         </li>
                     </ul>
@@ -90,7 +89,8 @@
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
-                        <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion.Ej:San Justo" />
+                        <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion.Ej:San Justo"
+                            autocomplete="off" />
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -111,10 +111,10 @@
                 <img src="../../Content/img/logoSquare.png" alt="logo" width="12%" />
                 <span class="text-info">©2014 | Todos los derechos reservados</span>
             </div>
-            <div class="col-md-4 text-center">
-                <p>@Html.ActionLink("Pagina principal", "Home", "Home") |
-                    <a data-toggle="modal" href="#myModalFunciona">C&oacute;mo funciona</a> | <a href="mailto:providere_arg@gmail.com">
-                        Contacto</a>
+<div class="col-md-4 text-center">
+                <p>@Html.ActionLink("Principal", "Home", "Home") |
+                    <a data-toggle="modal" href="#myModalProvidere">Acerca de Providere</a> | <a href="#">FAQ</a> | <a href="mailto:providere_arg@gmail.com">
+                        Contacto</a> 
                 </p>
             </div>
             <div class="iconos-sociales col-md-4">
@@ -128,7 +128,7 @@
         <!--container del footer-->
     </footer>
     <!-- Modal Como Funciona-->
-    <div class="modal" id="myModalFunciona">
+    <div class="modal" id="myModalProvidere">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

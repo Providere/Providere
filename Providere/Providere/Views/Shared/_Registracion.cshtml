@@ -11,10 +11,10 @@
     <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.geocomplete.js"></script>
-    <script language="javascript" type="text/javascript">
-        $(function () {
+     <script language="javascript" type="text/javascript">
+         $(function () {
 
-            $("#geocomplete").geocomplete()
+             $("#geocomplete").geocomplete({ types: ['(cities)'] })
           .bind("geocode:result", function (event, result) {
               $.log("Result: " + result.formatted_address);
           })
@@ -25,24 +25,24 @@
               $.log("Multiple: " + results.length + " results found");
           });
 
-            $("#find").click(function () {
-                $("#geocomplete").trigger("geocode");
-            });
+             $("#find").click(function () {
+                 $("#geocomplete").trigger("geocode");
+             });
 
 
-            $("#examples a").click(function () {
-                $("#geocomplete").val($(this).text()).trigger("geocode");
-                return false;
-            });
+             $("#examples a").click(function () {
+                 $("#geocomplete").val($(this).text()).trigger("geocode");
+                 return false;
+             });
 
-        });
+         });
     </script>
     <link href="../../Content/img/logosquare.png" rel="shortcut icon" type="image/png" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
+  @*  @Scripts.Render("~/bundles/jquery")*@
 </head>
 <body>
     <div class="header ">
@@ -67,8 +67,8 @@
             </div>
             <div class="col-md-4 text-center">
                 <p>
-                    <a data-toggle="modal" href="#myModalFunciona">C&oacute;mo funciona</a> | <a href="mailto:providere_arg@gmail.com">
-                        Contacto</a>
+                    <a data-toggle="modal" href="#myModalProvidere">Acerca de Providere</a> | <a href="#">FAQ</a> | <a href="mailto:providere_arg@gmail.com">
+                        Contacto</a> 
                 </p>
             </div>
             <div class="iconos-sociales col-md-4">
@@ -82,7 +82,7 @@
         <!--container del footer-->
     </footer>
     <!-- Modal Como Funciona-->
-    <div class="modal" id="myModalFunciona">
+    <div class="modal" id="myModalProvidere">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
