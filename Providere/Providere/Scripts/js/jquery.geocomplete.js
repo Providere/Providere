@@ -43,7 +43,7 @@
     location: false,
 
     mapOptions: {
-      zoom: 14,
+      zoom: 4,
       scrollwheel: false,
       mapTypeId: "roadmap"
     },
