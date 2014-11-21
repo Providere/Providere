@@ -276,7 +276,15 @@ namespace Providere.Controllers
             var path = Server.MapPath("~/Imagenes/FotoPerfil");
             var file = string.Format("imagen.{0}.jpg", id);
             var fullPath = Path.Combine(path, file);
-            return File(fullPath, "Imagenes/FotoPerfil", file);
+            if (!System.IO.File.Exists(fullPath))
+            {
+                var path2 = Server.MapPath("~/Content/img/user.jpg");
+                return File(path2, "Content/img");
+            }
+            else
+            {
+                return File(fullPath, "Imagenes/FotoPerfil", file);
+            }
         }
     }
 }
