@@ -37,7 +37,7 @@ namespace Providere.Models
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Contrasenia { get; set; }
 
-            [Required(ErrorMessage = "Campo Obligatorio")]
+            //[Required(ErrorMessage = "Campo Obligatorio")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Ubicacion { get; set; }
 

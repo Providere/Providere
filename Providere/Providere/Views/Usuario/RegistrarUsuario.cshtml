@@ -47,20 +47,7 @@
                         visible por tu contraparte cuando contrates un servicio</small>
                 </div>
             </div>
-            <br />
-            <div class="row">
-                @Html.Label("Lugar de residencia", new { @class = "col-sm-5 control-label" })
-                <div class="col-xs-3">
-               @* Para poder probar la registracion:*@
-                   @Html.TextBoxFor(m => m.Ubicacion, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Ubicacion)
 
-                   @* Con geocomplete pero no guarda:*@
-                   @* @Html.TextBox("geocomplete", null, new { @class = "form-control", autocomplete = "off" })
-                    @Html.ValidationMessage("Ubicacion")*@
-                    <br />
-                </div>
-            </div>
             <br />
             <div class="row">
                 @Html.Label("Contraseña", new { @class = "col-sm-5 control-label" })
@@ -71,6 +58,19 @@
                         5 y 10 caracteres,debe contener 1 numero y 1 mayuscula</small>
                 </div>
             </div>
+                        <br />
+            <div class="row">
+                @Html.LabelFor(m=>m.Ubicacion, new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-3">
+                    @Html.TextBox("geocomplete", null, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessageFor(m=>m.Ubicacion)
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="map_canvas"></div>
+            </div>
+            <br />
             <div class="row">
                 <div class="col-sm-5 control-label">
                     @Html.Label("CaptchaCode", "Escriba el código de la imágen")
@@ -79,8 +79,9 @@
                     @{ MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha");
                        sampleCaptcha.UserInputClientID = "CaptchaCode"; }
                     @Html.Captcha(sampleCaptcha)
+                    <br />
                     <div class="actions">
-                        @Html.TextBox("CaptchaCode")
+                        @Html.TextBox("CaptchaCode", null, new { @class = "form-control" })
                         @Html.ValidationMessage("CaptchaCode")
                     </div>
                 </div>
@@ -110,3 +111,6 @@
         </div>
     }
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

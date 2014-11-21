@@ -8,13 +8,20 @@
     <script type="text/javascript" language="javascript" src="../../Scripts/js/bootstrap.js"></script>
     <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" 
       rel="stylesheet" type="text/css" />
-    <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script type="text/javascript"  language="javascript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.geocomplete.js"></script>
-     <script language="javascript" type="text/javascript">
-         $(function () {
+ <script>
+     $(function () {
 
-             $("#geocomplete").geocomplete({ types: ['(cities)'] })
+         var options = {
+             map: ".map_canvas",
+             types: ['(cities)'],
+             zoom: 8,
+             location: new google.maps.LatLng(-34.6037232,-58.38159310000003)
+         };
+
+         $("#geocomplete").geocomplete(options)
           .bind("geocode:result", function (event, result) {
               $.log("Result: " + result.formatted_address);
           })
@@ -25,17 +32,16 @@
               $.log("Multiple: " + results.length + " results found");
           });
 
-             $("#find").click(function () {
-                 $("#geocomplete").trigger("geocode");
-             });
-
-
-             $("#examples a").click(function () {
-                 $("#geocomplete").val($(this).text()).trigger("geocode");
-                 return false;
-             });
-
+         $("#find").click(function () {
+             $("#geocomplete").trigger("geocode");
          });
+
+         $("#examples a").click(function () {
+             $("#geocomplete").val($(this).text()).trigger("geocode");
+             return false;
+         });
+
+     });
     </script>
     <link href="../../Content/img/logosquare.png" rel="shortcut icon" type="image/png" />
     <title>@ViewBag.Title</title>
