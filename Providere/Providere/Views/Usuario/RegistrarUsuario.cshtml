@@ -10,6 +10,9 @@
         <div>
             <h2>
                 Reg&iacute;strate en Providere<small> es totalmente gratis!</small></h2>
+            <p class="text-warning">
+                <span class="glyphicon glyphicon-exclamation-sign"></span>Todos los campos son obligatorios</p>
+            <br />
             @Html.ValidationSummary(true)
             <hr />
             <div class="row">
@@ -47,7 +50,6 @@
                         visible por tu contraparte cuando contrates un servicio</small>
                 </div>
             </div>
-
             <br />
             <div class="row">
                 @Html.Label("Contraseña", new { @class = "col-sm-5 control-label" })
@@ -58,17 +60,18 @@
                         5 y 10 caracteres,debe contener 1 numero y 1 mayuscula</small>
                 </div>
             </div>
-                        <br />
+            <br />
             <div class="row">
-                @Html.LabelFor(m=>m.Ubicacion, new { @class = "col-sm-5 control-label" })
+                @Html.Label("Localidad", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
                     @Html.TextBox("geocomplete", null, new { @class = "form-control", autocomplete = "off" })
-                    @Html.ValidationMessageFor(m=>m.Ubicacion)
+                    @Html.ValidationMessageFor(m => m.Ubicacion)
                 </div>
                 <br />
                 <br />
                 <br />
-                <div class="map_canvas"></div>
+                <div class="map_canvas">
+                </div>
             </div>
             <br />
             <div class="row">
@@ -97,7 +100,6 @@
                             Términos y Condiciones de Uso</a>
                     </ul>
                 </div>
-                <!-- .input -->
             </fieldset>
             <br />
             <div class="form-group">

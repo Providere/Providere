@@ -8,20 +8,19 @@
     <script type="text/javascript" language="javascript" src="../../Scripts/js/bootstrap.js"></script>
     <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" 
       rel="stylesheet" type="text/css" />
-    <script type="text/javascript"  language="javascript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.geocomplete.js"></script>
- <script language="javascript" type="text/javascript">
-     $(function () {
+    <script language="javascript" type="text/javascript">
+        $(function () {
+            var options = {
+                map: ".map_canvas",
+                types: ['(cities)'],
+                zoom: 8,
+                location: new google.maps.LatLng(-34.6037232, -58.38159310000003)
+            };
 
-         var options = {
-             map: ".map_canvas",
-             types: ['(cities)'],
-             zoom: 8,
-             location: new google.maps.LatLng(-34.6037232,-58.38159310000003)
-         };
-
-         $("#geocomplete").geocomplete(options)
+            $("#geocomplete").geocomplete(options)
           .bind("geocode:result", function (event, result) {
               $.log("Result: " + result.formatted_address);
           })
@@ -32,23 +31,23 @@
               $.log("Multiple: " + results.length + " results found");
           });
 
-         $("#find").click(function () {
-             $("#geocomplete").trigger("geocode");
-         });
+            $("#find").click(function () {
+                $("#geocomplete").trigger("geocode");
+            });
 
-         $("#examples a").click(function () {
-             $("#geocomplete").val($(this).text()).trigger("geocode");
-             return false;
-         });
+            $("#examples a").click(function () {
+                $("#geocomplete").val($(this).text()).trigger("geocode");
+                return false;
+            });
 
-     });
+        });
     </script>
     <link href="../../Content/img/logosquare.png" rel="shortcut icon" type="image/png" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/modernizr")
-  @*  @Scripts.Render("~/bundles/jquery")*@
+    @*  @Scripts.Render("~/bundles/jquery")*@
 </head>
 <body>
     <div class="header ">
@@ -56,7 +55,7 @@
             <div class="col-md-12">
                 <div style="margin-bottom: 29px;" id="contenedor-logo" class="col-md-6">
                     <a href="@Url.Action("Index", "Index")">
-                      <img src="../../Content/img/logotransparente.png" alt="providere" width="90%" />
+                        <img src="../../Content/img/logotransparente.png" alt="providere" width="90%" />
                     </a>
                 </div>
             </div>
@@ -65,7 +64,7 @@
     <div class="container well">
         @RenderBody()
     </div>
-    <footer class="transparente" >
+    <footer class="transparente">
         <div class="container">
             <div class="col-md-4">
                 <img src="../../Content/img/logoSquare.png" alt="logo" width="12%" />
