@@ -46,7 +46,6 @@ namespace Providere.Repositorios
             usuario.Telefono = user.Telefono;
             usuario.Ubicacion = user.Ubicacion;
             usuario.FechaCreacion = DateTime.Now; //se actualiza para mandarle un mail nuevo en caso que hayan pasado los 15' y el estado sea inactivo
-            usuario.CodActivacion = Encryptor.MD5Hash(user.Mail);
 
             entities.SaveChanges();
 
