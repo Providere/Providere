@@ -22,33 +22,32 @@ namespace Providere.Controllers
             return View();
         }
 
-        [HttpPost]
-        [CaptchaValidation("CaptchaCode", "SampleCaptcha", "Codigo incorrecto")]
-        public ActionResult RegistrarUsuario(Usuario model)
+        [HttpPost,CaptchaValidation("CaptchaCode", "SampleCaptcha", "Codigo incorrecto")]
+        public ActionResult RegistrarUsuario(string nombre, string apellido, string mail, string telefono, string contrasenia, string geocomplete)
         {
             bool estado = bool.Parse(Request.Form.GetValues("ckbAcepto")[0]);
-            if (ModelState.IsValid && estado == true)
+            if (ModelState.IsValid && estado == true && !string.IsNullOrWhiteSpace(geocomplete))
             {
-                if (us.UsuarioDadoDeBaja(model.Mail))
+                if (us.UsuarioDadoDeBaja(mail))
                 {
                     ModelState.AddModelError("", "El usuario registrado con esa direccion de correo electronico fue dado de baja");
-                    return View(model);
+                    return View();
                 }
                 else
                 {
 
-                    if (us.EmailExisteActivado(model.Mail))
+                    if (us.EmailExisteActivado(mail))
                     {
-                        ModelState.AddModelError("", "La direccion de correo electronico ingresado ya posee una cuenta asociada");
-                        return View(model);
+                        ModelState.AddModelError("", "La direccion de correo electrónico ingresado ya posee una cuenta asociada");
+                        return View();
                     }
                     else
                     {
-                        if (us.EmailExisteInactivo(model.Mail))
+                        if (us.EmailExisteInactivo(mail))
                         {
                             try
                             {
-                                us.ActivarUsuarioInactivo(model);
+                                us.ActivarUsuarioInactivo(nombre,apellido,mail,telefono,contrasenia,geocomplete);
                             }
                             catch (System.Net.Mail.SmtpException ex)
                             {
@@ -60,7 +59,7 @@ namespace Providere.Controllers
                         {
                             try
                             {
-                                us.AgregarUsuarioNuevo(model);
+                                us.AgregarUsuarioNuevo(nombre, apellido, mail, telefono, contrasenia, geocomplete);
                             }
                             catch (System.Net.Mail.SmtpException ex)
                             {
@@ -69,7 +68,7 @@ namespace Providere.Controllers
                             }
                         }
 
-                        TempData["Mensaje"] = "La registración fue exitosa. Revise su correo electronico para activar su cuenta";
+                        TempData["Mensaje"] = "La registración fue exitosa. Revise su correo electrónico para activar su cuenta";
                         return RedirectToAction("IniciarSesion");
 
                     }
@@ -77,8 +76,8 @@ namespace Providere.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Verifique que todos los campos esten completados correctamente. Debe aceptar los terminos y condiciones");
-                return View(model);
+                ModelState.AddModelError("", "No se olvide de ingresar ubicación, y aceptar los términos y condiciones para continuar con la registración");
+                return View();
             }
 
         }
@@ -93,7 +92,7 @@ namespace Providere.Controllers
             }
             else
             {
-                msj = "El tiempo para la activacion de su cuenta ha expirado, vuelva a registrarse para recibir un nuevo mail de activacion";
+                msj = "El tiempo para la activación de su cuenta ha expirado, vuelva a registrarse para recibir un nuevo mail de activación";
             }
             ViewBag.msj = msj;
 
@@ -113,13 +112,13 @@ namespace Providere.Controllers
 
             if (model.Mail.Length > 50)
             {
-                ModelState.AddModelError("", "Direccion de correo electronico demasiado largo");
+                ModelState.AddModelError("", "Direccion de correo electrónico demasiado largo");
                 cantidadDeErrores++;
             }
 
             if (model.Contrasenia.Length > 10)
             {
-                ModelState.AddModelError("", "Contraseña demasiado larga");
+                ModelState.AddModelError("", "Contraseña demasiada larga");
                 cantidadDeErrores++;
             }
 
@@ -149,7 +148,7 @@ namespace Providere.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Verifique su direccion de correo electronico y/o contraseña");
+                    ModelState.AddModelError("", "Verifique su dirección de correo electrónico y/o contraseña");
                 }
             }
             return View(model);
@@ -216,13 +215,13 @@ namespace Providere.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ClientException.LogException(ex, "Error al cargar la imagen");
+                    ClientException.LogException(ex, "Error al cargar la imágen");
                     return RedirectToAction("Error", "Shared");
                 }
             }
             else
             {
-                TempData["Error"] = "No se pudo cargar la imagen, intentelo nuevamente. Debe ser de formato jpg";
+                TempData["Error"] = "No se pudo cargar la imágen, intentelo nuevamente. Debe ser de formato jpg";
                 return RedirectToAction("Home", "Home");
             }
         }
@@ -236,7 +235,7 @@ namespace Providere.Controllers
                 try
                 {
                     us.GuardarContraseniaNueva(id, contrasenia);
-                    TempData["Mensaje"] = "Su contraseña ha sido modificada con exito";
+                    TempData["Mensaje"] = "Su contraseña ha sido modificada con éxito";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)

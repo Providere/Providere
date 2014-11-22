@@ -54,12 +54,7 @@ namespace Providere.Repositorios
 
         internal void CrearUsuario(Usuario model)
         {
-            model.Contrasenia = Encryptor.MD5Hash(model.Contrasenia);
-            model.FechaActivacion = DateTime.Now;
-            model.FechaCreacion = DateTime.Now;
-            model.FechaCambioEstado = DateTime.Now;
-            model.IdEstado = Convert.ToInt16(4); //Estado inactivo hasta que confirma su registracion
-            model.CodActivacion = Encryptor.MD5Hash(model.Mail);
+            
             entities.Usuario.AddObject(model);
             entities.SaveChanges();
         }

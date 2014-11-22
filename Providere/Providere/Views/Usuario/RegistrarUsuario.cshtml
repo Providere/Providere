@@ -10,10 +10,8 @@
         <div>
             <h2>
                 Reg&iacute;strate en Providere<small> es totalmente gratis!</small></h2>
-            <p class="text-warning">
-                <span class="glyphicon glyphicon-exclamation-sign"></span>Todos los campos son obligatorios</p>
-            <br />
-            @Html.ValidationSummary(true)
+            <p>
+               @Html.ValidationSummary(true)</p>
             <hr />
             <div class="row">
                 @Html.Label("Nombre", new { @class = "col-sm-5 control-label" })
@@ -82,9 +80,8 @@
                     @{ MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha");
                        sampleCaptcha.UserInputClientID = "CaptchaCode"; }
                     @Html.Captcha(sampleCaptcha)
-                    <br />
                     <div class="actions">
-                        @Html.TextBox("CaptchaCode", null, new { @class = "form-control" })
+                        @Html.TextBox("CaptchaCode", null, new { @class = "form-control"})
                         @Html.ValidationMessage("CaptchaCode")
                     </div>
                 </div>

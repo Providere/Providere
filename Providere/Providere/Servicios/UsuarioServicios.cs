@@ -42,14 +42,14 @@ namespace Providere.Servicios
         }
 
         //Activar el usuario que esta registrado pero inactivo:
-        internal void ActivarUsuarioInactivo(Usuario model)
+        internal void ActivarUsuarioInactivo(string nombre, string apellido, string mail, string telefono, string contrasenia, string geocomplete)
         {
-            var user = ur.TraerDatosPorMail(model.Mail); //Traigo todos los datos de ese usuario que tengo en la BD
-            user.Nombre = model.Nombre;
-            user.Apellido = model.Apellido;
-            user.Contrasenia = Encryptor.MD5Hash(model.Contrasenia);
-            user.Telefono = model.Telefono;
-            user.Ubicacion = model.Ubicacion;
+            var user = ur.TraerDatosPorMail(mail); //Traigo todos los datos de ese usuario que tengo en la BD
+            user.Nombre = nombre;
+            user.Apellido = apellido;
+            user.Contrasenia = Encryptor.MD5Hash(contrasenia);
+            user.Telefono = telefono;
+            user.Ubicacion = geocomplete;
 
             //Le envio el mail de confirmacion y actualizo los datos:
 
@@ -57,11 +57,23 @@ namespace Providere.Servicios
             mailing.EnviarMail(user);
         }
 
-        internal void AgregarUsuarioNuevo(Usuario model)
+        internal void AgregarUsuarioNuevo(string nombre, string apellido, string mail, string telefono, string contrasenia, string geocomplete)
         {
+            Usuario miUsuario = new Usuario();
+            miUsuario.Nombre = nombre;
+            miUsuario.Apellido = apellido;
+            miUsuario.Telefono = telefono;
+            miUsuario.Mail = mail;
+            miUsuario.Ubicacion = geocomplete;
+            miUsuario.Contrasenia = Encryptor.MD5Hash(contrasenia);
+            miUsuario.FechaActivacion = DateTime.Now;
+            miUsuario.FechaCreacion = DateTime.Now;
+            miUsuario.FechaCambioEstado = DateTime.Now;
+            miUsuario.IdEstado = Convert.ToInt16(4); //Estado inactivo hasta que confirma su registracion
+            miUsuario.CodActivacion = Encryptor.MD5Hash(mail);
 
-            ur.CrearUsuario(model);
-            mailing.EnviarMail(model);
+            ur.CrearUsuario(miUsuario);
+            mailing.EnviarMail(miUsuario);
         }
 
         //Activar Usuario con confirmacion de email:
