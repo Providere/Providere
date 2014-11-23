@@ -3,6 +3,7 @@
     ViewBag.Title = "Editar perfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="container well">
     <div class="content">
         <!-- Nav tabs -->
@@ -55,9 +56,9 @@
                         </div>
                         <br />
                         <div class="row">
-                            @Html.Label("Lugar de residencia", new { @class = "col-sm-5 control-label" })
+                            @Html.Label("Localidad", new { @class = "col-sm-5 control-label" })
                             <div class="col-xs-3">
-                                @Html.TextBoxFor(m => m.Ubicacion, new { @class = "form-control" })
+                                @Html.TextBoxFor(m=>m.Ubicacion, new { @class = "form-control"})
                                 @Html.ValidationMessageFor(m => m.Ubicacion)
                             </div>
                         </div>
@@ -106,11 +107,14 @@
                         <h2>
                             Modificar mi foto de perfil</h2>
                         <hr />
+                        <p class="text-warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>El formato de la imágen debe ser .jpg, caso contrario el cambio no tendrá efecto</p>
+                       <br />
                         <div class="row">
                             <div class="col-xs-3">
                                 <input type="file" id="file" name="file" />
                             </div>
                         </div>
+                        <br />
                         <br />
                         <div class="form-group">
                             <div class="col-md-offset-5">
@@ -128,7 +132,10 @@
                     <div>
                         <h2>
                             ¿Desea eliminar su cuenta?</h2>
+
                         <hr />
+                        <p class="text-warning"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Al eliminar su cuenta no podrá volver a utilizarla</p>
+                       <br />
                         <div class="row">
                             <div class="col-xs-3">
                                 @Html.CheckBox("ckbEliminar")
@@ -137,6 +144,7 @@
                                 </label>
                             </div>
                         </div>
+                        <br />
                         <div class="form-group">
                             <div class="col-md-offset-5">
                                 <button type="submit" id="btnConfirmar" class="btn btn-info btn-sm">

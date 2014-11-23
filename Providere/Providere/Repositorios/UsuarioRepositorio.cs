@@ -96,14 +96,6 @@ namespace Providere.Repositorios
             return usuarioActivo;
         }
 
-        //internal Usuario traerDatosPorMail(string p)
-        //{
-        //    var usuario = (from user in entities.Usuario
-        //                   where user.Mail == p
-        //                   select user).First();
-        //    return usuario;
-        //}
-
 
         public Usuario ObtenerUsuarioEditar(int idUsuario)
         {

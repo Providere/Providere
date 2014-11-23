@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-md-6">
                     <ul style="margin-top: 10px;" class="pull-right">
-                        <li>
+                        <div>
                             <div class="btn-group user-menu pull-right">
                                 <button class="btn btn-default dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
                                     @User.Identity.Name <span class="caret"></span>
@@ -72,7 +72,7 @@
                             <div class="avatar pull-right col-md-2">
                                 <img class="img-responsive" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" />
                             </div>
-                        </li>
+                        </div>
                     </ul>
                 </div>
             </div>
