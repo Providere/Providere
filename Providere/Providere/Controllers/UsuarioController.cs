@@ -171,14 +171,14 @@ namespace Providere.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarPerfil(string nombre, string apellido, string telefono, string ubicacion)
+        public ActionResult EditarPerfil(string nombre, string apellido, string telefono, string geocomplete2)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && !string.IsNullOrWhiteSpace(geocomplete2))
             {
                 try
                 {
                     int id = Convert.ToInt16(this.Session["IdUsuario"]);
-                    us.ModificarDatosUsuario(id, nombre, apellido, telefono, ubicacion);
+                    us.ModificarDatosUsuario(id, nombre, apellido, telefono, geocomplete2);
                     TempData["Mensaje"] = "Sus datos personales se actualizaron correctamente";
                     return RedirectToAction("Home", "Home");
                 }

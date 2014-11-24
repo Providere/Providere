@@ -105,12 +105,12 @@ namespace Providere.Repositorios
         }
 
         //Modifico los datos del usuario:
-        public void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string ubicacion)
+        public void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string geocomplete2)
         {
             Usuario usuario = entities.Usuario.Where(e => e.Id == id).FirstOrDefault();
             usuario.Nombre = nombre;
             usuario.Apellido = apellido;
-            usuario.Ubicacion = ubicacion;
+            usuario.Ubicacion = geocomplete2;
             usuario.Telefono = telefono;
 
             entities.SaveChanges();
