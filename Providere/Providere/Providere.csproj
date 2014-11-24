@@ -243,6 +243,7 @@
     <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\jquery-1.10.2.js" />
     <Content Include="Scripts\js\jquery.geocomplete.js" />
+    <Content Include="Scripts\js\jquery.geocompletePerfil.js" />
     <Content Include="Scripts\js\jquery.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />

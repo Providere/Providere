@@ -166,6 +166,7 @@ namespace Providere.Controllers
         {
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Usuario usuario = us.ObtenerUsuarioEditar(idUsuario);
+            ViewBag.geocomplete2 = usuario.Ubicacion;
             return View(usuario);
         }
 

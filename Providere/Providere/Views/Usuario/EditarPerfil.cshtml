@@ -58,8 +58,8 @@
                         <div class="row">
                             @Html.Label("Localidad", new { @class = "col-sm-5 control-label" })
                             <div class="col-xs-3">
-                                @Html.TextBoxFor(m=>m.Ubicacion, new { @class = "form-control"})
-                                @Html.ValidationMessageFor(m => m.Ubicacion)
+                                 @Html.TextBox("geocomplete2", null, new { @class = "form-control", autocomplete = "off" })
+                                 @Html.ValidationMessageFor(m => m.Ubicacion)
                             </div>
                         </div>
                         <br />
