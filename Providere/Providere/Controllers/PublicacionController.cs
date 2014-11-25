@@ -19,18 +19,18 @@ namespace Providere.Controllers
         //}
 
         PublicacionServicios ps = new PublicacionServicios();
-        ProvidereEntities entities = new ProvidereEntities();
+        ProvidereEntities context = new ProvidereEntities();
         public ActionResult ListarPublicaciones()
         {
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            var publicaciones = entities.Publicacion.Include("Rubro"); //Eager loading => Carga temprana
+            var publicaciones = context.Publicacion.Include("Rubro"); //Eager loading => Carga temprana
             return View(publicaciones.ToList());
         }
 
         public ActionResult NuevaPublicacion()
         {
-            ViewBag.IdRubro = new SelectList(entities.Rubro, "Id", "Nombre");
-            ViewBag.IdSubRubro = new SelectList(entities.SubRubro, "Id", "Nombre");
+            ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre");
+            ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre");
             return View();
         }
     }
