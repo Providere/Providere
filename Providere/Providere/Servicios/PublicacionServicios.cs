@@ -9,6 +9,11 @@ namespace Providere.Servicios
 {
     public class PublicacionServicios
     {
-       
+        PublicacionRepositorio pr = new PublicacionRepositorio();
+
+        public List<Publicacion> traerPublicacionesMasPopulares()
+        {
+           return pr.traerPublicacionesMasPopulares();
+        }
     }
 }
