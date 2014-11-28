@@ -3,6 +3,18 @@
     ViewBag.Title = "NuevaPublicacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section scripts
+{
+    <script language="javascript" type="text/javascript">
+        function d1(selectTag) {
+            if (selectTag.value == 'otro1') {
+                document.getElementById('prg1').disabled = false;
+            } else {
+                document.getElementById('prg1').disabled = true;
+            }
+        }
+    </script>
+}
 <div class="container well">
     <div class="content">
         @using (Html.BeginForm("NuevaPublicacion", "Publicacion", FormMethod.Post, new { @class = "form-horizontal" }))
@@ -15,7 +27,7 @@
                 @Html.Hidden("idUsuario", this.Session["IdUsuario"])
             </div>
             <div class="row">
-                @Html.LabelFor(model => model.IdRubro, "Rubro", new { @class = "col-sm-5 control-label" })
+                @Html.Label("Rubro", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
                     @Html.DropDownList("IdRubro", null, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.IdRubro)
@@ -23,9 +35,9 @@
             </div>
             <br />
             <div class="row">
-                @Html.LabelFor(model => model.IdSubRubro, "SubRubro", new { @class = "col-sm-5 control-label" })
+                @Html.Label("SubRubro", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
-                    @Html.DropDownList("IdSubRubro", null, new { @class = "form-control" })
+                    @Html.DropDownList("IdSubRubro", null, "-----Seleccione-----", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.IdRubro)
                 </div>
             </div>
@@ -48,18 +60,26 @@
             <br />
             <div class="row">
                 @Html.Label("Precio", new { @class = "col-sm-5 control-label" })
+                <div class="col-xs-2">
+                    @{
+            List<SelectListItem> listPrecio = new List<SelectListItem>();
+            listPrecio.Add(new SelectListItem
+            {
+                Text = "A convenir",
+                Value = "1",
+                Selected = true
+            });
+            listPrecio.Add(new SelectListItem
+            {
+                Text = "Otro",
+                Value = "otro1",
+            });
+                    }
+                    @Html.DropDownList("Listado", listPrecio, new { @class = "form-control", name = "pg1", onchange = "d1(this)" })
+                </div>
                 <div class="col-xs-1">
-                    <div class="radio">
-                        <div>
-                        @Html.RadioButton("Precio", "option1")
-                          
-                         @Html.TextBoxFor(model => model.Precio, new { @class = "form-control" })
-                        </div>
-                        <label>
-                             @Html.RadioButton("A convenir", "option2")
-                         
-                        </label>
-                    </div>
+                    @Html.TextBoxFor(model => model.Precio, new { @class = "form-control", name="otro1" , id = "prg1", disabled = "disabled", placeholder = "$" })
+                    @Html.ValidationMessageFor(model => model.Precio)
                 </div>
             </div>
             <br />
@@ -72,12 +92,12 @@
             <br />
             <br />
             <div class="form-group">
-                    <div class="col-md-offset-5">
-                        <button type="submit" id="btnGuardar" class="btn btn-info btn-sm">
-                            Guardar cambios</button>
-                        @Html.ActionLink("Cancelar", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
-                    </div>
+                <div class="col-md-offset-5">
+                    <button type="submit" id="btnGuardar" class="btn btn-info btn-sm">
+                        Guardar cambios</button>
+                    @Html.ActionLink("Cancelar", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
                 </div>
+            </div>
         }
     </div>
 </div>

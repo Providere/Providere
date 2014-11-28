@@ -20,6 +20,8 @@ namespace Providere.Controllers
 
         PublicacionServicios ps = new PublicacionServicios();
         ProvidereEntities context = new ProvidereEntities();
+        
+
         public ActionResult ListarPublicaciones()
         {
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
@@ -29,9 +31,34 @@ namespace Providere.Controllers
 
         public ActionResult NuevaPublicacion()
         {
-            ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre");
-            ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre");
+               ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre");
+               ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre");
+
             return View();
         }
-    }
-}
+
+        [HttpPost]
+        public ActionResult NuevaPublicacion(int idUsuario,int idRubro, int idSubRubro, string titulo, string descripcion, int precio)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                      return RedirectToAction("Home","Home");
+                }
+                catch(Exception ex)
+                {
+                    ClientException.LogException(ex, "Error al crear la publicación");
+                    return RedirectToAction("Error", "Shared");
+                }
+            }
+            else
+            {
+                TempData["Error"] = "No se pudo crear la publicación, intentelo nuevamente";
+                return RedirectToAction("Home", "Home");
+            }
+                
+          }
+      }
+ }
+
