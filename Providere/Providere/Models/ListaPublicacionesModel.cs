@@ -7,7 +7,7 @@ namespace Providere.Models
 {
     public class ListaPublicacionesModel
     {
-            public List<Publicacion> listadoDePublicaciones { get; set; }
+            public List<PublicacionPuntaje> listadoDePublicaciones { get; set; }
         
     }
 }

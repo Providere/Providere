@@ -11,6 +11,7 @@ namespace Providere.Repositorios
     {
 
         ProvidereEntities context = new ProvidereEntities();
+        PuntajeRepositorio pr = new PuntajeRepositorio();
 
         internal List<Publicacion> traerPublicacionesPorZona(int limite)
         {
@@ -21,17 +22,28 @@ namespace Providere.Repositorios
         internal ListaPublicacionesModel traerPublicacionesMasPopulares(int limite)
         {
             ListaPublicacionesModel publicaciones = new ListaPublicacionesModel();
+            List<PublicacionPuntaje> publiList = new List<PublicacionPuntaje>();
 
-                publicaciones.listadoDePublicaciones = (from publicacion in context.Publicacion 
-                                 join puntaje in context.Puntaje on publicacion.Id equals puntaje.IdPublicacion
-                                 orderby puntaje.Total descending
-                                                        select publicacion).Take(limite).ToList();
+            var publicacionesMasPopulares = (from publicacion in context.Publicacion
+                                             join puntaje in context.Puntaje on publicacion.Id equals puntaje.IdPublicacion
+                                             orderby puntaje.Total descending
+                                             select publicacion).Take(limite).ToList();
+
+            foreach (var publiMasPopular in publicacionesMasPopulares)
+            {
+                PublicacionPuntaje pj = new PublicacionPuntaje();
+                pj.publicacion = publiMasPopular;
+                pj.puntaje = pr.traerDatosPorPublicacion(publiMasPopular);
+                publiList.Add(pj);
+            }
+
+            publicaciones.listadoDePublicaciones = publiList;
             return publicaciones;
         }
 
         internal List<Publicacion> traerPublicacionesMasNuevas(int limite)
         {
-            var publicaciones = (from publicacion in context.Publicacion 
+            var publicaciones = (from publicacion in context.Publicacion
                                  orderby publicacion.FechaCreacion
                                  select publicacion).Take(limite).ToList();
             return publicaciones;
@@ -39,8 +51,8 @@ namespace Providere.Repositorios
 
         internal List<Publicacion> buscarPorRubroSubRubroUbicacion(Rubro Rubro, SubRubro SubRubro, string Ubicacion)
         {
-            if (String.IsNullOrEmpty(Rubro.ToString()) 
-                && String.IsNullOrEmpty(SubRubro.ToString()) 
+            if (String.IsNullOrEmpty(Rubro.ToString())
+                && String.IsNullOrEmpty(SubRubro.ToString())
                 && String.IsNullOrEmpty(Ubicacion))
             {
 
@@ -51,7 +63,7 @@ namespace Providere.Repositorios
                                      select publicacion).ToList();
 
                 return publicaciones;
-            } 
+            }
             if (String.IsNullOrEmpty(Rubro.ToString())
                 && String.IsNullOrEmpty(SubRubro.ToString())
                 && String.IsNullOrEmpty(Ubicacion))
@@ -82,7 +94,7 @@ namespace Providere.Repositorios
             return null;
         }
 
-        internal void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion, int precioOpcion,string precio)
+        internal void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion, int precioOpcion, string precio)
         {
             Publicacion mipublicacion = new Publicacion();
             mipublicacion.IdUsuario = Convert.ToInt16(idUsuario);
@@ -90,7 +102,7 @@ namespace Providere.Repositorios
             mipublicacion.Descripcion = descripcion;
             mipublicacion.PrecioOpcion = precioOpcion;
             mipublicacion.Precio = Convert.ToDecimal(precio);
-            mipublicacion.IdRubro = Convert.ToInt16 (idRubro);
+            mipublicacion.IdRubro = Convert.ToInt16(idRubro);
             mipublicacion.IdSubRubro = Convert.ToInt16(idSubRubro);
             mipublicacion.FechaCreacion = DateTime.Now;
             mipublicacion.FechaEdicion = DateTime.Now;
