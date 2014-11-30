@@ -16,7 +16,7 @@ namespace Providere.Servicios
            return pr.traerPublicacionesMasPopulares(limite);
         }
 
-        internal void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion,int precioOpcion, string precio)
+        public void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion,int precioOpcion, string precio)
         {
             pr.CrearNuevaPublicacion(idUsuario, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio);
         }
