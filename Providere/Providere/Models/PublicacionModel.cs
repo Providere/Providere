@@ -22,15 +22,16 @@ namespace Providere.Models
              [DisplayFormat(ConvertEmptyStringToNull = false)]
              public object Descripcion { get; set; }
 
-             [Required(ErrorMessage = "Campo Obligatorio")]
+             //[DisplayFormat(ConvertEmptyStringToNull = true)]
+             //public object Precio { get; set; }
+
+              [Required(ErrorMessage = "Campo Obligatorio")]
              [DisplayFormat(ConvertEmptyStringToNull = false)]
-             public object Precio { get; set; }
+             public object IdRubro { get; set; }
 
-             //[DisplayFormat(ConvertEmptyStringToNull = false)]
-             //public object IdRubro { get; set; }
-
-             //[DisplayFormat(ConvertEmptyStringToNull = false)]
-             //public object IdSubRubro { get; set; }
+              //[Required(ErrorMessage = "Campo Obligatorio")]
+              //[DisplayFormat(ConvertEmptyStringToNull = true)]
+              public object IdSubRubro { get; set; }
          }
     }
 }

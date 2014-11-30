@@ -7,13 +7,14 @@
 {
     <script language="javascript" type="text/javascript">
         function d1(selectTag) {
-            if (selectTag.value == 'otro1') {
+            if (selectTag.value == '2') {
                 document.getElementById('prg1').disabled = false;
             } else {
                 document.getElementById('prg1').disabled = true;
             }
         }
     </script>
+    @Scripts.Render("~/bundles/jqueryval")
 }
 <div class="container well">
     <div class="content">
@@ -29,7 +30,7 @@
             <div class="row">
                 @Html.Label("Rubro", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
-                    @Html.DropDownList("IdRubro", null, new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.IdRubro, (IEnumerable<SelectListItem>)ViewBag.IdRubro, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.IdRubro)
                 </div>
             </div>
@@ -37,7 +38,7 @@
             <div class="row">
                 @Html.Label("SubRubro", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
-                    @Html.DropDownList("IdSubRubro", null, "-----Seleccione-----", new { @class = "form-control" })
+                    @Html.DropDownList("IdSubRubro", null, "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.IdRubro)
                 </div>
             </div>
@@ -57,6 +58,7 @@
                     @Html.ValidationMessageFor(model => model.Descripcion)
                 </div>
             </div>
+            
             <br />
             <div class="row">
                 @Html.Label("Precio", new { @class = "col-sm-5 control-label" })
@@ -72,17 +74,17 @@
             listPrecio.Add(new SelectListItem
             {
                 Text = "Otro",
-                Value = "otro1",
+                Value = "2"
             });
                     }
-                    @Html.DropDownList("Listado", listPrecio, new { @class = "form-control", name = "pg1", onchange = "d1(this)" })
+                    @Html.DropDownListFor(model => model.PrecioOpcion, listPrecio, new { @class = "form-control", name = "pg1", onchange = "d1(this)" })
                 </div>
                 <div class="col-xs-1">
-                    @Html.TextBoxFor(model => model.Precio, new { @class = "form-control", name="otro1" , id = "prg1", disabled = "disabled", placeholder = "$" })
+                    @Html.TextBoxFor(model => model.Precio, new { @class = "form-control", name = "2", id = "prg1", disabled = "disabled", placeholder = "$" })
                     @Html.ValidationMessageFor(model => model.Precio)
                 </div>
-            </div>
-            <br />
+            </div>   
+            <br />          
             <div class="row">
                 @Html.Label("Cargar imagenes de ultimos trabajos realizados", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
