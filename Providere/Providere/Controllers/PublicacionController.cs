@@ -38,13 +38,15 @@ namespace Providere.Controllers
         }
 
         [HttpPost]
-        public ActionResult NuevaPublicacion(int idUsuario,int idRubro, int idSubRubro, string titulo, string descripcion, int precio)
+        public ActionResult NuevaPublicacion(int idUsuario,int idRubro, int idSubRubro, string titulo, string descripcion,int precioOpcion, string precio)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                      return RedirectToAction("Home","Home");
+                    ps.CrearNuevaPublicacion(idUsuario,idRubro,idSubRubro,titulo,descripcion,precioOpcion,precio);
+                
+                      return RedirectToAction("ListarPublicaciones");
                 }
                 catch(Exception ex)
                 {

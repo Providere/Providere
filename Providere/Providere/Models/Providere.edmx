@@ -165,6 +165,7 @@
           <Property Name="IdUsuario" Type="smallint" Nullable="false" />
           <Property Name="IdRubro" Type="smallint" Nullable="false" />
           <Property Name="IdSubRubro" Type="smallint" />
+          <Property Name="PrecioOpcion" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Puntaje">
           <Key>
@@ -654,6 +655,7 @@
           <NavigationProperty Name="SubRubro" Relationship="ProvidereModel.FK_Publicacion_SubRubro" FromRole="Publicacion" ToRole="SubRubro" />
           <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_Publicacion_Usuario" FromRole="Publicacion" ToRole="Usuario" />
           <NavigationProperty Name="Puntaje" Relationship="ProvidereModel.FK_Puntaje_Publicacion" FromRole="Publicacion" ToRole="Puntaje" />
+          <Property Type="Int32" Name="PrecioOpcion" Nullable="false" />
         </EntityType>
         <EntityType Name="Puntaje">
           <Key>
@@ -1041,6 +1043,7 @@
           <EntitySetMapping Name="Publicacion">
             <EntityTypeMapping TypeName="ProvidereModel.Publicacion">
               <MappingFragment StoreEntitySet="Publicacion">
+                <ScalarProperty Name="PrecioOpcion" ColumnName="PrecioOpcion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />

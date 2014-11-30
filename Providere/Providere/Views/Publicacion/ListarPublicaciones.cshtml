@@ -32,6 +32,9 @@
                               @Html.DisplayName("Titulo publicacion")
                         </th>
                         <th>
+                               @Html.DisplayName("Precio")
+                        </th>
+                        <th>
                             Editar
                         </th>
                         <th>
@@ -54,6 +57,9 @@
                         </td>
                         <td>
                             <a href="#"> @Html.DisplayFor(modelItem => item.Titulo)</a>
+                        </td>
+                         <td>
+                           @Html.DisplayFor(modelItem => item.Precio)
                         </td>
                         <td class="text-center">
                          @Html.ActionLink("Editar", "", "", new {}, new { @class = "glyphicon glyphicon-pencil" })
