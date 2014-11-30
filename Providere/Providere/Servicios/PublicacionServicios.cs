@@ -11,9 +11,9 @@ namespace Providere.Servicios
     {
         PublicacionRepositorio pr = new PublicacionRepositorio();
 
-        public List<Publicacion> traerPublicacionesMasPopulares()
+        public ListaPublicacionesModel traerPublicacionesMasPopulares(int limite)
         {
-           return pr.traerPublicacionesMasPopulares();
+           return pr.traerPublicacionesMasPopulares(limite);
         }
     }
 }

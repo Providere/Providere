@@ -16,9 +16,8 @@ namespace Providere.Controllers
         BuscarServicios ps = new BuscarServicios();
         ProvidereEntities context = new ProvidereEntities();
 
-        public ActionResult Resultados(Int16 Rubro, Int16 SubRubro, String Ubicacion)
-        {
-            
+        public ActionResult Resultados(Rubro Rubro, SubRubro SubRubro, String Ubicacion)
+        {            
             var publicaciones = ps.buscar(Rubro,SubRubro,Ubicacion); 
             return View(publicaciones.ToList());
         }

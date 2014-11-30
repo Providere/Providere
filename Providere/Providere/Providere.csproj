@@ -140,6 +140,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ListaPublicacionesModel.cs" />
     <Compile Include="Models\Providere.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -148,12 +149,17 @@
     <Compile Include="Models\PublicacionModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\CalificacionRepositorio.cs" />
+    <Compile Include="Repositorios\ContratacionRepositorio.cs" />
     <Compile Include="Repositorios\PublicacionRepositorio.cs" />
     <Compile Include="Repositorios\UsuarioRepositorio.cs" />
     <Compile Include="Servicios\BuscarServicios.cs" />
+    <Compile Include="Servicios\CalificarServicios.cs" />
     <Compile Include="Servicios\Encryptor.cs" />
     <Compile Include="Servicios\MailServicios.cs" />
     <Compile Include="Servicios\PublicacionServicios.cs" />
+    <Compile Include="Repositorios\TipoEvaluacionRepositorio.cs" />
+    <Compile Include="Repositorios\TipoCalificacionRepositorio.cs" />
     <Compile Include="Servicios\UsuarioServicios.cs" />
   </ItemGroup>
   <ItemGroup>

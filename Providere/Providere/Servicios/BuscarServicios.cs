@@ -11,7 +11,7 @@ namespace Providere.Servicios
     {
         PublicacionRepositorio pr = new PublicacionRepositorio();
 
-        internal List<Publicacion> buscar(short Rubro, short SubRubro, string Ubicacion)
+        internal List<Publicacion> buscar(Rubro Rubro, SubRubro SubRubro, string Ubicacion)
         {
             return pr.buscarPorRubroSubRubroUbicacion(Rubro,SubRubro,Ubicacion);
             throw new NotImplementedException();
