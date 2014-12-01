@@ -16,7 +16,7 @@ namespace Providere.Repositorios
         {
             var puntuacion = (from puntuacionSeleccionada in context.Puntaje
                               where puntuacionSeleccionada.IdPublicacion == publicacion.Id
-                              select puntuacionSeleccionada).First();
+                              select puntuacionSeleccionada).FirstOrDefault();
             return puntuacion;
         }
     }

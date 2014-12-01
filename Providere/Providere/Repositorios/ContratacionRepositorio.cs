@@ -17,7 +17,7 @@ namespace Providere.Repositorios
         {
             var contratacion = (from contrata in context.Contratacion
                                 where contrata.Id == id
-                                select contrata).First();
+                                select contrata).FirstOrDefault();
             return contratacion;
         }
 

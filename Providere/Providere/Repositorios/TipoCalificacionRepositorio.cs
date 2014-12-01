@@ -16,7 +16,7 @@ namespace Providere.Repositorios
         {
             var tipo = (from tipoCalificacion in context.TipoCalificacion
                         where tipoCalificacion.Id == id
-                        select tipoCalificacion).First();
+                        select tipoCalificacion).FirstOrDefault();
             return tipo;
         }
     }
