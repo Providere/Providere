@@ -11,5 +11,7 @@ namespace Providere.Models
         public Publicacion publicacion { get; set; }
 
         public Puntaje puntaje { get; set; }
+
+        public Imagen imagen { get; set; }
     }
 }

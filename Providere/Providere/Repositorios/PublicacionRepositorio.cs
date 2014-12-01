@@ -12,6 +12,7 @@ namespace Providere.Repositorios
 
         ProvidereEntities context = new ProvidereEntities();
         PuntajeRepositorio pr = new PuntajeRepositorio();
+        ImagenRepositorio ir = new ImagenRepositorio();
 
         internal List<Publicacion> traerPublicacionesPorZona(int limite)
         {
@@ -34,6 +35,14 @@ namespace Providere.Repositorios
                 PublicacionPuntaje pj = new PublicacionPuntaje();
                 pj.publicacion = publiMasPopular;
                 pj.puntaje = pr.traerDatosPorPublicacion(publiMasPopular);
+                pj.imagen = ir.traerImagenPrincipal(publiMasPopular);
+                if (pj.imagen == null)
+                {
+                    Imagen im = new Imagen();
+                    im.Nombre = "thumbnail-md.png";
+                    pj.imagen = im;
+
+                }
                 publiList.Add(pj);
             }
 
