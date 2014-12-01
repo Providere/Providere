@@ -275,6 +275,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Errores\" />
     <Folder Include="Imagenes\FotoPerfil\" />
+    <Folder Include="Imagenes\Publicacion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Providere.Models;
 using Providere.Servicios;
+using System.IO;
 
 namespace Providere.Repositorios
 {
@@ -82,7 +83,7 @@ namespace Providere.Repositorios
             return null;
         }
 
-        internal void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion, int precioOpcion, string precio)
+        internal void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion, int precioOpcion, string precio, IEnumerable<HttpPostedFileBase> files)
         {
             Publicacion mipublicacion = new Publicacion();
             mipublicacion.IdUsuario = Convert.ToInt16(idUsuario);
@@ -94,10 +95,24 @@ namespace Providere.Repositorios
             mipublicacion.IdSubRubro = Convert.ToInt16(idSubRubro);
             mipublicacion.FechaCreacion = DateTime.Now;
             mipublicacion.FechaEdicion = DateTime.Now;
-            mipublicacion.Estado = 1;
+            mipublicacion.Estado = 1; // Habilitada
             context.Publicacion.AddObject(mipublicacion);
-            context.SaveChanges();
 
+            foreach (var file in files)
+            {
+                string extension = Path.GetExtension(file.FileName);
+                string uniqueFileName = Path.ChangeExtension(file.FileName, Convert.ToString(idUsuario));
+                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Imagenes/Publicacion"),
+                              Path.GetFileName(uniqueFileName + extension));
+                file.SaveAs(path);
+                string pathImagen = uniqueFileName + extension;
+                Imagen misImagenes = new Imagen();
+                misImagenes.Nombre = pathImagen;
+                misImagenes.IdPublicacion = mipublicacion.Id;
+                context.Imagen.AddObject(misImagenes);
+            }
+
+            context.SaveChanges();
         }
 
     }

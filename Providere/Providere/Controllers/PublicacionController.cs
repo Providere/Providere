@@ -38,13 +38,13 @@ namespace Providere.Controllers
         }
 
         [HttpPost]
-        public ActionResult NuevaPublicacion(int idUsuario,int idRubro, int idSubRubro, string titulo, string descripcion,int precioOpcion, string precio)
+        public ActionResult NuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion, int precioOpcion, string precio, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    ps.CrearNuevaPublicacion(idUsuario,idRubro,idSubRubro,titulo,descripcion,precioOpcion,precio);
+                    ps.CrearNuevaPublicacion(idUsuario,idRubro,idSubRubro,titulo,descripcion,precioOpcion,precio,files);
                 
                       return RedirectToAction("ListarPublicaciones");
                 }

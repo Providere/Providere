@@ -13,11 +13,11 @@ namespace Providere.Servicios
 
         PuntajeRepositorio pur = new PuntajeRepositorio();
         ImagenRepositorio ir = new ImagenRepositorio();
-        
 
-        public void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion,int precioOpcion, string precio)
+
+        public void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion, int precioOpcion, string precio, IEnumerable<HttpPostedFileBase> files)
         {
-            pr.CrearNuevaPublicacion(idUsuario, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio);
+            pr.CrearNuevaPublicacion(idUsuario, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio,files);
         }
 
 

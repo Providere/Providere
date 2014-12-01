@@ -18,7 +18,7 @@
 }
 <div class="container well">
     <div class="content">
-        @using (Html.BeginForm("NuevaPublicacion", "Publicacion", FormMethod.Post, new { @class = "form-horizontal" }))
+        @using (Html.BeginForm("NuevaPublicacion", "Publicacion", FormMethod.Post, new { @class = "form-horizontal",enctype = "multipart/form-data" }))
         {           
             <h3>
                 Nueva publicación</h3>
@@ -88,7 +88,7 @@
             <div class="row">
                 @Html.Label("Cargar imagenes de ultimos trabajos realizados", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
-                    <input type="file" id="file" name="file" />
+                    <input type="file" id="file" name="files" multiple="multiple"/>
                 </div>
             </div>
             <br />
