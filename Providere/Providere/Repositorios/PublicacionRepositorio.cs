@@ -11,51 +11,30 @@ namespace Providere.Repositorios
     {
 
         ProvidereEntities context = new ProvidereEntities();
-        PuntajeRepositorio pr = new PuntajeRepositorio();
-        ImagenRepositorio ir = new ImagenRepositorio();
 
-        internal List<Publicacion> traerPublicacionesPorZona(int limite)
+        internal List<Publicacion> traerPublicacionesPorZona(String zona, int limite)
         {
             var publicaciones = (from publicacion in context.Publicacion select publicacion).Take(limite).ToList();
             return publicaciones;
         }
 
-        internal ListaPublicacionesModel traerPublicacionesMasPopulares(int limite)
+        internal List<Publicacion> traerPublicacionesMasRecientes(int limite)
         {
-            ListaPublicacionesModel publicaciones = new ListaPublicacionesModel();
-            List<PublicacionPuntaje> publiList = new List<PublicacionPuntaje>();
+            var publicaciones = (from publicacion in context.Publicacion
+                                 orderby publicacion.FechaCreacion
+                                 select publicacion).Take(limite).ToList();
+            return publicaciones;
+        }
+
+        internal List<Publicacion> traerPublicacionesMejorCalificadas(int limite)
+        {
 
             var publicacionesMasPopulares = (from publicacion in context.Publicacion
                                              join puntaje in context.Puntaje on publicacion.Id equals puntaje.IdPublicacion
                                              orderby puntaje.Total descending
                                              select publicacion).Take(limite).ToList();
 
-            foreach (var publiMasPopular in publicacionesMasPopulares)
-            {
-                PublicacionPuntaje pj = new PublicacionPuntaje();
-                pj.publicacion = publiMasPopular;
-                pj.puntaje = pr.traerDatosPorPublicacion(publiMasPopular);
-                pj.imagen = ir.traerImagenPrincipal(publiMasPopular);
-                if (pj.imagen == null)
-                {
-                    Imagen im = new Imagen();
-                    im.Nombre = "thumbnail-md.png";
-                    pj.imagen = im;
-
-                }
-                publiList.Add(pj);
-            }
-
-            publicaciones.listadoDePublicaciones = publiList;
-            return publicaciones;
-        }
-
-        internal List<Publicacion> traerPublicacionesMasNuevas(int limite)
-        {
-            var publicaciones = (from publicacion in context.Publicacion
-                                 orderby publicacion.FechaCreacion
-                                 select publicacion).Take(limite).ToList();
-            return publicaciones;
+            return publicacionesMasPopulares;
         }
 
         internal List<Publicacion> buscarPorRubroSubRubroUbicacion(Rubro Rubro, SubRubro SubRubro, string Ubicacion)
@@ -120,5 +99,6 @@ namespace Providere.Repositorios
             context.SaveChanges();
 
         }
+
     }
 }
