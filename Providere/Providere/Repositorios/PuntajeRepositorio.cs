@@ -17,7 +17,17 @@ namespace Providere.Repositorios
             var puntuacion = (from puntuacionSeleccionada in context.Puntaje
                               where puntuacionSeleccionada.IdPublicacion == publicacion.Id
                               select puntuacionSeleccionada).FirstOrDefault();
-            return puntuacion;
+            if (puntuacion == null)
+            {
+                Puntaje puntajeArmado = new Puntaje();
+                puntajeArmado.Total = 0;
+                return puntajeArmado;
+            }
+            else
+            {
+
+                return puntuacion;
+            }
         }
     }
 }
