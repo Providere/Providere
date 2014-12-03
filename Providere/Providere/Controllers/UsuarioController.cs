@@ -199,13 +199,13 @@ namespace Providere.Controllers
         [HttpPost]
         public ActionResult CambiarFotoPerfil(HttpPostedFileBase file)
         {
-            string verificarExt = Path.GetExtension(file.FileName);
-            if (file != null && file.ContentLength > 0 && verificarExt == ".jpg")
+            string extension = Path.GetExtension(file.FileName);
+            if (file != null && file.ContentLength > 0 && extension == ".jpg")
             {
                 try
                 {
                     int id = Convert.ToInt16(this.Session["IdUsuario"]);
-                    string extension = Path.GetExtension(file.FileName);
+                   
                     string uniqueFileName = Path.ChangeExtension("imagen", Convert.ToString(id));
                     string path = Path.Combine(Server.MapPath("~/Imagenes/FotoPerfil"),
                                        Path.GetFileName(uniqueFileName + extension));

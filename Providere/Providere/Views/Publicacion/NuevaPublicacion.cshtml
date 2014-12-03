@@ -88,7 +88,8 @@
             <div class="row">
                 @Html.Label("Cargar imagenes de ultimos trabajos realizados", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
-                    <input type="file" id="file" name="files" multiple="multiple"/>
+                    @Html.TextBox("files","", new { type="file", multiple="multiple"})
+                    <p class="text-warning"><span class="glyphicon glyphicon-exclamation-sign"></span>Como maximo 4 imagenes y el formato debe ser .jpg</p>
                 </div>
             </div>
             <br />
