@@ -78,5 +78,7 @@ namespace Providere.Servicios
             Publicacion miPublicacion = pr.TraerPublicacion(Id, idUsuario);
             return miPublicacion;
         }
+
+      
     }
 }

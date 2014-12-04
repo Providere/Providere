@@ -95,6 +95,8 @@ namespace Providere.Controllers
             return View(miPublicacion);
         }
 
+     
+
         public ActionResult EditarPublicacion()
         {
             return View();

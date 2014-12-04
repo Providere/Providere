@@ -171,7 +171,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="smallint" Nullable="false" />
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Positivo" Type="smallint" Nullable="false" />
           <Property Name="Neutro" Type="smallint" Nullable="false" />
           <Property Name="Negativo" Type="smallint" Nullable="false" />
