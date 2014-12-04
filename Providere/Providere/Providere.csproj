@@ -186,6 +186,8 @@
     <Content Include="Content\img\plomero-avatar.jpg" />
     <Content Include="Content\img\plomero.jpg" />
     <Content Include="Content\img\slimlogoblanco.png" />
+    <Content Include="Content\img\thumbnail-lg.png" />
+    <Content Include="Content\img\thumbnail-md.png" />
     <Content Include="Content\img\twitter.png" />
     <Content Include="Content\img\user.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

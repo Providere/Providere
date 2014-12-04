@@ -21,39 +21,50 @@
 <div>
     @if (ViewBag.PublicacionesMasRecientes.listadoDePublicaciones.Count > 0)
     {<div class="listado-publicaciones" id="ultimas-publicaciones">
-            <h2>
-                Ultimas publicaciones</h2>
-            <br />
-            <div class="row">
-                @foreach (var item in ViewBag.PublicacionesMasRecientes.listadoDePublicaciones)
-                {
+        <h2>
+            Ultimas publicaciones</h2>
+        <br />
+        <div class="row">
+            @foreach (var item in ViewBag.PublicacionesMasRecientes.listadoDePublicaciones)
+            {
                 
-                    <div class="col-xs-3">
-                        <a href="/publicacion/ver/@item.publicacion.Id" >
-                            <div class="thumbnail">
-                                <img src="../../Content/img/@item.imagen.Nombre"
+                <div class="col-xs-3">
+                    <a href="/publicacion/ver/@item.publicacion.Id" >
+                        <div class="thumbnail">
+                            <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
                 alt="plomero" width="100%" />
-                                <div class="caption text-center">
-                                    <h4>
-                                        <a href="#">
-                                            @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
-                                    <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
-                                    <br />
-                                    <span><a href="#">@item.publicacion.Titulo</a></span>
-                                    <br />
-                                    <h6 class="text-danger">
-                                        Precio: $100 presupuesto</h6>
-                                </div>
+                            <div class="caption text-center">
+                                <h4>
+                                    <a href="#">
+                                        @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                <br />
+                                <span><a href="#">@item.publicacion.Titulo</a></span>
+                                <br />
+                                <h6 class="text-danger">
+                                    @if (@item.publicacion.PrecioOpcion == 1)
+                                    {
+                                         @Html.Label("Precio:")
+                                        @Html.Label("A Convenir") 
+                                    }
+                                    else
+                                    {
+                                        @Html.Label("Precio: $") 
+                                        @String.Format("{0:0.00}", @item.publicacion.Precio)                     
+                   
+                                    }
+                                </h6>
                             </div>
-                        </a>
-                    </div>
-                }
-            </div>
-            <center>
-                <button type="button" class="btn btn-primary">
-                    Ver mas publicaciones</button>
-            </center>
+                        </div>
+                    </a>
+                </div>
+            }
         </div>
+        <center>
+            <button type="button" class="btn btn-primary">
+                Ver mas publicaciones</button>
+        </center>
+    </div>
     }
     <hr />
     @if (ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones.Count > 0)
@@ -69,18 +80,14 @@
                     <div class="col-xs-3">
                         <a href="/publicacion/ver/@item.publicacion.Id" >
                             <div class="thumbnail">
-                                <img src="../../Content/img/@item.imagen.Nombre"
-                alt="plomero" width="100%" />
+
+                             <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
                                 <div class="caption text-center">
                                     <h4>
                                         <a href="#">
                                             @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
                                     <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
                                     <br />
-                                    <span><a href="#">@item.publicacion.Titulo</a></span>
-                                    <br />
-                                    <h6 class="text-danger">
-                                        Precio: $100 presupuesto</h6>
                                 </div>
                             </div>
                         </a>
@@ -106,18 +113,13 @@
                     <div class="col-xs-3">
                         <a href="/publicacion/ver/@item.publicacion.Id">
                             <div class="thumbnail">
-                                <img src="../../Content/img/@item.imagen.Nombre"
-                alt="plomero" width="100%" />
+                              <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
                                 <div class="caption text-center">
                                     <h4>
                                         <a href="#">
                                             @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
                                     <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
                                     <br />
-                                    <span><a href="#">@item.publicacion.Titulo</a></span>
-                                    <br />
-                                    <h6 class="text-danger">
-                                        Precio: $100 presupuesto</h6>
                                 </div>
                             </div>
                         </a>
