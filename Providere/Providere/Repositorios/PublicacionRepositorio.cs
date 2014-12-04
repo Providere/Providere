@@ -122,5 +122,13 @@ namespace Providere.Repositorios
             context.Imagen.AddObject(misImagenes);
             context.SaveChanges();
         }
+
+        internal object ListarMisPublicaciones(int idUsuario)
+        {
+            var resultado = (from publicaciones in context.Publicacion
+                                 where publicaciones.IdUsuario == idUsuario
+                             select publicaciones); 
+            return resultado;
+        }
     }
 }

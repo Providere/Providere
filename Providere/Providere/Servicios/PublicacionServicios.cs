@@ -66,5 +66,11 @@ namespace Providere.Servicios
         {
             pr.CargarImagenes(pathImagen, idUsuario);
         }
+
+        internal object ListarMisPublicaciones(int idUsuario)
+        {
+            var misPublicaciones = pr.ListarMisPublicaciones(idUsuario);
+            return misPublicaciones;
+        }
     }
 }

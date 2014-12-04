@@ -26,8 +26,9 @@ namespace Providere.Controllers
         public ActionResult ListarPublicaciones()
         {
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            var publicaciones = context.Publicacion.Include("Rubro"); //Eager loading => Carga temprana
-            return View(publicaciones.ToList());
+            var publicaciones = ps.ListarMisPublicaciones(idUsuario);
+                
+            return View(publicaciones);
         }
 
         public ActionResult NuevaPublicacion()
