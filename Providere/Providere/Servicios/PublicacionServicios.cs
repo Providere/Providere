@@ -72,5 +72,11 @@ namespace Providere.Servicios
             var misPublicaciones = pr.ListarMisPublicaciones(idUsuario);
             return misPublicaciones;
         }
+
+        internal Publicacion TraerPublicacion(int Id, int idUsuario)
+        {
+            Publicacion miPublicacion = pr.TraerPublicacion(Id, idUsuario);
+            return miPublicacion;
+        }
     }
 }

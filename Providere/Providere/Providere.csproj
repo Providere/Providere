@@ -173,6 +173,7 @@
   <ItemGroup>
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\core.css" />
+    <Content Include="Content\css\lightbox.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\Error.png" />
     <Content Include="Content\img\facebook.png" />
@@ -262,6 +263,7 @@
     <Content Include="Scripts\js\jquery.geocomplete.js" />
     <Content Include="Scripts\js\jquery.geocompletePerfil.js" />
     <Content Include="Scripts\js\jquery.js" />
+    <Content Include="Scripts\js\lightbox.min.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
@@ -308,6 +310,9 @@
     <Content Include="Views\Publicacion\NuevaPublicacion.cshtml" />
     <Content Include="Views\Buscar\Resultados.cshtml" />
     <Content Include="Views\SubRubro\Lista.cshtml" />
+    <Content Include="Views\Publicacion\VisualizarMiPublicacion.cshtml">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

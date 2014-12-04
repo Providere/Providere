@@ -1,86 +1,90 @@
-﻿@model  IEnumerable <Providere.Models.Publicacion>
+﻿@model  IEnumerable<Providere.Models.Publicacion>
 @{
     ViewBag.Title = "Publicaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container well">
-    <div class="content">
-        <h2>
-            Publicaciones</h2>
-        <hr />
-        <div class="col-md-3">
-         <a href="@Url.Action("NuevaPublicacion", "Publicacion")" class="btn btn-primary btn-block">
-                                        <span class="glyphicon glyphicon-plus"></span>Nueva publicacion</a>
-        </div>
-        <br />
-        <br />
-        <br />
-        <div class="col-md-12">
-            <table class="tabla-publicaciones table table-bordered table-hover">
-                <thead>
-                    <tr class="btn-warning">
-                        <th>
-                              @Html.DisplayName("Fecha creacion")
-                        </th>
-                        <th>
-                            @Html.DisplayName("Fecha de modificacion")
-                        </th>
-                        <th>
-                               @Html.DisplayName("Rubro")
-                        </th>
-                          <th>
-                               @Html.DisplayName("SubRubro")
-                        </th>
-                        <th>
-                              @Html.DisplayName("Titulo publicacion")
-                        </th>
-                        <th>
-                               @Html.DisplayName("Precio")
-                        </th>
-                        <th>
-                            Editar
-                        </th>
-                        <th>
-                            Deshabilitar
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach(var item in Model)
+    <h2>
+        Publicaciones</h2>
+    <hr />
+    <div class="col-md-3">
+        <a href="@Url.Action("NuevaPublicacion", "Publicacion")" class="btn btn-primary btn-block">
+            <span class="glyphicon glyphicon-plus"></span>Nueva publicacion</a>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="col-md-12">
+        <table class="tabla-publicaciones table table-bordered table-hover">
+            <thead>
+                <tr class="btn-warning">
+                    <th>
+                        @Html.DisplayName("Fecha creacion")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Fecha de modificacion")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Rubro")
+                    </th>
+                    <th>
+                        @Html.DisplayName("SubRubro")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Titulo publicacion")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Precio")
+                    </th>
+                    <th>
+                        Editar
+                    </th>
+                    <th>
+                        Deshabilitar
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
                 {
                     <tr>
                         <td>
-                           @Html.DisplayFor(modelItem => item.FechaCreacion)
+                            @Html.DisplayFor(modelItem => item.FechaCreacion)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FechaEdicion)
                         </td>
                         <td>
-                           @Html.DisplayFor(modelItem => item.Rubro.Nombre)
-                        </td>
-                         <td>
-                           @Html.DisplayFor(modelItem => item.SubRubro.Nombre)
+                            @Html.DisplayFor(modelItem => item.Rubro.Nombre)
                         </td>
                         <td>
-                          <a href="@Url.Action("VisualizarMiPublicacion", "Publicacion", new { idPublicacion = item.Id })">@Html.DisplayFor(modelItem => item.Titulo)</a>
+                            @Html.DisplayFor(modelItem => item.SubRubro.Nombre)
                         </td>
-                         <td>
-                           @Html.DisplayFor(modelItem => item.Precio)
+                        <td>
+                            <a href="@Url.Action("VisualizarMiPublicacion", "Publicacion", new { Id = item.Id })">@Html.DisplayFor(modelItem => item.Titulo)</a>
+                        </td>
+                        <td>
+                            @if (item.PrecioOpcion == 1)
+                            {
+                                @Html.Label("A Convenir")
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.Precio)
+                            }
                         </td>
                         <td class="text-center">
-                         @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new {idPublicacion=item.Id}, new { @class = "glyphicon glyphicon-pencil" })
+                            @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })
                         </td>
                         <td>
                             <label>
                                 @Html.CheckBox("ckbDeshabilitar")
-                                  @Html.ActionLink("Confirmar", "DeshabilitarPublicacion", "Publicacion", new {idPublicacion=item.Id }, new { @class = "btn btn-info btn-xs" })
+                                @Html.ActionLink("Confirmar", "DeshabilitarPublicacion", "Publicacion", new { Id = item.Id }, new { @class = "btn btn-info btn-xs" })
                             </label>
                         </td>
                     </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                }
+            </tbody>
+        </table>
     </div>
-    <!--content del body-->
 </div>

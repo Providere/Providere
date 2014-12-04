@@ -86,6 +86,38 @@ namespace Providere.Controllers
             }
 
         }
+
+        public ActionResult VisualizarMiPublicacion(int Id)
+        {
+            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+            Publicacion miPublicacion = ps.TraerPublicacion(Id, idUsuario);
+
+            return View(miPublicacion);
+        }
+
+        public ActionResult EditarPublicacion()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //public ActionResult EditarPublicacion()
+        //{
+        //    return View();
+        //}
+
+
+        public ActionResult DeshabilitarPublicacion()
+        {
+            return View();
+        }
+
+
+        //[HttpPost]
+        // public ActionResult DeshabilitarPublicacion()
+        // {
+        //     return View();
+        // }
     }
 }
 

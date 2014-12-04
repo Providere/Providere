@@ -1,0 +1,129 @@
+﻿@model Providere.Models.Publicacion
+@{
+    ViewBag.Title = "VisualizarMiPublicacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container well">
+    @using (Html.BeginForm("VisualizarMiPublicacion", "Publicacion", FormMethod.Post))
+    {
+        <div>
+            @Html.HiddenFor(model => model.IdUsuario)
+        </div>
+        <div>
+            @Html.HiddenFor(model => model.Id)
+        </div>
+        
+        <h1 class="text-center">
+            @Html.DisplayFor(model => model.Titulo)</h1>
+        <hr />
+        <div class="col-md-2">
+            <img src="../../Content/img/plomero.jpg" alt="plomero" class="img-thumbnail" width="100%" />
+        </div>
+        <div class="col-md-2">
+            <h2>
+                @Html.DisplayFor(model => model.Usuario.Nombre)
+                @Html.DisplayFor(model => model.Usuario.Apellido)
+            </h2>
+            <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
+                class="badge">0</span>
+        </div>
+        <div class="col-md-8">
+            <h3>
+                Precio</h3>
+            <p>
+                @if (Model.PrecioOpcion == 1)
+                {
+                    @Html.Label("A Convenir") 
+                }
+                else
+                {
+                    @Html.Label("$") 
+                    @Html.DisplayFor(model => model.Precio)
+                }
+            </p>
+            <div>
+                @Html.ActionLink("Volver", "ListarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-arrow-left" })
+                @Html.ActionLink("Editar", "EditarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)
+            </span>
+        </div>
+        <div class="col-md-12">
+            <h3>
+                Descripción</h3>
+            <p>
+                @Html.DisplayFor(model => model.Descripcion)</p>
+        </div>
+        <div class="col-md-12">
+            <h3>
+                Calificaciones</h3>
+            <em>Aqui se mostraran las calificaciones que obtuviste</em>
+        </div>
+        <div class="col-md-12">
+            <h3>
+                Últimos trabajos</h3>
+        </div>
+        <div class="col-md-4">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <a href="../../Content/img/plomero.jpg" data-lightbox="roadtrip">
+                            <img src="../../Content/img/plomero.jpg" alt="plomero" /></a>
+                        <div class="carousel-caption">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="../../Content/img/plomero.jpg" data-lightbox="roadtrip">
+                            <img src="../../Content/img/plomero.jpg" alt="plomero" /></a>
+                        <div class="carousel-caption">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="../../Content/img/plomero.jpg" data-lightbox="roadtrip">
+                            <img src="../../Content/img/plomero.jpg" alt="plomero" /></a>
+                        <div class="carousel-caption">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="../../Content/img/plomero.jpg" data-lightbox="roadtrip">
+                            <img src="../../Content/img/plomero.jpg" alt="plomero" /></a>
+                        <div class="carousel-caption">
+                        </div>
+                    </div>
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control"
+                        href="#carousel-example-generic" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right">
+                        </span></a>
+            </div>
+            <!-- Carousel -->
+        </div>
+        <div class="col-md-12">
+            <h3>
+                Preguntas al prestador</h3>
+            <p class="text-warning">
+                <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no puedes compartir
+                tu datos personales por este medio</p>
+            <div class="form-group col-md-10">
+                <textarea class="form-control " name="questionText" id="questionText" cols="110"
+                    width="90%" disabled="true" placeholder="Escribe tu pregunta aqui...">
+            </textarea>
+            </div>
+            <div class="form-group col-md-2">
+                <button class="btn btn-primary btn-lg" disabled="true" type="Submit">
+                    Enviar</button>
+            </div>
+        </div>
+    }
+</div>
