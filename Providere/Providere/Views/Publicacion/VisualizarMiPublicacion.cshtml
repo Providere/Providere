@@ -30,7 +30,7 @@
         <div class="col-md-8">
             <h3>
                 Precio</h3>
-            <p>
+            <h4 class="text-danger">
                 @if (Model.PrecioOpcion == 1)
                 {
                     @Html.Label("A Convenir") 
@@ -40,7 +40,7 @@
                     @Html.Label("$") 
                     @Html.DisplayFor(model => model.Precio)
                 }
-            </p>
+            </h4>
             <div>
                 @Html.ActionLink("Volver", "ListarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-arrow-left" })
                 @Html.ActionLink("Editar", "EditarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
@@ -65,42 +65,28 @@
             <h3>
                 Últimos trabajos</h3>
         </div>
-        <div class="col-md-4">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-                </ol>
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                    <div class="item active">
-                         <a href="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" data-lightbox="roadtrip">
-                         <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="plomero"/></a>
-                    </div>
-                    <div class="item">
-                        <a href="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" data-lightbox="roadtrip">
-                           <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="plomero"/></a>
-                    </div>
-                    <div class="item">
-                        <a href="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" data-lightbox="roadtrip">
-                            <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="plomero"/></a>
-                    </div>
-                    <div class="item">
-                        <a href="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" data-lightbox="roadtrip">
-                           <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="plomero"/></a>
-                    </div>
-                </div>
-                <!-- Controls -->
-                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control"
-                        href="#carousel-example-generic" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right">
-                        </span></a>
-            </div>
-            <!-- Carousel -->
+        
+        <div class="col-md-3">
+            <a href="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" data-lightbox="roadtrip">
+                <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="plomero" width="100%"/>
+            </a>
         </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" data-lightbox="roadtrip">
+                <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="plomero" width="100%"/>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" data-lightbox="roadtrip">
+                <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="plomero" width="100%"/>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" data-lightbox="roadtrip">
+                <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="plomero" width="100%"/>
+            </a>
+        </div>
+        
         <div class="col-md-12">
             <h3>
                 Preguntas al prestador</h3>
@@ -108,12 +94,12 @@
                 <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no puedes compartir
                 tu datos personales por este medio</p>
             <div class="form-group col-md-10">
-                <textarea class="form-control " name="questionText" id="questionText" cols="110"
-                    width="90%" disabled="true">Escribe tu pregunta aqui...
+                <textarea class="form-control " name="questionText" id="questionText" cols="110" rows=""
+                     disabled="disabled">Escribe tu pregunta aqui...
             </textarea>
             </div>
             <div class="form-group col-md-2">
-                <button class="btn btn-primary btn-lg" disabled="true" type="submit">
+                <button class="btn btn-primary btn-lg" disabled="disabled" type="submit">
                     Enviar</button>
             </div>
         </div>
