@@ -83,37 +83,52 @@ namespace Providere.Repositorios
             return null;
         }
 
-        internal void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion, int precioOpcion, string precio, IEnumerable<HttpPostedFileBase> files)
+        internal void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion, int precioOpcion, string precio)
         {
             Publicacion mipublicacion = new Publicacion();
             mipublicacion.IdUsuario = Convert.ToInt16(idUsuario);
             mipublicacion.Titulo = titulo;
             mipublicacion.Descripcion = descripcion;
-            mipublicacion.PrecioOpcion = precioOpcion;
-            mipublicacion.Precio = Convert.ToDecimal(precio);
+
+            if (precioOpcion == '1')
+            {
+                mipublicacion.PrecioOpcion = precioOpcion;
+                mipublicacion.Precio = Convert.ToDecimal("");
+            }
+            else
+            {
+                mipublicacion.PrecioOpcion = precioOpcion;
+                mipublicacion.Precio = Convert.ToDecimal(precio);
+            }
             mipublicacion.IdRubro = Convert.ToInt16(idRubro);
             mipublicacion.IdSubRubro = Convert.ToInt16(idSubRubro);
             mipublicacion.FechaCreacion = DateTime.Now;
             mipublicacion.FechaEdicion = DateTime.Now;
             mipublicacion.Estado = 1; // Habilitada
             context.Publicacion.AddObject(mipublicacion);
-
-            foreach (var file in files)
-            {
-                string extension = Path.GetExtension(file.FileName);
-                string uniqueFileName = Path.ChangeExtension(file.FileName, Convert.ToString(idUsuario));
-                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Imagenes/Publicacion"),
-                              Path.GetFileName(uniqueFileName + extension));
-                file.SaveAs(path);
-                string pathImagen = uniqueFileName + extension;
-                Imagen misImagenes = new Imagen();
-                misImagenes.Nombre = pathImagen;
-                misImagenes.IdPublicacion = mipublicacion.Id;
-                context.Imagen.AddObject(misImagenes);
-            }
-
             context.SaveChanges();
         }
 
+
+
+        internal void CargarImagenes(string pathImagen, int idUsuario)
+        {
+            var IdPublicacion = (from publicacion in context.Publicacion
+                                 where (publicacion.IdUsuario == idUsuario)
+                                 select publicacion).Max(p => p.Id);
+            Imagen misImagenes = new Imagen();
+            misImagenes.Nombre = pathImagen;
+            misImagenes.IdPublicacion = IdPublicacion;
+            context.Imagen.AddObject(misImagenes);
+            context.SaveChanges();
+        }
+
+        internal object ListarMisPublicaciones(int idUsuario)
+        {
+            var resultado = (from publicaciones in context.Publicacion
+                                 where publicaciones.IdUsuario == idUsuario
+                             select publicaciones); 
+            return resultado;
+        }
     }
 }

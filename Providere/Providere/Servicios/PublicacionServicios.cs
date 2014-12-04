@@ -15,9 +15,9 @@ namespace Providere.Servicios
         ImagenRepositorio ir = new ImagenRepositorio();
 
 
-        public void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion, int precioOpcion, string precio, IEnumerable<HttpPostedFileBase> files)
+        public void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion, int precioOpcion, string precio)
         {
-            pr.CrearNuevaPublicacion(idUsuario, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio,files);
+            pr.CrearNuevaPublicacion(idUsuario, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio);
         }
 
 
@@ -62,5 +62,15 @@ namespace Providere.Servicios
         }
 
 
+        public void CargarImagenes(string pathImagen, int idUsuario)
+        {
+            pr.CargarImagenes(pathImagen, idUsuario);
+        }
+
+        internal object ListarMisPublicaciones(int idUsuario)
+        {
+            var misPublicaciones = pr.ListarMisPublicaciones(idUsuario);
+            return misPublicaciones;
+        }
     }
 }

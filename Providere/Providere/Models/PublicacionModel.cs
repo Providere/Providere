@@ -14,10 +14,12 @@ namespace Providere.Models
          public class PublicacionModel
          {
 
+             [DisplayName("Título")]
              [Required(ErrorMessage = "Campo Obligatorio")]
              [DisplayFormat(ConvertEmptyStringToNull = false)]
              public object Titulo { get; set; }
 
+             [DisplayName("Descripción")]
              [Required(ErrorMessage = "Campo Obligatorio")]
              [DisplayFormat(ConvertEmptyStringToNull = false)]
              public object Descripcion { get; set; }
@@ -25,13 +27,14 @@ namespace Providere.Models
              [Required(ErrorMessage = "Campo Obligatorio")]
              public object Precio { get; set; }
 
-             [Required(ErrorMessage = "Campo Obligatorio")]
+            
              [DisplayFormat(ConvertEmptyStringToNull = false)]
              public object IdRubro { get; set; }
 
-              //[Required(ErrorMessage = "Campo Obligatorio")]
-              //[DisplayFormat(ConvertEmptyStringToNull = true)]
-              public object IdSubRubro { get; set; }
+              
+             //[DisplayFormat(ConvertEmptyStringToNull = true)]
+             public object IdSubRubro { get; set; }
+
          }
     }
 }
