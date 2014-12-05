@@ -53,7 +53,7 @@
 <body>
     <div class="header">
         <div class="container">
-            <div class="col-md-12">
+            <div class="row">
                 <div style="margin-bottom: 29px;" id="contenedor-logo" class="col-md-6">
                     <a href="@Url.Action("Home", "Home")">
                         <img src="../../Content/img/logoslim.png" alt="providere" width="56%" />
@@ -82,29 +82,8 @@
                         </div>
                     </ul>
                 </div>
-            </div>
-            <!-- Ejemplo de buscador con dos select -->
-            <div class="col-md-12 " id="buscador">
-                <div class="col-md-5">
-                    <select class="form-control">
-                        <option>Seleccione rubro</option>
-                        <option>Plomeria</option>
-                        <option>Gasista</option>
-                        <option>Electricista</option>
-                        <option>Enfermeria</option>
-                    </select>
-                </div>
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion.Ej:San Justo"
-                            autocomplete="off" />
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <input id="btnBuscar" type="submit" value="Buscar" class="btn btn-primary btn-block" />
-                    <br />
-                </div>
-            </div>
+            </div>         
+                @Html.Partial("~/Views/Shared/buscador.cshtml")
         </div>
     </div>
     <div class="container">

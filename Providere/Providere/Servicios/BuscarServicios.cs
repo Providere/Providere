@@ -11,10 +11,41 @@ namespace Providere.Servicios
     {
         PublicacionRepositorio pr = new PublicacionRepositorio();
 
-        internal List<Publicacion> buscar(Rubro Rubro, SubRubro SubRubro, string Ubicacion)
+        RubroServicios rs = new RubroServicios();
+        SubRubroServicios ss = new SubRubroServicios();
+
+        internal List<Publicacion> buscar(int? Rubro, int? SubRubro, string Ubicacion)
         {
-            return pr.buscarPorRubroSubRubroUbicacion(Rubro,SubRubro,Ubicacion);
-            throw new NotImplementedException();
+            if (Rubro != null)
+            {
+                Rubro rubro = new Rubro();
+                rubro = rs.traerDatosPorId(Rubro.GetValueOrDefault());
+            }
+
+            if (SubRubro != null)
+            {
+                SubRubro subrubro = new SubRubro();
+                subrubro = ss.traerDatosPorId(SubRubro.GetValueOrDefault());
+            }
+
+           /* if (Rubro != null && SubRubro != null && Ubicacion != null)
+            {
+                return pr.buscarPorRubroSubRubroUbicacion(rubro, subrubro, Ubicacion);
+            }
+            if (Rubro == null && SubRubro != null && Ubicacion != null)
+            {
+                return pr.buscarPorRubroSubRubroUbicacion(rubro, subrubro, Ubicacion);
+            }
+
+            if (Rubro != null && SubRubro == null && Ubicacion != null)
+            {
+                return pr.buscarPorRubroSubRubroUbicacion(rubro, subrubro, Ubicacion);
+            }
+            if (Rubro != null && SubRubro != null && Ubicacion == null)
+            {
+                return pr.buscarPorRubroSubRubroUbicacion(rubro, subrubro, Ubicacion);
+            } */
+            return null;
         }
     }
 }

@@ -100,27 +100,7 @@
                 <br />
                 <br />
                 <div class="margin-top">
-                    <div id="buscador" class="row">
-                        <div class="col-md-5">
-                            <select class="form-control">
-                                <option>Seleccione rubro</option>
-                                <option>Plomeria</option>
-                                <option>Gasista</option>
-                                <option>Electricista</option>
-                                <option>Enfermeria</option>
-                            </select>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion. Ej:San Justo"
-                                    autocomplete="off" />
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <input id="btnBuscar" type="submit" value="Buscar" class="btn btn-primary btn-block" />
-                            <br />
-                        </div>
-                    </div>
+                @Html.Partial("~/Views/Shared/buscador.cshtml")
                 </div>
                 <div class="text-center">
                     <span class="glyphicon glyphicon-chevron-down"></span>

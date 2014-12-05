@@ -37,7 +37,7 @@
             <br />
             <div id="subrubros-container" class="row">
                 @Html.Label("SubRubro", new { @class = "col-sm-5 control-label" })
-                <div id="subrubros-select" data-animation="slide" class="col-xs-3" >
+                <div id="subrubros-select" data-estilo="vertical" class="col-xs-3" >
                     @Html.DropDownList("IdSubRubro", null, "", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.IdRubro)
                 </div>

@@ -13,6 +13,12 @@ namespace Providere.Servicios
         SubRubroRepositorio sr = new SubRubroRepositorio();
         RubroRepositorio rr = new RubroRepositorio();
 
+
+        public SubRubro traerDatosPorId(int id)
+        {
+            return sr.traerDatosPorId(id);
+        }
+
         internal List<SubRubroParaJson> obtenerPorRubro(int rubro)
         {
             Rubro ru = rr.traerDatosPorId(rubro);

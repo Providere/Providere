@@ -1,0 +1,30 @@
+﻿<form action="/Buscar/Resultados" method="post">
+<div id="buscador" class="row">
+    <div id="rubros-container" class="col-md-5">
+        <select id="IdRubro" class="form-control">
+            @if (ViewBag.Rubros != null)
+            {
+                foreach (var item in ViewBag.Rubros)
+                {
+                <option value="@item.Id">@item.Nombre</option>
+                }
+            }
+        </select>
+    </div>
+    <div id="subrubros-container" class="col-xs-3" style="display:none">
+        <div id="subrubros-select" data-estilo="horizontal" >
+        </div>
+    </div>
+    <div id="ubicacion-container" class="col-md-5">
+        <div class="form-group">
+            <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion. Ej:San Justo"
+                autocomplete="off" />
+        </div>
+    </div>
+    <div class="col-md-2">
+        <input id="btnBuscar" type="submit" value="Buscar" class="btn btn-primary btn-block" />
+        <br />
+    </div>
+</div>
+
+</form>

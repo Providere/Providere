@@ -1,4 +1,4 @@
-/*$(function() {
+$(function() {
 
 	$('#IdRubro').change(function(event) {
 		var rubro = $(this);
@@ -23,17 +23,28 @@
 
 					$('#subrubros-select').html(selectConRubros);	
 
-					if ($('#subrubros-select').data('animation') == 'slide') {
+					if ($('#subrubros-select').data('estilo') == 'vertical') {
 						$('#subrubros-container').slideDown();	
 					}else{
+
+						$('#ubicacion-container').removeClass().addClass('col-md-4');
+						$('#rubros-container').removeClass().addClass('col-md-3');	
 						$('#subrubros-container').fadeIn();	
 					}
 
 				} else {
-					if ($('#subrubros-select').data('animation') == 'slide') {
+					if ($('#subrubros-select').data('estilo') == 'vertical') {
+
 						$('#subrubros-container').slideUp();	
+
 					}else{
-						$('#subrubros-container').fadeOut();	
+
+						if ($('#subrubros-container').is(':visible')) {
+							$('#subrubros-container').stop().hide('fade', 250);
+							$('#ubicacion-container').removeClass().addClass('col-md-5');
+							$('#rubros-container').removeClass().addClass('col-md-5');
+
+						};
 					}
 					$('#subrubros-select').html('<select class="form-control disabled hidden" disabled="disabled" id="IdSubRubro" name="IdSubRubro"><option value="0" selected></option></select>');
 					
@@ -48,4 +59,4 @@
 
 	});
 
-});*/
+});

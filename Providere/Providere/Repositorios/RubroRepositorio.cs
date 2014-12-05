@@ -14,9 +14,14 @@ namespace Providere.Repositorios
         internal Rubro traerDatosPorId(int id)
         {
             var rubro = (from rr in context.Rubro
-                                where rr.Id == id
-                                select rr).FirstOrDefault();
+                         where rr.Id == id
+                         select rr).FirstOrDefault();
             return rubro;
+        }
+
+        internal List<Rubro> obtenerTodos()
+        {
+            return context.Rubro.ToList();
         }
     }
 }

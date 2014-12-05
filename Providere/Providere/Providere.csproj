@@ -167,6 +167,7 @@
     <Compile Include="Servicios\PublicacionServicios.cs" />
     <Compile Include="Repositorios\TipoEvaluacionRepositorio.cs" />
     <Compile Include="Repositorios\TipoCalificacionRepositorio.cs" />
+    <Compile Include="Servicios\RubroServicios.cs" />
     <Compile Include="Servicios\SubRubroServicios.cs" />
     <Compile Include="Servicios\UsuarioServicios.cs" />
   </ItemGroup>
@@ -315,6 +316,7 @@
     <Content Include="Views\Publicacion\VisualizarMiPublicacion.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Shared\buscador.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

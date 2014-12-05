@@ -21,13 +21,15 @@ namespace Providere.Controllers
 
         PublicacionServicios ps = new PublicacionServicios();
         ProvidereEntities context = new ProvidereEntities();
+        RubroServicios rs = new RubroServicios();
 
 
         public ActionResult ListarPublicaciones()
         {
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             var publicaciones = ps.ListarMisPublicaciones(idUsuario);
-                
+
+            ViewBag.Rubros = rs.obtenerTodos();
             return View(publicaciones);
         }
 
@@ -36,6 +38,7 @@ namespace Providere.Controllers
             ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre");
             ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre");
 
+            ViewBag.Rubros = rs.obtenerTodos();
             return View();
         }
 
@@ -92,6 +95,8 @@ namespace Providere.Controllers
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Publicacion miPublicacion = ps.TraerPublicacion(Id, idUsuario);
 
+            ViewBag.Rubros = rs.obtenerTodos();
+
             return View(miPublicacion);
         }
 
@@ -113,6 +118,7 @@ namespace Providere.Controllers
 
         public ActionResult EditarPublicacion()
         {
+            ViewBag.Rubros = rs.obtenerTodos();
             return View();
         }
 
