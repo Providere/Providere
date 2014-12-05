@@ -30,9 +30,9 @@
                 
                 <div class="col-xs-3">
                     <a href="/publicacion/ver/@item.publicacion.Id" >
-                        <div class="thumbnail">
+                        <div class="thumbnail" >
                             <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
-                                  alt="plomero" width="100%" />
+                                 width="110%" alt="" height= "200px" />
                             <div class="caption text-center">
                                 <h4>
                                     <a href="#">
@@ -79,8 +79,8 @@
                 
                     <div class="col-xs-3">
                         @*  <a href="/publicacion/ver/@item.publicacion.Id" >*@
-                        <div class="thumbnail">
-                            <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
+                        <div class="thumbnail" style="height: 330px">
+                            <img  src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt=""  width="100%" height= "200px"/>
                             <div class="caption text-center">
                                 <h4>
                                     <a href="#">
@@ -111,8 +111,8 @@
                 
                     <div class="col-xs-3">
                         @*  <a href="/publicacion/ver/@item.publicacion.Id">*@
-                        <div class="thumbnail">
-                            <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
+                        <div class="thumbnail" style="height: 300px">
+                            <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
                             <div class="caption text-center">
                                 <h4>
                                     <a href="#">
