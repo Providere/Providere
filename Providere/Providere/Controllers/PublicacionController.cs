@@ -43,7 +43,7 @@ namespace Providere.Controllers
         }
 
         [HttpPost]
-        public ActionResult NuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion, int precioOpcion, string precio, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult NuevaPublicacion(int idUsuario, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, string precio, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {

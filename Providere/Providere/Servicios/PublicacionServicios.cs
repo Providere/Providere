@@ -15,7 +15,7 @@ namespace Providere.Servicios
         ImagenRepositorio ir = new ImagenRepositorio();
 
 
-        public void CrearNuevaPublicacion(int idUsuario, int idRubro, int idSubRubro, string titulo, string descripcion, int precioOpcion, string precio)
+        public void CrearNuevaPublicacion(int idUsuario, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, string precio)
         {
             pr.CrearNuevaPublicacion(idUsuario, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio);
         }

@@ -18,7 +18,7 @@
 }
 <div class="container well">
     <div class="content">
-        @using (Html.BeginForm("NuevaPublicacion", "Publicacion", FormMethod.Post, new { @class = "form-horizontal",enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("NuevaPublicacion", "Publicacion", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
         {           
             <h3>
                 Nueva publicación</h3>
@@ -27,22 +27,24 @@
             <div>
                 @Html.Hidden("idUsuario", this.Session["IdUsuario"])
             </div>
-            <div class="row">
-                @Html.Label("Rubro", new { @class = "col-sm-5 control-label" })
-                <div class="col-xs-3">
-                    @Html.DropDownListFor(model => model.IdRubro, (IEnumerable<SelectListItem>)ViewBag.IdRubro, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.IdRubro)
+            <div class="combo-rubro-subrubro">
+                <div class="rubros-container row">
+                    @Html.Label("Rubro", new { @class = "col-sm-5 control-label" })
+                    <div class="col-xs-3">
+                        @Html.DropDownListFor(model => model.IdRubro, (IEnumerable<SelectListItem>)ViewBag.IdRubro, new { @class = "IdRubro form-control" })
+                        @Html.ValidationMessageFor(model => model.IdRubro)
+                    </div>
                 </div>
-            </div>
-            <br />
-            <div id="subrubros-container" class="row">
-                @Html.Label("SubRubro", new { @class = "col-sm-5 control-label" })
-                <div id="subrubros-select" data-estilo="vertical" class="col-xs-3" >
-                    @Html.DropDownList("IdSubRubro", null, "", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.IdRubro)
+                <br />
+                <div class="row subrubros-container">
+                    @Html.Label("SubRubro", new { @class = "col-sm-5 control-label" })
+                    <div data-estilo="vertical" class="subrubros-select col-xs-3">
+                        @Html.DropDownList("IdSubRubro", null, "", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdRubro)
+                    </div>
                 </div>
+                <br />
             </div>
-            <br />
             <div class="row">
                 @Html.LabelFor(model => model.Titulo, new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
@@ -88,8 +90,10 @@
             <div class="row">
                 @Html.Label("Cargar imagenes de ultimos trabajos realizados", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
-                    @Html.TextBox("files","", new { type="file", multiple="multiple"})
-                    <p class="text-warning"><span class="glyphicon glyphicon-exclamation-sign"></span>Como maximo 4 imagenes y el formato debe ser .jpg</p>
+                    @Html.TextBox("files", "", new { type = "file", multiple = "multiple" })
+                    <p class="text-warning">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>Como maximo 4 imagenes
+                        y el formato debe ser .jpg</p>
                 </div>
             </div>
             <br />

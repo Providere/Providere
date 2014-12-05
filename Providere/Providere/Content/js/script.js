@@ -1,6 +1,6 @@
 $(function() {
 
-	$('#IdRubro').change(function(event) {
+	$('.IdRubro').change(function(event) {
 		var rubro = $(this);
 
 		$.ajax({
@@ -10,10 +10,15 @@ $(function() {
 
 				var msg = jQuery.parseJSON( msg );
 
+					var contenedorTotal = rubro.parents('.combo-rubro-subrubro');
+					var selectConSubRubros = contenedorTotal.find('.subrubros-select');
+					var contenedorSelectConSubRubros = contenedorTotal.find('.subrubros-container');
+					var contenedorUbicacion = contenedorTotal.find('.ubicacion-container');
+					var contenedorRubros = contenedorTotal.find('.rubros-container');
+
 				if (msg.length > 0) {
 
 					var selectConRubros = '<select class="form-control" id="IdSubRubro" name="IdSubRubro">';
-					console.log("data "+msg);
 
 					msg.forEach(function(element, index){
 						selectConRubros += '<option value="'+element['Id']+'">'+element['Nombre']+'</option>';
@@ -21,32 +26,33 @@ $(function() {
 
 					selectConRubros += '</select>';
 
-					$('#subrubros-select').html(selectConRubros);	
+					selectConSubRubros.html(selectConRubros);	
 
-					if ($('#subrubros-select').data('estilo') == 'vertical') {
-						$('#subrubros-container').slideDown();	
+					if (selectConSubRubros.data('estilo') == 'vertical') {
+						contenedorSelectConSubRubros.slideDown();	
 					}else{
 
-						$('#ubicacion-container').removeClass().addClass('col-md-4');
-						$('#rubros-container').removeClass().addClass('col-md-3');	
-						$('#subrubros-container').fadeIn();	
+						contenedorUbicacion.removeClass('col-md-5').addClass('col-md-4');
+						contenedorRubros.removeClass('col-md-5').addClass('col-md-3');	
+						contenedorSelectConSubRubros.fadeIn();	
 					}
 
 				} else {
-					if ($('#subrubros-select').data('estilo') == 'vertical') {
+					
+					if (selectConSubRubros.data('estilo') == 'vertical') {
 
-						$('#subrubros-container').slideUp();	
+						contenedorSelectConSubRubros.slideUp();	
 
 					}else{
 
-						if ($('#subrubros-container').is(':visible')) {
-							$('#subrubros-container').stop().hide('fade', 250);
-							$('#ubicacion-container').removeClass().addClass('col-md-5');
-							$('#rubros-container').removeClass().addClass('col-md-5');
+						if (contenedorSelectConSubRubros.is(':visible')) {
+							contenedorSelectConSubRubros.stop().hide('fade', 250);
+							contenedorUbicacion.removeClass('col-md-4').addClass('col-md-5');
+							contenedorRubros.removeClass('col-md-3').addClass('col-md-5');
 
 						};
 					}
-					$('#subrubros-select').html('<select class="form-control disabled hidden" disabled="disabled" id="IdSubRubro" name="IdSubRubro"><option value="0" selected></option></select>');
+					selectConSubRubros.html('<select class="form-control disabled hidden" disabled="disabled" id="IdSubRubro" name="IdSubRubro"><option value="0" selected></option></select>');
 					
 				}
 
