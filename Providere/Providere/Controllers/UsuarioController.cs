@@ -15,6 +15,7 @@ namespace Providere.Controllers
     {
 
         UsuarioServicios us = new UsuarioServicios();
+        RubroServicios rs = new RubroServicios();
 
         public ActionResult RegistrarUsuario()
         {
@@ -167,6 +168,8 @@ namespace Providere.Controllers
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Usuario usuario = us.ObtenerUsuarioEditar(idUsuario);
             ViewBag.geocomplete2 = usuario.Ubicacion;
+            ViewBag.Rubros = rs.obtenerTodos();
+
             return View(usuario);
         }
 
