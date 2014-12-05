@@ -31,16 +31,8 @@
                 <div class="col-xs-3">
                     <a href="/publicacion/ver/@item.publicacion.Id" >
                         <div class="thumbnail">
-                        @if (!System.IO.File.Exists(Path.Combine("~/Imagenes/Publicacion", @item.imagen.Nombre)))
-                          {
-                                <img src="../../Content/img/@item.imagen.Nombre"
-                                alt="plomero" width="100%" />
-                          }
-                           else
-                            {
-                                 <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
+                            <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
                                   alt="plomero" width="100%" />
-                            }
                             <div class="caption text-center">
                                 <h4>
                                     <a href="#">
@@ -52,7 +44,7 @@
                                 <h6 class="text-danger">
                                     @if (@item.publicacion.PrecioOpcion == 1)
                                     {
-                                         @Html.Label("Precio:")
+                                        @Html.Label("Precio:")
                                         @Html.Label("A Convenir") 
                                     }
                                     else
@@ -86,18 +78,17 @@
                 {
                 
                     <div class="col-xs-3">
-                      @*  <a href="/publicacion/ver/@item.publicacion.Id" >*@
-                            <div class="thumbnail">
-
-                             <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
-                                <div class="caption text-center">
-                                    <h4>
-                                        <a href="#">
-                                            @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
-                                    <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
-                                    <br />
-                                </div>
+                        @*  <a href="/publicacion/ver/@item.publicacion.Id" >*@
+                        <div class="thumbnail">
+                            <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
+                            <div class="caption text-center">
+                                <h4>
+                                    <a href="#">
+                                        @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                <br />
                             </div>
+                        </div>
                         @*</a>*@
                     </div>
                 }</div>
@@ -119,18 +110,18 @@
                 {
                 
                     <div class="col-xs-3">
-                      @*  <a href="/publicacion/ver/@item.publicacion.Id">*@
-                            <div class="thumbnail">
-                              <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
-                                <div class="caption text-center">
-                                    <h4>
-                                        <a href="#">
-                                            @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
-                                    <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
-                                    <br />
-                                </div>
+                        @*  <a href="/publicacion/ver/@item.publicacion.Id">*@
+                        <div class="thumbnail">
+                            <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
+                            <div class="caption text-center">
+                                <h4>
+                                    <a href="#">
+                                        @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                <br />
                             </div>
-                      @*  </a>*@
+                        </div>
+                        @*  </a>*@
                     </div>
                 }
             </div>
