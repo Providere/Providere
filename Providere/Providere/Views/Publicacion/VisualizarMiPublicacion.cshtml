@@ -65,28 +65,17 @@
             <h3>
                 Últimos trabajos</h3>
         </div>
-        
-        <div class="col-md-3">
-            <a href="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" data-lightbox="roadtrip">
-                <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="plomero" width="100%"/>
-            </a>
+        <div class="row">
+            @foreach (var item in Model.Imagen)
+            {
+                <div class="col-md-3">
+                    <a href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="roadtrip">
+                        <img src="../../Imagenes/Publicacion/@item.Nombre" alt="plomero" width="100%" />
+                    </a>
+                </div>
+            }
         </div>
-        <div class="col-md-3">
-            <a href="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" data-lightbox="roadtrip">
-                <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="plomero" width="100%"/>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" data-lightbox="roadtrip">
-                <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="plomero" width="100%"/>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" data-lightbox="roadtrip">
-                <img class="img-responsive img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="plomero" width="100%"/>
-            </a>
-        </div>
-        
+          
         <div class="col-md-12">
             <h3>
                 Preguntas al prestador</h3>
@@ -94,8 +83,8 @@
                 <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no puedes compartir
                 tu datos personales por este medio</p>
             <div class="form-group col-md-10">
-                <textarea class="form-control " name="questionText" id="questionText" cols="110" rows=""
-                     disabled="disabled">Escribe tu pregunta aqui...
+                <textarea class="form-control " name="questionText" id="questionText" cols="110"
+                    rows="" disabled="disabled">Escribe tu pregunta aqui...
             </textarea>
             </div>
             <div class="form-group col-md-2">
