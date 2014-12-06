@@ -21,11 +21,11 @@ namespace Providere.Controllers
         [HttpPost]
         public ActionResult Resultados()
         {
-            var publicaciones = ps.buscar(Request["IdRubro"], Request["IdSubRubro"], Request["geocomplete"]);
+            var publicaciones = ps.buscar(Request["selectRubro"], Request["IdSubRubro"], Request["geocomplete"]);
 
-            if (Request["IdRubro"] != null)
+            if (Request["selectRubro"] != null)
             {
-                ViewBag.rubroElegido = rs.traerDatosPorId(Int32.Parse(Request["IdRubro"]));
+                ViewBag.rubroElegido = rs.traerDatosPorId(Int32.Parse(Request["selectRubro"]));
             }
             else
             {

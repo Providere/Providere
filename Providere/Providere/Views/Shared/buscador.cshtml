@@ -1,7 +1,7 @@
 ﻿<form action="/Buscar/Resultados" method="post">
 <div id="buscador" class="combo-rubro-subrubro row">
     <div class="rubros-container col-md-5">
-        <select name="IdRubro" class="IdRubro form-control">
+        <select id="selectRubro" name="selectRubro" class="IdRubro form-control">
             @if (ViewBag.Rubros != null)
             {
                 foreach (var item in ViewBag.Rubros)

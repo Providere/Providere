@@ -5,29 +5,35 @@
 }
 <div class="container well">
     <div class="row">
-    <div class="col-md-5">
-    <h2>
-        Publicaciones
-        </h2>
-    </div> 
-    <div class="col-md-7 text-right">
-        <div class="text-muted pull-right">
-        @if (@ViewBag.rubroElegido != null){
-            @ViewBag.rubroElegido.Nombre
-            @:|
-        }
-        @if (@ViewBag.subRubroElegido != null){
-            @ViewBag.subRubroElegido.Nombre
-            @:|
-        }
-        @if (@ViewBag.ubicacionElegida != null)
-        {
-            @ViewBag.ubicacionElegida 
-        }
+        <div class="col-md-5">
+            <h2>
+                Publicaciones
+            </h2>
         </div>
-
-    </div>
-    
+        <div class="col-md-7 text-right">
+            <div class="text-muted pull-right">
+                @if (@ViewBag.rubroElegido != null)
+                {
+                    @ViewBag.rubroElegido.Nombre
+                }
+                @if (@ViewBag.subRubroElegido != null)
+                {
+                    if (@ViewBag.rubroElegido != null)
+                    { 
+                        @:|
+                    }
+                    @ViewBag.subRubroElegido.Nombre
+                }
+                @if (@ViewBag.ubicacionElegida != null)
+                {
+                    if (@ViewBag.subRubroElegido != null || @ViewBag.rubroElegido != null)
+                    { 
+                    @:|
+                    }
+                    @ViewBag.ubicacionElegida 
+                }
+            </div>
+        </div>
     </div>
     <hr />
     <div class="col-md-3">
