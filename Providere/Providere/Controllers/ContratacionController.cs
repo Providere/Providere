@@ -16,9 +16,9 @@ namespace Providere.Controllers
         {
 
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            var calificaciones = cs.traerContratacionesRealizadas(idUsuario);
+            var contrataciones = cs.traerContratacionesRealizadas(idUsuario);
 
-            return View(calificaciones);
+            return View(contrataciones);
         }
 
     }

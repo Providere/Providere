@@ -79,6 +79,11 @@ namespace Providere.Servicios
             return miPublicacion;
         }
 
-      
+
+
+        internal Publicacion TraerPublicacionPorId(int idPublicacion)
+        {
+            return pr.TraerPublicacionPorId(idPublicacion);
+        }
     }
 }

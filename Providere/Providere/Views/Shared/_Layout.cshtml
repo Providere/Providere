@@ -60,7 +60,8 @@
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <ul style="margin-top: 10px;" class="pull-right">
+                 @if (@HttpContext.Current.Session["IdUsuario"] != null)
+                 {            <ul style="margin-top: 10px;" class="pull-right">
                         <div>
                             <div class="btn-group user-menu pull-right">
                                 <button class="btn btn-default dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
@@ -70,7 +71,7 @@
                                     <li><a href="@Url.Action("EditarPerfil", "Usuario")">Editar perfil</a></li>
                                     <li><a href="@Url.Action("ListarPublicaciones", "Publicacion")">Publicaciones</a></li>
                                     <li><a href="#">Calificaciones</a></li>
-                                    <li><a href="#">Contrataciones</a></li>
+                                    <li><a href="@Url.Action("Index", "Contratacion")">Contrataciones</a></li>
                                     <li><a href="#">Preguntas</a></li>
                                     <li class="divider"></li>
                                     <li><a href="@Url.Action("CerrarSesion", "Usuario")">Cerrar sesi&oacute;n</a></li>
@@ -81,6 +82,7 @@
                             </div>
                         </div>
                     </ul>
+                 }
                 </div>
             </div>         
                 @Html.Partial("~/Views/Shared/buscador.cshtml")

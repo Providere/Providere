@@ -22,7 +22,7 @@ namespace Providere.Repositorios
         internal List<Publicacion> traerPublicacionesMasRecientes(int limite)
         {
             var publicaciones = (from publicacion in context.Publicacion
-                                 orderby publicacion.FechaCreacion
+                                 orderby publicacion.FechaCreacion descending 
                                  select publicacion).Take(limite).ToList();
             return publicaciones;
         }
@@ -121,5 +121,13 @@ namespace Providere.Repositorios
             return publicacion;
         }
 
+
+        internal Publicacion TraerPublicacionPorId(int idPublicacion)
+        {
+            var publicacion = (from publicaciones in context.Publicacion
+                               where publicaciones.Id == idPublicacion
+                               select publicaciones).FirstOrDefault();
+            return publicacion;
+        }
     }
 }

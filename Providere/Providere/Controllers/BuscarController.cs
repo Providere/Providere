@@ -42,8 +42,8 @@ namespace Providere.Controllers
             }
 
             ViewBag.ubicacionElegida = Request["geocomplete"];
-
-            return View(publicaciones);
+            
+                return View(publicaciones);
         }
 
     }

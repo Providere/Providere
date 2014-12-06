@@ -102,7 +102,16 @@ namespace Providere.Controllers
             Publicacion miPublicacion = ps.TraerPublicacion(Id, idUsuario);
 
 
+            ViewBag.accionPadre = "VisualizarMiPublicacion";
             return View(miPublicacion);
+        }
+
+        // Publicacion/VisualizarPublicacion/12
+        public ActionResult VisualizarPublicacion(int idPublicacion)
+        {
+            Publicacion miPublicacion = ps.TraerPublicacionPorId(idPublicacion);
+            ViewBag.accionPadre = "VisualizarPublicacion";
+            return View("VisualizarMiPublicacion", miPublicacion);
         }
 
         public ActionResult MostrarFotoPerfil(int id)

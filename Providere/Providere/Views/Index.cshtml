@@ -33,32 +33,26 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Rubro.Nombre)
+                            @Html.DisplayFor(modelItem => item.Publicacion.Rubro.Nombre)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.SubRubro.Nombre)
+                            @Html.DisplayFor(modelItem => item.Publicacion.SubRubro.Nombre)
                         </td>
                         <td>
-                            <a href="@Url.Action("VisualizarMiPublicacion", "Publicacion", new { Id = item.Id })">@Html.DisplayFor(modelItem => item.Titulo)</a>
+                            <a href="@Url.Action("VisualizarMiPublicacion", "Publicacion", new { Id = item.Id })">@Html.DisplayFor(modelItem => item.Publicacion.Titulo)</a>
                         </td>
                         <td>
-                            @if (item.PrecioOpcion == 1)
+                            @if (item.Publicacion.PrecioOpcion == 1)
                             {
                                 @Html.Label("A Convenir")
                             }
                             else
                             {
-                                @Html.DisplayFor(modelItem => item.Precio)
+                                @Html.DisplayFor(modelItem => item.Publicacion.Precio)
                             }
                         </td>
                         <td class="text-center">
-                            @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })
-                        </td>
-                        <td>
-                            <label>
-                                @Html.CheckBox("ckbDeshabilitar")
-                                @Html.ActionLink("Confirmar", "DeshabilitarPublicacion", "Publicacion", new { Id = item.Id }, new { @class = "btn btn-info btn-xs" })
-                            </label>
+                            @Html.ActionLink("Calificar", "Calificar", "Publicacion", new { Id = item.Publicacion.Id }, new { @class = "glyphicon glyphicon-pencil" })
                         </td>
                     </tr>
                 }

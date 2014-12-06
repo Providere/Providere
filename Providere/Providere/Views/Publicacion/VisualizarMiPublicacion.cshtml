@@ -25,25 +25,37 @@
                 @Html.DisplayFor(model => model.Usuario.Apellido)
             </h2>
             <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
-                class="badge"> N° </span>
+                class="badge">N° </span>
         </div>
         <div class="col-md-8">
             <h3>
-                Precio</h3>
-            <h4 class="text-danger">
-                @if (Model.PrecioOpcion == 1)
+                Precio
+            </h3>
+            @if (Model.PrecioOpcion != null)
+            {
+                <h4 class="text-danger">
+                    @if (Model.PrecioOpcion == 1)
+                    {
+                        @Html.Label("A Convenir") 
+                    }
+                    else
+                    {
+                        @Html.Label("$") 
+                        @Html.DisplayFor(model => model.Precio)
+                    }
+                </h4>
+            }
+            <div>
+                @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
                 {
-                    @Html.Label("A Convenir") 
+                
+                    @Html.ActionLink("Volver", "ListarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-arrow-left" })
+                    @Html.ActionLink("Editar", "EditarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
                 }
                 else
                 {
-                    @Html.Label("$") 
-                    @Html.DisplayFor(model => model.Precio)
+                    <a href="#" class="btn btn-primary glyphicon glyphicon-arrow-left">Contratar</a>
                 }
-            </h4>
-            <div>
-                @Html.ActionLink("Volver", "ListarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-arrow-left" })
-                @Html.ActionLink("Editar", "EditarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
             </div>
         </div>
         <div class="col-md-12">
@@ -65,17 +77,17 @@
             <h3>
                 Últimos trabajos realizados</h3>
         </div>
-         <div class="col-md-12">
-        <div class="row">
-            @foreach (var item in Model.Imagen)
-            {
-                <div class="col-md-3">
-                    <a href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="roadtrip">
-                        <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "200px" /> 
-                    </a>
-                </div>
-            }
-        </div>
+        <div class="col-md-12">
+            <div class="row">
+                @foreach (var item in Model.Imagen)
+                {
+                    <div class="col-md-3">
+                        <a href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="roadtrip">
+                            <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "200px" />
+                        </a>
+                    </div>
+                }
+            </div>
         </div>
           
         <div class="col-md-12">
