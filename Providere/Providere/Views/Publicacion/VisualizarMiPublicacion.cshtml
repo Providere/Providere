@@ -17,35 +17,14 @@
             @Html.DisplayFor(model => model.Titulo)</h1>
         <hr />
         
-        <div>
-            @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
-            {
-                
-                <div class="col-md-2">
-                    <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />
-                </div>
-            }
-            else
-            {
-                <div class="col-md-2">
-                    <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = Model.IdUsuario })" alt="plomero" width="100%"/>
-                </div>
-            }
-        </div>
-        
-        
-        
-        
-        
-        <div class="col-md-2">
-            <h2>
-                @Html.DisplayFor(model => model.Usuario.Nombre)
-                @Html.DisplayFor(model => model.Usuario.Apellido)
-            </h2>
-            <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
-                class="badge">0</span>
-        </div>
+        <div class="col-md-9">
         <div class="col-md-8">
+            <h3>
+                Descripción</h3>
+            <p>
+                @Html.DisplayFor(model => model.Descripcion)</p>
+        </div>
+        <div class="col-md-2">
             <h3>
                 Precio
             </h3>
@@ -77,30 +56,24 @@
                 }
             </div>
         </div>
-        <div class="col-md-12">
-            <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)
-            </span>
-        </div>
-        <div class="col-md-12">
-            <h3>
-                Descripción</h3>
-            <p>
-                @Html.DisplayFor(model => model.Descripcion)</p>
-        </div>
+        
+ 
+        
+        
         <div class="col-md-12">
             <h3>
                 Calificaciones</h3>
-                 @if (@HttpContext.Current.Session["IdUsuario"].ToString() == Model.IdUsuario.ToString())
-                {
+            @if (@HttpContext.Current.Session["IdUsuario"].ToString() == Model.IdUsuario.ToString())
+            {
                 
-             @: Todavía no obtuviste calificaciones.       
+                @: Todavía no obtuviste calificaciones.
              }
-                else
-                {
+            else
+            {
                  
                 @Html.DisplayFor(model => model.Usuario.Nombre)
-                    @: aún no posee calificaciones.
-                }
+                @: aún no posee calificaciones.
+                                        }
         </div>
         <div class="col-md-12">
             <h3>
@@ -119,6 +92,39 @@
             </div>
         </div>
           
+          </div>
+        
+        
+        
+        <div id="ficha-publicante" class="col-md-3">
+            <div class="contenedor-imagen-publicacion">
+                @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+                {
+                
+                    <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />
+             
+                }
+                else
+                {
+                    <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = Model.IdUsuario })" alt="plomero" width="100%"/>
+                
+                }
+            </div>
+            <div class="contenedor-info-publicante">
+                <h2>
+                    @Html.DisplayFor(model => model.Usuario.Nombre)
+                    @Html.DisplayFor(model => model.Usuario.Apellido)
+                </h2>
+                <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
+                    class="badge">0</span>
+            </div>
+            <div>
+            <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)
+            </span>
+        </div>
+        </div>
+        
+        
         <div>
             @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
             {
