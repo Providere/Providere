@@ -5,18 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Contrataciones realizadas</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
+<table class="tabla-publicaciones table table-bordered table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.IdUsuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdPublicacion)
+            Publicacion
         </th>
         <th></th>
     </tr>
@@ -24,12 +18,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.IdUsuario)
+            "@Html.DisplayFor(modelItem => item.Publicacion.Titulo)" de @Html.DisplayFor(modelItem => item.Usuario.Nombre) @Html.DisplayFor(modelItem => item.Usuario.Apellido)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdPublicacion)
-        </td>
-        <td>
+        <td class="text-right">
             @Html.ActionLink("Calificar servicio", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id }) 
         </td>
     </tr>

@@ -35,6 +35,14 @@ body {
 #contenedor-botones-index span{
 	margin-right: 6px
 }
+table th 
+{
+    
+color: #ffffff;
+background-color: #B11252;
+border-color: #B11252;
+}
+
 
 .portada {
 	background: url('../img/index.jpg') no-repeat center center;
