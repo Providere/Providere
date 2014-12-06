@@ -16,9 +16,27 @@
         <h1 class="text-center">
             @Html.DisplayFor(model => model.Titulo)</h1>
         <hr />
-        <div class="col-md-2">
-            <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />
+        
+        <div>
+            @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+            {
+                
+                <div class="col-md-2">
+                    <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />
+                </div>
+            }
+            else
+            {
+                <div class="col-md-2">
+                    <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = Model.IdUsuario })" alt="plomero" width="100%"/>
+                </div>
+            }
         </div>
+        
+        
+        
+        
+        
         <div class="col-md-2">
             <h2>
                 @Html.DisplayFor(model => model.Usuario.Nombre)
@@ -90,21 +108,47 @@
             </div>
         </div>
           
-        <div class="col-md-12">
-            <h3>
-                Preguntas al prestador</h3>
-            <p class="text-warning">
-                <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no puedes compartir
-                tu datos personales por este medio</p>
-            <div class="form-group col-md-10">
-                <textarea class="form-control " name="questionText" id="questionText" cols="110"
-                    rows="" disabled="disabled">Escribe tu pregunta aqui...
+        <div>
+            @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+            {
+                
+                <div class="col-md-12">
+                    <h3>
+                        Preguntas al prestador</h3>
+                    <p class="text-warning">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no puedes compartir
+                        tu datos personales por este medio</p>
+                    <div class="form-group col-md-10">
+                        <textarea class="form-control " name="questionText" id="questionText" cols="110"
+                            rows="" disabled="disabled">Escribe tu pregunta aqui...
             </textarea>
-            </div>
-            <div class="form-group col-md-2">
-                <button class="btn btn-primary btn-lg" disabled="disabled" type="submit">
-                    Enviar</button>
-            </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <button class="btn btn-primary btn-lg" disabled="disabled" type="submit">
+                            Enviar</button>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-12">
+                    <h3>
+                        Preguntas al prestador</h3>
+                    <p class="text-warning">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no puedes compartir
+                        tu datos personales por este medio</p>
+                    <div class="form-group col-md-10">
+                        <textarea class="form-control " name="questionText" id="questionText" cols="110"
+                            rows="" placeholder="Escribe tu pregunta aqui...">
+            </textarea>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <button class="btn btn-primary btn-lg" type="submit">
+                            Enviar</button>
+                    </div>
+                </div>
+            }
         </div>
+       
     }
 </div>
