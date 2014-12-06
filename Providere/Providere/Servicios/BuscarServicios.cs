@@ -14,38 +14,30 @@ namespace Providere.Servicios
         RubroServicios rs = new RubroServicios();
         SubRubroServicios ss = new SubRubroServicios();
 
-        internal List<Publicacion> buscar(int? Rubro, int? SubRubro, string Ubicacion)
+        internal List<Publicacion> buscar(string Rubro, string SubRubro, string Ubicacion)
         {
+
+
+            Rubro rubro = new Rubro();
             if (Rubro != null)
             {
-                Rubro rubro = new Rubro();
-                rubro = rs.traerDatosPorId(Rubro.GetValueOrDefault());
+                rubro = rs.traerDatosPorId(Int32.Parse(Rubro));
             }
-
+            else
+            {
+                rubro = null;
+            }
+            SubRubro subrubro = new SubRubro();
             if (SubRubro != null)
             {
-                SubRubro subrubro = new SubRubro();
-                subrubro = ss.traerDatosPorId(SubRubro.GetValueOrDefault());
+                subrubro = ss.traerDatosPorId(Int32.Parse(SubRubro));
             }
+            else
+            {
+                subrubro = null;
+            }
+            return pr.buscarPorRubroSubRubroUbicacion(rubro, subrubro, Ubicacion);
 
-           /* if (Rubro != null && SubRubro != null && Ubicacion != null)
-            {
-                return pr.buscarPorRubroSubRubroUbicacion(rubro, subrubro, Ubicacion);
-            }
-            if (Rubro == null && SubRubro != null && Ubicacion != null)
-            {
-                return pr.buscarPorRubroSubRubroUbicacion(rubro, subrubro, Ubicacion);
-            }
-
-            if (Rubro != null && SubRubro == null && Ubicacion != null)
-            {
-                return pr.buscarPorRubroSubRubroUbicacion(rubro, subrubro, Ubicacion);
-            }
-            if (Rubro != null && SubRubro != null && Ubicacion == null)
-            {
-                return pr.buscarPorRubroSubRubroUbicacion(rubro, subrubro, Ubicacion);
-            } */
-            return null;
         }
     }
 }

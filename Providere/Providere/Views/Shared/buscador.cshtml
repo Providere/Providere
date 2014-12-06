@@ -1,7 +1,7 @@
 ﻿<form action="/Buscar/Resultados" method="post">
 <div id="buscador" class="combo-rubro-subrubro row">
     <div class="rubros-container col-md-5">
-        <select class="IdRubro form-control">
+        <select name="IdRubro" class="IdRubro form-control">
             @if (ViewBag.Rubros != null)
             {
                 foreach (var item in ViewBag.Rubros)
@@ -17,7 +17,7 @@
     </div>
     <div class="col-md-5 ubicacion-container">
         <div class="form-group">
-            <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion. Ej:San Justo"
+            <input id="geocomplete" name="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion. Ej:San Justo"
                 autocomplete="off" />
         </div>
     </div>

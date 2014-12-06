@@ -141,6 +141,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Buscador.cs" />
     <Compile Include="Models\ListaPublicacionesModel.cs" />
     <Compile Include="Models\Providere.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -160,14 +161,15 @@
     <Compile Include="Repositorios\RubroRepositorio.cs" />
     <Compile Include="Repositorios\SubRubroRepositorio.cs" />
     <Compile Include="Repositorios\UsuarioRepositorio.cs" />
+    <Compile Include="Repositorios\TipoEvaluacionRepositorio.cs" />
+    <Compile Include="Repositorios\TipoCalificacionRepositorio.cs" />
     <Compile Include="Servicios\BuscarServicios.cs" />
     <Compile Include="Servicios\CalificarServicios.cs" />
     <Compile Include="Servicios\Encryptor.cs" />
     <Compile Include="Servicios\MailServicios.cs" />
     <Compile Include="Servicios\PublicacionServicios.cs" />
-    <Compile Include="Repositorios\TipoEvaluacionRepositorio.cs" />
-    <Compile Include="Repositorios\TipoCalificacionRepositorio.cs" />
     <Compile Include="Servicios\RubroServicios.cs" />
+    <Compile Include="Servicios\RubrosParaSelect.cs" />
     <Compile Include="Servicios\SubRubroServicios.cs" />
     <Compile Include="Servicios\UsuarioServicios.cs" />
   </ItemGroup>
@@ -191,6 +193,7 @@
     <Content Include="Content\img\thumbnail-md.png" />
     <Content Include="Content\img\twitter.png" />
     <Content Include="Content\img\user.jpg" />
+    <Content Include="Content\js\script.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />

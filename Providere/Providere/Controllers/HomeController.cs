@@ -12,7 +12,6 @@ namespace Providere.Controllers
     public class HomeController : Controller
     {
         PublicacionServicios ps = new PublicacionServicios();
-        RubroServicios rs = new RubroServicios();
 
         public ActionResult Home(Usuario user)
         {
@@ -27,7 +26,6 @@ namespace Providere.Controllers
 
             ViewBag.PublicacionesMasCercanas = ps.traerPublicacionesMasCercanas(user.Ubicacion, 4);
 
-            ViewBag.Rubros = rs.obtenerTodos();
 
             return View();
         }

@@ -1,40 +1,113 @@
-﻿@model IEnumerable<Providere.Models.ProvidereEntities>
-
+﻿@model  IEnumerable<Providere.Models.Publicacion>
 @{
-    ViewBag.Title = "Resultados";
+    ViewBag.Title = "Publicaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container well">
+    <div class="row">
+    <div class="col-md-5">
+    <h2>
+        Publicaciones
+        </h2>
+    </div> 
+    <div class="col-md-7 text-right">
+        <div class="text-muted pull-right">
+        @if (@ViewBag.rubroElegido != null){
+            @ViewBag.rubroElegido.Nombre
+            @:|
+        }
+        @if (@ViewBag.subRubroElegido != null){
+            @ViewBag.subRubroElegido.Nombre
+            @:|
+        }
+        @if (@ViewBag.ubicacionElegida != null)
+        {
+            @ViewBag.ubicacionElegida 
+        }
+        </div>
 
-<h2>Resultados</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DefaultContainerName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CommandTimeout)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DefaultContainerName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CommandTimeout)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
-</table>
+    </div>
+    
+    </div>
+    <hr />
+    <div class="col-md-3">
+        <a href="@Url.Action("NuevaPublicacion", "Publicacion")" class="btn btn-primary btn-block">
+            <span class="glyphicon glyphicon-plus"></span>Nueva publicacion</a>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="col-md-12">
+        <table class="tabla-publicaciones table table-bordered table-hover">
+            <thead>
+                <tr class="btn-warning">
+                    <th>
+                        @Html.DisplayName("Fecha creacion")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Fecha de modificacion")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Rubro")
+                    </th>
+                    <th>
+                        @Html.DisplayName("SubRubro")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Titulo publicacion")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Precio")
+                    </th>
+                    <th>
+                        Editar
+                    </th>
+                    <th>
+                        Deshabilitar
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaCreacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaEdicion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rubro.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubRubro.Nombre)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("VisualizarMiPublicacion", "Publicacion", new { Id = item.Id })">@Html.DisplayFor(modelItem => item.Titulo)</a>
+                        </td>
+                        <td>
+                            @if (item.PrecioOpcion == 1)
+                            {
+                                @Html.Label("A Convenir")
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.Precio)
+                            }
+                        </td>
+                        <td class="text-center">
+                            @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })
+                        </td>
+                        <td>
+                            <label>
+                                @Html.CheckBox("ckbDeshabilitar")
+                                @Html.ActionLink("Confirmar", "DeshabilitarPublicacion", "Publicacion", new { Id = item.Id }, new { @class = "btn btn-info btn-xs" })
+                            </label>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

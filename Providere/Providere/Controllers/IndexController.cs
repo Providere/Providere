@@ -14,13 +14,11 @@ namespace Providere.Controllers
         // GET: /Index/
 
         PublicacionServicios ps = new PublicacionServicios();
-        RubroServicios rs = new RubroServicios();
         ProvidereEntities context = new ProvidereEntities();
 
         public ActionResult Index()
         {
             ViewBag.Publicaciones = ps.traerPublicacionesMejorCalificadas(4);
-            ViewBag.Rubros = rs.obtenerTodos();
 
             return View();
         }

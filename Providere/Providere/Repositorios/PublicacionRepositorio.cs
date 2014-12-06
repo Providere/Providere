@@ -40,47 +40,22 @@ namespace Providere.Repositorios
 
         internal List<Publicacion> buscarPorRubroSubRubroUbicacion(Rubro Rubro, SubRubro SubRubro, string Ubicacion)
         {
-            if (String.IsNullOrEmpty(Rubro.ToString())
-                && String.IsNullOrEmpty(SubRubro.ToString())
-                && String.IsNullOrEmpty(Ubicacion))
+            var publicaciones = (from publicacion in context.Publicacion select publicacion).ToList();
+            if (Rubro != null)
             {
-
-                var publicaciones = (from publicacion in context.Publicacion
-                                     join usuario in context.Usuario on publicacion.IdUsuario equals usuario.Id
-                                     where (publicacion.Rubro == Rubro) || (publicacion.SubRubro == SubRubro)
-                                     || (usuario.Ubicacion == Ubicacion)
-                                     select publicacion).ToList();
-
-                return publicaciones;
+                publicaciones = publicaciones.Where(b => b.Rubro.Equals(Rubro)).ToList();
             }
-            if (String.IsNullOrEmpty(Rubro.ToString())
-                && String.IsNullOrEmpty(SubRubro.ToString())
-                && String.IsNullOrEmpty(Ubicacion))
+            if (SubRubro != null)
             {
-
-                var publicaciones = (from publicacion in context.Publicacion
-                                     join usuario in context.Usuario on publicacion.IdUsuario equals usuario.Id
-                                     where (publicacion.Rubro == Rubro) || (publicacion.SubRubro == SubRubro)
-                                     || (usuario.Ubicacion == Ubicacion)
-                                     select publicacion).ToList();
-
-                return publicaciones;
+                publicaciones = publicaciones.Where(b => b.SubRubro.Equals(Rubro)).ToList();
             }
 
-            if (String.IsNullOrEmpty(Rubro.ToString())
-                && String.IsNullOrEmpty(SubRubro.ToString())
-                && String.IsNullOrEmpty(Ubicacion))
+            if (Ubicacion != null)
             {
-
-                var publicaciones = (from publicacion in context.Publicacion
-                                     join usuario in context.Usuario on publicacion.IdUsuario equals usuario.Id
-                                     where (publicacion.Rubro == Rubro) || (publicacion.SubRubro == SubRubro)
-                                     || (usuario.Ubicacion == Ubicacion)
-                                     select publicacion).ToList();
-
-                return publicaciones;
+                publicaciones = publicaciones.Where(b => b.Usuario.Ubicacion.Equals(Ubicacion)).ToList();
             }
-            return null;
+            return publicaciones;
+
         }
 
         internal void CrearNuevaPublicacion(int idUsuario, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, string precio)
@@ -105,7 +80,8 @@ namespace Providere.Repositorios
             {
                 mipublicacion.IdSubRubro = Convert.ToInt16(idSubRubro);
             }
-            else {
+            else
+            {
                 mipublicacion.IdSubRubro = null;
             }
             mipublicacion.FechaCreacion = DateTime.Now;
@@ -132,17 +108,18 @@ namespace Providere.Repositorios
         internal object ListarMisPublicaciones(int idUsuario)
         {
             var resultado = (from publicaciones in context.Publicacion
-                                 where publicaciones.IdUsuario == idUsuario
-                             select publicaciones); 
+                             where publicaciones.IdUsuario == idUsuario
+                             select publicaciones);
             return resultado;
         }
 
         internal Publicacion TraerPublicacion(int Id, int idUsuario)
         {
             var publicacion = (from publicaciones in context.Publicacion
-                                 where publicaciones.IdUsuario == idUsuario && publicaciones.Id == Id
-                             select publicaciones).FirstOrDefault();
+                               where publicaciones.IdUsuario == idUsuario && publicaciones.Id == Id
+                               select publicaciones).FirstOrDefault();
             return publicacion;
         }
+
     }
 }

@@ -14,12 +14,35 @@ namespace Providere.Controllers
         // GET: /Buscar/Resultados
 
         BuscarServicios ps = new BuscarServicios();
+        RubroServicios rs = new RubroServicios();
+        SubRubroServicios ss = new SubRubroServicios();
         ProvidereEntities context = new ProvidereEntities();
 
         [HttpPost]
-        public ActionResult Resultados(int? Rubro, int? SubRubro, string Ubicacion)
+        public ActionResult Resultados()
         {
-            var publicaciones = ps.buscar(Rubro, SubRubro, Ubicacion);
+            var publicaciones = ps.buscar(Request["IdRubro"], Request["IdSubRubro"], Request["geocomplete"]);
+
+            if (Request["IdRubro"] != null)
+            {
+                ViewBag.rubroElegido = rs.traerDatosPorId(Int32.Parse(Request["IdRubro"]));
+            }
+            else
+            {
+                ViewBag.rubroElegido = null;
+            }
+
+            if (Request["IdSubRubro"] != null)
+            {
+                ViewBag.subRubroElegido = ss.traerDatosPorId(Int32.Parse(Request["IdSubRubro"]));
+            }
+            else
+            {
+                ViewBag.subRubroElegido = null;
+            }
+
+            ViewBag.ubicacionElegida = Request["geocomplete"];
+
             return View(publicaciones.ToList());
         }
 
