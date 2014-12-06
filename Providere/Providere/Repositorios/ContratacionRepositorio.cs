@@ -20,5 +20,11 @@ namespace Providere.Repositorios
             return contratacion;
         }
 
+
+        internal List<Contratacion> traerContratacionesRealizadas(int idUsuario)
+        {
+            return context.Contratacion.Where(x => x.IdUsuario.Equals(idUsuario)).ToList();
+        }
+
     }
 }

@@ -7,7 +7,7 @@ using Providere.Models;
 
 namespace Providere.Servicios
 {
-    public class CalificarServicios
+    public class CalificacionServicios
     {
         CalificacionRepositorio cr = new CalificacionRepositorio();
         ContratacionRepositorio cor = new ContratacionRepositorio();

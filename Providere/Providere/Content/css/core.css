@@ -60,6 +60,10 @@ body {
 .portada .glyphicon-chevron-down{
     font-size: 1.8em;
 }
+.glyphicon {
+margin-right: 7px;
+
+}
 .user-menu {
 	margin-top: 1em
 }
