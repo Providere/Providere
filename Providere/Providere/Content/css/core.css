@@ -69,6 +69,10 @@ margin-right: 7px;
     max-height:200px;
     overflow:hidden;
 }
+.contenedor-img >img
+{
+    min-height: 200px
+}
 .user-menu {
 	margin-top: 1em
 }

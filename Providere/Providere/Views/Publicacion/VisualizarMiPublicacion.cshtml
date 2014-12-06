@@ -90,7 +90,17 @@
         <div class="col-md-12">
             <h3>
                 Calificaciones</h3>
-            <em>Aqui se mostraran las calificaciones que obtuviste</em>
+                 @if (@HttpContext.Current.Session["IdUsuario"].ToString() == Model.IdUsuario.ToString())
+                {
+                
+             @: Todavía no obtuviste calificaciones.       
+             }
+                else
+                {
+                 
+                @Html.DisplayFor(model => model.Usuario.Nombre)
+                    @: aún no posee calificaciones.
+                }
         </div>
         <div class="col-md-12">
             <h3>
