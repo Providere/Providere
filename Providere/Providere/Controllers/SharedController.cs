@@ -13,7 +13,14 @@ namespace Providere.Controllers
 
         public ActionResult _Layout()
         {
-            return View();
+            if (this.Session["IdUsuario"] == null)
+            {
+                return RedirectToAction("CerrarSesion", "Usuario");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult _Registracion()
