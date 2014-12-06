@@ -26,5 +26,17 @@ namespace Providere.Repositorios
             return context.Contratacion.Where(x => x.Usuario.Id == idUsuario).ToList();
         }
 
+
+        internal Contratacion nuevaContratacion(Publicacion publicacion, Usuario usuario)
+        {
+            Contratacion contratacionNueva = new Contratacion();
+            contratacionNueva.IdPublicacion = publicacion.Id;
+            contratacionNueva.IdUsuario = usuario.Id;
+
+            context.Contratacion.AddObject(contratacionNueva);
+            context.SaveChanges();
+
+            return contratacionNueva;
+        }
     }
 }

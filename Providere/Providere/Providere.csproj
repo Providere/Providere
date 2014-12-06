@@ -132,7 +132,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ClientException.cs" />
     <Compile Include="Controllers\BuscarController.cs" />
-    <Compile Include="Controllers\CalificarController.cs" />
+    <Compile Include="Controllers\CalificacionController.cs" />
     <Compile Include="Controllers\ContratacionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
@@ -326,6 +326,7 @@
     <Content Include="Views\Publicacion\Listar.cshtml" />
     <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Contratacion\Index.cshtml" />
+    <Content Include="Views\Calificacion\CalificarUsuario.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

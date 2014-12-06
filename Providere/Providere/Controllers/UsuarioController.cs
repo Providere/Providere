@@ -289,5 +289,8 @@ namespace Providere.Controllers
                 return File(fullPath, "Imagenes/FotoPerfil", file);
             }
         }
+        
+
+
     }
 }

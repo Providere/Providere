@@ -64,6 +64,11 @@ body {
 margin-right: 7px;
 
 }
+.contenedor-img 
+{
+    max-height:200px;
+    overflow:hidden;
+}
 .user-menu {
 	margin-top: 1em
 }

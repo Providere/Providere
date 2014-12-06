@@ -54,7 +54,8 @@
                 }
                 else
                 {
-                    <a href="#" class="btn btn-primary glyphicon glyphicon-arrow-left">Contratar</a>
+                    @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
+               
                 }
             </div>
         </div>

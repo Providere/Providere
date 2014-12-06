@@ -153,6 +153,13 @@ namespace Providere.Controllers
         // {
         //     return View();
         // }
+
+        public ActionResult ContratarPublicacion(Publicacion publicacion)
+        {
+            return RedirectToAction("Contratar", "Contratacion", publicacion);
+        }
+
+
     }
 }
 

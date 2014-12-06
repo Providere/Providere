@@ -14,20 +14,21 @@ namespace Providere.Servicios
         TipoEvaluacionRepositorio tir = new TipoEvaluacionRepositorio();
         TipoCalificacionRepositorio tcr = new TipoCalificacionRepositorio();
 
-        internal void calificarUsuario(short idCalificador, short idCalificado, short contratacionId, short tipoEvaluacionId, short tipoCalificacionId)
+        internal void calificarUsuario(int idContratacion, int idTipoEvaluacion, int idTipoCalificacion)
         {
-            Contratacion contratacion = cor.traerDatosPorId(contratacionId);
-            TipoEvaluacion tipoEvaluacion = tir.traerDatosPorId(tipoEvaluacionId);
-            TipoCalificacion tipoCalificacion = tcr.traerDatosPorId(tipoCalificacionId);
+            Contratacion contratacion = cor.traerDatosPorId(idContratacion);
+            TipoEvaluacion tipoEvaluacion = tir.traerDatosPorId(idTipoEvaluacion);
+            TipoCalificacion tipoCalificacion = tcr.traerDatosPorId(idTipoCalificacion);
 
             Calificacion calificacion  = new Calificacion();
-            calificacion.IdCalificador = idCalificador;
-            calificacion.IdCalificado = idCalificado;
+            calificacion.IdCalificador = contratacion.IdUsuario;
+            calificacion.IdCalificado = contratacion.Publicacion.IdUsuario;
             calificacion.Contratacion = contratacion;
             calificacion.TipoEvaluacion = tipoEvaluacion;
             calificacion.TipoCalificacion = tipoCalificacion;
 
             cr.calificarUsuario(calificacion);
         }
+
     }
 }
