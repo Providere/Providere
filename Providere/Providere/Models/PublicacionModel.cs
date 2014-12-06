@@ -35,6 +35,12 @@ namespace Providere.Models
              //[DisplayFormat(ConvertEmptyStringToNull = true)]
              public object IdSubRubro { get; set; }
 
+             [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+             public DateTime FechaCreacion { get; set; }
+
+             [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+             public DateTime FechaEdicion { get; set; }
+
          }
     }
 }

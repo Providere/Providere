@@ -35,14 +35,6 @@ body {
 #contenedor-botones-index span{
 	margin-right: 6px
 }
-table th 
-{
-    
-color: #ffffff;
-background-color: #B11252;
-border-color: #B11252;
-}
-
 
 .portada {
 	background: url('../img/index.jpg') no-repeat center center;
@@ -92,8 +84,12 @@ margin-right: 7px;
 
     height: auto;
     float: left;
-    margin-top: 0.5em;
-    margin-right: 1em;
+    
+
+    margin-top: 0.8em;
+    
+
+    margin-right: 4em;
     position: relative;
 
     -webkit-border-radius: 50%;

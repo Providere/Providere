@@ -46,7 +46,7 @@
                 @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
                 {
                 
-                    @Html.ActionLink("Volver", "ListarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-arrow-left" })
+                  @*  @Html.ActionLink("Volver", "ListarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-arrow-left" })*@
                     @Html.ActionLink("Editar", "EditarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
                 }
                 else
@@ -115,8 +115,10 @@
                     @Html.DisplayFor(model => model.Usuario.Nombre)
                     @Html.DisplayFor(model => model.Usuario.Apellido)
                 </h2>
-                <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
-                    class="badge">0</span>
+                <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span>
+                <span class="badge">0</span>
+                <br />
+                <span class="text-muted">@Html.DisplayFor(model => model.SubRubro.Nombre) </span>
             </div>
             <div>
             <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)

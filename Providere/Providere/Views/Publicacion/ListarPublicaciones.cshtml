@@ -19,10 +19,10 @@
             <thead>
                 <tr class="btn-warning">
                     <th>
-                        @Html.DisplayName("Fecha creacion")
+                        @Html.DisplayName("Fecha creación")
                     </th>
                     <th>
-                        @Html.DisplayName("Fecha de modificacion")
+                        @Html.DisplayName("Fecha de edición")
                     </th>
                     <th>
                         @Html.DisplayName("Rubro")
@@ -31,13 +31,13 @@
                         @Html.DisplayName("SubRubro")
                     </th>
                     <th>
-                        @Html.DisplayName("Titulo publicacion")
+                        @Html.DisplayName("Título de la publicación")
                     </th>
                     <th>
                         @Html.DisplayName("Precio")
                     </th>
                     <th>
-                        Editar
+                        Acción
                     </th>
                     <th>
                         Deshabilitar
@@ -74,12 +74,12 @@
                             }
                         </td>
                         <td class="text-center">
-                            @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })
+                            @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = item.Id,  @class="glyphicon glyphicon-pencil" })
                         </td>
                         <td>
                             <label>
                                 @Html.CheckBox("ckbDeshabilitar")
-                                @Html.ActionLink("Confirmar", "DeshabilitarPublicacion", "Publicacion", new { Id = item.Id }, new { @class = "btn btn-info btn-xs" })
+                                @Html.ActionLink("Confirmar", "DeshabilitarPublicacion", "Publicacion", new { Id = item.Id , @class = "btn btn-info btn-xs" })
                             </label>
                         </td>
                     </tr>
