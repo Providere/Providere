@@ -43,7 +43,7 @@
                 @Html.DisplayFor(model => model.Usuario.Apellido)
             </h2>
             <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
-                class="badge">N° </span>
+                class="badge">0</span>
         </div>
         <div class="col-md-8">
             <h3>
@@ -149,9 +149,7 @@
                         <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no puedes compartir
                         tu datos personales por este medio</p>
                     <div class="form-group col-md-10">
-                        <textarea class="form-control " name="questionText" id="questionText" cols="110"
-                            rows="" placeholder="Escribe tu pregunta aqui...">
-            </textarea>
+                        @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta aqui..." })
                     </div>
                     <div class="form-group col-md-2">
                         <button class="btn btn-primary btn-lg" type="submit">
