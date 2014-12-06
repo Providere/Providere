@@ -85,7 +85,7 @@
                 {
                 
                     <div class="col-xs-3">
-                        <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >
+                       @* <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >*@
                             <div class="thumbnail" style="height: 330px">
                                 <img  src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt=""  width="100%" height= "200px"/>
                                 <div class="caption text-center">
@@ -96,7 +96,7 @@
                                     <br />
                                 </div>
                             </div>
-                        </a>
+                       @* </a>*@
                     </div>
                 }</div>
             <center>
