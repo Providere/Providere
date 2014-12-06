@@ -43,7 +43,7 @@ namespace Providere.Controllers
 
             ViewBag.ubicacionElegida = Request["geocomplete"];
 
-            return View(publicaciones.ToList());
+            return View(publicaciones);
         }
 
     }

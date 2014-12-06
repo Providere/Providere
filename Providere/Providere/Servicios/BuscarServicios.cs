@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Providere.Repositorios;
+using Providere.Servicios;
 using Providere.Models;
 
 namespace Providere.Servicios
@@ -10,11 +11,11 @@ namespace Providere.Servicios
     public class BuscarServicios
     {
         PublicacionRepositorio pr = new PublicacionRepositorio();
-
+        PublicacionServicios ps = new PublicacionServicios();
         RubroServicios rs = new RubroServicios();
         SubRubroServicios ss = new SubRubroServicios();
 
-        internal List<Publicacion> buscar(string Rubro, string SubRubro, string Ubicacion)
+        internal ListaPublicacionesModel buscar(string Rubro, string SubRubro, string Ubicacion)
         {
 
 
@@ -36,8 +37,9 @@ namespace Providere.Servicios
             {
                 subrubro = null;
             }
-            return pr.buscarPorRubroSubRubroUbicacion(rubro, subrubro, Ubicacion);
 
+            var publis =  pr.buscarPorRubroSubRubroUbicacion(rubro, subrubro, Ubicacion);
+            return ps.obtenerPuntajeImagen(publis);
         }
     }
 }
