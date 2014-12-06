@@ -19,170 +19,136 @@
     </div>
 }
 <div>
-    <div class="listado-publicaciones" id="ultimas-publicaciones">
-        <h3>
-            Ultimas publicaciones</h3>
-        <div class="col-xs-3">
-            <div class="thumbnail">
-                <img src="../../Content/img/plomero.jpg" alt="plomero" width="100%" />
-                <div class="caption text-center">
-                    <h4>
-                        <a href="#">Pedro Gomez</a></h4>
-                    <span>Plomeria</span> <span class="badge">20</span>
-                    <br />
-                    <span><a href="#">Gasista Matriculado Plomero Presupuestos Y Visitas Sin Cargo</a></span>
-                    <br />
-                    <h6 class="text-danger">
-                        Precio: $100 presupuesto</h6>
+    @if (ViewBag.PublicacionesMasRecientes.listadoDePublicaciones.Count > 0)
+    {<div class="listado-publicaciones" id="ultimas-publicaciones">
+        <h2>
+            Ultimas publicaciones</h2>
+        <br />
+        <div class="row">
+            @foreach (var item in ViewBag.PublicacionesMasRecientes.listadoDePublicaciones)
+            {
+                
+                <div class="col-xs-3">
+                    <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >
+                        <div class="thumbnail">
+                            <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
+                                 width="110%" alt="" height= "200px" />
+                            <div class="caption text-center">
+                                <h4>
+                                    <a href="#">
+                                        @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                <br />
+                                <span><a href="#">@item.publicacion.Titulo</a></span>
+                                <br />
+                                <h6 class="text-danger">
+                                    @if (@item.publicacion.PrecioOpcion == 1)
+                                    {
+                                        @Html.Label("Precio:")
+                                        @Html.Label("A Convenir") 
+                                    }
+                                    else
+                                    {
+                                        @Html.Label("Precio: $") 
+                                        @String.Format("{0:0.00}", @item.publicacion.Precio)                     
+                   
+                                    }
+                                </h6>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
-        </div>
-        <div class="col-xs-3">
-            <div class="thumbnail">
-                <img src="../../Content/img/plomero.jpg" width="100%" alt="plomero" />
-                <div class="caption  text-center">
-                    <h4>
-                        <a href="#">Marcos Aguirre</a></h4>
-                    <span>Electricista</span> <span class="badge">5</span>
-                    <br />
-                    <br />
-                    <span><a href="#">Electricista Matriculado Zona Sur</a></span>
-                    <h6 class="text-danger">
-                        Precio: $100 presupuesto</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-3">
-            <div class="thumbnail">
-                <img src="../../Content/img/plomero.jpg" width="100%" alt="plomero" />
-                <div class="caption  text-center">
-                    <h4>
-                        <a href="#">Mario Yuni</a></h4>
-                    <span>Electricista</span> <span class="badge">3</span>
-                    <br />
-                    <br />
-                    <span><a href="#">Electricista Matriculado Capital Federal</a></span>
-                    <h6 class="text-danger">
-                        Precio: $100 presupuesto</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-3">
-            <div class="thumbnail">
-                <img src="../../Content/img/plomero.jpg" width="100%" alt="plomero" />
-                <div class="caption  text-center">
-                    <h4>
-                        <a href="#">Roberto Peralta</a></h4>
-                    <span>Jardineria</span> <span class="badge">100</span>
-                    <br />
-                    <br />
-                    <span><a href="#">Jardinería - Paisajismo - Mantenimientos - Parquizados en zona oeste</a></span>
-                    <h6 class="text-danger">
-                        Precio: $100 presupuesto</h6>
-                </div>
-            </div>
+            }
         </div>
         <center>
-            <button type="button" class="btn btn-primary">
-                Ver mas publicaciones</button>
+            <a href="/Publicacion/Lista">
+                <button type="button" class="btn btn-primary">
+                    Ver mas publicaciones</button></a>
         </center>
     </div>
+    }
+    else
+    {
+        <div class="text-center">
+            <span class="text-muted">Hoy no hay publicaciones recientes.</span>
+        </div>
+    }
     <hr />
-    <div id="prestadores-mejores">
-        <h3>
-            Prestadores mejor calificados</h3>
-        <div class="col-xs-3">
-            <div class="thumbnail">
-                <img src="../../Content/img/plomero.jpg" width="100%" alt="imagen" />
-                <div class="caption">
-                    <h4>
-                        <a href="#">Marcos Aguirre</a></h4>
-                    <span>Pintor</span> <span class="badge">5</span>
-                </div>
-            </div>
+    @if (ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones.Count > 0)
+    {
+        <div id="prestadores-mejores">
+            <h2>
+                Prestadores mejor calificados</h2>
+            <br />
+            <div class="row">
+                @foreach (var item in ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones)
+                {
+                
+                    <div class="col-xs-3">
+                        <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >
+                            <div class="thumbnail" style="height: 330px">
+                                <img  src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt=""  width="100%" height= "200px"/>
+                                <div class="caption text-center">
+                                    <h4>
+                                        <a href="#">
+                                            @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                    <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                    <br />
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }</div>
+            <center>
+                <a href="/Publicacion/Lista">
+                    <button type="button" class="btn btn-primary">
+                        Ver mas prestadores</button></a>
+            </center>
         </div>
-        <div class="col-xs-3">
-            <div class="thumbnail">
-                <img src="../../Content/img/plomero.jpg" width="100%" alt="imagen" />
-                <div class="caption">
-                    <h4>
-                        <a href="#">Marcos Aguirre</a></h4>
-                    <span>Electricista</span> <span class="badge">5</span>
-                </div>
-            </div>
+    }
+    else
+    {
+        <div class="text-center">
+            <span class="text-muted">Hoy no hay publicaciones destacadas.</span>
         </div>
-        <div class="col-xs-3">
-            <div class="thumbnail">
-                <img src="../../Content/img/plomero.jpg" width="100%" alt="imagen" />
-                <div class="caption">
-                    <h4>
-                        <a href="#">Marcos Aguirre</a></h4>
-                    <span>Albañileria</span> <span class="badge">5</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-3">
-            <div class="thumbnail">
-                <img src="../../Content/img/plomero.jpg" width="100%" alt="imagen" />
-                <div class="caption">
-                    <h4>
-                        <a href="#">Marcos Aguirre</a></h4>
-                    <span>Electricista</span> <span class="badge">5</span>
-                </div>
-            </div>
-        </div>
-        <center>
-            <button type="button" class="btn btn-primary">
-                Ver mas prestadores</button>
-        </center>
-    </div>
+    }
     <hr />
-    <div id="prestadores-zona">
-        <h3>
-            Prestadores de mi zona</h3>
-        <div class="col-xs-3">
-            <div class="thumbnail">
-                <img src="../../Content/img/plomero.jpg" width="100%" alt="imagen" />
-                <div class="caption">
-                    <h4>
-                        <a href="#">Marcos Aguirre</a></h4>
-                    <span>Cerrajeria</span> <span class="badge">5</span>
-                </div>
+    @if (ViewBag.PublicacionesMasCercanas.listadoDePublicaciones.Count > 0)
+    {
+        <div id="prestadores-zona">
+            <h2>
+                Prestadores de mi zona</h2>
+            <br />
+            <div class="row">
+                @foreach (var item in ViewBag.PublicacionesMasCercanas.listadoDePublicaciones)
+                {
+                
+                    <div class="col-xs-3">
+                        <div class="thumbnail" style="height: 360px">
+                            <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
+                            <div class="caption text-center">
+                                <h4>
+                                    <a href="#">
+                                        @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
+            <center>
+                <a href="/Publicacion/Lista">
+                    <button type="button" class="btn btn-primary">
+                        Ver mas prestadores en mi zona</button>
+                </a>
+            </center>
         </div>
-        <div class="col-xs-3">
-            <div class="thumbnail">
-                <img src="../../Content/img/plomero.jpg" width="100%" alt="imagen" />
-                <div class="caption">
-                    <h4>
-                        <a href="#">Marcos Aguirre</a></h4>
-                    <span>Fumigador</span> <span class="badge">5</span>
-                </div>
-            </div>
+    }
+    else
+    {
+        <div class="text-center">
+            <span class="text-muted">Hoy no hay publicaciones de tu zona.</span>
         </div>
-        <div class="col-xs-3">
-            <div class="thumbnail">
-                <img src="../../Content/img/plomero.jpg" width="100%" alt="imagen" />
-                <div class="caption">
-                    <h4>
-                        <a href="#">Marcos Aguirre</a></h4>
-                    <span>Colación de piscinas</span> <span class="badge">5</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-3">
-            <div class="thumbnail">
-                <img src="../../Content/img/plomero.jpg" width="100%" alt="imagen" />
-                <div class="caption">
-                    <h4>
-                        <a href="#">Marcos Aguirre</a></h4>
-                    <span>Electricista</span> <span class="badge">5</span>
-                </div>
-            </div>
-        </div>
-        <center>
-            <button type="button" class="btn btn-primary">
-                Ver mas prestadores en mi zona</button>
-        </center>
-    </div>
+    }
 </div>

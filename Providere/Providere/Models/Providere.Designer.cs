@@ -1794,7 +1794,8 @@ namespace Providere.Models
         /// <param name="estado">Valor inicial de la propiedad Estado.</param>
         /// <param name="idUsuario">Valor inicial de la propiedad IdUsuario.</param>
         /// <param name="idRubro">Valor inicial de la propiedad IdRubro.</param>
-        public static Publicacion CreatePublicacion(global::System.Int16 id, global::System.String titulo, global::System.String descripcion, global::System.DateTime fechaCreacion, global::System.DateTime fechaEdicion, global::System.Byte estado, global::System.Int16 idUsuario, global::System.Int16 idRubro)
+        /// <param name="precioOpcion">Valor inicial de la propiedad PrecioOpcion.</param>
+        public static Publicacion CreatePublicacion(global::System.Int16 id, global::System.String titulo, global::System.String descripcion, global::System.DateTime fechaCreacion, global::System.DateTime fechaEdicion, global::System.Byte estado, global::System.Int16 idUsuario, global::System.Int16 idRubro, global::System.Int32 precioOpcion)
         {
             Publicacion publicacion = new Publicacion();
             publicacion.Id = id;
@@ -1805,6 +1806,7 @@ namespace Providere.Models
             publicacion.Estado = estado;
             publicacion.IdUsuario = idUsuario;
             publicacion.IdRubro = idRubro;
+            publicacion.PrecioOpcion = precioOpcion;
             return publicacion;
         }
 
@@ -2054,6 +2056,30 @@ namespace Providere.Models
         private Nullable<global::System.Int16> _IdSubRubro;
         partial void OnIdSubRubroChanging(Nullable<global::System.Int16> value);
         partial void OnIdSubRubroChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PrecioOpcion
+        {
+            get
+            {
+                return _PrecioOpcion;
+            }
+            set
+            {
+                OnPrecioOpcionChanging(value);
+                ReportPropertyChanging("PrecioOpcion");
+                _PrecioOpcion = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PrecioOpcion");
+                OnPrecioOpcionChanged();
+            }
+        }
+        private global::System.Int32 _PrecioOpcion;
+        partial void OnPrecioOpcionChanging(global::System.Int32 value);
+        partial void OnPrecioOpcionChanged();
 
         #endregion
 

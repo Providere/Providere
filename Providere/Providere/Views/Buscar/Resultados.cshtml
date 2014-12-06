@@ -1,0 +1,75 @@
+﻿@model  Providere.Models.ListaPublicacionesModel
+@{
+    ViewBag.Title = "Resultados de búsqueda";
+   
+}
+<div class="container well">
+    <div class="row">
+        <div class="col-md-5">
+            <h2>
+                Resultados de la búsqueda
+            </h2>
+        </div>
+        <div class="col-md-7 text-right">
+            <div class="text-muted pull-right">
+                @if (@ViewBag.rubroElegido != null)
+                {
+                    @ViewBag.rubroElegido.Nombre
+                }
+                @if (@ViewBag.subRubroElegido != null)
+                {
+                    if (@ViewBag.rubroElegido != null)
+                    { 
+                    @:|
+                    }
+                    @ViewBag.subRubroElegido.Nombre
+                }
+                @if (@ViewBag.ubicacionElegida != null)
+                {
+                    if (@ViewBag.subRubroElegido != null || @ViewBag.rubroElegido != null)
+                    { 
+                    @:|
+                    }
+                    @ViewBag.ubicacionElegida 
+                }
+            </div>
+        </div>
+    </div>
+    <hr />
+    <br />
+    <div class="col-md-12">
+        @if (Model.listadoDePublicaciones.Count > 0)
+        {
+            foreach (var item in Model.listadoDePublicaciones)
+            {
+                <div class="col-xs-3"> <a href="/publicacion/ver/@item.publicacion.Id" > <div class="thumbnail"
+                > <img src="../../Imagenes/Publicacion/@item.imagen.Nombre" width="110%" alt=""
+                height= "200px" /> <div class="caption text-center"> <h4> <a href="#">
+                @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4> <strong>@item.publicacion.Rubro.Nombre</strong>
+                <span class="badge">@item.puntaje.Total</span> <br /> <span><a href="#">@item.publicacion.Titulo</a></span>
+                <br /> <h6 class="text-danger">
+                @if (@item.publicacion.PrecioOpcion == 1)
+                {
+                    @Html.Label("Precio:")
+                    @Html.Label("A Convenir") 
+                }
+                else
+                {
+                    @Html.Label("Precio: $") 
+                    @String.Format("{0:0.00}", @item.publicacion.Precio)                     
+                   
+                }
+            </h6> </div> </div> </a> </div>
+            }
+        }
+        else
+        {
+            <div class="text-center">
+                <span class="text-muted">No hubo resultados.</span>
+            </div>
+        }
+    </div>
+    
+    <br />
+    <br />
+</div>

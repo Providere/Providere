@@ -1,14 +1,6 @@
-﻿@model Providere.Models.Usuario
+﻿@*@model Providere.Models.Usuario*@
 @{
     Layout = null;
-}
-@if (ViewBag.Mensaje != null)
-{
-    <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert">
-            &times;</button>
-        @ViewBag.Mensaje
-    </div>
 }
 <!DOCTYPE html>
 <html>
@@ -22,6 +14,7 @@
     <!-- Core Scripts -->
     <script language="javascript" type="text/javascript" src="../../Scripts/js/jquery-1.10.2.js"></script>
     <script language="javascript" type="text/javascript" src="../../Scripts/js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../Content/js/script.js"></script>
     <!-- Twitter -->
     <script language="javascript" type="text/javascript">
         !function (d, s, id) {
@@ -36,7 +29,7 @@
     <script language="javascript" type="text/javascript">
         $(function () {
 
-            $("#geocomplete").geocomplete()
+            $("#geocomplete").geocomplete({ types: ['(cities)'] })
           .bind("geocode:result", function (event, result) {
               $.log("Result: " + result.formatted_address);
           })
@@ -67,7 +60,7 @@
             <div class="container">
                 <div class="header">
                     <div id="contenedor-logo" class="col-md-6">
-                        <img src="../../Content/img/logotransparente.png" alt="Providere" width="100%" />
+                        <img src="../../Content/img/logotransparente.png" alt="Providere" width="90%" />
                     </div>
                     <div id="contenedor-botones-index" class="col-md-6">
                         <ul class="nav navbar-nav navbar-right">
@@ -92,7 +85,7 @@
             </div>
             <div class="container">
                 <h2>
-                    Providere es la aplicación de los servicios para el hogar</h2>
+                    La aplicación de los servicios para el hogar</h2>
                 <p>
                     Te proponemos un lugar de encuentro entre las personas que buscan servicios a domicilio,
                     y aquellos profesionales autónomos que ofrecen estos servicios.</p>
@@ -107,27 +100,7 @@
                 <br />
                 <br />
                 <div class="margin-top">
-                    <div id="buscador" class="row">
-                        <div class="col-md-5">
-                            <select class="form-control">
-                                <option>Seleccione rubro</option>
-                                <option>Plomeria</option>
-                                <option>Gasista</option>
-                                <option>Electricista</option>
-                                <option>Enfermeria</option>
-                            </select>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion. Ej:San Justo"
-                                    autocomplete="off" />
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <input id="btnBuscar" type="submit" value="Buscar" class="btn btn-primary btn-block" />
-                            <br />
-                        </div>
-                    </div>
+                @Html.Partial("~/Views/Shared/buscador.cshtml")
                 </div>
                 <div class="text-center">
                     <span class="glyphicon glyphicon-chevron-down"></span>
@@ -139,68 +112,37 @@
             <div id="publicaciones-destacadas" class="listado-publicaciones">
                 <h2>
                     Publicaciones destacadas</h2>
-                <div class="row">
-                    <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail">
-                            <img src="../../Content/img/plomero.jpg" alt="plomero" width="100%" />
-                            <div class="caption">
-                                <h3>
-                                    Pedro Gomez</h3>
-                                <span>Plomeria</span> <span class="badge">25</span>
-                                <p>
-                                    Gasista Matriculado Plomero Presupuestos Y Visitas Sin Cargo</p>
-                                <p>
-                                    <a href="#" class="btn btn-primary" role="button">Ver la publicación</a>
-                                </p>
+                <br />
+                @if (ViewBag.Publicaciones.listadoDePublicaciones.Count > 0)
+                {
+                    <div class="row">
+                    @foreach (var item in ViewBag.Publicaciones.listadoDePublicaciones)
+                    {         
+                        <div class="col-sm-6 col-md-3">
+                            <div class="thumbnail">
+                            
+                                <img src="../../Content/img/@item.imagen.Nombre" alt="plomero" width="100%" />
+                                <div class="caption">
+                                    <h3>
+                                        @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</h3>
+                                    <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                    <p class="text-muted">
+                                        @item.publicacion.Titulo</p>
+                                    <p>
+                                        <a href="/publicacion/ver/@item.publicacion.Id" class="btn btn-primary btn-block" role="button">Ver la publicación</a>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail">
-                            <img src="../../Content/img/plomero.jpg" alt="plomero" width="100%" />
-                            <div class="caption">
-                                <h3>
-                                    Pedro Gomez</h3>
-                                <span>Plomeria</span> <span class="badge">25</span>
-                                <p>
-                                    Gasista Matriculado Plomero Presupuestos Y Visitas Sin Cargo</p>
-                                <p>
-                                    <a href="#" class="btn btn-primary" role="button">Ver la publicación</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail">
-                            <img src="../../Content/img/plomero.jpg" alt="plomero" width="100%" />
-                            <div class="caption">
-                                <h3>
-                                    Pedro Gomez</h3>
-                                <span>Plomeria</span> <span class="badge">25</span>
-                                <p>
-                                    Gasista Matriculado Plomero Presupuestos Y Visitas Sin Cargo</p>
-                                <p>
-                                    <a href="#" class="btn btn-primary" role="button">Ver la publicación</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail">
-                            <img src="../../Content/img/plomero.jpg" alt="plomero" width="100%" />
-                            <div class="caption">
-                                <h3>
-                                    Pedro Gomez</h3>
-                                <span>Plomeria</span> <span class="badge">25</span>
-                                <p>
-                                    Gasista Matriculado Plomero Presupuestos Y Visitas Sin Cargo</p>
-                                <p>
-                                    <a href="#" class="btn btn-primary" role="button">Ver la publicación</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                        </div>        
+                    }
                 </div>
+                }
+                else
+                {
+                    <div class="text-center">
+                        <span class="text-muted">Hoy no hay publicaciones destacadas.</span>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -211,11 +153,11 @@
                 <img src="../../Content/img/logoSquare.png" alt="logo" width="12%" />
                 <span class="text-info">©2014 | Todos los derechos reservados</span>
             </div>
-            <div class="col-md-4 text-center">
-                <p>
-                    <a data-toggle="modal" href="#myModalFunciona">C&oacute;mo funciona</a> | <a href="mailto:providere_arg@gmail.com">
-                        Contacto</a>
-                </p>
+           <div class="col-md-4 text-center">
+                 <span class="text-info">
+                    <a data-toggle="modal" href="#myModalProvidere">Acerca de Providere</a> | <a href="#">FAQ</a> | <a href="mailto:providere_arg@gmail.com">
+                        Contacto</a> 
+                </span>
             </div>
             <div class="iconos-sociales col-md-4">
                 <a href="#">
@@ -228,7 +170,7 @@
         <!--container del footer-->
     </footer>
     <!-- Modal Como Funciona-->
-    <div class="modal" id="myModalFunciona">
+    <div class="modal" id="myModalProvidere">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

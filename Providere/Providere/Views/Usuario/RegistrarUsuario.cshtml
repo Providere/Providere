@@ -4,108 +4,114 @@
     ViewBag.Title = "Registracion";
     Layout = "~/Views/Shared/_Registracion.cshtml";
 }
-<div class="content">
-    @using (Html.BeginForm("RegistrarUsuario", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
-    {
-        <div>
-            <h2>
-                Reg&iacute;strate en Providere<small> es totalmente gratis!</small></h2>
-            @Html.ValidationSummary(true)
-            <hr />
-            <div class="row">
-                @Html.Label("Nombre", new { @class = "col-sm-5 control-label" })
-                <div class="col-xs-3">
-                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Nombre)
+<div class="container well">
+    <div class="content">
+        @using (Html.BeginForm("RegistrarUsuario", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <div>
+                <h2>
+                    Reg&iacute;strate en Providere<small> es totalmente gratis!</small></h2>
+                <p>
+                    @Html.ValidationSummary(true)</p>
+                <hr />
+                <div class="row">
+                    @Html.Label("Nombre", new { @class = "col-sm-5 control-label" })
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Nombre)
+                    </div>
                 </div>
-            </div>
-            <br />
-            <div class="row">
-                @Html.Label("Apellido", new { @class = "col-sm-5 control-label" })
-                <div class="col-xs-3">
-                    @Html.TextBoxFor(m => m.Apellido, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Apellido)
+                <br />
+                <div class="row">
+                    @Html.Label("Apellido", new { @class = "col-sm-5 control-label" })
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(m => m.Apellido, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Apellido)
+                    </div>
                 </div>
-            </div>
-            <br />
-            <div class="row">
-                @Html.Label("Correo electronico", new { @class = "col-sm-5 control-label" })
-                <div class="col-xs-3">
-                    @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Mail)
+                <br />
+                <div class="row">
+                    @Html.Label("Correo electronico", new { @class = "col-sm-5 control-label" })
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Mail)
+                    </div>
                 </div>
-            </div>
-            <br />
-            <div class="row">
-                @Html.Label("Numero telefonico", new { @class = "col-sm-5 control-label" })
-                <div class="col-xs-3">
-                    @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Telefono)
-                    <small class="text-info">Cód. de área + Nº. Ej.: 11 44852680</small>
+                <br />
+                <div class="row">
+                    @Html.Label("Numero telefonico", new { @class = "col-sm-5 control-label" })
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Telefono)
+                        <small class="text-info">Cód. de área + Nº. Ej.: 11 44852680</small>
+                        <br />
+                        <small class="text-info"><span class="glyphicon glyphicon-lock"></span>Solo ser&aacute;
+                            visible por tu contraparte cuando contrates un servicio</small>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    @Html.Label("Contraseña", new { @class = "col-sm-5 control-label" })
+                    <div class="col-xs-3">
+                        @Html.PasswordFor(m => m.Contrasenia, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Contrasenia)
+                        <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Entre
+                            5 y 10 caracteres,debe contener 1 numero y 1 mayuscula</small>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    @Html.Label("Localidad", new { @class = "col-sm-5 control-label" })
+                    <div class="col-xs-3">
+                        @Html.TextBox("geocomplete", null, new { @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.Ubicacion)
+                    </div>
                     <br />
-                    <small class="text-info"><span class="glyphicon glyphicon-lock"></span>Solo ser&aacute;
-                        visible por tu contraparte cuando contrates un servicio</small>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                @Html.Label("Lugar de residencia", new { @class = "col-sm-5 control-label" })
-                <div class="col-xs-3">
-                    @Html.TextBoxFor(m => m.Ubicacion, new { @class = "form-control" })
-                    @*<input id="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicacion.Ej:San Justo" />*@
-                    @Html.ValidationMessageFor(m => m.Ubicacion)
                     <br />
+                    <br />
+                    <div class="map_canvas">
+                    </div>
                 </div>
-            </div>
-            <br />
-            <div class="row">
-                @Html.Label("Contraseña", new { @class = "col-sm-5 control-label" })
-                <div class="col-xs-3">
-                    @Html.PasswordFor(m => m.Contrasenia, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Contrasenia)
-                    <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Entre
-                        5 y 10 caracteres,debe contener 1 numero y 1 mayuscula</small>
+                <br />
+                <div class="row">
+                    <div class="col-sm-5 control-label">
+                        @Html.Label("CaptchaCode", "Escriba el código de la imágen")
+                    </div>
+                    <div class="col-xs-3">
+                        @{ MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha");
+                           sampleCaptcha.UserInputClientID = "CaptchaCode"; }
+                        @Html.Captcha(sampleCaptcha)
+                        <div class="actions">
+                            @Html.TextBox("CaptchaCode", null, new { @class = "form-control" })
+                            @Html.ValidationMessage("CaptchaCode")
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-5 control-label">
-                    @Html.Label("CaptchaCode", "Escriba el código de la imágen")
-                </div>
-                <div class="col-xs-3">
-                    @{ MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha");
-                       sampleCaptcha.UserInputClientID = "CaptchaCode"; }
-                    @Html.Captcha(sampleCaptcha)
-                    <div class="actions">
-                        @Html.TextBox("CaptchaCode")
-                        @Html.ValidationMessage("CaptchaCode")
+                <br />
+                <fieldset class="checkboxes">
+                    <legend>Aclaraci&oacute;n</legend>
+                    <div class="input">
+                        <ul class="inputs-list">
+                            @Html.CheckBox("ckbAcepto")
+                            @Html.ValidationMessage("ckbAcepto")
+                            Al registrarme, declaro que soy mayor de edad y acepto los<a target="_blank" href="#">
+                                Términos y Condiciones de Uso</a>
+                        </ul>
+                    </div>
+                </fieldset>
+                <br />
+                <div class="form-group">
+                    <div class="col-md-offset-5">
+                        <button id="btnCrear" type="submit" class="btn btn-info btn-lg">
+                            Crear cuenta
+                        </button>
+                        @Html.ActionLink("Cancelar", "Index", "Index", null, new { @class = "btn btn-warning btn-lg" })
                     </div>
                 </div>
             </div>
-            <br />
-            <fieldset class="checkboxes">
-                <legend>Aclaraci&oacute;n</legend>
-                <div class="input">
-                    <ul class="inputs-list">
-                   
-                        @Html.CheckBox("ckbAcepto")
-                        @Html.ValidationMessage("ckbAcepto")
-                        Al registrarme, declaro que soy mayor de edad y acepto los<a target="_blank" href="#">
-                            Términos y Condiciones de Uso</a>
-                           
-                    </ul>
-                </div>
-                <!-- .input -->
-            </fieldset>
-            <br />
-            <div class="form-group">
-                <div class="col-md-offset-5">
-                    <button id="btnCrear" type="submit" class="btn btn-info btn-lg">
-                        Crear cuenta
-                    </button>
-                    @Html.ActionLink("Cancelar", "Index", "Index", null, new { @class = "btn btn-warning btn-lg" })
-                </div>
-            </div>
-        </div>
-    }
+        }
+    </div>
 </div>
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -24,6 +24,12 @@ namespace Providere
            );
 
             routes.MapRoute(
+              "Publicacion",
+              "Publicacion/VisualizarPublicacion/{idPublicacion}",
+              new { controller = "Publicacion", action = "VisualizarPublicacion", idPublicacion = UrlParameter.Optional }
+          );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Home", id = UrlParameter.Optional }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Providere.Models;
+using Providere.Servicios;
 
 namespace Providere.Controllers
 {
@@ -11,9 +13,13 @@ namespace Providere.Controllers
         //
         // GET: /Index/
 
+        PublicacionServicios ps = new PublicacionServicios();
+        ProvidereEntities context = new ProvidereEntities();
+
         public ActionResult Index()
         {
-            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Publicaciones = ps.traerPublicacionesMejorCalificadas(4);
+
             return View();
         }
 
