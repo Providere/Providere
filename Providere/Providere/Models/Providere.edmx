@@ -182,7 +182,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="smallint" Nullable="false" />
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Comentario" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="IdCalificacion" Type="smallint" Nullable="false" />
         </EntityType>
