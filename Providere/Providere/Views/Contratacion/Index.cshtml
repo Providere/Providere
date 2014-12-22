@@ -3,6 +3,14 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
 <div class="container well">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -15,11 +23,11 @@
         <div role="tabpanel" class="tab-pane active" id="contrate">
             <h2>
                 Servicios que contraté</h2>
-            <hr />
+           <br />
             <div class="col-md-12">
-                <table class="tabla-publicaciones table table-bordered table-hover">
+                <table class="tabla-contrataciones table table-bordered table-hover">
                     <thead>
-                        <tr class="btn-warning">
+                        <tr class="default">
                             <th>
                                 @Html.DisplayName("Titulo de la publicacion")
                             </th>
@@ -65,11 +73,11 @@
         <div role="tabpanel" class="tab-pane" id="meContrataron">
             <h2>
                 Servicios por lo que me contrataron</h2>
-            <hr />
+           <br />
             <div class="col-md-12">
-                <table class="tabla-publicaciones table table-bordered table-hover">
+                <table class="tabla-contrataciones table table-bordered table-hover">
                     <thead>
-                        <tr class="btn-warning">
+                        <tr class="default">
                             <th>
                                 @Html.DisplayName("Titulo de la publicacion")
                             </th>
@@ -87,7 +95,28 @@
                             </th>
                         </tr>
                     </thead>
-                    
+                     <tbody>
+                       @* @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                  <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Publicacion.Usuario.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Publicacion.Usuario.Apellido)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Publicacion.Usuario.Telefono)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Calificar servicio", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id })
+                                </td>
+                            </tr>
+                        }*@
+                    </tbody>
                 </table>
             </div>
         </div>

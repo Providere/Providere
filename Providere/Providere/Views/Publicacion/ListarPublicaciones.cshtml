@@ -17,7 +17,7 @@
     <div class="col-md-12">
         <table class="tabla-publicaciones table table-bordered table-hover">
             <thead>
-                <tr class="btn-warning">
+                <tr class="default">
                     <th>
                         @Html.DisplayName("Fecha creación")
                     </th>
@@ -79,7 +79,7 @@
                         <td>
                             <label>
                                 @Html.CheckBox("ckbDeshabilitar")
-                                @Html.ActionLink("Confirmar", "DeshabilitarPublicacion", "Publicacion", new { Id = item.Id , @class = "btn btn-info btn-xs" })
+                                @Html.ActionLink("Confirmar", "DeshabilitarPublicacion", "Publicacion", new { Id = item.Id , @class = "btn btn-primary btn-xs" })
                             </label>
                         </td>
                     </tr>

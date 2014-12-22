@@ -4654,7 +4654,7 @@ a.thumbnail.active {
 }
 .alert-warning {
   background-color: #ff851b;
-  border-color: #ff7701;
+  border-color: #ff851b;
   color: #ffffff;
 }
 .alert-warning hr {

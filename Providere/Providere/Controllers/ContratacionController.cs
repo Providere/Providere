@@ -16,7 +16,7 @@ namespace Providere.Controllers
         UsuarioServicios us = new UsuarioServicios();
         public ActionResult Index()
         {
-
+              ViewBag.Error = TempData["Error"];
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             var contrataciones = cs.traerContratacionesRealizadas(idUsuario);
 
@@ -28,9 +28,18 @@ namespace Providere.Controllers
 
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             var usuario = us.ObtenerUsuarioEditar(idUsuario);
-            var contratacion = cs.nuevaContratacion(publicacion, usuario);
+            if (publicacion.IdUsuario == idUsuario) //Significa que el usuario que publico es el mismo que inicio sesion
+            {
+                TempData["Error"] = "No puede contratar su publicación!!";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                var contratacion = cs.nuevaContratacion(publicacion, usuario);
 
-            return RedirectToAction("Index");
+
+                return RedirectToAction("Index");
+            }
         }
 
     }
