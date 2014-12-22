@@ -31,6 +31,16 @@
                 </div>
                 <br />
                 <div class="row">
+                    @Html.Label("DNI", new { @class = "col-sm-5 control-label" })
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(m => m.Dni, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Dni)
+                         <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Ingresá el Número de tu Documento
+                         Nacional de Identidad</small>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
                     @Html.Label("Correo electronico", new { @class = "col-sm-5 control-label" })
                     <div class="col-xs-3">
                         @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })

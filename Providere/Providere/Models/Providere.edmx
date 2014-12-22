@@ -240,6 +240,7 @@
           <Property Name="CodActivacion" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="FechaCambioEstado" Type="datetime" Nullable="false" />
           <Property Name="IdEstado" Type="smallint" Nullable="false" />
+          <Property Name="Dni" Type="varchar" Nullable="false" MaxLength="10" />
         </EntityType>
         <Association Name="FK_Calificacion_Contratacion">
           <End Role="Contratacion" Type="ProvidereModel.Store.Contratacion" Multiplicity="1" />
@@ -746,6 +747,7 @@
           <NavigationProperty Name="PreguntaRespuesta" Relationship="ProvidereModel.FK_PreguntaRespuesta_Usuario" FromRole="Usuario" ToRole="PreguntaRespuesta" />
           <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Publicacion_Usuario" FromRole="Usuario" ToRole="Publicacion" />
           <NavigationProperty Name="Sancion" Relationship="ProvidereModel.FK_Sancion_Usuario" FromRole="Usuario" ToRole="Sancion" />
+          <Property Type="String" Name="Dni" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Calificacion_Contratacion">
           <End Role="Contratacion" Type="ProvidereModel.Contratacion" Multiplicity="1" />
@@ -1124,6 +1126,7 @@
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="ProvidereModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Dni" ColumnName="Dni" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />

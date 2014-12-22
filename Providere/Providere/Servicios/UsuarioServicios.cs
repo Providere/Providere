@@ -14,11 +14,11 @@ namespace Providere.Servicios
         MailServicios mailing = new MailServicios();
 
         //verificar si ya existe un usuario registrado con ese  email:
-        public bool EmailExisteActivado(string email)
+        public bool UsuarioExisteActivado(string email, string dni)
         {
             try
             {
-                Usuario user = ur.EmailExisteActivado(email);
+                Usuario user = ur.UsuarioExisteActivado(email,dni);
             }
             catch
             {
@@ -28,11 +28,11 @@ namespace Providere.Servicios
         }
 
         //Verificar si ya existe un usuario registrado pero inactivo con ese email:
-        public bool EmailExisteInactivo(string email)
+        public bool UsuarioExisteInactivo(string email, string dni)
         {
             try
             {
-                Usuario user = ur.EmailExisteInactivo(email);
+                Usuario user = ur.UsuarioExisteInactivo(email,dni);
             }
             catch
             {
@@ -42,14 +42,17 @@ namespace Providere.Servicios
         }
 
         //Activar el usuario que esta registrado pero inactivo:
-        internal void ActivarUsuarioInactivo(string nombre, string apellido, string mail, string telefono, string contrasenia, string geocomplete)
+        internal void ActivarUsuarioInactivo(string nombre, string apellido, string dni,string mail, string telefono, string contrasenia, string geocomplete)
         {
-            var user = ur.TraerDatosPorMail(mail); //Traigo todos los datos de ese usuario que tengo en la BD
+            var user = ur.TraerDatosPorMailDni(mail,dni); //Traigo todos los datos de ese usuario
             user.Nombre = nombre;
             user.Apellido = apellido;
+            user.Dni = dni;
+            user.Mail = mail;
             user.Contrasenia = Encryptor.MD5Hash(contrasenia);
             user.Telefono = telefono;
             user.Ubicacion = geocomplete;
+            user.CodActivacion = Encryptor.MD5Hash(mail);
 
             //Le envio el mail de confirmacion y actualizo los datos:
 
@@ -57,11 +60,12 @@ namespace Providere.Servicios
             mailing.EnviarMail(user);
         }
 
-        internal void AgregarUsuarioNuevo(string nombre, string apellido, string mail, string telefono, string contrasenia, string geocomplete)
+        internal void AgregarUsuarioNuevo(string nombre, string apellido, string dni, string mail, string telefono, string contrasenia, string geocomplete)
         {
             Usuario miUsuario = new Usuario();
             miUsuario.Nombre = nombre;
             miUsuario.Apellido = apellido;
+            miUsuario.Dni = dni;
             miUsuario.Telefono = telefono;
             miUsuario.Mail = mail;
             miUsuario.Ubicacion = geocomplete;
@@ -97,14 +101,14 @@ namespace Providere.Servicios
 
         internal object traerIdUsuario(Usuario model)
         {
-            Usuario miUsuario = ur.TraerDatosPorMail(model.Mail);
+            Usuario miUsuario = ur.TraerDatosPorMailDni(model.Mail,model.Dni);
             return miUsuario.Id;
         }
 
 
         internal void CrearCookie(Usuario model)
         {
-            var user = ur.TraerDatosPorMail(model.Mail);
+            var user = ur.TraerDatosPorMailDni(model.Mail,model.Dni);
             FormsAuthentication.SetAuthCookie(user.Nombre, false);
         }
 

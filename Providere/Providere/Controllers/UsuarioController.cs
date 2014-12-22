@@ -24,7 +24,7 @@ namespace Providere.Controllers
         }
 
         [HttpPost,CaptchaValidation("CaptchaCode", "SampleCaptcha", "Codigo incorrecto")]
-        public ActionResult RegistrarUsuario(string nombre, string apellido, string mail, string telefono, string contrasenia, string geocomplete)
+        public ActionResult RegistrarUsuario(string nombre, string apellido, string dni, string mail, string telefono, string contrasenia, string geocomplete)
         {
             bool estado = bool.Parse(Request.Form.GetValues("ckbAcepto")[0]);
             if (ModelState.IsValid && estado == true && !string.IsNullOrWhiteSpace(geocomplete))
@@ -37,18 +37,18 @@ namespace Providere.Controllers
                 else
                 {
 
-                    if (us.EmailExisteActivado(mail))
+                    if (us.UsuarioExisteActivado(mail,dni))
                     {
-                        ModelState.AddModelError("", "La direccion de correo electrónico ingresado ya posee una cuenta asociada");
+                        ModelState.AddModelError("", "La direccion de correo electrónico o el DNI ingresado ya posee una cuenta asociada");
                         return View();
                     }
                     else
                     {
-                        if (us.EmailExisteInactivo(mail))
+                        if (us.UsuarioExisteInactivo(mail,dni))
                         {
                             try
                             {
-                                us.ActivarUsuarioInactivo(nombre,apellido,mail,telefono,contrasenia,geocomplete);
+                                us.ActivarUsuarioInactivo(nombre,apellido,dni,mail,telefono,contrasenia,geocomplete);
                             }
                             catch (System.Net.Mail.SmtpException ex)
                             {
@@ -60,7 +60,7 @@ namespace Providere.Controllers
                         {
                             try
                             {
-                                us.AgregarUsuarioNuevo(nombre, apellido, mail, telefono, contrasenia, geocomplete);
+                                us.AgregarUsuarioNuevo(nombre, apellido,dni, mail, telefono, contrasenia, geocomplete);
                             }
                             catch (System.Net.Mail.SmtpException ex)
                             {

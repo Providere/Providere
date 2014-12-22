@@ -38,6 +38,13 @@
                         </div>
                     </div>
                     <br />
+                       <div class="row">
+                        @Html.Label("DNI", new { @class = "col-sm-5 control-label" })
+                        <div class="col-xs-3">
+                            @Html.TextBoxFor(m => m.Dni, new { @class = "form-control", @readonly = "readonly", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <br />
                     <div class="row">
                         @Html.Label("Correo electronico", new { @class = "col-sm-5 control-label" })
                         <div class="col-xs-3">

@@ -12,27 +12,27 @@ namespace Providere.Repositorios
     {
         ProvidereEntities context = new ProvidereEntities();
 
-        //Verifico si el email ingresado ya esta en la base y veo su estado:
-        internal Usuario EmailExisteActivado(string email)
+        //Verifico si el email o el DNI ingresado ya esta en la base y veo su estado:
+        internal Usuario UsuarioExisteActivado(string email, string dni)
         {
             var usuario = (from user in context.Usuario
-                           where user.Mail == email && user.IdEstado == 1  //Si el estado es 1 significa que ya esta activo
+                           where (user.Mail == email && user.IdEstado == 1) || (user.Dni == dni && user.IdEstado == 1)  //Si el estado es 1 significa que ya esta activo
                            select user).First();
             return usuario;
         }
 
-        internal Usuario EmailExisteInactivo(string email)
+        internal Usuario UsuarioExisteInactivo(string email, string dni)
         {
             var usuario = (from user in context.Usuario
-                           where user.Mail == email && user.IdEstado == 4 //Si el estado es 4 significa que esta inactivo
+                           where (user.Mail == email && user.IdEstado == 4) || (user.Dni == dni && user.IdEstado == 4)  //Si el estado es 4 significa que esta inactivo
                            select user).First();
             return usuario;
         }
 
-        internal Usuario TraerDatosPorMail(string email)
+        internal Usuario TraerDatosPorMailDni(string email, string dni)
         {
             var usuario = (from user in context.Usuario
-                           where user.Mail == email
+                           where (user.Mail == email) || (user.Dni == dni)
                            select user).First();
             return usuario;
         }
@@ -42,6 +42,8 @@ namespace Providere.Repositorios
             Usuario usuario = context.Usuario.Where(e => e.Id == user.Id).FirstOrDefault();
             usuario.Nombre = user.Nombre;
             usuario.Apellido = user.Apellido;
+            usuario.Dni = user.Dni;
+            usuario.Mail = user.Mail;
             usuario.Contrasenia = user.Contrasenia;
             usuario.Telefono = user.Telefono;
             usuario.Ubicacion = user.Ubicacion;
@@ -64,23 +66,30 @@ namespace Providere.Repositorios
             var user = (from usuarios in context.Usuario
                         where usuarios.CodActivacion == codAct
                         select usuarios).First();
-
-            Double TiempoPasadoDesdeLaRegistracion = (DateTime.Now - user.FechaCreacion).TotalMinutes;
-
-            // Solo se activa el usuario si la activacion se realiza dentro de los 15 min.
-            if (TiempoPasadoDesdeLaRegistracion < 15)
+            if (user == null)
             {
-
-                user.IdEstado = Convert.ToInt16(1); //Pasa a estado activo
-                user.FechaCambioEstado = DateTime.Now;
-                user.FechaActivacion = DateTime.Now;
-                context.SaveChanges();
-                return true;
+                return false;
             }
             else
             {
-                //Se vencio el plazo de validez
-                return false;
+
+                Double TiempoPasadoDesdeLaRegistracion = (DateTime.Now - user.FechaCreacion).TotalMinutes;
+
+                // Solo se activa el usuario si la activacion se realiza dentro de los 15 min.
+                if (TiempoPasadoDesdeLaRegistracion < 15)
+                {
+
+                    user.IdEstado = Convert.ToInt16(1); //Pasa a estado activo
+                    user.FechaCambioEstado = DateTime.Now;
+                    user.FechaActivacion = DateTime.Now;
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    //Se vencio el plazo de validez
+                    return false;
+                }
             }
         }
 
@@ -104,7 +113,7 @@ namespace Providere.Repositorios
             return usuario;
         }
 
-        //Modifico los datos del usuario:
+        //Modifico los datos del usuario(Editar perfil):
         public void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string geocomplete2)
         {
             Usuario usuario = context.Usuario.Where(e => e.Id == id).FirstOrDefault();
