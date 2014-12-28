@@ -73,17 +73,25 @@ namespace Providere.Servicios
             return misPublicaciones;
         }
 
-        internal Publicacion TraerPublicacion(int Id, int idUsuario)
+        public Publicacion TraerPublicacion(int Id, int idUsuario)
         {
             Publicacion miPublicacion = pr.TraerPublicacion(Id, idUsuario);
             return miPublicacion;
         }
 
-
-
         internal Publicacion TraerPublicacionPorId(int idPublicacion)
         {
             return pr.TraerPublicacionPorId(idPublicacion);
+        }
+
+        public void ModificarPublicacion(int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio)
+        {
+            pr.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio);
+        }
+
+        public void EliminarImagen(int id)
+        {
+            pr.EliminarImagen(id);
         }
     }
 }

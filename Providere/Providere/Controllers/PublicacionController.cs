@@ -28,6 +28,9 @@ namespace Providere.Controllers
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             var publicaciones = ps.ListarMisPublicaciones(idUsuario);
 
+            ViewBag.Error = TempData["Error"];
+            ViewBag.Mensaje = TempData["Mensaje"];
+
             return View(publicaciones);
         }
 
@@ -79,6 +82,7 @@ namespace Providere.Controllers
                     }
                     else
                     {
+                        TempData["Error"] = "No se pueden cargar mas de 4 imagenes por publicación";
                         return RedirectToAction("ListarPublicaciones");
                     }
                 }
@@ -130,17 +134,79 @@ namespace Providere.Controllers
             }
         }
 
-        public ActionResult EditarPublicacion()
+        public ActionResult EditarPublicacion(int id)
         {
-            return View();
+            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+            Publicacion publicacion = ps.TraerPublicacion(id, idUsuario);
+
+            ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre", publicacion.IdRubro);
+            ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre",publicacion.IdSubRubro);
+
+            return View(publicacion);
         }
 
-        //[HttpPost]
-        //public ActionResult EditarPublicacion()
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        public ActionResult EditarPublicacion(int idUsuario,int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio, IEnumerable<HttpPostedFileBase> files)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    ps.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio);
+                    //VERIFICAR CUANTAS IMAGENES TENGO GUARDAS
+                    if (files.First() != null && files.Count() < 5)
+                    {
+                        foreach (var file in files)
+                        {
 
+                            string extension = Path.GetExtension(file.FileName);
+                            if (file.ContentLength > 0 && extension == ".jpg")
+                            {
+                                string uniqueFileName = Path.ChangeExtension(file.FileName, Convert.ToString(idUsuario));
+                                string path = Path.Combine(Server.MapPath("~/Imagenes/Publicacion"),
+                                            Path.GetFileName(uniqueFileName + extension));
+                                file.SaveAs(path);
+                                string pathImagen = uniqueFileName + extension;
+
+                                ps.CargarImagenes(pathImagen, idUsuario);
+                            }
+                        }
+                        return RedirectToAction("ListarPublicaciones");
+                    }
+                    else
+                    {
+                        TempData["Error"] = "La publicación no puede mostrar mas de 4 imagenes por servicio publicado";
+                        return RedirectToAction("ListarPublicaciones");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ClientException.LogException(ex, "Error al editar la publicación");
+                    return RedirectToAction("Error", "Shared");
+                }
+            }
+            else
+            {
+                TempData["Error"] = "No se pudo editar la publicación, intentelo nuevamente";
+                return RedirectToAction("ListarPublicaciones");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EliminarImagen(int id)
+        {
+            try
+            {
+                ps.EliminarImagen(id);
+                TempData["Mensaje"] = "Imagen eliminada correctamente";
+                return RedirectToAction("ListarPublicaciones");
+            }
+            catch (Exception ex)
+            {
+                ClientException.LogException(ex, "Error al eliminar la imagen");
+                return RedirectToAction("Error", "Shared");
+            }
+        }
 
         public ActionResult DeshabilitarPublicacion()
         {

@@ -22,7 +22,7 @@ namespace Providere.Repositorios
         internal List<Publicacion> traerPublicacionesMasRecientes(int limite)
         {
             var publicaciones = (from publicacion in context.Publicacion
-                                 orderby publicacion.FechaCreacion descending 
+                                 orderby publicacion.FechaCreacion descending
                                  select publicacion).Take(limite).ToList();
             return publicaciones;
         }
@@ -58,7 +58,7 @@ namespace Providere.Repositorios
 
         }
 
-        internal void CrearNuevaPublicacion(int idUsuario, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio)
+        public void CrearNuevaPublicacion(int idUsuario, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio)
         {
             Publicacion mipublicacion = new Publicacion();
             mipublicacion.IdUsuario = Convert.ToInt16(idUsuario);
@@ -93,7 +93,7 @@ namespace Providere.Repositorios
 
 
 
-        internal void CargarImagenes(string pathImagen, int idUsuario)
+        public void CargarImagenes(string pathImagen, int idUsuario)
         {
             var IdPublicacion = (from publicacion in context.Publicacion
                                  where (publicacion.IdUsuario == idUsuario)
@@ -113,7 +113,7 @@ namespace Providere.Repositorios
             return resultado;
         }
 
-        internal Publicacion TraerPublicacion(int Id, int idUsuario)
+        public Publicacion TraerPublicacion(int Id, int idUsuario)
         {
             var publicacion = (from publicaciones in context.Publicacion
                                where publicaciones.IdUsuario == idUsuario && publicaciones.Id == Id
@@ -128,6 +128,48 @@ namespace Providere.Repositorios
                                where publicaciones.Id == idPublicacion
                                select publicaciones).FirstOrDefault();
             return publicacion;
+        }
+
+        public void ModificarPublicacion(int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio)
+        {
+            Publicacion publicacion = context.Publicacion.Where(e => e.Id == id).FirstOrDefault();
+            publicacion.Titulo = titulo;
+            publicacion.Descripcion = descripcion;
+            publicacion.PrecioOpcion = precioOpcion;
+            publicacion.Precio = precio;
+
+            if (precioOpcion == '1')
+            {
+                publicacion.PrecioOpcion = precioOpcion;
+                publicacion.Precio = null;
+            }
+            else
+            {
+                publicacion.PrecioOpcion = precioOpcion;
+                publicacion.Precio = Convert.ToDecimal(precio);
+            }
+            publicacion.IdRubro = Convert.ToInt16(idRubro);
+            if (idSubRubro != null)
+            {
+                publicacion.IdSubRubro = Convert.ToInt16(idSubRubro);
+            }
+            else
+            {
+                publicacion.IdSubRubro = null;
+            }
+
+            publicacion.FechaEdicion = DateTime.Now;
+            context.SaveChanges();
+        }
+
+        public void EliminarImagen(int id)
+        {
+            var baja = (from e in context.Imagen
+                        where e.Id == id
+                        select e).Single();
+
+            context.Imagen.DeleteObject(baja);
+            context.SaveChanges();
         }
     }
 }

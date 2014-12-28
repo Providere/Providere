@@ -18,84 +18,75 @@
         <hr />
         
         <div class="col-md-9">
-        <div class="col-md-8">
-            <h3>
-                Descripción</h3>
-            <p>
-                @Html.DisplayFor(model => model.Descripcion)</p>
-        </div>
-        <div class="col-md-2">
-            <h3>
-                Precio
-            </h3>
-            @if (Model.PrecioOpcion != null)
-            {
-                <h4 class="text-danger">
-                    @if (Model.PrecioOpcion == 1)
+            <div class="col-md-8">
+                <h3>
+                    Descripción</h3>
+                <p>
+                    @Html.DisplayFor(model => model.Descripcion)</p>
+            </div>
+            <div class="col-md-2">
+                <h3>
+                    Precio
+                </h3>
+                @if (Model.PrecioOpcion != null)
+                {
+                    <h4 class="text-danger">
+                        @if (Model.PrecioOpcion == 1)
+                        {
+                            @Html.Label("A Convenir") 
+                        }
+                        else
+                        {
+                            @Html.Label("$") 
+                            @Html.DisplayFor(model => model.Precio)
+                        }
+                    </h4>
+                }
+                <div>
+                    @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
                     {
-                        @Html.Label("A Convenir") 
+                
+                        @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
                     }
                     else
                     {
-                        @Html.Label("$") 
-                        @Html.DisplayFor(model => model.Precio)
+                        @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
+               
                     }
-                </h4>
-            }
-            <div>
-                @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h3>
+                    Calificaciones</h3>
+                @if (@HttpContext.Current.Session["IdUsuario"].ToString() == Model.IdUsuario.ToString())
                 {
                 
-                  @*  @Html.ActionLink("Volver", "ListarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-arrow-left" })*@
-                    @Html.ActionLink("Editar", "EditarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
-                }
+                    @: Todavía no obtuviste calificaciones.
+             }
                 else
                 {
-                    @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
-               
-                }
-            </div>
-        </div>
-        
- 
-        
-        
-        <div class="col-md-12">
-            <h3>
-                Calificaciones</h3>
-            @if (@HttpContext.Current.Session["IdUsuario"].ToString() == Model.IdUsuario.ToString())
-            {
-                
-                @: Todavía no obtuviste calificaciones.
-             }
-            else
-            {
                  
-                @Html.DisplayFor(model => model.Usuario.Nombre)
-                @: aún no posee calificaciones.
-                                        }
-        </div>
-        <div class="col-md-12">
-            <h3>
-                Últimos trabajos realizados</h3>
-        </div>
-        <div class="col-md-12">
-            <div class="row">
-                @foreach (var item in Model.Imagen)
-                {
-                    <div class="col-md-3">
-                        <a href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="roadtrip">
-                            <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "200px" />
-                        </a>
-                    </div>
+                    @Html.DisplayFor(model => model.Usuario.Nombre)
+                    @: aún no posee calificaciones.
                 }
             </div>
+            <div class="col-md-12">
+                <h3>
+                    Últimos trabajos realizados</h3>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    @foreach (var item in Model.Imagen)
+                    {
+                        <div class="col-md-3">
+                            <a href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="roadtrip">
+                                <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "200px" />
+                            </a>
+                        </div>                  
+                    }
+                </div>
+            </div>
         </div>
-          
-          </div>
-        
-        
-        
         <div id="ficha-publicante" class="col-md-3">
             <div class="contenedor-imagen-publicacion">
                 @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
@@ -115,15 +106,15 @@
                     @Html.DisplayFor(model => model.Usuario.Nombre)
                     @Html.DisplayFor(model => model.Usuario.Apellido)
                 </h2>
-                <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span>
-                <span class="badge">0</span>
+                <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
+                    class="badge">0</span>
                 <br />
                 <span class="text-muted">@Html.DisplayFor(model => model.SubRubro.Nombre) </span>
             </div>
             <div>
-            <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)
-            </span>
-        </div>
+                <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)
+                </span>
+            </div>
         </div>
         
         
@@ -165,7 +156,6 @@
                     </div>
                 </div>
             }
-        </div>
-       
+        </div>      
     }
 </div>
