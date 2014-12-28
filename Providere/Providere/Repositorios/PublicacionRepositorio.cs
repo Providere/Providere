@@ -97,7 +97,7 @@ namespace Providere.Repositorios
         {
             var IdPublicacion = (from publicacion in context.Publicacion
                                  where (publicacion.IdUsuario == idUsuario)
-                                 select publicacion).Max(p => p.Id);
+                                 select publicacion).Max(p => p.Id); //La publicacion que se esta creando es la ultima,se guarda con Id autoincremental 
             Imagen misImagenes = new Imagen();
             misImagenes.Nombre = pathImagen;
             misImagenes.IdPublicacion = IdPublicacion;
@@ -105,7 +105,7 @@ namespace Providere.Repositorios
             context.SaveChanges();
         }
 
-        internal object ListarMisPublicaciones(int idUsuario)
+        public object ListarMisPublicaciones(int idUsuario)
         {
             var resultado = (from publicaciones in context.Publicacion
                              where publicaciones.IdUsuario == idUsuario
@@ -169,6 +169,23 @@ namespace Providere.Repositorios
                         select e).Single();
 
             context.Imagen.DeleteObject(baja);
+            context.SaveChanges();
+        }
+
+        public int VerificarCantidadImagenes(int id)
+        {
+            var cant = (from e in context.Imagen
+                        where e.IdPublicacion == id
+                        select e).Count();
+            return cant;
+        }
+
+        public void CargarImagenesEdicion(string pathImagen, int idUsuario, int id)
+        {
+            Imagen misImagenes = new Imagen();
+            misImagenes.Nombre = pathImagen;
+            misImagenes.IdPublicacion = Convert.ToInt16(id);
+            context.Imagen.AddObject(misImagenes);
             context.SaveChanges();
         }
     }

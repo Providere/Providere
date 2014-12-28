@@ -153,8 +153,10 @@ namespace Providere.Controllers
                 try
                 {
                     ps.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio);
-                    //VERIFICAR CUANTAS IMAGENES TENGO GUARDAS
-                    if (files.First() != null && files.Count() < 5)
+                    int verificar = ps.VerificarCantidadImagenes(id); // Verifico para no pasar la cant de 4 imagenes.Devuelve la cantidad real o sino 0
+                    int cant = files.Count();
+                    int total = (verificar + cant);
+                    if (files.First() != null && total< 5)
                     {
                         foreach (var file in files)
                         {
@@ -168,7 +170,7 @@ namespace Providere.Controllers
                                 file.SaveAs(path);
                                 string pathImagen = uniqueFileName + extension;
 
-                                ps.CargarImagenes(pathImagen, idUsuario);
+                                ps.CargarImagenesEdicion(pathImagen, idUsuario,id);
                             }
                         }
                         return RedirectToAction("ListarPublicaciones");
@@ -197,9 +199,17 @@ namespace Providere.Controllers
         {
             try
             {
+                bool estado = bool.Parse(Request.Form.GetValues("ckbEliminar")[0]);
+                if(estado == true)
+                {
                 ps.EliminarImagen(id);
                 TempData["Mensaje"] = "Imagen eliminada correctamente";
                 return RedirectToAction("ListarPublicaciones");
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch (Exception ex)
             {

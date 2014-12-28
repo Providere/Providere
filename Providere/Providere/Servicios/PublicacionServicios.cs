@@ -93,5 +93,15 @@ namespace Providere.Servicios
         {
             pr.EliminarImagen(id);
         }
+
+        public int VerificarCantidadImagenes(int id)
+        {
+            return pr.VerificarCantidadImagenes(id);
+        }
+
+        public void CargarImagenesEdicion(string pathImagen, int idUsuario, int id)
+        {
+            pr.CargarImagenesEdicion(pathImagen, idUsuario,id);
+        }
     }
 }
