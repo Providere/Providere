@@ -103,5 +103,30 @@ namespace Providere.Servicios
         {
             pr.CargarImagenesEdicion(pathImagen, idUsuario,id);
         }
+
+        public bool NoExistenImagenes(int id)
+        {
+            try
+            {
+                Imagen imagenes = pr.NoExistenImagenes(id);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void CambioEstadoPublicacion(int id)
+        {
+            pr.CambiarEstadoPublicacion(id);
+        }
+
+        public object ListarTodasMisPublicaciones(int idUsuario)
+        {
+
+            var misPublicaciones = pr.ListarTodasMisPublicaciones(idUsuario);
+            return misPublicaciones;
+        }
     }
 }

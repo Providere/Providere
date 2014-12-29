@@ -16,6 +16,22 @@
     </script>
     @Scripts.Render("~/bundles/jqueryval")
 }
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Mensaje
+    </div>
+}
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
 <div class="container well">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -126,10 +142,11 @@
             <div class="content">
                 <div class="col-md-12">
                     <div class="row">
+                        @ViewBag.NoExistenImagenes
                         @foreach (var item in Model.Imagen)
                         {
-                            using (Html.BeginForm("EliminarImagen", "Publicacion", new { id = item.Id }, FormMethod.Post, new { @class = "form-horizontal" }))
-                            {                 
+                            using (Html.BeginForm("EliminarImagen", "Publicacion", new { id = item.Id, idPublicacion = item.IdPublicacion}, FormMethod.Post, new { @class = "form-horizontal" }))
+                            {                  
                             <div class="col-md-3">
                                 <a href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="roadtrip">
                                     <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "200px" />

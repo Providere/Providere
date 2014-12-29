@@ -11,14 +11,6 @@ namespace Providere.Controllers
 {
     public class PublicacionController : Controller
     {
-        //
-        // GET: /Publicacion/
-
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
         PublicacionServicios ps = new PublicacionServicios();
         ProvidereEntities context = new ProvidereEntities();
 
@@ -58,7 +50,6 @@ namespace Providere.Controllers
             {
                 try
                 {
-
                     ps.CrearNuevaPublicacion(idUsuario, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio);
 
                     if (files.First() != null && files.Count() < 5)
@@ -82,7 +73,6 @@ namespace Providere.Controllers
                     }
                     else
                     {
-                        TempData["Error"] = "No se pueden cargar mas de 4 imagenes por publicación";
                         return RedirectToAction("ListarPublicaciones");
                     }
                 }
@@ -95,7 +85,7 @@ namespace Providere.Controllers
             else
             {
                 TempData["Error"] = "No se pudo crear la publicación, intentelo nuevamente";
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("ListarPublicaciones");
             }
 
         }
@@ -105,6 +95,13 @@ namespace Providere.Controllers
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Publicacion miPublicacion = ps.TraerPublicacion(Id, idUsuario);
 
+            //NO PUEDO VISUALIZARLA SI ESTA DESHABILITADA:
+
+
+            if (ps.NoExistenImagenes(Id) == false)
+            {
+                ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+            }
 
             ViewBag.accionPadre = "VisualizarMiPublicacion";
             return View(miPublicacion);
@@ -114,6 +111,8 @@ namespace Providere.Controllers
         public ActionResult VisualizarPublicacion(int idPublicacion)
         {
             Publicacion miPublicacion = ps.TraerPublicacionPorId(idPublicacion);
+            //QUE PASA SI ESTADO ES DESHABILITADO:
+
             ViewBag.accionPadre = "VisualizarPublicacion";
             return View("VisualizarMiPublicacion", miPublicacion);
         }
@@ -139,8 +138,18 @@ namespace Providere.Controllers
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Publicacion publicacion = ps.TraerPublicacion(id, idUsuario);
 
+            //QUE PASA SI NO LA TRAE, PORQUE ESTADO ES DESHABILITADO:
+
             ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre", publicacion.IdRubro);
             ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre",publicacion.IdSubRubro);
+
+            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Error = TempData["Error"];
+
+            if (ps.NoExistenImagenes(id) == false ) //Si devuelve false es porque no existen imagenes para esa publicacion
+            {
+                ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+            }
 
             return View(publicacion);
         }
@@ -177,7 +186,6 @@ namespace Providere.Controllers
                     }
                     else
                     {
-                        TempData["Error"] = "La publicación no puede mostrar mas de 4 imagenes por servicio publicado";
                         return RedirectToAction("ListarPublicaciones");
                     }
                 }
@@ -190,26 +198,18 @@ namespace Providere.Controllers
             else
             {
                 TempData["Error"] = "No se pudo editar la publicación, intentelo nuevamente";
-                return RedirectToAction("ListarPublicaciones");
+                return RedirectToAction("EditarPublicacion", new { id = id });
             }
         }
 
         [HttpPost]
-        public ActionResult EliminarImagen(int id)
+        public ActionResult EliminarImagen(int id, int idPublicacion)
         {
             try
             {
-                bool estado = bool.Parse(Request.Form.GetValues("ckbEliminar")[0]);
-                if(estado == true)
-                {
                 ps.EliminarImagen(id);
                 TempData["Mensaje"] = "Imagen eliminada correctamente";
-                return RedirectToAction("ListarPublicaciones");
-                }
-                else
-                {
-                    return View();
-                }
+                return RedirectToAction("EditarPublicacion",new { id = idPublicacion });
             }
             catch (Exception ex)
             {
@@ -218,17 +218,50 @@ namespace Providere.Controllers
             }
         }
 
-        public ActionResult DeshabilitarPublicacion()
+        [HttpPost]
+        public ActionResult DeshabilitarPublicacion(int id)
         {
-            return View();
+            bool estado = bool.Parse(Request.Form.GetValues("ckbDeshabilitar")[0]);
+            if (estado == true)
+            {
+                ps.CambioEstadoPublicacion(id);
+                TempData["Mensaje"] = "Publicación deshabilitada correctamente";
+                return RedirectToAction("ListarPublicaciones");
+            }
+            else
+            {
+                return RedirectToAction("ListarPublicaciones");
+            }
+           
         }
 
+        [HttpPost]
+        public ActionResult HabilitarPublicacion(int id)
+        {
+            bool estado = bool.Parse(Request.Form.GetValues("ckbHabilitar")[0]);
+            if (estado == true)
+            {
+                ps.CambioEstadoPublicacion(id);
+                TempData["Mensaje"] = "Publicación habilitada correctamente";
+                return RedirectToAction("ListarPublicaciones");
+            }
+            else
+            {
+                return RedirectToAction("ListarPublicaciones");
+            }
 
-        //[HttpPost]
-        // public ActionResult DeshabilitarPublicacion()
-        // {
-        //     return View();
-        // }
+        }
+
+        [HttpPost]
+        public ActionResult ListarTodasMisPublicaciones()
+        {
+            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+            var publicaciones = ps.ListarTodasMisPublicaciones(idUsuario);
+
+              return View("ListarPublicaciones", publicaciones);
+             
+
+        }
 
         public ActionResult ContratarPublicacion(Publicacion publicacion)
         {

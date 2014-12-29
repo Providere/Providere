@@ -108,7 +108,7 @@ namespace Providere.Repositorios
         public object ListarMisPublicaciones(int idUsuario)
         {
             var resultado = (from publicaciones in context.Publicacion
-                             where publicaciones.IdUsuario == idUsuario
+                             where (publicaciones.IdUsuario == idUsuario) && (publicaciones.Estado == 1) //Lista las que estan con Estado Habilitado
                              select publicaciones);
             return resultado;
         }
@@ -116,8 +116,8 @@ namespace Providere.Repositorios
         public Publicacion TraerPublicacion(int Id, int idUsuario)
         {
             var publicacion = (from publicaciones in context.Publicacion
-                               where publicaciones.IdUsuario == idUsuario && publicaciones.Id == Id
-                               select publicaciones).FirstOrDefault();
+                               where (publicaciones.IdUsuario == idUsuario) && (publicaciones.Id == Id) && (publicaciones.Estado == 1)
+                               select publicaciones).FirstOrDefault(); // Solo se pueden editar las habilitadas
             return publicacion;
         }
 
@@ -125,7 +125,7 @@ namespace Providere.Repositorios
         internal Publicacion TraerPublicacionPorId(int idPublicacion)
         {
             var publicacion = (from publicaciones in context.Publicacion
-                               where publicaciones.Id == idPublicacion
+                               where (publicaciones.Id == idPublicacion) && (publicaciones.Estado == 1) //La muestro si esta habilitada
                                select publicaciones).FirstOrDefault();
             return publicacion;
         }
@@ -187,6 +187,37 @@ namespace Providere.Repositorios
             misImagenes.IdPublicacion = Convert.ToInt16(id);
             context.Imagen.AddObject(misImagenes);
             context.SaveChanges();
+        }
+
+        public Imagen NoExistenImagenes(int id)
+        {
+            var imagen = (from img in context.Imagen
+                           where (img.IdPublicacion == id)
+                           select img).First();
+            return imagen;
+        }
+
+        public void CambiarEstadoPublicacion(int id)
+        {
+            Publicacion publicacion = context.Publicacion.Where(e => e.Id == id).FirstOrDefault();
+            if (publicacion.Estado == 1)
+            {
+                publicacion.Estado = 0; //Deshabilita
+            }
+            else
+            {
+                publicacion.Estado = 1; //Habilita nuevamente
+            }
+
+            context.SaveChanges();
+        }
+
+        public object ListarTodasMisPublicaciones(int idUsuario)
+        {
+            var resultado = (from publicaciones in context.Publicacion
+                             where (publicaciones.IdUsuario == idUsuario) 
+                             select publicaciones);
+            return resultado;
         }
     }
 }

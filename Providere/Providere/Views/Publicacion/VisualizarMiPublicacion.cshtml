@@ -68,13 +68,14 @@
                  
                     @Html.DisplayFor(model => model.Usuario.Nombre)
                     @: aún no posee calificaciones.
-                }
+                                }
             </div>
             <div class="col-md-12">
                 <h3>
                     Últimos trabajos realizados</h3>
             </div>
             <div class="col-md-12">
+                @ViewBag.NoExistenImagenes
                 <div class="row">
                     @foreach (var item in Model.Imagen)
                     {
