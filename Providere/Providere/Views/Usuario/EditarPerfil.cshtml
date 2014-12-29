@@ -3,6 +3,22 @@
     ViewBag.Title = "Editar perfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Mensaje
+    </div>
+}
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
 <div class="container well">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">

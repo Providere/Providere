@@ -170,17 +170,21 @@ namespace Providere.Controllers
             ViewBag.geocomplete2 = usuario.Ubicacion;
             ViewBag.Rubros = rs.obtenerTodos();
 
+            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Error = TempData["Error"];
+
             return View(usuario);
         }
 
         [HttpPost]
         public ActionResult EditarPerfil(string nombre, string apellido, string telefono, string geocomplete2)
         {
+            int id = Convert.ToInt16(this.Session["IdUsuario"]);
             if (ModelState.IsValid && !string.IsNullOrWhiteSpace(geocomplete2))
             {
                 try
                 {
-                    int id = Convert.ToInt16(this.Session["IdUsuario"]);
+                 
                     us.ModificarDatosUsuario(id, nombre, apellido, telefono, geocomplete2);
                     TempData["Mensaje"] = "Sus datos personales se actualizaron correctamente";
                     return RedirectToAction("Home", "Home");
@@ -194,7 +198,7 @@ namespace Providere.Controllers
             else
             {
                 TempData["Error"] = "No se pudo modificar sus datos, intentelo nuevamente";
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("EditarPerfil", new { id = id });
             }
 
         }
@@ -203,12 +207,11 @@ namespace Providere.Controllers
         public ActionResult CambiarFotoPerfil(HttpPostedFileBase file)
         {
             string extension = Path.GetExtension(file.FileName);
+            int id = Convert.ToInt16(this.Session["IdUsuario"]);
             if (file != null && file.ContentLength > 0 && extension == ".jpg")
             {
                 try
                 {
-                    int id = Convert.ToInt16(this.Session["IdUsuario"]);
-                   
                     string uniqueFileName = Path.ChangeExtension("imagen", Convert.ToString(id));
                     string path = Path.Combine(Server.MapPath("~/Imagenes/FotoPerfil"),
                                        Path.GetFileName(uniqueFileName + extension));
@@ -225,8 +228,8 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "No se pudo cargar la imágen, intentelo nuevamente. Debe ser de formato jpg";
-                return RedirectToAction("Home", "Home");
+                TempData["Error"] = "No se pudo cargar la imágen, intentelo nuevamente";
+                return RedirectToAction("EditarPerfil", new { id = id });
             }
         }
 
@@ -251,7 +254,7 @@ namespace Providere.Controllers
             else
             {
                 TempData["Error"] = "Su contraseña no pudo ser modificada, intentelo nuevamente";
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("EditarPerfil", new { id = id });
             }
         }
 
