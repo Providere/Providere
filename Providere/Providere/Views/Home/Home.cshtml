@@ -26,8 +26,7 @@
         <br />
         <div class="row">
             @foreach (var item in ViewBag.PublicacionesMasRecientes.listadoDePublicaciones)
-            {
-                
+            {               
                 <div class="col-xs-3">
                     <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >
                         <div class="thumbnail">
@@ -90,7 +89,6 @@
                 {
                 
                     <div class="col-xs-3">
-                       @* <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >*@
                             <div class="thumbnail" style="height: 330px">
                                 
                                     <div class="contenedor-img">
