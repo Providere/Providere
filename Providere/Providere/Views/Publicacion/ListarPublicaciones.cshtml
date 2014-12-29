@@ -110,7 +110,7 @@
             
                                 @Html.CheckBox("ckbHabilitar")
                     
-                                <input type="submit" id="btnConfirmar2" value="Habilitar" class="btn btn-primary btn-xs" />                    
+                                <input type="submit" id="btnConfirmar2" value="Habilitar" class="btn btn-default btn-xs" />                    
                                 }
                             }
                         </td>
@@ -118,16 +118,5 @@
                 }
             </tbody>
         </table>
-        <div class="row">
-            <div class="col-md-7">
-                @using (Html.BeginForm("ListarTodasMisPublicaciones", "Publicacion", FormMethod.Post))
-                { 
-                    <h4>
-                        Mostrar todas las publicaciones (Habilitadas/Deshabilitadas)</h4>
-                    <input type="submit" id="btnActualizar" value="Actualizar" class="btn btn-primary fa-with-txt btn-sm" /> 
-                 
-                }
-            </div>
-        </div>
     </div>
 </div>

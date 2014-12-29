@@ -121,12 +121,5 @@ namespace Providere.Servicios
         {
             pr.CambiarEstadoPublicacion(id);
         }
-
-        public object ListarTodasMisPublicaciones(int idUsuario)
-        {
-
-            var misPublicaciones = pr.ListarTodasMisPublicaciones(idUsuario);
-            return misPublicaciones;
-        }
     }
 }

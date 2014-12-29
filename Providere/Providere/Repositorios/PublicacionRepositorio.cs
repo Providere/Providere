@@ -15,13 +15,14 @@ namespace Providere.Repositorios
 
         internal List<Publicacion> traerPublicacionesPorZona(String zona, int limite)
         {
-            var publicaciones = (from publicacion in context.Publicacion select publicacion).Take(limite).ToList();
+            var publicaciones = (from publicacion in context.Publicacion where publicacion.Estado == 1  select publicacion).Take(limite).ToList();
             return publicaciones;
         }
 
         internal List<Publicacion> traerPublicacionesMasRecientes(int limite)
         {
             var publicaciones = (from publicacion in context.Publicacion
+                                 where publicacion.Estado == 1 //Habilitada
                                  orderby publicacion.FechaCreacion descending
                                  select publicacion).Take(limite).ToList();
             return publicaciones;
@@ -32,6 +33,7 @@ namespace Providere.Repositorios
 
             var publicacionesMasPopulares = (from publicacion in context.Publicacion
                                              join puntaje in context.Puntaje on publicacion.Id equals puntaje.IdPublicacion
+                                             where publicacion.Estado == 1 //Habilitada
                                              orderby puntaje.Total descending
                                              select publicacion).Take(limite).ToList();
 
@@ -108,7 +110,7 @@ namespace Providere.Repositorios
         public object ListarMisPublicaciones(int idUsuario)
         {
             var resultado = (from publicaciones in context.Publicacion
-                             where (publicaciones.IdUsuario == idUsuario) && (publicaciones.Estado == 1) //Lista las que estan con Estado Habilitado
+                             where (publicaciones.IdUsuario == idUsuario)  //Listar todas mis publicaciones
                              select publicaciones);
             return resultado;
         }
@@ -116,8 +118,8 @@ namespace Providere.Repositorios
         public Publicacion TraerPublicacion(int Id, int idUsuario)
         {
             var publicacion = (from publicaciones in context.Publicacion
-                               where (publicaciones.IdUsuario == idUsuario) && (publicaciones.Id == Id) && (publicaciones.Estado == 1)
-                               select publicaciones).FirstOrDefault(); // Solo se pueden editar las habilitadas
+                               where (publicaciones.IdUsuario == idUsuario) && (publicaciones.Id == Id) 
+                               select publicaciones).FirstOrDefault(); 
             return publicacion;
         }
 
@@ -125,7 +127,7 @@ namespace Providere.Repositorios
         internal Publicacion TraerPublicacionPorId(int idPublicacion)
         {
             var publicacion = (from publicaciones in context.Publicacion
-                               where (publicaciones.Id == idPublicacion) && (publicaciones.Estado == 1) //La muestro si esta habilitada
+                               where (publicaciones.Id == idPublicacion) 
                                select publicaciones).FirstOrDefault();
             return publicacion;
         }
@@ -210,14 +212,6 @@ namespace Providere.Repositorios
             }
 
             context.SaveChanges();
-        }
-
-        public object ListarTodasMisPublicaciones(int idUsuario)
-        {
-            var resultado = (from publicaciones in context.Publicacion
-                             where (publicaciones.IdUsuario == idUsuario) 
-                             select publicaciones);
-            return resultado;
         }
     }
 }

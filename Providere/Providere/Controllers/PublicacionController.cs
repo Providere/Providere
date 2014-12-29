@@ -95,23 +95,27 @@ namespace Providere.Controllers
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Publicacion miPublicacion = ps.TraerPublicacion(Id, idUsuario);
 
-            //NO PUEDO VISUALIZARLA SI ESTA DESHABILITADA:
-
-
-            if (ps.NoExistenImagenes(Id) == false)
+            if (miPublicacion.Estado == 0) //Deshabilitado
             {
-                ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+                TempData["Error"] = "No puede visualizar su publicación porque esta deshabilitada";
+                return RedirectToAction("ListarPublicaciones");
             }
+            else
+            {
+                if (ps.NoExistenImagenes(Id) == false)
+                {
+                    ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+                }
 
-            ViewBag.accionPadre = "VisualizarMiPublicacion";
-            return View(miPublicacion);
+                ViewBag.accionPadre = "VisualizarMiPublicacion";
+                return View(miPublicacion);
+            }
         }
 
         // Publicacion/VisualizarPublicacion/12
         public ActionResult VisualizarPublicacion(int idPublicacion)
         {
             Publicacion miPublicacion = ps.TraerPublicacionPorId(idPublicacion);
-            //QUE PASA SI ESTADO ES DESHABILITADO:
 
             ViewBag.accionPadre = "VisualizarPublicacion";
             return View("VisualizarMiPublicacion", miPublicacion);
@@ -138,20 +142,27 @@ namespace Providere.Controllers
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Publicacion publicacion = ps.TraerPublicacion(id, idUsuario);
 
-            //QUE PASA SI NO LA TRAE, PORQUE ESTADO ES DESHABILITADO:
-
-            ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre", publicacion.IdRubro);
-            ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre",publicacion.IdSubRubro);
-
             ViewBag.Mensaje = TempData["Mensaje"];
             ViewBag.Error = TempData["Error"];
 
-            if (ps.NoExistenImagenes(id) == false ) //Si devuelve false es porque no existen imagenes para esa publicacion
+            if (publicacion.Estado == 0) //Deshabilitado
             {
-                ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+                TempData["Error"] = "No se puede editar la publicación porque esta deshabilitada";
+                return RedirectToAction("ListarPublicaciones");
             }
 
-            return View(publicacion);
+            else
+            {
+                if (ps.NoExistenImagenes(id) == false) //Si devuelve false es porque no existen imagenes para esa publicacion
+                {
+                    ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+                }
+
+                ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre", publicacion.IdRubro);
+                ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre", publicacion.IdSubRubro);
+
+                return View(publicacion);
+            }
         }
 
         [HttpPost]
@@ -230,6 +241,7 @@ namespace Providere.Controllers
             }
             else
             {
+                TempData["Error"] = "No se pudo deshabilitar la publicación, intentelo nuevamente";
                 return RedirectToAction("ListarPublicaciones");
             }
            
@@ -247,19 +259,9 @@ namespace Providere.Controllers
             }
             else
             {
+                TempData["Error"] = "No se pudo habilitar la publicación, intentelo nuevamente";
                 return RedirectToAction("ListarPublicaciones");
             }
-
-        }
-
-        [HttpPost]
-        public ActionResult ListarTodasMisPublicaciones()
-        {
-            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            var publicaciones = ps.ListarTodasMisPublicaciones(idUsuario);
-
-              return View("ListarPublicaciones", publicaciones);
-             
 
         }
 
