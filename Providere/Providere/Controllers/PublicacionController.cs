@@ -166,13 +166,13 @@ namespace Providere.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarPublicacion(int idUsuario,int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult EditarPublicacion(int idUsuario,int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio,decimal? oculto, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    ps.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio);
+                    ps.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio, oculto);
                     int verificar = ps.VerificarCantidadImagenes(id); // Verifico para no pasar la cant de 4 imagenes.Devuelve la cantidad real o sino 0
                     int cant = files.Count();
                     int total = (verificar + cant);

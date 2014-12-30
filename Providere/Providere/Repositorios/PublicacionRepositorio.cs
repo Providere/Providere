@@ -67,7 +67,7 @@ namespace Providere.Repositorios
             mipublicacion.Titulo = titulo;
             mipublicacion.Descripcion = descripcion;
 
-            if (precioOpcion == '1')
+            if (precioOpcion == 1)
             {
                 mipublicacion.PrecioOpcion = precioOpcion;
                 mipublicacion.Precio = null;
@@ -111,7 +111,7 @@ namespace Providere.Repositorios
         {
             var resultado = (from publicaciones in context.Publicacion
                              where (publicaciones.IdUsuario == idUsuario)  //Listar todas mis publicaciones
-                             select publicaciones);
+                             select publicaciones).ToList();
             return resultado;
         }
 
@@ -132,23 +132,30 @@ namespace Providere.Repositorios
             return publicacion;
         }
 
-        public void ModificarPublicacion(int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio)
+        public void ModificarPublicacion(int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio, decimal? oculto)
         {
             Publicacion publicacion = context.Publicacion.Where(e => e.Id == id).FirstOrDefault();
             publicacion.Titulo = titulo;
             publicacion.Descripcion = descripcion;
-            publicacion.PrecioOpcion = precioOpcion;
-            publicacion.Precio = precio;
 
-            if (precioOpcion == '1')
+            if (precioOpcion == 1)
             {
                 publicacion.PrecioOpcion = precioOpcion;
                 publicacion.Precio = null;
             }
             else
             {
-                publicacion.PrecioOpcion = precioOpcion;
-                publicacion.Precio = Convert.ToDecimal(precio);
+                if (precioOpcion == 2 && precio == null)
+                {
+                    publicacion.PrecioOpcion = precioOpcion;
+                    publicacion.Precio = oculto;
+                }
+                else
+                {
+                    publicacion.PrecioOpcion = precioOpcion;
+                    publicacion.Precio = Convert.ToDecimal(precio);
+                }
+
             }
             publicacion.IdRubro = Convert.ToInt16(idRubro);
             if (idSubRubro != null)

@@ -84,9 +84,9 @@ namespace Providere.Servicios
             return pr.TraerPublicacionPorId(idPublicacion);
         }
 
-        public void ModificarPublicacion(int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio)
+        public void ModificarPublicacion(int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio, decimal? oculto)
         {
-            pr.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio);
+            pr.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio, oculto);
         }
 
         public void EliminarImagen(int id)
