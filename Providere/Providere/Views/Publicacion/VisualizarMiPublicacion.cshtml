@@ -68,7 +68,7 @@
                  
                     @Html.DisplayFor(model => model.Usuario.Nombre)
                     @: aún no posee calificaciones.
-                                }
+                                                }
             </div>
             <div class="col-md-12">
                 <h3>
@@ -80,7 +80,7 @@
                     @foreach (var item in Model.Imagen)
                     {
                         <div class="col-md-3">
-                            <a href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="roadtrip">
+                            <a class="example-image-link" href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="example-set">
                                 <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "200px" />
                             </a>
                         </div>                  
