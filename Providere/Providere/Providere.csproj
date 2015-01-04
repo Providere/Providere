@@ -279,7 +279,6 @@
     <Content Include="Scripts\js\jquery.geocompletePerfil.js" />
     <Content Include="Scripts\js\jquery.js" />
     <Content Include="Scripts\js\lightbox.js" />
-    <Content Include="Scripts\js\lightbox.min.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
