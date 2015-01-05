@@ -42,7 +42,7 @@ namespace Providere.Servicios
         }
 
         //Activar el usuario que esta registrado pero inactivo:
-        internal void ActivarUsuarioInactivo(string nombre, string apellido, string dni,string mail, string telefono, string contrasenia, string geocomplete)
+        public void ActivarUsuarioInactivo(string nombre, string apellido, string dni,string mail, string telefono, string contrasenia, string geocomplete)
         {
             var user = ur.TraerDatosPorMailDni(mail,dni); //Traigo todos los datos de ese usuario
             user.Nombre = nombre;
@@ -60,7 +60,7 @@ namespace Providere.Servicios
             mailing.EnviarMail(user);
         }
 
-        internal void AgregarUsuarioNuevo(string nombre, string apellido, string dni, string mail, string telefono, string contrasenia, string geocomplete)
+        public void AgregarUsuarioNuevo(string nombre, string apellido, string dni, string mail, string telefono, string contrasenia, string geocomplete)
         {
             Usuario miUsuario = new Usuario();
             miUsuario.Nombre = nombre;
@@ -99,39 +99,39 @@ namespace Providere.Servicios
             return ur.UsuarioActivo(model);
         }
 
-        internal object traerIdUsuario(Usuario model)
+        public object traerIdUsuario(Usuario model)
         {
             Usuario miUsuario = ur.TraerDatosPorMailDni(model.Mail,model.Dni);
             return miUsuario.Id;
         }
 
 
-        internal void CrearCookie(Usuario model)
+        public void CrearCookie(Usuario model)
         {
             var user = ur.TraerDatosPorMailDni(model.Mail,model.Dni);
             FormsAuthentication.SetAuthCookie(user.Nombre, false);
         }
 
         //Obtener usuario a traves de su id para editar datos:
-        internal Usuario ObtenerUsuarioEditar(int idUsuario)
+        public Usuario ObtenerUsuarioEditar(int idUsuario)
         {
             return ur.ObtenerUsuarioEditar(idUsuario);
         }
 
         //Modifico datos personales:
-        internal void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string geocomplete2)
+        public void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string geocomplete2)
         {
             ur.ModificarDatosUsuario(id, nombre, apellido, telefono, geocomplete2);
         }
 
         //Modifico contraseña solo si el usuario desea cambiarla:
-        internal void GuardarContraseniaNueva(int id, string contrasenia)
+        public void GuardarContraseniaNueva(int id, string contrasenia)
         {
             ur.GuardarContraseniaNueva(id, contrasenia);
         }
 
         //Damos de baja al usuario:
-        internal void DarDeBajaUsuario(int idUsuario)
+        public void DarDeBajaUsuario(int idUsuario)
         {
             ur.DarDeBajaUsuario(idUsuario);
         }

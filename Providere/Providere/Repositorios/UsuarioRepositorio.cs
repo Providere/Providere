@@ -13,7 +13,7 @@ namespace Providere.Repositorios
         ProvidereEntities context = new ProvidereEntities();
 
         //Verifico si el email o el DNI ingresado ya esta en la base y veo su estado:
-        internal Usuario UsuarioExisteActivado(string email, string dni)
+        public Usuario UsuarioExisteActivado(string email, string dni)
         {
             var usuario = (from user in context.Usuario
                            where (user.Mail == email && user.IdEstado == 1) || (user.Dni == dni && user.IdEstado == 1)  //Si el estado es 1 significa que ya esta activo
@@ -21,7 +21,7 @@ namespace Providere.Repositorios
             return usuario;
         }
 
-        internal Usuario UsuarioExisteInactivo(string email, string dni)
+        public Usuario UsuarioExisteInactivo(string email, string dni)
         {
             var usuario = (from user in context.Usuario
                            where (user.Mail == email && user.IdEstado == 4) || (user.Dni == dni && user.IdEstado == 4)  //Si el estado es 4 significa que esta inactivo
@@ -29,7 +29,7 @@ namespace Providere.Repositorios
             return usuario;
         }
 
-        internal Usuario TraerDatosPorMailDni(string email, string dni)
+        public Usuario TraerDatosPorMailDni(string email, string dni)
         {
             var usuario = (from user in context.Usuario
                            where (user.Mail == email) || (user.Dni == dni)
@@ -37,7 +37,7 @@ namespace Providere.Repositorios
             return usuario;
         }
 
-        internal void ModificarUsuario(Usuario user)
+        public void ModificarUsuario(Usuario user)
         {
             Usuario usuario = context.Usuario.Where(e => e.Id == user.Id).FirstOrDefault();
             usuario.Nombre = user.Nombre;
@@ -53,14 +53,14 @@ namespace Providere.Repositorios
 
         }
 
-        internal void CrearUsuario(Usuario model)
+        public void CrearUsuario(Usuario model)
         {
             
             context.Usuario.AddObject(model);
             context.SaveChanges();
         }
 
-        internal bool ActivarUsuario(string codAct)
+        public bool ActivarUsuario(string codAct)
         {
             //Encontrar al propietario del codigo de activacion:
             var user = (from usuarios in context.Usuario
@@ -79,7 +79,7 @@ namespace Providere.Repositorios
                 if (TiempoPasadoDesdeLaRegistracion < 15)
                 {
 
-                    user.IdEstado = Convert.ToInt16(1); //Pasa a estado activo
+                    user.IdEstado = 1; //Pasa a estado activo
                     user.FechaCambioEstado = DateTime.Now;
                     user.FechaActivacion = DateTime.Now;
                     context.SaveChanges();
@@ -93,13 +93,13 @@ namespace Providere.Repositorios
             }
         }
 
-        internal bool UsuarioExistente(Usuario model)
+        public bool UsuarioExistente(Usuario model)
         {
             bool usuarioExiste = context.Usuario.Any(user => user.Mail == model.Mail && user.Contrasenia == model.Contrasenia);
             return usuarioExiste;
         }
 
-        internal bool UsuarioActivo(Usuario model)
+        public bool UsuarioActivo(Usuario model)
         {
             bool usuarioActivo = context.Usuario.Any(user => user.Mail == model.Mail && user.IdEstado == 1);
             return usuarioActivo;
@@ -134,7 +134,7 @@ namespace Providere.Repositorios
         }
 
 
-        internal void DarDeBajaUsuario(int idUsuario)
+        public void DarDeBajaUsuario(int idUsuario)
         {
             Usuario miUser = context.Usuario.Where(e => e.Id == idUsuario).FirstOrDefault();
             miUser.IdEstado = 3; //Estado deshabilitado
@@ -142,7 +142,7 @@ namespace Providere.Repositorios
         }
 
         //Verificamos si el usuario que intenta registrarse fue dado de baja:
-        internal Usuario UsuarioDadoDeBaja(string p)
+        public Usuario UsuarioDadoDeBaja(string p)
         {
             var usuario = (from user in context.Usuario
                            where user.Mail == p && user.IdEstado == 3  //Si el estado es 3 significa que esta deshabilitado

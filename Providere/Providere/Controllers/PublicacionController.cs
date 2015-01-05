@@ -232,17 +232,25 @@ namespace Providere.Controllers
         [HttpPost]
         public ActionResult DeshabilitarPublicacion(int id)
         {
-            bool estado = bool.Parse(Request.Form.GetValues("ckbDeshabilitar")[0]);
-            if (estado == true)
+            try
             {
-                ps.CambioEstadoPublicacion(id);
-                TempData["Mensaje"] = "Publicación deshabilitada correctamente";
-                return RedirectToAction("ListarPublicaciones");
+                bool estado = bool.Parse(Request.Form.GetValues("ckbDeshabilitar")[0]);
+                if (estado == true)
+                {
+                    ps.CambioEstadoPublicacion(id);
+                    TempData["Mensaje"] = "Publicación deshabilitada correctamente";
+                    return RedirectToAction("ListarPublicaciones");
+                }
+                else
+                {
+                    TempData["Error"] = "No se pudo deshabilitar la publicación, intentelo nuevamente";
+                    return RedirectToAction("ListarPublicaciones");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                TempData["Error"] = "No se pudo deshabilitar la publicación, intentelo nuevamente";
-                return RedirectToAction("ListarPublicaciones");
+                ClientException.LogException(ex, "Error al deshabilitar la publicación");
+                return RedirectToAction("Error", "Shared");
             }
            
         }
@@ -250,27 +258,32 @@ namespace Providere.Controllers
         [HttpPost]
         public ActionResult HabilitarPublicacion(int id)
         {
-            bool estado = bool.Parse(Request.Form.GetValues("ckbHabilitar")[0]);
-            if (estado == true)
+            try
             {
-                ps.CambioEstadoPublicacion(id);
-                TempData["Mensaje"] = "Publicación habilitada correctamente";
-                return RedirectToAction("ListarPublicaciones");
+                bool estado = bool.Parse(Request.Form.GetValues("ckbHabilitar")[0]);
+                if (estado == true)
+                {
+                    ps.CambioEstadoPublicacion(id);
+                    TempData["Mensaje"] = "Publicación habilitada correctamente";
+                    return RedirectToAction("ListarPublicaciones");
+                }
+                else
+                {
+                    TempData["Error"] = "No se pudo habilitar la publicación, intentelo nuevamente";
+                    return RedirectToAction("ListarPublicaciones");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                TempData["Error"] = "No se pudo habilitar la publicación, intentelo nuevamente";
-                return RedirectToAction("ListarPublicaciones");
+                ClientException.LogException(ex, "Error al habilitar la publicación");
+                return RedirectToAction("Error", "Shared");
             }
-
         }
 
         public ActionResult ContratarPublicacion(Publicacion publicacion)
         {
             return RedirectToAction("Contratar", "Contratacion", publicacion);
         }
-
-
     }
 }
 
