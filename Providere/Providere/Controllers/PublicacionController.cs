@@ -177,6 +177,13 @@ namespace Providere.Controllers
         [HttpPost]
         public ActionResult EditarPublicacion(int idUsuario,int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio,decimal? oculto, IEnumerable<HttpPostedFileBase> files)
         {
+            if (ps.VerificarRubro(idUsuario, idRubro) || ps.VerificarSubrubro(idUsuario, idSubRubro))
+            {
+                TempData["Error"] = "Ya tiene una publicacion creada en ese rubro o subrubro";
+                return RedirectToAction("EditarPublicacion", new { id = id });
+            }
+            else
+            {
                 if (ModelState.IsValid)
                 {
                     try
@@ -220,6 +227,7 @@ namespace Providere.Controllers
                     TempData["Error"] = "No se pudo editar la publicación, intentelo nuevamente";
                     return RedirectToAction("EditarPublicacion", new { id = id });
                 }
+            }
         }
 
         [HttpPost]
