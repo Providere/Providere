@@ -201,8 +201,8 @@ namespace Providere.Repositorios
         public Imagen NoExistenImagenes(int id)
         {
             var imagen = (from img in context.Imagen
-                           where (img.IdPublicacion == id)
-                           select img).First();
+                          where (img.IdPublicacion == id)
+                          select img).First();
             return imagen;
         }
 
@@ -219,6 +219,14 @@ namespace Providere.Repositorios
             }
 
             context.SaveChanges();
+        }
+
+        public Publicacion VerificarRubro(int idUsuario, int idRubro)
+        {
+            var publicacion = (from publicaciones in context.Publicacion
+                               where (publicaciones.IdUsuario == idUsuario && publicaciones.IdRubro == idRubro)
+                               select publicaciones).First();
+            return publicacion;
         }
     }
 }

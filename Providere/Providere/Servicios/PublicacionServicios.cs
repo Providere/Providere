@@ -121,5 +121,18 @@ namespace Providere.Servicios
         {
             pr.CambiarEstadoPublicacion(id);
         }
+
+        public bool VerificarRubro(int idUsuario, int idRubro)
+        {
+            try
+            {
+                Publicacion publicacion = pr.VerificarRubro(idUsuario, idRubro);
+            }
+            catch
+            {
+                return false;
+            }
+          return true;
+        }
     }
 }
