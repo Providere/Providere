@@ -134,5 +134,18 @@ namespace Providere.Servicios
             }
           return true;
         }
+
+        public bool VerificarSubrubro(int idUsuario, int? idSubRubro)
+        {
+            try
+            {
+                Publicacion publicacion = pr.VerificarSubrubro(idUsuario, idSubRubro);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -46,16 +46,14 @@ namespace Providere.Controllers
 
         [HttpPost]
         public ActionResult NuevaPublicacion(int idUsuario, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio, IEnumerable<HttpPostedFileBase> files)
-        {
-          
-            if (ps.VerificarRubro(idUsuario, idRubro))
+        {         
+            if (ps.VerificarRubro(idUsuario, idRubro) || ps.VerificarSubrubro(idUsuario,idSubRubro))
             {
-                TempData["Error"] = "Ya tiene una publicacion creada en ese rubro";
+                TempData["Error"] = "Ya tiene una publicacion creada en ese rubro o subrubro";
                 return RedirectToAction("NuevaPublicacion");
             }
             else
             {
-
                 if (ModelState.IsValid)
                 {
                     try
