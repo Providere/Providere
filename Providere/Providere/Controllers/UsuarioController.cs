@@ -24,7 +24,7 @@ namespace Providere.Controllers
         }
 
         [HttpPost,CaptchaValidation("CaptchaCode", "SampleCaptcha", "Codigo incorrecto")]
-        public ActionResult RegistrarUsuario(string nombre, string apellido, string dni, string mail, string telefono, string contrasenia, string geocomplete)
+        public ActionResult RegistrarUsuario(string nombre, string apellido, string dni, string mail, string telefono, string contrasenia, string CaptchaCode, string geocomplete)
         {
             bool estado = bool.Parse(Request.Form.GetValues("ckbAcepto")[0]);
             if (ModelState.IsValid && estado == true && !string.IsNullOrWhiteSpace(geocomplete))
