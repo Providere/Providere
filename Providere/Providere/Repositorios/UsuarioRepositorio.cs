@@ -65,7 +65,7 @@ namespace Providere.Repositorios
             //Encontrar al propietario del codigo de activacion:
             var user = (from usuarios in context.Usuario
                         where usuarios.CodActivacion == codAct
-                        select usuarios).First();
+                        select usuarios).FirstOrDefault();
             if (user == null)
             {
                 return false;
