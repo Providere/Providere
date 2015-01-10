@@ -1,0 +1,76 @@
+﻿@model Providere.Models.Calificacion
+
+@{
+    ViewBag.Title = "CalificarUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CalificarUsuario</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Calificacion</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Descripcion)
+            @Html.ValidationMessageFor(model => model.Descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdCalificador)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IdCalificador)
+            @Html.ValidationMessageFor(model => model.IdCalificador)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdCalificado)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IdCalificado)
+            @Html.ValidationMessageFor(model => model.IdCalificado)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdContratacion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IdContratacion)
+            @Html.ValidationMessageFor(model => model.IdContratacion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdTipoEvaluacion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IdTipoEvaluacion)
+            @Html.ValidationMessageFor(model => model.IdTipoEvaluacion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdTipoCalificacion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IdTipoCalificacion)
+            @Html.ValidationMessageFor(model => model.IdTipoCalificacion)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

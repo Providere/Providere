@@ -3,6 +3,22 @@
     ViewBag.Title = "Editar perfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Mensaje
+    </div>
+}
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
 <div class="container well">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -35,6 +51,13 @@
                         <div class="col-xs-3">
                             @Html.TextBoxFor(m => m.Apellido, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Apellido)
+                        </div>
+                    </div>
+                    <br />
+                       <div class="row">
+                        @Html.Label("DNI", new { @class = "col-sm-5 control-label" })
+                        <div class="col-xs-3">
+                            @Html.TextBoxFor(m => m.Dni, new { @class = "form-control", @readonly = "readonly", disabled = "disabled" })
                         </div>
                     </div>
                     <br />
@@ -105,7 +128,7 @@
                     <h2>
                         Modificar mi foto de perfil</h2>
                     <hr />
-                    <p class="text-warning">
+                    <p class="text-info">
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>El
                         formato de la imágen debe ser .jpg, caso contrario el cambio no tendrá efecto</p>
                     <br />
@@ -133,7 +156,7 @@
                     <h2>
                         ¿Desea eliminar su cuenta?</h2>
                     <hr />
-                    <p class="text-warning">
+                    <p class="text-info">
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Al
                         eliminar su cuenta no podrá volver a utilizarla</p>
                     <br />

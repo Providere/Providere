@@ -24,7 +24,7 @@ namespace Providere.Controllers
 
             ViewBag.PublicacionesMasCercanas = ps.traerPublicacionesMasCercanas(user.Ubicacion, 4);
 
-            ViewBag.PublicacionesMasCercanas = ps.traerPublicacionesMasCercanas(user.Ubicacion, 4);
+           // ViewBag.PublicacionesMasCercanas = ps.traerPublicacionesMasCercanas(user.Ubicacion, 4);
 
 
             return View();

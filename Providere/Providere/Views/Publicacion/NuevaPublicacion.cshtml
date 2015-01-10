@@ -16,6 +16,14 @@
     </script>
     @Scripts.Render("~/bundles/jqueryval")
 }
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
 <div class="container well">
     <div class="content">
         @using (Html.BeginForm("NuevaPublicacion", "Publicacion", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
@@ -91,9 +99,8 @@
                 @Html.Label("Cargar imagenes de ultimos trabajos realizados", new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
                     @Html.TextBox("files", "", new { type = "file", multiple = "multiple" })
-                    <p class="text-warning">
-                        <span class="glyphicon glyphicon-exclamation-sign"></span>Como maximo 4 imagenes
-                        y el formato debe ser .jpg</p>
+                    <p class="text-info">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>Como maximo 4 imagenes,en formato .jpg</p>
                 </div>
             </div>
             <br />

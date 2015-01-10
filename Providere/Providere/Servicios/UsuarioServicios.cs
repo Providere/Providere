@@ -14,11 +14,11 @@ namespace Providere.Servicios
         MailServicios mailing = new MailServicios();
 
         //verificar si ya existe un usuario registrado con ese  email:
-        public bool EmailExisteActivado(string email)
+        public bool UsuarioExisteActivado(string email, string dni)
         {
             try
             {
-                Usuario user = ur.EmailExisteActivado(email);
+                Usuario user = ur.UsuarioExisteActivado(email,dni);
             }
             catch
             {
@@ -28,11 +28,11 @@ namespace Providere.Servicios
         }
 
         //Verificar si ya existe un usuario registrado pero inactivo con ese email:
-        public bool EmailExisteInactivo(string email)
+        public bool UsuarioExisteInactivo(string email, string dni)
         {
             try
             {
-                Usuario user = ur.EmailExisteInactivo(email);
+                Usuario user = ur.UsuarioExisteInactivo(email,dni);
             }
             catch
             {
@@ -42,14 +42,17 @@ namespace Providere.Servicios
         }
 
         //Activar el usuario que esta registrado pero inactivo:
-        internal void ActivarUsuarioInactivo(string nombre, string apellido, string mail, string telefono, string contrasenia, string geocomplete)
+        public void ActivarUsuarioInactivo(string nombre, string apellido, string dni,string mail, string telefono, string contrasenia, string geocomplete)
         {
-            var user = ur.TraerDatosPorMail(mail); //Traigo todos los datos de ese usuario que tengo en la BD
+            var user = ur.TraerDatosPorMailDni(mail,dni); //Traigo todos los datos de ese usuario
             user.Nombre = nombre;
             user.Apellido = apellido;
+            user.Dni = dni;
+            user.Mail = mail;
             user.Contrasenia = Encryptor.MD5Hash(contrasenia);
             user.Telefono = telefono;
             user.Ubicacion = geocomplete;
+            user.CodActivacion = Encryptor.MD5Hash(mail);
 
             //Le envio el mail de confirmacion y actualizo los datos:
 
@@ -57,11 +60,12 @@ namespace Providere.Servicios
             mailing.EnviarMail(user);
         }
 
-        internal void AgregarUsuarioNuevo(string nombre, string apellido, string mail, string telefono, string contrasenia, string geocomplete)
+        public void AgregarUsuarioNuevo(string nombre, string apellido, string dni, string mail, string telefono, string contrasenia, string geocomplete)
         {
             Usuario miUsuario = new Usuario();
             miUsuario.Nombre = nombre;
             miUsuario.Apellido = apellido;
+            miUsuario.Dni = dni;
             miUsuario.Telefono = telefono;
             miUsuario.Mail = mail;
             miUsuario.Ubicacion = geocomplete;
@@ -95,39 +99,39 @@ namespace Providere.Servicios
             return ur.UsuarioActivo(model);
         }
 
-        internal object traerIdUsuario(Usuario model)
+        public object traerIdUsuario(Usuario model)
         {
-            Usuario miUsuario = ur.TraerDatosPorMail(model.Mail);
+            Usuario miUsuario = ur.TraerDatosPorMailDni(model.Mail,model.Dni);
             return miUsuario.Id;
         }
 
 
-        internal void CrearCookie(Usuario model)
+        public void CrearCookie(Usuario model)
         {
-            var user = ur.TraerDatosPorMail(model.Mail);
+            var user = ur.TraerDatosPorMailDni(model.Mail,model.Dni);
             FormsAuthentication.SetAuthCookie(user.Nombre, false);
         }
 
         //Obtener usuario a traves de su id para editar datos:
-        internal Usuario ObtenerUsuarioEditar(int idUsuario)
+        public Usuario ObtenerUsuarioEditar(int idUsuario)
         {
             return ur.ObtenerUsuarioEditar(idUsuario);
         }
 
         //Modifico datos personales:
-        internal void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string geocomplete2)
+        public void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string geocomplete2)
         {
             ur.ModificarDatosUsuario(id, nombre, apellido, telefono, geocomplete2);
         }
 
         //Modifico contraseña solo si el usuario desea cambiarla:
-        internal void GuardarContraseniaNueva(int id, string contrasenia)
+        public void GuardarContraseniaNueva(int id, string contrasenia)
         {
             ur.GuardarContraseniaNueva(id, contrasenia);
         }
 
         //Damos de baja al usuario:
-        internal void DarDeBajaUsuario(int idUsuario)
+        public void DarDeBajaUsuario(int idUsuario)
         {
             ur.DarDeBajaUsuario(idUsuario);
         }

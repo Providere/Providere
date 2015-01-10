@@ -13,7 +13,8 @@ namespace Providere.Controllers
         //
         // GET: /Buscar/Resultados
 
-        BuscarServicios ps = new BuscarServicios();
+        BuscarServicios bs = new BuscarServicios();
+        PublicacionServicios ps = new PublicacionServicios();
         RubroServicios rs = new RubroServicios();
         SubRubroServicios ss = new SubRubroServicios();
         ProvidereEntities context = new ProvidereEntities();
@@ -21,7 +22,7 @@ namespace Providere.Controllers
         [HttpPost]
         public ActionResult Resultados()
         {
-            var publicaciones = ps.buscar(Request["selectRubro"], Request["IdSubRubro"], Request["geocomplete"]);
+            var publicaciones = bs.buscar(Request["selectRubro"], Request["IdSubRubro"], Request["geocomplete"]);
 
             if (Request["selectRubro"] != null)
             {
@@ -42,7 +43,9 @@ namespace Providere.Controllers
             }
 
             ViewBag.ubicacionElegida = Request["geocomplete"];
-            
+
+            publicaciones = ps.traerPublicacionesMasRecientes(8);
+
                 return View(publicaciones);
         }
 

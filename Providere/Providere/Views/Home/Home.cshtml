@@ -26,20 +26,22 @@
         <br />
         <div class="row">
             @foreach (var item in ViewBag.PublicacionesMasRecientes.listadoDePublicaciones)
-            {
-                
+            {               
                 <div class="col-xs-3">
                     <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >
                         <div class="thumbnail">
+                        
+                                    <div class="contenedor-img">
                             <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
                                  width="110%" alt="" height= "200px" />
+                                 </div>
                             <div class="caption text-center">
                                 <h4>
                                     <a href="#">
                                         @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
                                 <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
                                 <br />
-                                <span><a href="#">@item.publicacion.Titulo</a></span>
+                                <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span>
                                 <br />
                                 <h6 class="text-danger">
                                     @if (@item.publicacion.PrecioOpcion == 1)
@@ -74,7 +76,9 @@
         </div>
     }
     <hr />
-    @if (ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones.Count > 0)
+ 
+    @*@if (ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones.Count > 0)*@
+    @if (ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones.Count > 5455)
     {
         <div id="prestadores-mejores">
             <h2>
@@ -85,10 +89,12 @@
                 {
                 
                     <div class="col-xs-3">
-                        <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >
                             <div class="thumbnail" style="height: 330px">
-                                <img  src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt=""  width="100%" height= "200px"/>
-                                <div class="caption text-center">
+                                
+                                    <div class="contenedor-img">
+                            <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
+                                 width="110%" alt="" height= "200px" />
+                                 </div> <div class="caption text-center">
                                     <h4>
                                         <a href="#">
                                             @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
@@ -96,7 +102,7 @@
                                     <br />
                                 </div>
                             </div>
-                        </a>
+                       @* </a>*@
                     </div>
                 }</div>
             <center>
@@ -108,12 +114,14 @@
     }
     else
     {
-        <div class="text-center">
+       <!-- <div class="text-center">
             <span class="text-muted">Hoy no hay publicaciones destacadas.</span>
-        </div>
+        </div>-->
     }
     <hr />
-    @if (ViewBag.PublicacionesMasCercanas.listadoDePublicaciones.Count > 0)
+    
+    @*@if (ViewBag.PublicacionesMasCercanas.listadoDePublicaciones.Count > 0)*@
+    @if (ViewBag.PublicacionesMasCercanas.listadoDePublicaciones.Count >45444)
     {
         <div id="prestadores-zona">
             <h2>

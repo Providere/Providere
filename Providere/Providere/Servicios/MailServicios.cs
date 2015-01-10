@@ -19,7 +19,7 @@ namespace Providere.Servicios
         {
             //ENVIO DE MAIL:
             msj.To.Add(new MailAddress(model.Mail));
-            msj.From = new MailAddress("nuestra.aplicacion2014@gmail.com");
+            msj.From = new MailAddress("unlampw3@gmail.com");
             msj.Subject = "Activación de cuenta";
             msj.SubjectEncoding = System.Text.Encoding.UTF8;
             string body = "Hola " + model.Nombre.Trim() + ",";

@@ -64,6 +64,15 @@ body {
 margin-right: 7px;
 
 }
+.contenedor-img 
+{
+    max-height:200px;
+    overflow:hidden;
+}
+.contenedor-img >img
+{
+    min-height: 200px
+}
 .user-menu {
 	margin-top: 1em
 }
@@ -75,8 +84,12 @@ margin-right: 7px;
 
     height: auto;
     float: left;
-    margin-top: 0.5em;
-    margin-right: 1em;
+    
+
+    margin-top: 0.8em;
+    
+
+    margin-right: 4em;
     position: relative;
 
     -webkit-border-radius: 50%;

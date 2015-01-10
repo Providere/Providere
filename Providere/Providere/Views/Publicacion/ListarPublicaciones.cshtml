@@ -3,6 +3,22 @@
     ViewBag.Title = "Publicaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Mensaje
+    </div>
+}
 <div class="container well">
     <h2>
         Publicaciones</h2>
@@ -17,12 +33,12 @@
     <div class="col-md-12">
         <table class="tabla-publicaciones table table-bordered table-hover">
             <thead>
-                <tr class="btn-warning">
+                <tr class="default">
                     <th>
-                        @Html.DisplayName("Fecha creacion")
+                        @Html.DisplayName("Fecha creación")
                     </th>
                     <th>
-                        @Html.DisplayName("Fecha de modificacion")
+                        @Html.DisplayName("Fecha de edición")
                     </th>
                     <th>
                         @Html.DisplayName("Rubro")
@@ -31,16 +47,16 @@
                         @Html.DisplayName("SubRubro")
                     </th>
                     <th>
-                        @Html.DisplayName("Titulo publicacion")
+                        @Html.DisplayName("Título de la publicación")
                     </th>
                     <th>
                         @Html.DisplayName("Precio")
                     </th>
                     <th>
-                        Editar
+                        Edición
                     </th>
                     <th>
-                        Deshabilitar
+                        Acción
                     </th>
                 </tr>
             </thead>
@@ -77,10 +93,26 @@
                             @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })
                         </td>
                         <td>
-                            <label>
+                            @if (item.Estado == 1)
+                            {
+                                using (Html.BeginForm("DeshabilitarPublicacion", "Publicacion", new { Id = item.Id }, FormMethod.Post, new { @class = "form-horizontal" }))
+                                { 
+            
                                 @Html.CheckBox("ckbDeshabilitar")
-                                @Html.ActionLink("Confirmar", "DeshabilitarPublicacion", "Publicacion", new { Id = item.Id }, new { @class = "btn btn-info btn-xs" })
-                            </label>
+                    
+                                <input type="submit" id="btnConfirmar" value="Deshabilitar" class="btn btn-primary btn-xs" />                    
+                                }
+                            }
+                            else
+                            {
+                                 using (Html.BeginForm("HabilitarPublicacion", "Publicacion", new { Id = item.Id }, FormMethod.Post, new { @class = "form-horizontal" }))
+                                { 
+            
+                                @Html.CheckBox("ckbHabilitar")
+                    
+                                <input type="submit" id="btnConfirmar2" value="Habilitar" class="btn btn-default btn-xs" />                    
+                                }
+                            }
                         </td>
                     </tr>
                 }

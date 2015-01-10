@@ -16,95 +16,147 @@
         <h1 class="text-center">
             @Html.DisplayFor(model => model.Titulo)</h1>
         <hr />
-        <div class="col-md-2">
-            <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />
-        </div>
-        <div class="col-md-2">
-            <h2>
-                @Html.DisplayFor(model => model.Usuario.Nombre)
-                @Html.DisplayFor(model => model.Usuario.Apellido)
-            </h2>
-            <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
-                class="badge">N° </span>
-        </div>
-        <div class="col-md-8">
-            <h3>
-                Precio
-            </h3>
-            @if (Model.PrecioOpcion != null)
-            {
-                <h4 class="text-danger">
-                    @if (Model.PrecioOpcion == 1)
+        
+        <div class="col-md-9">
+            <div class="col-md-8">
+                <h3>
+                    Descripción</h3>
+                <p>
+                    @Html.DisplayFor(model => model.Descripcion)</p>
+            </div>
+            <div class="col-md-2">
+                <h3>
+                    Precio
+                </h3>
+                @if (Model.PrecioOpcion != null)
+                {
+                    <h4 class="text-danger">
+                        @if (Model.PrecioOpcion == 1)
+                        {
+                            @Html.Label("A Convenir") 
+                        }
+                        else
+                        {
+                            @Html.Label("$") 
+                            @Html.DisplayFor(model => model.Precio)
+                        }
+                    </h4>
+                }
+                <div>
+                    @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
                     {
-                        @Html.Label("A Convenir") 
+                
+                        @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
                     }
                     else
                     {
-                        @Html.Label("$") 
-                        @Html.DisplayFor(model => model.Precio)
+                        @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary glyphicon glyphicon-ok" })
+               
                     }
-                </h4>
-            }
-            <div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h3>
+                    Calificaciones</h3>
+                @if (@HttpContext.Current.Session["IdUsuario"].ToString() == Model.IdUsuario.ToString())
+                {
+                
+                    @: Todavía no obtuviste calificaciones.
+             }
+                else
+                {
+                 
+                    @Html.DisplayFor(model => model.Usuario.Nombre)
+                    @: aún no posee calificaciones.
+                                                }
+            </div>
+            <div class="col-md-12">
+                <h3>
+                    Últimos trabajos realizados</h3>
+            </div>
+            <div class="col-md-12">
+                @ViewBag.NoExistenImagenes
+                <div class="row">
+                    @foreach (var item in Model.Imagen)
+                    {
+                        <div class="col-md-3">
+                            <a class="example-image-link" href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="example-set">
+                                <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "150px" />
+                            </a>
+                        </div>                  
+                    }
+                </div>
+            </div>
+        </div>
+        <div id="ficha-publicante" class="col-md-3">
+            <div class="contenedor-imagen-publicacion">
                 @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
                 {
                 
-                    @Html.ActionLink("Volver", "ListarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-arrow-left" })
-                    @Html.ActionLink("Editar", "EditarPublicaciones", "Publicacion", null, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
+                    <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />
+             
                 }
                 else
                 {
-                    <a href="#" class="btn btn-primary glyphicon glyphicon-arrow-left">Contratar</a>
+                    <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = Model.IdUsuario })" alt="plomero" width="100%"/>
+                
                 }
             </div>
-        </div>
-        <div class="col-md-12">
-            <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)
-            </span>
-        </div>
-        <div class="col-md-12">
-            <h3>
-                Descripción</h3>
-            <p>
-                @Html.DisplayFor(model => model.Descripcion)</p>
-        </div>
-        <div class="col-md-12">
-            <h3>
-                Calificaciones</h3>
-            <em>Aqui se mostraran las calificaciones que obtuviste</em>
-        </div>
-        <div class="col-md-12">
-            <h3>
-                Últimos trabajos realizados</h3>
-        </div>
-        <div class="col-md-12">
-            <div class="row">
-                @foreach (var item in Model.Imagen)
-                {
-                    <div class="col-md-3">
-                        <a href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="roadtrip">
-                            <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "200px" />
-                        </a>
-                    </div>
-                }
+            <div class="contenedor-info-publicante">
+                <h2>
+                    @Html.DisplayFor(model => model.Usuario.Nombre)
+                    @Html.DisplayFor(model => model.Usuario.Apellido)
+                </h2>
+                <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
+                    class="badge">0</span>
+                <br />
+                <span class="text-muted">@Html.DisplayFor(model => model.SubRubro.Nombre) </span>
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)
+                </span>
             </div>
         </div>
-          
-        <div class="col-md-12">
-            <h3>
-                Preguntas al prestador</h3>
-            <p class="text-warning">
-                <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no puedes compartir
-                tu datos personales por este medio</p>
-            <div class="form-group col-md-10">
-                <textarea class="form-control " name="questionText" id="questionText" cols="110"
-                    rows="" disabled="disabled">Escribe tu pregunta aqui...
+        
+        
+        <div>
+            @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+            {
+                
+                <div class="col-md-12">
+                    <h3>
+                        Preguntas al prestador</h3>
+                    <p class="text-info">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no puedes compartir
+                        tu datos personales por este medio</p>
+                    <div class="form-group col-md-10">
+                        <textarea class="form-control " name="questionText" id="questionText" cols="110"
+                            rows="" disabled="disabled">Escribe tu pregunta aqui...
             </textarea>
-            </div>
-            <div class="form-group col-md-2">
-                <button class="btn btn-primary btn-lg" disabled="disabled" type="submit">
-                    Enviar</button>
-            </div>
-        </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <button class="btn btn-primary btn-lg" disabled="disabled" type="submit">
+                            Enviar</button>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-12">
+                    <h3>
+                        Preguntas al prestador</h3>
+                    <p class="text-info">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no puedes compartir
+                        tu datos personales por este medio</p>
+                    <div class="form-group col-md-10">
+                        @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta aqui..." })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <button class="btn btn-primary btn-lg" type="submit">
+                            Enviar</button>
+                    </div>
+                </div>
+            }
+        </div>      
     }
 </div>

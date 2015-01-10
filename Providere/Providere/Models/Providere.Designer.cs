@@ -3396,7 +3396,8 @@ namespace Providere.Models
         /// <param name="codActivacion">Valor inicial de la propiedad CodActivacion.</param>
         /// <param name="fechaCambioEstado">Valor inicial de la propiedad FechaCambioEstado.</param>
         /// <param name="idEstado">Valor inicial de la propiedad IdEstado.</param>
-        public static Usuario CreateUsuario(global::System.Int16 id, global::System.String nombre, global::System.String apellido, global::System.String mail, global::System.String contrasenia, global::System.String ubicacion, global::System.String telefono, global::System.DateTime fechaCreacion, global::System.DateTime fechaActivacion, global::System.String codActivacion, global::System.DateTime fechaCambioEstado, global::System.Int16 idEstado)
+        /// <param name="dni">Valor inicial de la propiedad Dni.</param>
+        public static Usuario CreateUsuario(global::System.Int16 id, global::System.String nombre, global::System.String apellido, global::System.String mail, global::System.String contrasenia, global::System.String ubicacion, global::System.String telefono, global::System.DateTime fechaCreacion, global::System.DateTime fechaActivacion, global::System.String codActivacion, global::System.DateTime fechaCambioEstado, global::System.Int16 idEstado, global::System.String dni)
         {
             Usuario usuario = new Usuario();
             usuario.Id = id;
@@ -3411,6 +3412,7 @@ namespace Providere.Models
             usuario.CodActivacion = codActivacion;
             usuario.FechaCambioEstado = fechaCambioEstado;
             usuario.IdEstado = idEstado;
+            usuario.Dni = dni;
             return usuario;
         }
 
@@ -3708,6 +3710,30 @@ namespace Providere.Models
         private global::System.Int16 _IdEstado;
         partial void OnIdEstadoChanging(global::System.Int16 value);
         partial void OnIdEstadoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Dni
+        {
+            get
+            {
+                return _Dni;
+            }
+            set
+            {
+                OnDniChanging(value);
+                ReportPropertyChanging("Dni");
+                _Dni = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Dni");
+                OnDniChanged();
+            }
+        }
+        private global::System.String _Dni;
+        partial void OnDniChanging(global::System.String value);
+        partial void OnDniChanged();
 
         #endregion
 

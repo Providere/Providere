@@ -15,7 +15,7 @@ namespace Providere.Servicios
         ImagenRepositorio ir = new ImagenRepositorio();
 
 
-        public void CrearNuevaPublicacion(int idUsuario, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, string precio)
+        public void CrearNuevaPublicacion(int idUsuario, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio)
         {
             pr.CrearNuevaPublicacion(idUsuario, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio);
         }
@@ -67,23 +67,85 @@ namespace Providere.Servicios
             pr.CargarImagenes(pathImagen, idUsuario);
         }
 
-        internal object ListarMisPublicaciones(int idUsuario)
+        public object ListarMisPublicaciones(int idUsuario)
         {
             var misPublicaciones = pr.ListarMisPublicaciones(idUsuario);
             return misPublicaciones;
         }
 
-        internal Publicacion TraerPublicacion(int Id, int idUsuario)
+        public Publicacion TraerPublicacion(int Id, int idUsuario)
         {
             Publicacion miPublicacion = pr.TraerPublicacion(Id, idUsuario);
             return miPublicacion;
         }
 
-
-
         internal Publicacion TraerPublicacionPorId(int idPublicacion)
         {
             return pr.TraerPublicacionPorId(idPublicacion);
+        }
+
+        public void ModificarPublicacion(int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio, decimal? oculto)
+        {
+            pr.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio, oculto);
+        }
+
+        public void EliminarImagen(int id)
+        {
+            pr.EliminarImagen(id);
+        }
+
+        public int VerificarCantidadImagenes(int id)
+        {
+            return pr.VerificarCantidadImagenes(id);
+        }
+
+        public void CargarImagenesEdicion(string pathImagen, int idUsuario, int id)
+        {
+            pr.CargarImagenesEdicion(pathImagen, idUsuario,id);
+        }
+
+        public bool NoExistenImagenes(int id)
+        {
+            try
+            {
+                Imagen imagenes = pr.NoExistenImagenes(id);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void CambioEstadoPublicacion(int id)
+        {
+            pr.CambiarEstadoPublicacion(id);
+        }
+
+        public bool VerificarRubro(int idUsuario, int idRubro)
+        {
+            try
+            {
+                Publicacion publicacion = pr.VerificarRubro(idUsuario, idRubro);
+            }
+            catch
+            {
+                return false;
+            }
+          return true;
+        }
+
+        public bool VerificarSubrubro(int idUsuario, int? idSubRubro)
+        {
+            try
+            {
+                Publicacion publicacion = pr.VerificarSubrubro(idUsuario, idSubRubro);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

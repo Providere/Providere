@@ -42,7 +42,7 @@
         {
             foreach (var item in Model.listadoDePublicaciones)
             {
-                <div class="col-xs-3"> <a href="/publicacion/ver/@item.publicacion.Id" > <div class="thumbnail"
+                <div class="col-xs-3"> <a href="/publicacion/VisualizarPublicacion/@item.publicacion.Id" > <div class="thumbnail"
                 > <img src="../../Imagenes/Publicacion/@item.imagen.Nombre" width="110%" alt=""
                 height= "200px" /> <div class="caption text-center"> <h4> <a href="#">
                 @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4> <strong>@item.publicacion.Rubro.Nombre</strong>
