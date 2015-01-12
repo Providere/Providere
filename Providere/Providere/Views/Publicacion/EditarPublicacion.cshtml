@@ -65,10 +65,10 @@
                                     @Html.ValidationMessageFor(model => model.IdRubro)
                                 </div>
                             </div>
-                            <div class="row subrubros-container" style="display: none">
+                            <div class="row subrubros-container">
                                 @Html.Label("SubRubro", new { @class = "col-sm-5 control-label" })
                                 <div data-estilo="vertical" class="subrubros-select col-xs-3">
-                                    @Html.DropDownList("IdSubRubro", null, "", new { @class = "form-control" })
+                                    @Html.DropDownList("IdSubRubro", null, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.IdRubro)
                                 </div>
                             </div>

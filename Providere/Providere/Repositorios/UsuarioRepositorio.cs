@@ -114,11 +114,12 @@ namespace Providere.Repositorios
         }
 
         //Modifico los datos del usuario(Editar perfil):
-        public void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string geocomplete2)
+        public void ModificarDatosUsuario(int id, string nombre, string apellido, string dni, string telefono, string geocomplete2)
         {
             Usuario usuario = context.Usuario.Where(e => e.Id == id).FirstOrDefault();
             usuario.Nombre = nombre;
             usuario.Apellido = apellido;
+            usuario.Dni = dni;
             usuario.Ubicacion = geocomplete2;
             usuario.Telefono = telefono;
 

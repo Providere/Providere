@@ -58,6 +58,7 @@
                         @Html.LabelFor(m=>m.Dni, new { @class = "col-sm-5 control-label" })
                         <div class="col-xs-3">
                             @Html.TextBoxFor(m => m.Dni, new { @class = "form-control"})
+                             @Html.ValidationMessageFor(m => m.Dni)
                         </div>
                     </div>
                     <br />

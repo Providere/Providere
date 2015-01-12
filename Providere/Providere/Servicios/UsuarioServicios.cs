@@ -119,9 +119,9 @@ namespace Providere.Servicios
         }
 
         //Modifico datos personales:
-        public void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string geocomplete2)
+        public void ModificarDatosUsuario(int id, string nombre, string apellido, string dni, string telefono, string geocomplete2)
         {
-            ur.ModificarDatosUsuario(id, nombre, apellido, telefono, geocomplete2);
+            ur.ModificarDatosUsuario(id, nombre, apellido, dni, telefono, geocomplete2);
         }
 
         //Modifico contraseña solo si el usuario desea cambiarla:
