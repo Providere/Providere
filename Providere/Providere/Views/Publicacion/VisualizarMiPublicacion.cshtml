@@ -14,7 +14,13 @@
         </div>
         
         <h1 class="text-center">
-            @Html.DisplayFor(model => model.Titulo)</h1>
+            @Html.DisplayFor(model => model.Titulo)
+           @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+           {
+                
+                        @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "btn btn-info btn-xs glyphicon glyphicon-pencil" })
+           }
+           </h1>
         <hr />
         
         <div class="col-md-9">
@@ -30,25 +36,21 @@
                 </h3>
                 @if (Model.PrecioOpcion != null)
                 {
-                    <h4 class="text-danger">
-                        @if (Model.PrecioOpcion == 1)
-                        {
-                            @Html.Label("A Convenir") 
-                        }
-                        else
-                        {
-                            @Html.Label("$") 
-                            @Html.DisplayFor(model => model.Precio)
-                        }
-                    </h4>
-                }
-                <div>
-                    @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+
+                    if (Model.PrecioOpcion == 1)
                     {
-                
-                        @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
+                            @Html.Label("A Convenir") 
                     }
                     else
+                    {
+                            @Html.Label("$") 
+                            @Html.DisplayFor(model => model.Precio)
+                    }
+
+                }
+                <div>
+                    @if (ViewBag.accionPadre != "VisualizarMiPublicacion")
+                    
                     {
                         @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary glyphicon glyphicon-ok" })
                

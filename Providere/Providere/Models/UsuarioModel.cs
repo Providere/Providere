@@ -48,6 +48,7 @@ namespace Providere.Models
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Telefono { get; set; }
 
+            [DisplayName("DNI")]
             [Required(ErrorMessage = "Campo Obligatorio")]
             [StringLength(8, ErrorMessage = "Maximo 8 caracteres")]
             [RegularExpression("[0-9]*", ErrorMessage = "El DNI debe ser solo numerico")]

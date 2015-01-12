@@ -55,9 +55,9 @@
                     </div>
                     <br />
                        <div class="row">
-                        @Html.Label("DNI", new { @class = "col-sm-5 control-label" })
+                        @Html.LabelFor(m=>m.Dni, new { @class = "col-sm-5 control-label" })
                         <div class="col-xs-3">
-                            @Html.TextBoxFor(m => m.Dni, new { @class = "form-control", @readonly = "readonly", disabled = "disabled" })
+                            @Html.TextBoxFor(m => m.Dni, new { @class = "form-control"})
                         </div>
                     </div>
                     <br />

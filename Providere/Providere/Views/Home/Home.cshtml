@@ -43,7 +43,7 @@
                                 <br />
                                 <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span>
                                 <br />
-                                <h6 class="text-danger">
+                                  <p>
                                     @if (@item.publicacion.PrecioOpcion == 1)
                                     {
                                         @Html.Label("Precio:")
@@ -55,7 +55,7 @@
                                         @String.Format("{0:0.00}", @item.publicacion.Precio)                     
                    
                                     }
-                                </h6>
+                                </p>
                             </div>
                         </div>
                     </a>

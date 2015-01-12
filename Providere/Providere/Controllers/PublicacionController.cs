@@ -104,13 +104,6 @@ namespace Providere.Controllers
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Publicacion miPublicacion = ps.TraerPublicacion(Id, idUsuario);
 
-            if (miPublicacion.Estado == 0) //Deshabilitado
-            {
-                TempData["Error"] = "No puede visualizar su publicación porque esta deshabilitada";
-                return RedirectToAction("ListarPublicaciones");
-            }
-            else
-            {
                 if (ps.NoExistenImagenes(Id) == false)
                 {
                     ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
@@ -118,7 +111,6 @@ namespace Providere.Controllers
 
                 ViewBag.accionPadre = "VisualizarMiPublicacion";
                 return View(miPublicacion);
-            }
         }
 
         // Publicacion/VisualizarPublicacion/12
@@ -153,15 +145,6 @@ namespace Providere.Controllers
 
             ViewBag.Mensaje = TempData["Mensaje"];
             ViewBag.Error = TempData["Error"];
-
-            if (publicacion.Estado == 0) //Deshabilitado
-            {
-                TempData["Error"] = "No se puede editar la publicación porque esta deshabilitada";
-                return RedirectToAction("ListarPublicaciones");
-            }
-
-            else
-            {
                 if (ps.NoExistenImagenes(id) == false) //Si devuelve false es porque no existen imagenes para esa publicacion
                 {
                     ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
@@ -171,7 +154,6 @@ namespace Providere.Controllers
                 ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre", publicacion.IdSubRubro);
 
                 return View(publicacion);
-            }
         }
 
         [HttpPost]
