@@ -19,7 +19,7 @@ namespace Providere.Controllers
 
         public ActionResult RegistrarUsuario()
         {
-
+            ViewBag.Error = TempData["Error"];
             return View();
         }
 
@@ -69,7 +69,7 @@ namespace Providere.Controllers
                             }
                         }
 
-                        TempData["Mensaje"] = "La registración fue exitosa. Revise su correo electrónico para activar su cuenta";
+                        TempData["Mensaje"] = "La registración fue exitosa. Revisa tu correo electrónico para activar la cuenta";
                         return RedirectToAction("IniciarSesion");
 
                     }
@@ -77,7 +77,7 @@ namespace Providere.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "No se olvide de ingresar ubicación, y aceptar los términos y condiciones para continuar con la registración");
+                ModelState.AddModelError("", "No te olvides de ingresar ubicación, y aceptar los términos y condiciones para continuar con la registración");
                 return View();
             }
 
@@ -89,11 +89,11 @@ namespace Providere.Controllers
             string msj;
             if (us.ActivarUsuario(codAct))
             {
-                msj = "Su cuenta ha sido activada satisfactoriamente. Ya puede comenzar a utilizar Providere";
+                msj = "Tu cuenta ha sido activada satisfactoriamente. Ya podes comenzar a utilizar Providere";
             }
             else
             {
-                msj = "El tiempo para la activación de su cuenta ha expirado, vuelva a registrarse para recibir un nuevo mail de activación";
+                msj = "El tiempo para la activación de su cuenta ha expirado, volve a registrarte para recibir un nuevo mail de activación";
             }
             ViewBag.msj = msj;
 
@@ -149,7 +149,7 @@ namespace Providere.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Verifique su dirección de correo electrónico y/o contraseña");
+                    ModelState.AddModelError("", "Verifica tu dirección de correo electrónico y/o contraseña");
                 }
             }
             return View(model);
@@ -186,7 +186,7 @@ namespace Providere.Controllers
                 {
                  
                     us.ModificarDatosUsuario(id, nombre, apellido,dni, telefono, geocomplete2);
-                    TempData["Mensaje"] = "Sus datos personales se actualizaron correctamente";
+                    TempData["Mensaje"] = "Tus datos personales se actualizaron correctamente";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -197,7 +197,7 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "No se pudo modificar sus datos, intentelo nuevamente";
+                TempData["Error"] = "No se pudo modificar tus datos, intentalo nuevamente";
                 return RedirectToAction("EditarPerfil", new { id = id });
             }
 
@@ -217,7 +217,7 @@ namespace Providere.Controllers
                                        Path.GetFileName(uniqueFileName + extension));
                     file.SaveAs(path);
 
-                    TempData["Mensaje"] = "Su foto de perfil se ha cargado con exito";
+                    TempData["Mensaje"] = "Tu foto de perfil se ha cargado con exito";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -228,7 +228,7 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "No se pudo cargar la imágen, intentelo nuevamente";
+                TempData["Error"] = "No se pudo cargar la imágen, intentalo nuevamente";
                 return RedirectToAction("EditarPerfil", new { id = id });
             }
         }
@@ -242,7 +242,7 @@ namespace Providere.Controllers
                 try
                 {
                     us.GuardarContraseniaNueva(id, contrasenia);
-                    TempData["Mensaje"] = "Su contraseña ha sido modificada con éxito";
+                    TempData["Mensaje"] = "Tu contraseña ha sido modificada con éxito";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -253,7 +253,7 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "Su contraseña no pudo ser modificada, intentelo nuevamente";
+                TempData["Error"] = "Tu contraseña no pudo ser modificada, intentalo nuevamente";
                 return RedirectToAction("EditarPerfil", new { id = id });
             }
         }
@@ -272,7 +272,7 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "No se pudo eliminar su cuenta, intentelo nuevamente";
+                TempData["Error"] = "No se pudo eliminar tu cuenta, intentalo nuevamente";
                 return RedirectToAction("Home", "Home");
             }
         }
@@ -292,8 +292,44 @@ namespace Providere.Controllers
                 return File(fullPath, "Imagenes/FotoPerfil", file);
             }
         }
+
+        public ActionResult OlvideContrasenia()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult OlvideContrasenia(string mail, string dni)
+        {
+            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+
+            //verificar si ese usuario existe en la BD y esta activo:
+            if (ModelState.IsValid && us.UsuarioExisteActivado(mail, dni))
+            {
+                return RedirectToAction("CambiarContrasenia"); //Existe y puede recuperar la contraseña cambiandola
+            }
+            else
+            {
+                TempData["Error"] = "Usuario inexistente, registrate gratis";
+                return RedirectToAction("RegistrarUsuario");
+            }
+        }
+
+        public ActionResult CambiarContrasenia()
+        {
+            return View();
+        }
+
+
+        //[HttpPost]
+        //public ActionResult CambiarContrasenia(int contrasenia)
+        //{
+        //   int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+        //   TempData["Mensaje"] = "Contraseña cambiada exitosamente";
+        //   return View("IniciarSesion");
+        //}
+
         
-
-
     }
 }

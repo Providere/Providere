@@ -4,7 +4,16 @@
     ViewBag.Title = "Registracion";
     Layout = "~/Views/Shared/_Registracion.cshtml";
 }
+
 <div class="container well">
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
     <div class="content">
         @using (Html.BeginForm("RegistrarUsuario", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
         {

@@ -1,0 +1,45 @@
+﻿@model Providere.Models.Usuario
+@{
+    ViewBag.Title = "OlvideContrasenia";
+    Layout = "~/Views/Shared/_Registracion.cshtml";
+}
+<div class="container well">
+ <div class="content">
+        @using (Html.BeginForm("OlvideContrasenia", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <div id="page-wrapper">
+                <h2>
+                  Olvide mi contraseña</h2>
+                @Html.ValidationSummary(true)
+                <hr />
+                <div class="row">
+                    @Html.Label("Correo electronico", new { @class = "col-sm-5 control-label" })
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Mail)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    @Html.LabelFor(model=>model.Dni, new { @class = "col-sm-5 control-label" })
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(m => m.Dni, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Dni)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-5">
+                        <button id="btnEnviar" type="submit" class="btn btn-info">
+                            Enviar
+                        </button>
+                        @Html.ActionLink("Cancelar", "Index", "Index", null, new { @class = "btn btn-warning" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
