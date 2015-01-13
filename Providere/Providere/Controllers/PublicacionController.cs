@@ -49,7 +49,7 @@ namespace Providere.Controllers
         {         
             if (ps.VerificarRubro(idUsuario, idRubro) || ps.VerificarSubrubro(idUsuario,idSubRubro))
             {
-                TempData["Error"] = "Ya tiene una publicacion creada en ese rubro o subrubro";
+                TempData["Error"] = "Ya tenes una publicacion creada en ese rubro o subrubro";
                 return RedirectToAction("NuevaPublicacion");
             }
             else
@@ -92,7 +92,7 @@ namespace Providere.Controllers
                 }
                 else
                 {
-                    TempData["Error"] = "No se pudo crear la publicación, intentelo nuevamente";
+                    TempData["Error"] = "No se pudo crear la publicación, intentalo nuevamente";
                     return RedirectToAction("ListarPublicaciones");
                 }
             }
@@ -199,7 +199,7 @@ namespace Providere.Controllers
                 }
                 else
                 {
-                    TempData["Error"] = "No se pudo editar la publicación, intentelo nuevamente";
+                    TempData["Error"] = "No se pudo editar la publicación, intentalo nuevamente";
                     return RedirectToAction("EditarPublicacion", new { id = id });
                 }
         }
@@ -234,7 +234,7 @@ namespace Providere.Controllers
                 }
                 else
                 {
-                    TempData["Error"] = "No se pudo deshabilitar la publicación, intentelo nuevamente";
+                    TempData["Error"] = "No se pudo deshabilitar la publicación, intentalo nuevamente";
                     return RedirectToAction("ListarPublicaciones");
                 }
             }
@@ -260,7 +260,7 @@ namespace Providere.Controllers
                 }
                 else
                 {
-                    TempData["Error"] = "No se pudo habilitar la publicación, intentelo nuevamente";
+                    TempData["Error"] = "No se pudo habilitar la publicación, intentalo nuevamente";
                     return RedirectToAction("ListarPublicaciones");
                 }
             }
