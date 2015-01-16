@@ -15,7 +15,7 @@ namespace Providere.Controllers
 
         public ActionResult Home(Usuario user)
         {
-            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
 
             ViewBag.PublicacionesMasRecientes = ps.traerPublicacionesMasRecientes(4);

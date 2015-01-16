@@ -21,7 +21,7 @@ namespace Providere.Controllers
             var publicaciones = ps.ListarMisPublicaciones(idUsuario);
 
             ViewBag.Error = TempData["Error"];
-            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Exito = TempData["Exito"];
 
             return View(publicaciones);
         }
@@ -143,7 +143,7 @@ namespace Providere.Controllers
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Publicacion publicacion = ps.TraerPublicacion(id, idUsuario);
 
-            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
                 if (ps.NoExistenImagenes(id) == false) //Si devuelve false es porque no existen imagenes para esa publicacion
                 {
@@ -210,7 +210,7 @@ namespace Providere.Controllers
             try
             {
                 ps.EliminarImagen(id);
-                TempData["Mensaje"] = "Imagen eliminada correctamente";
+                TempData["Exito"] = "Imagen eliminada correctamente";
                 return RedirectToAction("EditarPublicacion",new { id = idPublicacion });
             }
             catch (Exception ex)
@@ -229,7 +229,7 @@ namespace Providere.Controllers
                 if (estado == true)
                 {
                     ps.CambioEstadoPublicacion(id);
-                    TempData["Mensaje"] = "Publicación deshabilitada correctamente";
+                    TempData["Exito"] = "Publicación deshabilitada correctamente";
                     return RedirectToAction("ListarPublicaciones");
                 }
                 else
@@ -255,7 +255,7 @@ namespace Providere.Controllers
                 if (estado == true)
                 {
                     ps.CambioEstadoPublicacion(id);
-                    TempData["Mensaje"] = "Publicación habilitada correctamente";
+                    TempData["Exito"] = "Publicación habilitada correctamente";
                     return RedirectToAction("ListarPublicaciones");
                 }
                 else

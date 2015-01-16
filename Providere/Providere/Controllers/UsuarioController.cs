@@ -69,7 +69,7 @@ namespace Providere.Controllers
                             }
                         }
 
-                        TempData["Mensaje"] = "La registración fue exitosa. Revisa tu correo electrónico para activar la cuenta";
+                        TempData["Exito"] = "La registración fue exitosa. Revisa tu correo electrónico para activar la cuenta";
                         return RedirectToAction("IniciarSesion");
 
                     }
@@ -101,7 +101,7 @@ namespace Providere.Controllers
 
         public ActionResult IniciarSesion()
         {
-            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
             return View();
         }
@@ -170,7 +170,7 @@ namespace Providere.Controllers
             ViewBag.geocomplete2 = usuario.Ubicacion;
             ViewBag.Rubros = rs.obtenerTodos();
 
-            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
 
             return View(usuario);
@@ -186,7 +186,7 @@ namespace Providere.Controllers
                 {
                  
                     us.ModificarDatosUsuario(id, nombre, apellido,dni, telefono, geocomplete2);
-                    TempData["Mensaje"] = "Tus datos personales se actualizaron correctamente";
+                    TempData["Exito"] = "Tus datos personales se actualizaron correctamente";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -217,7 +217,7 @@ namespace Providere.Controllers
                                        Path.GetFileName(uniqueFileName + extension));
                     file.SaveAs(path);
 
-                    TempData["Mensaje"] = "Tu foto de perfil se ha cargado con exito";
+                    TempData["Exito"] = "Tu foto de perfil se ha cargado con exito";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -242,7 +242,7 @@ namespace Providere.Controllers
                 try
                 {
                     us.GuardarContraseniaNueva(id, contrasenia);
-                    TempData["Mensaje"] = "Tu contraseña ha sido modificada con éxito";
+                    TempData["Exito"] = "Tu contraseña ha sido modificada con éxito";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -323,7 +323,7 @@ namespace Providere.Controllers
                 TempData["Error"] = "Correo electronico inexistente";
                 return RedirectToAction("OlvideContrasenia");
             }
-            TempData["Mensaje"] = "Correo electronico enviado exitosamente";
+            TempData["Exito"] = "Correo electronico enviado exitosamente";
             return RedirectToAction("IniciarSesion");
         }
 
@@ -340,7 +340,7 @@ namespace Providere.Controllers
             if (ModelState.IsValid)
             {
                 us.RestablecerContrasenia(id, contrasenia);
-                TempData["Mensaje"] = "Contraseña cambiada exitosamente!";
+                TempData["Exito"] = "Contraseña cambiada exitosamente!";
                 return RedirectToAction("IniciarSesion");
             }
             else
