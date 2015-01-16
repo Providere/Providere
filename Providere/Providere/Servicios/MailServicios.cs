@@ -23,13 +23,41 @@ namespace Providere.Servicios
             msj.Subject = "Activación de cuenta";
             msj.SubjectEncoding = System.Text.Encoding.UTF8;
             string body = "Hola " + model.Nombre.Trim() + ",";
-            body += "<br/><br/>Por favor, haga click en el siguiente link para activar su cuenta:<br/>";
+            body += "<br/><br/>Por favor, hace click en el siguiente link para activar tu cuenta:<br/>";
             body += "<br /><a href='"
                  + HttpContext.Current.Request.Url.Scheme
                  + "://"
                  + HttpContext.Current.Request.Url.Authority + "/Cuenta/Activar/"
                  + model.CodActivacion
-                 + "'>Haga click aqui para activar su cuenta</a>";
+                 + "'>Hace click aqui para activar tu cuenta</a>";
+            body += "<br /><br />Muchas gracias, el equipo de Providere!";
+            msj.Body = body;
+            msj.IsBodyHtml = true;
+
+            client.Host = "smtp.gmail.com";
+            client.EnableSsl = true;
+            NetworkCredential netcred = new NetworkCredential("unlampw3", "unlampw1c-2014");
+            client.UseDefaultCredentials = true;
+            client.Credentials = netcred;
+            client.Port = 587;
+            client.Send(msj);
+        }
+
+        public void EnviarMailContrasenia(Usuario model)
+        {
+            //ENVIO DE MAIL:
+            msj.To.Add(new MailAddress(model.Mail));
+            msj.From = new MailAddress("unlampw3@gmail.com");
+            msj.Subject = "Recupera tu contraseña de Providere";
+            msj.SubjectEncoding = System.Text.Encoding.UTF8;
+            string body = "Hola " + model.Mail.Trim() + ",";
+            body += "<br/><br/>Por favor, hace click en el siguiente link para cambiar tu contraseña:<br/>";
+            body += "<br /><a href='"
+                 + HttpContext.Current.Request.Url.Scheme
+                 + "://"
+                 + HttpContext.Current.Request.Url.Authority + "/Cuenta/NuevaContrasenia/"
+                   + model.CodActivacion
+                 + "'>Hace click aqui para cambiar tu contraseña</a>";
             body += "<br /><br />Muchas gracias, el equipo de Providere!";
             msj.Body = body;
             msj.IsBodyHtml = true;

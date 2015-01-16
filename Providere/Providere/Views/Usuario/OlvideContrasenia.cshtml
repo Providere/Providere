@@ -4,6 +4,14 @@
     Layout = "~/Views/Shared/_Registracion.cshtml";
 }
 <div class="container well">
+   @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert">
+                &times;</button>
+            @ViewBag.Error
+        </div>
+    }
  <div class="content">
         @using (Html.BeginForm("OlvideContrasenia", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
         {
@@ -17,14 +25,6 @@
                     <div class="col-xs-3">
                         @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Mail)
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    @Html.LabelFor(model=>model.Dni, new { @class = "col-sm-5 control-label" })
-                    <div class="col-xs-3">
-                        @Html.TextBoxFor(m => m.Dni, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Dni)
                     </div>
                 </div>
                 <div class="form-group">

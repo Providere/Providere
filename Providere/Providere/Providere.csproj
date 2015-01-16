@@ -334,6 +334,7 @@
     <Content Include="Views\Calificacion\CalificarUsuario.cshtml" />
     <Content Include="Views\Publicacion\EditarPublicacion.cshtml" />
     <Content Include="Views\Usuario\OlvideContrasenia.cshtml" />
+    <Content Include="Views\Usuario\NuevaContrasenia.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

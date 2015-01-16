@@ -30,6 +30,12 @@ namespace Providere
           );
 
             routes.MapRoute(
+                "RecuperarContrasenia",
+                "Cuenta/NuevaContrasenia/{id}",
+                new { controller = "Usuario", action = "NuevaContrasenia", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Home", id = UrlParameter.Optional }

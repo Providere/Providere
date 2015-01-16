@@ -83,7 +83,6 @@ namespace Providere.Controllers
 
         }
 
-
         public ActionResult Activar(string codAct)
         {
             string msj;
@@ -103,6 +102,7 @@ namespace Providere.Controllers
         public ActionResult IniciarSesion()
         {
             ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Error = TempData["Error"];
             return View();
         }
 
@@ -293,43 +293,60 @@ namespace Providere.Controllers
             }
         }
 
+        //Recuperar contrasenia:
         public ActionResult OlvideContrasenia()
+        {
+            ViewBag.Error = TempData["Error"];
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult OlvideContrasenia(string mail)
+        {
+            //verificar si ese usuario existe en la BD y esta activo, asi puede recuperar su contraseña:
+            if (ModelState.IsValid && us.VerificarIdentidad(mail))
+            {
+                try
+                {
+                    us.MailRecuperarContrasenia(mail);
+
+                }
+                catch (System.Net.Mail.SmtpException ex)
+                {
+                    ClientException.LogException(ex, "Error al enviar el mail");
+                    return RedirectToAction("Error", "Shared");
+                }
+            }
+            else
+            {
+                TempData["Error"] = "Correo electronico inexistente";
+                return RedirectToAction("OlvideContrasenia");
+            }
+            TempData["Mensaje"] = "Correo electronico enviado exitosamente";
+            return RedirectToAction("IniciarSesion");
+        }
+
+
+        public ActionResult NuevaContrasenia(string id)
         {
             return View();
         }
 
 
         [HttpPost]
-        public ActionResult OlvideContrasenia(string mail, string dni)
+        public ActionResult NuevaContrasenia(string id, string contrasenia)
         {
-            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-
-            //verificar si ese usuario existe en la BD y esta activo:
-            if (ModelState.IsValid && us.UsuarioExisteActivado(mail, dni))
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("CambiarContrasenia"); //Existe y puede recuperar la contraseña cambiandola
+                us.RestablecerContrasenia(id, contrasenia);
+                TempData["Mensaje"] = "Contraseña cambiada exitosamente!";
+                return RedirectToAction("IniciarSesion");
             }
             else
             {
-                TempData["Error"] = "Usuario inexistente, registrate gratis";
-                return RedirectToAction("RegistrarUsuario");
+                return View("Index", "Index");
             }
-        }
-
-        public ActionResult CambiarContrasenia()
-        {
-            return View();
-        }
-
-
-        //[HttpPost]
-        //public ActionResult CambiarContrasenia(int contrasenia)
-        //{
-        //   int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-        //   TempData["Mensaje"] = "Contraseña cambiada exitosamente";
-        //   return View("IniciarSesion");
-        //}
-
-        
+        } 
     }
 }
