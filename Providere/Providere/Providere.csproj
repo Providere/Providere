@@ -136,6 +136,7 @@
     <Compile Include="Controllers\ContratacionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\PreguntaController.cs" />
     <Compile Include="Controllers\PublicacionController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\SubRubroController.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Repositorios\CalificacionRepositorio.cs" />
     <Compile Include="Repositorios\ContratacionRepositorio.cs" />
     <Compile Include="Repositorios\ImagenRepositorio.cs" />
+    <Compile Include="Repositorios\PreguntaRepositorio.cs" />
     <Compile Include="Repositorios\PublicacionRepositorio.cs" />
     <Compile Include="Repositorios\PuntajeRepositorio.cs" />
     <Compile Include="Repositorios\RubroRepositorio.cs" />
@@ -170,6 +172,7 @@
     <Compile Include="Servicios\ContratacionServicios.cs" />
     <Compile Include="Servicios\Encryptor.cs" />
     <Compile Include="Servicios\MailServicios.cs" />
+    <Compile Include="Servicios\PreguntaServicios.cs" />
     <Compile Include="Servicios\PublicacionServicios.cs" />
     <Compile Include="Servicios\RubroServicios.cs" />
     <Compile Include="Servicios\RubrosParaSelect.cs" />
@@ -334,6 +337,8 @@
     <Content Include="Views\Calificacion\CalificarUsuario.cshtml" />
     <Content Include="Views\Publicacion\EditarPublicacion.cshtml" />
     <Content Include="Views\Usuario\OlvideContrasenia.cshtml" />
+    <Content Include="Views\Usuario\NuevaContrasenia.cshtml" />
+    <Content Include="Views\Pregunta\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

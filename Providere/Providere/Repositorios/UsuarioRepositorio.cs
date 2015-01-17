@@ -151,5 +151,20 @@ namespace Providere.Repositorios
             return usuario;
         }
 
+
+        public Usuario VerificarIdentidad(string mail)
+        {
+            var usuario = (from user in context.Usuario
+                           where (user.Mail == mail && user.IdEstado == 1) 
+                           select user).First();
+            return usuario;
+        }
+
+        public void RestablecerContrasenia(string id, string contrasenia)
+        {
+            Usuario user = context.Usuario.Where(e => e.CodActivacion == id).FirstOrDefault();
+            user.Contrasenia = Encryptor.MD5Hash(contrasenia);
+            context.SaveChanges();
+        }
     }
 }

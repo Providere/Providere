@@ -149,5 +149,35 @@ namespace Providere.Servicios
             }
             return true;
         }
+
+        //Verificar si existe el usuario que quiere recuperar contraseña:
+        public bool VerificarIdentidad(string mail)
+        {
+            try
+            {
+                Usuario usuario = ur.VerificarIdentidad(mail);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //Si  existe se le envia mail para recuperacion de contraseña:
+        public void MailRecuperarContrasenia(string mail)
+        {
+            Usuario miUsuario = new Usuario();
+            miUsuario.Mail = mail;
+            miUsuario.CodActivacion = Encryptor.MD5Hash(mail);
+
+            mailing.EnviarMailContrasenia(miUsuario);
+        }
+        
+        //Se guarda la nueva contraseña para ese usuario:
+        public void RestablecerContrasenia(string id, string contrasenia)
+        {
+            ur.RestablecerContrasenia(id, contrasenia);
+        }
     }
 }

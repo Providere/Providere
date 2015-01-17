@@ -69,7 +69,7 @@ namespace Providere.Controllers
                             }
                         }
 
-                        TempData["Mensaje"] = "La registración fue exitosa. Revisa tu correo electrónico para activar la cuenta";
+                        TempData["Exito"] = "La registración fue exitosa. Revisa tu correo electrónico para activar la cuenta";
                         return RedirectToAction("IniciarSesion");
 
                     }
@@ -82,7 +82,6 @@ namespace Providere.Controllers
             }
 
         }
-
 
         public ActionResult Activar(string codAct)
         {
@@ -102,7 +101,8 @@ namespace Providere.Controllers
 
         public ActionResult IniciarSesion()
         {
-            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Exito = TempData["Exito"];
+            ViewBag.Error = TempData["Error"];
             return View();
         }
 
@@ -170,7 +170,7 @@ namespace Providere.Controllers
             ViewBag.geocomplete2 = usuario.Ubicacion;
             ViewBag.Rubros = rs.obtenerTodos();
 
-            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
 
             return View(usuario);
@@ -186,7 +186,7 @@ namespace Providere.Controllers
                 {
                  
                     us.ModificarDatosUsuario(id, nombre, apellido,dni, telefono, geocomplete2);
-                    TempData["Mensaje"] = "Tus datos personales se actualizaron correctamente";
+                    TempData["Exito"] = "Tus datos personales se actualizaron correctamente";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -217,7 +217,7 @@ namespace Providere.Controllers
                                        Path.GetFileName(uniqueFileName + extension));
                     file.SaveAs(path);
 
-                    TempData["Mensaje"] = "Tu foto de perfil se ha cargado con exito";
+                    TempData["Exito"] = "Tu foto de perfil se ha cargado con exito";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -242,7 +242,7 @@ namespace Providere.Controllers
                 try
                 {
                     us.GuardarContraseniaNueva(id, contrasenia);
-                    TempData["Mensaje"] = "Tu contraseña ha sido modificada con éxito";
+                    TempData["Exito"] = "Tu contraseña ha sido modificada con éxito";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -293,43 +293,60 @@ namespace Providere.Controllers
             }
         }
 
+        //Recuperar contrasenia:
         public ActionResult OlvideContrasenia()
+        {
+            ViewBag.Error = TempData["Error"];
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult OlvideContrasenia(string mail)
+        {
+            //verificar si ese usuario existe en la BD y esta activo, asi puede recuperar su contraseña:
+            if (ModelState.IsValid && us.VerificarIdentidad(mail))
+            {
+                try
+                {
+                    us.MailRecuperarContrasenia(mail);
+
+                }
+                catch (System.Net.Mail.SmtpException ex)
+                {
+                    ClientException.LogException(ex, "Error al enviar el mail");
+                    return RedirectToAction("Error", "Shared");
+                }
+            }
+            else
+            {
+                TempData["Error"] = "Correo electronico inexistente";
+                return RedirectToAction("OlvideContrasenia");
+            }
+            TempData["Exito"] = "Correo electronico enviado exitosamente";
+            return RedirectToAction("IniciarSesion");
+        }
+
+
+        public ActionResult NuevaContrasenia(string id)
         {
             return View();
         }
 
 
         [HttpPost]
-        public ActionResult OlvideContrasenia(string mail, string dni)
+        public ActionResult NuevaContrasenia(string id, string contrasenia)
         {
-            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-
-            //verificar si ese usuario existe en la BD y esta activo:
-            if (ModelState.IsValid && us.UsuarioExisteActivado(mail, dni))
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("CambiarContrasenia"); //Existe y puede recuperar la contraseña cambiandola
+                us.RestablecerContrasenia(id, contrasenia);
+                TempData["Exito"] = "Contraseña cambiada exitosamente!";
+                return RedirectToAction("IniciarSesion");
             }
             else
             {
-                TempData["Error"] = "Usuario inexistente, registrate gratis";
-                return RedirectToAction("RegistrarUsuario");
+                return View("Index", "Index");
             }
-        }
-
-        public ActionResult CambiarContrasenia()
-        {
-            return View();
-        }
-
-
-        //[HttpPost]
-        //public ActionResult CambiarContrasenia(int contrasenia)
-        //{
-        //   int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-        //   TempData["Mensaje"] = "Contraseña cambiada exitosamente";
-        //   return View("IniciarSesion");
-        //}
-
-        
+        } 
     }
 }

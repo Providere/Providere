@@ -16,12 +16,12 @@
     </script>
     @Scripts.Render("~/bundles/jqueryval")
 }
-@if (ViewBag.Mensaje != null)
+@if (ViewBag.Exito != null)
 {
     <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert">
             &times;</button>
-        @ViewBag.Mensaje
+        @ViewBag.Exito
     </div>
 }
 @if (ViewBag.Error != null)
