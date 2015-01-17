@@ -23,11 +23,6 @@
  
         <h1 class="text-center">
             @Html.DisplayFor(model => model.Titulo)
-            @* @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
-           {
-                
-                        @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "btn btn-info btn-xs glyphicon glyphicon-pencil" })
-           }*@
         </h1>
         <hr />
         
@@ -77,13 +72,11 @@
                  
                     @Html.DisplayFor(model => model.Usuario.Nombre)
                     @: aún no posee calificaciones.
-                                                                                                }
+                                }
             </div>
             <div class="col-md-12">
                 <h3>
                     Últimos trabajos realizados</h3>
-            </div>
-            <div class="col-md-12">
                 @ViewBag.NoExistenImagenes
                 <div class="row">
                     @foreach (var item in Model.Imagen)
@@ -126,30 +119,25 @@
                 </span>
             </div>
         </div>
-        
-        
-        <div>
-            @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
-            {
-                
-                <div class="col-md-12">
-                    <h3>
-                        Preguntas al prestador</h3>
+         <div class="col-md-12">
+            <div class="col-md-12">
+                <h3>
+                    Preguntas al prestador</h3>
+                @if (ViewBag.accionPadre != "VisualizarMiPublicacion")
+                {
                     <p class="text-info">
                         <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no podes compartir
                         tus datos personales por este medio</p>
                     <div class="form-group col-md-10">
-                        <textarea class="form-control " name="questionText" id="questionText" cols="110"
-                            rows="" disabled="disabled">Escribe tu pregunta aqui...
-            </textarea>
+                        @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta aqui..." })
                     </div>
                     <div class="form-group col-md-2">
-                        <button class="btn btn-primary btn-lg" disabled="disabled" type="submit">
+                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
                             Enviar</button>
                     </div>
-                </div>
-            }
-            else
+                }
+            </div>
+            @* else
             {
                 <div class="col-md-12">
                     <h3>
@@ -161,11 +149,38 @@
                         @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta aqui..." })
                     </div>
                     <div class="form-group col-md-2">
-                        <button class="btn btn-primary btn-lg" type="submit">
+                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
                             Enviar</button>
                     </div>
                 </div>
-            }
-        </div>      
+            }*@
+            <div class="col-md-12">
+                @foreach (var item in Model.PreguntaRespuesta)
+                {
+                    if (item.Pregunta == null)
+                    {
+                        <p>No hay preguntas para mostrar</p>
+                    }
+                    else
+                    {
+                    <dl class="question" id="pregunta">
+                        <dd class="txt">
+                            <i class="glyphicon glyphicon-comment"></i><span>@item.Pregunta</span>
+                        </dd>
+                        <dt class="answer"><i class="glyphicon glyphicon-comments"></i></dt>
+                        @if (item.Respuesta != null)
+                        {
+                            <dd class="col-md-offset-1">
+                                <i class="glyphicon glyphicon-user"></i><span>@item.Respuesta</span>
+                                <br />
+                                <span class="help-block">@item.FechaRespuesta</span>
+                            </dd>
+                        }
+                    </dl>
+                    }
+                    <hr />
+                }
+            </div>
+        </div>     
     }
 </div>

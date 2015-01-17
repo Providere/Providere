@@ -1687,6 +1687,30 @@ namespace Providere.Models
         private global::System.Int16 _IdPublicacion;
         partial void OnIdPublicacionChanging(global::System.Int16 value);
         partial void OnIdPublicacionChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FechaRespuesta
+        {
+            get
+            {
+                return _FechaRespuesta;
+            }
+            set
+            {
+                OnFechaRespuestaChanging(value);
+                ReportPropertyChanging("FechaRespuesta");
+                _FechaRespuesta = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FechaRespuesta");
+                OnFechaRespuestaChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FechaRespuesta;
+        partial void OnFechaRespuestaChanging(Nullable<global::System.DateTime> value);
+        partial void OnFechaRespuestaChanged();
 
         #endregion
 
