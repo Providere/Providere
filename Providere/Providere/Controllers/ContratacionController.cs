@@ -30,7 +30,7 @@ namespace Providere.Controllers
             var usuario = us.ObtenerUsuarioEditar(idUsuario);
             if (publicacion.IdUsuario == idUsuario) //Significa que el usuario que publico es el mismo que inicio sesion
             {
-                TempData["Error"] = "No puede contratar su publicación!!";
+                TempData["Error"] = "No podes contratar tu publicación!!";
                 return RedirectToAction("Index");
             }
             else

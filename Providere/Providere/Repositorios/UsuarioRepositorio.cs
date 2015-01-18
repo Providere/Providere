@@ -114,11 +114,12 @@ namespace Providere.Repositorios
         }
 
         //Modifico los datos del usuario(Editar perfil):
-        public void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string geocomplete2)
+        public void ModificarDatosUsuario(int id, string nombre, string apellido, string dni, string telefono, string geocomplete2)
         {
             Usuario usuario = context.Usuario.Where(e => e.Id == id).FirstOrDefault();
             usuario.Nombre = nombre;
             usuario.Apellido = apellido;
+            usuario.Dni = dni;
             usuario.Ubicacion = geocomplete2;
             usuario.Telefono = telefono;
 
@@ -150,5 +151,20 @@ namespace Providere.Repositorios
             return usuario;
         }
 
+
+        public Usuario VerificarIdentidad(string mail)
+        {
+            var usuario = (from user in context.Usuario
+                           where (user.Mail == mail && user.IdEstado == 1) 
+                           select user).First();
+            return usuario;
+        }
+
+        public void RestablecerContrasenia(string id, string contrasenia)
+        {
+            Usuario user = context.Usuario.Where(e => e.CodActivacion == id).FirstOrDefault();
+            user.Contrasenia = Encryptor.MD5Hash(contrasenia);
+            context.SaveChanges();
+        }
     }
 }

@@ -2,12 +2,12 @@
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@if (ViewBag.Mensaje != null)
+@if (ViewBag.Exito != null)
 {
     <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert">
             &times;</button>
-        @ViewBag.Mensaje
+        @ViewBag.Exito
     </div>
 }
 @if (ViewBag.Error != null)
@@ -43,19 +43,19 @@
                                 <br />
                                 <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span>
                                 <br />
-                                <h6 class="text-danger">
+                                  <p>
                                     @if (@item.publicacion.PrecioOpcion == 1)
                                     {
-                                        @Html.Label("Precio:")
+                                       
                                         @Html.Label("A Convenir") 
                                     }
                                     else
                                     {
-                                        @Html.Label("Precio: $") 
+                                        @Html.Label("$") 
                                         @String.Format("{0:0.00}", @item.publicacion.Precio)                     
                    
                                     }
-                                </h6>
+                                </p>
                             </div>
                         </div>
                     </a>

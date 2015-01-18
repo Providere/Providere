@@ -21,7 +21,7 @@ namespace Providere.Controllers
             var publicaciones = ps.ListarMisPublicaciones(idUsuario);
 
             ViewBag.Error = TempData["Error"];
-            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Exito = TempData["Exito"];
 
             return View(publicaciones);
         }
@@ -49,7 +49,7 @@ namespace Providere.Controllers
         {         
             if (ps.VerificarRubro(idUsuario, idRubro) || ps.VerificarSubrubro(idUsuario,idSubRubro))
             {
-                TempData["Error"] = "Ya tiene una publicacion creada en ese rubro o subrubro";
+                TempData["Error"] = "Ya tenes una publicacion creada en ese rubro o subrubro";
                 return RedirectToAction("NuevaPublicacion");
             }
             else
@@ -92,39 +92,48 @@ namespace Providere.Controllers
                 }
                 else
                 {
-                    TempData["Error"] = "No se pudo crear la publicación, intentelo nuevamente";
+                    TempData["Error"] = "No se pudo crear la publicación, intentalo nuevamente";
                     return RedirectToAction("ListarPublicaciones");
                 }
             }
 
         }
 
-        public ActionResult VisualizarMiPublicacion(int Id)
+        public ActionResult VisualizarMiPublicacion(int id)
         {
+            ViewBag.Error = TempData["Error"];
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            Publicacion miPublicacion = ps.TraerPublicacion(Id, idUsuario);
+            Publicacion miPublicacion = ps.TraerPublicacion(id, idUsuario);
 
-            if (miPublicacion.Estado == 0) //Deshabilitado
-            {
-                TempData["Error"] = "No puede visualizar su publicación porque esta deshabilitada";
-                return RedirectToAction("ListarPublicaciones");
-            }
-            else
-            {
-                if (ps.NoExistenImagenes(Id) == false)
+                if (ps.NoExistenImagenes(id) == false)
                 {
                     ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
                 }
 
+                if (ps.NoExistenPreguntas(id) == false)
+                {
+                    ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
+                }
+
                 ViewBag.accionPadre = "VisualizarMiPublicacion";
                 return View(miPublicacion);
-            }
         }
 
         // Publicacion/VisualizarPublicacion/12
         public ActionResult VisualizarPublicacion(int idPublicacion)
         {
+            ViewBag.Error = TempData["Error"];
             Publicacion miPublicacion = ps.TraerPublicacionPorId(idPublicacion);
+
+            if (ps.NoExistenImagenes(idPublicacion) == false)
+            {
+                ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+            }
+
+            if (ps.NoExistenPreguntas(idPublicacion) == false)
+            {
+                ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
+            }
 
             ViewBag.accionPadre = "VisualizarPublicacion";
             return View("VisualizarMiPublicacion", miPublicacion);
@@ -151,17 +160,8 @@ namespace Providere.Controllers
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Publicacion publicacion = ps.TraerPublicacion(id, idUsuario);
 
-            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
-
-            if (publicacion.Estado == 0) //Deshabilitado
-            {
-                TempData["Error"] = "No se puede editar la publicación porque esta deshabilitada";
-                return RedirectToAction("ListarPublicaciones");
-            }
-
-            else
-            {
                 if (ps.NoExistenImagenes(id) == false) //Si devuelve false es porque no existen imagenes para esa publicacion
                 {
                     ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
@@ -171,7 +171,6 @@ namespace Providere.Controllers
                 ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre", publicacion.IdSubRubro);
 
                 return View(publicacion);
-            }
         }
 
         [HttpPost]
@@ -217,7 +216,7 @@ namespace Providere.Controllers
                 }
                 else
                 {
-                    TempData["Error"] = "No se pudo editar la publicación, intentelo nuevamente";
+                    TempData["Error"] = "No se pudo editar la publicación, intentalo nuevamente";
                     return RedirectToAction("EditarPublicacion", new { id = id });
                 }
         }
@@ -228,7 +227,7 @@ namespace Providere.Controllers
             try
             {
                 ps.EliminarImagen(id);
-                TempData["Mensaje"] = "Imagen eliminada correctamente";
+                TempData["Exito"] = "Imagen eliminada correctamente";
                 return RedirectToAction("EditarPublicacion",new { id = idPublicacion });
             }
             catch (Exception ex)
@@ -247,12 +246,12 @@ namespace Providere.Controllers
                 if (estado == true)
                 {
                     ps.CambioEstadoPublicacion(id);
-                    TempData["Mensaje"] = "Publicación deshabilitada correctamente";
+                    TempData["Exito"] = "Publicación deshabilitada correctamente";
                     return RedirectToAction("ListarPublicaciones");
                 }
                 else
                 {
-                    TempData["Error"] = "No se pudo deshabilitar la publicación, intentelo nuevamente";
+                    TempData["Error"] = "No se pudo deshabilitar la publicación, intentalo nuevamente";
                     return RedirectToAction("ListarPublicaciones");
                 }
             }
@@ -273,12 +272,12 @@ namespace Providere.Controllers
                 if (estado == true)
                 {
                     ps.CambioEstadoPublicacion(id);
-                    TempData["Mensaje"] = "Publicación habilitada correctamente";
+                    TempData["Exito"] = "Publicación habilitada correctamente";
                     return RedirectToAction("ListarPublicaciones");
                 }
                 else
                 {
-                    TempData["Error"] = "No se pudo habilitar la publicación, intentelo nuevamente";
+                    TempData["Error"] = "No se pudo habilitar la publicación, intentalo nuevamente";
                     return RedirectToAction("ListarPublicaciones");
                 }
             }
@@ -293,6 +292,7 @@ namespace Providere.Controllers
         {
             return RedirectToAction("Contratar", "Contratacion", publicacion);
         }
+
     }
 }
 

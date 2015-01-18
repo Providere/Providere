@@ -19,7 +19,7 @@ namespace Providere.Controllers
 
         public ActionResult RegistrarUsuario()
         {
-
+            ViewBag.Error = TempData["Error"];
             return View();
         }
 
@@ -69,7 +69,7 @@ namespace Providere.Controllers
                             }
                         }
 
-                        TempData["Mensaje"] = "La registración fue exitosa. Revise su correo electrónico para activar su cuenta";
+                        TempData["Exito"] = "La registración fue exitosa. Revisa tu correo electrónico para activar la cuenta";
                         return RedirectToAction("IniciarSesion");
 
                     }
@@ -77,23 +77,22 @@ namespace Providere.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "No se olvide de ingresar ubicación, y aceptar los términos y condiciones para continuar con la registración");
+                ModelState.AddModelError("", "No te olvides de ingresar ubicación, y aceptar los términos y condiciones para continuar con la registración");
                 return View();
             }
 
         }
-
 
         public ActionResult Activar(string codAct)
         {
             string msj;
             if (us.ActivarUsuario(codAct))
             {
-                msj = "Su cuenta ha sido activada satisfactoriamente. Ya puede comenzar a utilizar Providere";
+                msj = "Tu cuenta ha sido activada satisfactoriamente. Ya podes comenzar a utilizar Providere";
             }
             else
             {
-                msj = "El tiempo para la activación de su cuenta ha expirado, vuelva a registrarse para recibir un nuevo mail de activación";
+                msj = "El tiempo para la activación de su cuenta ha expirado, volve a registrarte para recibir un nuevo mail de activación";
             }
             ViewBag.msj = msj;
 
@@ -102,7 +101,8 @@ namespace Providere.Controllers
 
         public ActionResult IniciarSesion()
         {
-            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Exito = TempData["Exito"];
+            ViewBag.Error = TempData["Error"];
             return View();
         }
 
@@ -149,7 +149,7 @@ namespace Providere.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Verifique su dirección de correo electrónico y/o contraseña");
+                    ModelState.AddModelError("", "Verifica tu dirección de correo electrónico y/o contraseña");
                 }
             }
             return View(model);
@@ -170,14 +170,14 @@ namespace Providere.Controllers
             ViewBag.geocomplete2 = usuario.Ubicacion;
             ViewBag.Rubros = rs.obtenerTodos();
 
-            ViewBag.Mensaje = TempData["Mensaje"];
+            ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
 
             return View(usuario);
         }
 
         [HttpPost]
-        public ActionResult EditarPerfil(string nombre, string apellido, string telefono, string geocomplete2)
+        public ActionResult EditarPerfil(string nombre, string apellido, string dni, string telefono, string geocomplete2)
         {
             int id = Convert.ToInt16(this.Session["IdUsuario"]);
             if (ModelState.IsValid && !string.IsNullOrWhiteSpace(geocomplete2))
@@ -185,8 +185,8 @@ namespace Providere.Controllers
                 try
                 {
                  
-                    us.ModificarDatosUsuario(id, nombre, apellido, telefono, geocomplete2);
-                    TempData["Mensaje"] = "Sus datos personales se actualizaron correctamente";
+                    us.ModificarDatosUsuario(id, nombre, apellido,dni, telefono, geocomplete2);
+                    TempData["Exito"] = "Tus datos personales se actualizaron correctamente";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -197,7 +197,7 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "No se pudo modificar sus datos, intentelo nuevamente";
+                TempData["Error"] = "No se pudo modificar tus datos, intentalo nuevamente";
                 return RedirectToAction("EditarPerfil", new { id = id });
             }
 
@@ -217,7 +217,7 @@ namespace Providere.Controllers
                                        Path.GetFileName(uniqueFileName + extension));
                     file.SaveAs(path);
 
-                    TempData["Mensaje"] = "Su foto de perfil se ha cargado con exito";
+                    TempData["Exito"] = "Tu foto de perfil se ha cargado con exito";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -228,7 +228,7 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "No se pudo cargar la imágen, intentelo nuevamente";
+                TempData["Error"] = "No se pudo cargar la imágen, intentalo nuevamente";
                 return RedirectToAction("EditarPerfil", new { id = id });
             }
         }
@@ -242,7 +242,7 @@ namespace Providere.Controllers
                 try
                 {
                     us.GuardarContraseniaNueva(id, contrasenia);
-                    TempData["Mensaje"] = "Su contraseña ha sido modificada con éxito";
+                    TempData["Exito"] = "Tu contraseña ha sido modificada con éxito";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
@@ -253,7 +253,7 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "Su contraseña no pudo ser modificada, intentelo nuevamente";
+                TempData["Error"] = "Tu contraseña no pudo ser modificada, intentalo nuevamente";
                 return RedirectToAction("EditarPerfil", new { id = id });
             }
         }
@@ -272,7 +272,7 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "No se pudo eliminar su cuenta, intentelo nuevamente";
+                TempData["Error"] = "No se pudo eliminar tu cuenta, intentalo nuevamente";
                 return RedirectToAction("Home", "Home");
             }
         }
@@ -292,8 +292,61 @@ namespace Providere.Controllers
                 return File(fullPath, "Imagenes/FotoPerfil", file);
             }
         }
-        
+
+        //Recuperar contrasenia:
+        public ActionResult OlvideContrasenia()
+        {
+            ViewBag.Error = TempData["Error"];
+            return View();
+        }
 
 
+        [HttpPost]
+        public ActionResult OlvideContrasenia(string mail)
+        {
+            //verificar si ese usuario existe en la BD y esta activo, asi puede recuperar su contraseña:
+            if (ModelState.IsValid && us.VerificarIdentidad(mail))
+            {
+                try
+                {
+                    us.MailRecuperarContrasenia(mail);
+
+                }
+                catch (System.Net.Mail.SmtpException ex)
+                {
+                    ClientException.LogException(ex, "Error al enviar el mail");
+                    return RedirectToAction("Error", "Shared");
+                }
+            }
+            else
+            {
+                TempData["Error"] = "Correo electronico inexistente";
+                return RedirectToAction("OlvideContrasenia");
+            }
+            TempData["Exito"] = "Correo electronico enviado exitosamente";
+            return RedirectToAction("IniciarSesion");
+        }
+
+
+        public ActionResult NuevaContrasenia(string id)
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult NuevaContrasenia(string id, string contrasenia)
+        {
+            if (ModelState.IsValid)
+            {
+                us.RestablecerContrasenia(id, contrasenia);
+                TempData["Exito"] = "Contraseña cambiada exitosamente!";
+                return RedirectToAction("IniciarSesion");
+            }
+            else
+            {
+                return View("Index", "Index");
+            }
+        } 
     }
 }

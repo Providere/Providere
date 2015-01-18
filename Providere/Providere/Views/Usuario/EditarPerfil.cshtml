@@ -3,12 +3,12 @@
     ViewBag.Title = "Editar perfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@if (ViewBag.Mensaje != null)
+@if (ViewBag.Exito != null)
 {
     <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert">
             &times;</button>
-        @ViewBag.Mensaje
+        @ViewBag.Exito
     </div>
 }
 @if (ViewBag.Error != null)
@@ -55,9 +55,10 @@
                     </div>
                     <br />
                        <div class="row">
-                        @Html.Label("DNI", new { @class = "col-sm-5 control-label" })
+                        @Html.LabelFor(m=>m.Dni, new { @class = "col-sm-5 control-label" })
                         <div class="col-xs-3">
-                            @Html.TextBoxFor(m => m.Dni, new { @class = "form-control", @readonly = "readonly", disabled = "disabled" })
+                            @Html.TextBoxFor(m => m.Dni, new { @class = "form-control"})
+                             @Html.ValidationMessageFor(m => m.Dni)
                         </div>
                     </div>
                     <br />
@@ -158,7 +159,7 @@
                     <hr />
                     <p class="text-info">
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Al
-                        eliminar su cuenta no podrá volver a utilizarla</p>
+                        eliminar tu cuenta no podrás volver a utilizarla</p>
                     <br />
                     <div class="row">
                         <div class="col-xs-3">

@@ -239,5 +239,13 @@ namespace Providere.Repositorios
                                select publicaciones).First();
             return publicacion;
         }
+
+        public PreguntaRespuesta NoExistenPreguntas(int id)
+        {
+            var pregunta = (from pr in context.PreguntaRespuesta
+                          where (pr.IdPublicacion == id)
+                          select pr).First();
+            return pregunta;
+        }
     }
 }

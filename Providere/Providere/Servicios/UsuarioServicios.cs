@@ -119,9 +119,9 @@ namespace Providere.Servicios
         }
 
         //Modifico datos personales:
-        public void ModificarDatosUsuario(int id, string nombre, string apellido, string telefono, string geocomplete2)
+        public void ModificarDatosUsuario(int id, string nombre, string apellido, string dni, string telefono, string geocomplete2)
         {
-            ur.ModificarDatosUsuario(id, nombre, apellido, telefono, geocomplete2);
+            ur.ModificarDatosUsuario(id, nombre, apellido, dni, telefono, geocomplete2);
         }
 
         //Modifico contraseña solo si el usuario desea cambiarla:
@@ -148,6 +148,36 @@ namespace Providere.Servicios
                 return false;
             }
             return true;
+        }
+
+        //Verificar si existe el usuario que quiere recuperar contraseña:
+        public bool VerificarIdentidad(string mail)
+        {
+            try
+            {
+                Usuario usuario = ur.VerificarIdentidad(mail);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //Si  existe se le envia mail para recuperacion de contraseña:
+        public void MailRecuperarContrasenia(string mail)
+        {
+            Usuario miUsuario = new Usuario();
+            miUsuario.Mail = mail;
+            miUsuario.CodActivacion = Encryptor.MD5Hash(mail);
+
+            mailing.EnviarMailContrasenia(miUsuario);
+        }
+        
+        //Se guarda la nueva contraseña para ese usuario:
+        public void RestablecerContrasenia(string id, string contrasenia)
+        {
+            ur.RestablecerContrasenia(id, contrasenia);
         }
     }
 }
