@@ -14,7 +14,6 @@ namespace Providere.Servicios
         PuntajeRepositorio pur = new PuntajeRepositorio();
         ImagenRepositorio ir = new ImagenRepositorio();
 
-
         public void CrearNuevaPublicacion(int idUsuario, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio)
         {
             pr.CrearNuevaPublicacion(idUsuario, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio);
@@ -140,6 +139,19 @@ namespace Providere.Servicios
             try
             {
                 Publicacion publicacion = pr.VerificarSubrubro(idUsuario, idSubRubro);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool NoExistenPreguntas(int id)
+        {
+            try
+            {
+                PreguntaRespuesta pregunta = pr.NoExistenPreguntas(id);
             }
             catch
             {

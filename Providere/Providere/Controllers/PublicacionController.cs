@@ -99,14 +99,20 @@ namespace Providere.Controllers
 
         }
 
-        public ActionResult VisualizarMiPublicacion(int Id)
+        public ActionResult VisualizarMiPublicacion(int id)
         {
+            ViewBag.Error = TempData["Error"];
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            Publicacion miPublicacion = ps.TraerPublicacion(Id, idUsuario);
+            Publicacion miPublicacion = ps.TraerPublicacion(id, idUsuario);
 
-                if (ps.NoExistenImagenes(Id) == false)
+                if (ps.NoExistenImagenes(id) == false)
                 {
                     ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+                }
+
+                if (ps.NoExistenPreguntas(id) == false)
+                {
+                    ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
                 }
 
                 ViewBag.accionPadre = "VisualizarMiPublicacion";
@@ -116,7 +122,18 @@ namespace Providere.Controllers
         // Publicacion/VisualizarPublicacion/12
         public ActionResult VisualizarPublicacion(int idPublicacion)
         {
+            ViewBag.Error = TempData["Error"];
             Publicacion miPublicacion = ps.TraerPublicacionPorId(idPublicacion);
+
+            if (ps.NoExistenImagenes(idPublicacion) == false)
+            {
+                ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+            }
+
+            if (ps.NoExistenPreguntas(idPublicacion) == false)
+            {
+                ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
+            }
 
             ViewBag.accionPadre = "VisualizarPublicacion";
             return View("VisualizarMiPublicacion", miPublicacion);
@@ -275,6 +292,7 @@ namespace Providere.Controllers
         {
             return RedirectToAction("Contratar", "Contratacion", publicacion);
         }
+
     }
 }
 

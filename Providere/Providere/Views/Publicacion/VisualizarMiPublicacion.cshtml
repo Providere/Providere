@@ -1,9 +1,18 @@
 ﻿@model Providere.Models.Publicacion
 @{
-    ViewBag.Title = "VisualizarMiPublicacion";
+    ViewBag.Title = "Publicacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="container well">
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
     @using (Html.BeginForm("VisualizarMiPublicacion", "Publicacion", FormMethod.Post))
     {
         <h1 class="text-right">
@@ -65,29 +74,30 @@
                 @if (@HttpContext.Current.Session["IdUsuario"].ToString() == Model.IdUsuario.ToString())
                 {
                 
-                    @: Todavía no obtuviste calificaciones.
+                    @: Todavía no obtuviste calificaciones
              }
                 else
                 {
                  
                     @Html.DisplayFor(model => model.Usuario.Nombre)
-                    @: aún no posee calificaciones.
-                                }
+                    @: aún no posee calificaciones
+                                                                                                }
             </div>
             <div class="col-md-12">
                 <h3>
                     Últimos trabajos realizados</h3>
                 @ViewBag.NoExistenImagenes
-                <div class="row">
-                    @foreach (var item in Model.Imagen)
-                    {
+               
+                    <div class="row">
+                     @foreach (var item in Model.Imagen)
+                {
                         <div class="col-md-3">
                             <a class="example-image-link" href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="example-set">
                                 <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "150px" />
                             </a>
-                        </div>                  
-                    }
-                </div>
+                        </div>
+                         }
+                    </div>
             </div>
         </div>
         <div id="ficha-publicante" class="col-md-3">
@@ -119,68 +129,57 @@
                 </span>
             </div>
         </div>
-         <div class="col-md-12">
-            <div class="col-md-12">
-                <h3>
-                    Preguntas al prestador</h3>
-                @if (ViewBag.accionPadre != "VisualizarMiPublicacion")
-                {
-                    <p class="text-info">
-                        <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no podes compartir
-                        tus datos personales por este medio</p>
-                    <div class="form-group col-md-10">
-                        @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta aqui..." })
-                    </div>
-                    <div class="form-group col-md-2">
-                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                            Enviar</button>
-                    </div>
-                }
-            </div>
-            @* else
+        <div class="col-md-12">
+            <h3>
+                Preguntas al prestador</h3>
+            @ViewBag.NoExistenPreguntas
+            @foreach (var item in Model.PreguntaRespuesta)
             {
-                <div class="col-md-12">
-                    <h3>
-                        Preguntas al prestador</h3>
-                    <p class="text-info">
-                        <span class="glyphicon glyphicon-exclamation-sign"></span>Recordá no podes compartir
-                        tus datos personales por este medio</p>
-                    <div class="form-group col-md-10">
-                        @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta aqui..." })
-                    </div>
-                    <div class="form-group col-md-2">
-                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                            Enviar</button>
-                    </div>
-                </div>
-            }*@
-            <div class="col-md-12">
-                @foreach (var item in Model.PreguntaRespuesta)
-                {
-                    if (item.Pregunta == null)
+               
+                <dl class="question" id="pregunta">
+                    <dd class="txt">
+                        <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
+                    </dd>
+                    <dt class="answer"><i class="glyphicon glyphicon-comments"></i></dt>
+                    @if (item.Respuesta != null)
                     {
-                        <p>No hay preguntas para mostrar</p>
-                    }
-                    else
-                    {
-                    <dl class="question" id="pregunta">
-                        <dd class="txt">
-                            <i class="glyphicon glyphicon-comment"></i><span>@item.Pregunta</span>
+                        <dd class="col-md-offset-1">
+                            <span class="text-info"><i class="glyphicon glyphicon-user"></i></span><span>@item.Respuesta</span>
+                            <br />
+                            <span class="help-block">@item.FechaRespuesta</span>
                         </dd>
-                        <dt class="answer"><i class="glyphicon glyphicon-comments"></i></dt>
-                        @if (item.Respuesta != null)
-                        {
-                            <dd class="col-md-offset-1">
-                                <i class="glyphicon glyphicon-user"></i><span>@item.Respuesta</span>
-                                <br />
-                                <span class="help-block">@item.FechaRespuesta</span>
-                            </dd>
-                        }
-                    </dl>
                     }
-                    <hr />
-                }
-            </div>
-        </div>     
+                </dl>
+            }
+            <hr />
+        </div>
     }
+    <div class="col-md-12">
+        @if (ViewBag.accionPadre != "VisualizarMiPublicacion")
+        {
+            using (Html.BeginForm("Preguntar", "Pregunta", FormMethod.Post))
+            {
+            @Html.ValidationSummary(true)
+
+            <div>
+                @Html.HiddenFor(model => model.Id)
+            </div>
+            <div>
+                @Html.HiddenFor(model => model.IdUsuario)
+            </div>
+            <div class="form-group col-md-10">
+                @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta..." })
+                @Html.ValidationMessage("preguntar")
+            </div>
+            <div class="form-group col-md-2">
+                <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                    Enviar</button>
+            </div>
+            
+            }
+        }
+        <p class="text-info">
+            <span class="glyphicon glyphicon-exclamation-sign"></span>No podes compartir datos
+            personales por aquí</p>
+    </div>
 </div>
