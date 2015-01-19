@@ -53,13 +53,13 @@
                                   <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a>
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Publicacion.Usuario.Nombre)
+                                   @item.Publicacion.Usuario.Nombre
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Publicacion.Usuario.Apellido)
+                                    @item.Publicacion.Usuario.Apellido
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Publicacion.Usuario.Telefono)
+                                    @item.Publicacion.Usuario.Telefono
                                 </td>
                                 <td>
                                     @Html.ActionLink("Calificar servicio", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id })
@@ -103,13 +103,13 @@
                                   <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a>
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+                                    @item.Usuario.Nombre
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Usuario.Apellido)
+                                    @item.Usuario.Apellido
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Usuario.Telefono)
+                                    @item.Usuario.Telefono
                                 </td>
                                 <td>
                                     @Html.ActionLink("Calificar servicio", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id })

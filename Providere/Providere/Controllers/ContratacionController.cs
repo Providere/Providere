@@ -23,9 +23,9 @@ namespace Providere.Controllers
 
             var quienMeContrato = cs.traerQuienesMeContrataron(idUsuario);
 
-            ViewBag.ContratacionesRealizadas = new Contratacion();
+            //ViewBag.ContratacionesRealizadas = new Contratacion();
 
-            ViewBag.QuienesMeContrataron = new Contratacion();
+            //ViewBag.QuienesMeContrataron = new Contratacion();
 
             ViewBag.ContratacionesRealizadas = contrataciones;
             ViewBag.QuienesMeContrataron = quienMeContrato;
