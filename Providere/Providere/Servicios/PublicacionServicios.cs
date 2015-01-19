@@ -172,5 +172,12 @@ namespace Providere.Servicios
             }
             return true;
         }
+
+
+
+        internal object TraerPuntaje(int id)
+        {
+            return pr.TraerPuntaje(id);
+        }
     }
 }

@@ -99,6 +99,7 @@ namespace Providere.Controllers
 
         }
 
+        // Publicacion/VisualizarMiPublicacion
         public ActionResult VisualizarMiPublicacion(int id)
         {
             ViewBag.Error = TempData["Error"];
@@ -121,10 +122,19 @@ namespace Providere.Controllers
                 }
 
                 ViewBag.accionPadre = "VisualizarMiPublicacion";
+                 var traerPuntaje = ps.TraerPuntaje(id);
+                 if (traerPuntaje == null)
+                 {
+                     ViewBag.MostrarPuntaje = 0;
+                 }
+                 else
+                 {
+                     ViewBag.MostrarPuntaje = traerPuntaje;
+                 }
                 return View(miPublicacion);
         }
 
-        // Publicacion/VisualizarPublicacion/12
+        // Publicacion/VisualizarPublicacion
         public ActionResult VisualizarPublicacion(int idPublicacion)
         {
             ViewBag.Error = TempData["Error"];
@@ -146,6 +156,16 @@ namespace Providere.Controllers
             }
 
             ViewBag.accionPadre = "VisualizarPublicacion";
+            var traerPuntaje = ps.TraerPuntaje(idPublicacion);
+            if (traerPuntaje == null)
+            {
+                ViewBag.MostrarPuntaje = 0;
+            }
+            else
+            {
+                ViewBag.MostrarPuntaje = traerPuntaje;
+            }
+
             return View("VisualizarMiPublicacion", miPublicacion);
         }
 

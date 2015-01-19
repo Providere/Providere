@@ -256,5 +256,15 @@ namespace Providere.Repositorios
             return calificacion;
                                 
         }
+
+        internal object TraerPuntaje(int p)
+        {
+            var puntaje = (from punt in context.Puntaje
+                           
+                           where punt.IdPublicacion == p
+                           group punt by 1 into g
+                           select g.Max(x=>x.Total)).FirstOrDefault();
+            return puntaje;
+        }
     }
 }
