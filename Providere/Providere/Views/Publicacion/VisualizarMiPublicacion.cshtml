@@ -3,16 +3,15 @@
     ViewBag.Title = "Publicacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="container well">
-@if (ViewBag.Error != null)
-{
-    <div class="alert alert-danger alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert">
-            &times;</button>
-        @ViewBag.Error
-    </div>
-}
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert">
+                &times;</button>
+            @ViewBag.Error
+        </div>
+    }
     @using (Html.BeginForm("VisualizarMiPublicacion", "Publicacion", FormMethod.Post))
     {
         <h1 class="text-right">
@@ -61,17 +60,33 @@
 
                 }
                 <div>
-                    @if (ViewBag.accionPadre != "VisualizarMiPublicacion")
+                    @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && Session["IdUsuario"] != null)
                     {
                         @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary glyphicon glyphicon-ok" })
                
+                    }
+                    else
+                    {
+                        if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
+                        {
+                        @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg disabled glyphicon glyphicon-ok" })
+                        }
+
+                        else
+                        {
+                            if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
+                            {
+                
+                        @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg disabled glyphicon glyphicon-ok" })
+                            }
+                        }
                     }
                 </div>
             </div>
             <div class="col-md-12">
                 <h3>
                     Calificaciones</h3>
-                @if (@HttpContext.Current.Session["IdUsuario"].ToString() == Model.IdUsuario.ToString())
+                @*  @if (@HttpContext.Current.Session["IdUsuario"].ToString() == Model.IdUsuario.ToString())
                 {
                 
                     @: Todavía no obtuviste calificaciones
@@ -81,23 +96,22 @@
                  
                     @Html.DisplayFor(model => model.Usuario.Nombre)
                     @: aún no posee calificaciones
-                                                                                                }
+                                                                                                }*@
             </div>
             <div class="col-md-12">
                 <h3>
                     Últimos trabajos realizados</h3>
                 @ViewBag.NoExistenImagenes
-               
-                    <div class="row">
-                     @foreach (var item in Model.Imagen)
-                {
+                <div class="row">
+                    @foreach (var item in Model.Imagen)
+                    {
                         <div class="col-md-3">
                             <a class="example-image-link" href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="example-set">
                                 <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "150px" />
                             </a>
                         </div>
-                         }
-                    </div>
+                    }
+                </div>
             </div>
         </div>
         <div id="ficha-publicante" class="col-md-3">
@@ -155,12 +169,10 @@
         </div>
     }
     <div class="col-md-12">
-        @if (ViewBag.accionPadre != "VisualizarMiPublicacion")
+        @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && Session["IdUsuario"] != null)
         {
             using (Html.BeginForm("Preguntar", "Pregunta", FormMethod.Post))
             {
-            @Html.ValidationSummary(true)
-
             <div>
                 @Html.HiddenFor(model => model.Id)
             </div>
@@ -169,13 +181,24 @@
             </div>
             <div class="form-group col-md-10">
                 @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta..." })
-                @Html.ValidationMessage("preguntar")
             </div>
             <div class="form-group col-md-2">
                 <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
                     Enviar</button>
+            </div>          
+            }
+        }
+        else
+        {
+            if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
+            {
+            <div class="form-group col-md-10">
+                @Html.TextArea("preguntar", new { @class = "form-control", placeholder = "Escribe tu pregunta..." })
             </div>
-            
+            <div class="form-group col-md-2">
+                <button name="btnEnviar" class="btn btn-primary btn-lg disabled" type="submit">
+                    Enviar</button>
+            </div> 
             }
         }
         <p class="text-info">
