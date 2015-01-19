@@ -115,6 +115,11 @@ namespace Providere.Controllers
                     ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
                 }
 
+                if (ps.NoExistenCalificaciones(miPublicacion.IdUsuario) == false)
+                {
+                    ViewBag.NoExistenCalificaciones = "No existen calificaciones para mostrar";
+                }
+
                 ViewBag.accionPadre = "VisualizarMiPublicacion";
                 return View(miPublicacion);
         }
@@ -133,6 +138,11 @@ namespace Providere.Controllers
             if (ps.NoExistenPreguntas(idPublicacion) == false)
             {
                 ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
+            }
+
+            if (ps.NoExistenCalificaciones(miPublicacion.IdUsuario) == false)
+            {
+                ViewBag.NoExistenCalificaciones = "No existen calificaciones para mostrar";
             }
 
             ViewBag.accionPadre = "VisualizarPublicacion";

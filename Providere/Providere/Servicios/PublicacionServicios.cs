@@ -159,5 +159,18 @@ namespace Providere.Servicios
             }
             return true;
         }
+
+        public bool NoExistenCalificaciones(int idUsuario)
+        {
+            try
+            {
+                Calificacion calificacion = pr.NoExistenCalificaciones(idUsuario);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
