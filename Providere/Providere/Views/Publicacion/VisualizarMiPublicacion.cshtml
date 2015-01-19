@@ -60,7 +60,7 @@
 
                 }
                 <div>
-                    @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && Session["IdUsuario"] != null)
+                    @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
                     {
                         @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary glyphicon glyphicon-ok" })
                
@@ -86,17 +86,21 @@
             <div class="col-md-12">
                 <h3>
                     Calificaciones</h3>
-                @*  @if (@HttpContext.Current.Session["IdUsuario"].ToString() == Model.IdUsuario.ToString())
-                {
-                
-                    @: Todavía no obtuviste calificaciones
-             }
-                else
-                {
-                 
-                    @Html.DisplayFor(model => model.Usuario.Nombre)
-                    @: aún no posee calificaciones
-                                                                                                }*@
+                @ViewBag.NoExistenCalificaciones
+                <div class="row">
+                   @* @foreach (var item in Model.Usuario.Calificacion)
+                    {
+                        <div class="col-md-12">
+                            <div class="avatar">
+                                <img src="../../Imagenes/FotoPerfil/@item.IdCalificador" width="50px" alt="avatar"/>
+                            </div>
+                            <a href="#">NOMBRE DEL CALIFICADOR</a>
+                            <div>
+                                <span class="glyphicon glyphicon-chevron-up"></span><span>@item.Descripcion</span>
+                            </div>
+                        </div>
+                    }*@
+                </div>
             </div>
             <div class="col-md-12">
                 <h3>
@@ -169,7 +173,7 @@
         </div>
     }
     <div class="col-md-12">
-        @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && Session["IdUsuario"] != null)
+        @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
         {
             using (Html.BeginForm("Preguntar", "Pregunta", FormMethod.Post))
             {
@@ -199,10 +203,27 @@
                 <button name="btnEnviar" class="btn btn-primary btn-lg disabled" type="submit">
                     Enviar</button>
             </div> 
+            <p class="text-info">
+                <span class="glyphicon glyphicon-exclamation-sign"></span>No podes compartir datos
+                personales por aquí</p>
+            }
+            else
+            {
+                if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
+                {
+                
+            <div class="form-group col-md-10">
+                @Html.TextArea("preguntar", new { @class = "form-control", placeholder = "Escribe tu pregunta..." })
+            </div>
+            <div class="form-group col-md-2">
+                <button name="btnEnviar" class="btn btn-primary btn-lg disabled" type="submit">
+                    Enviar</button>
+            </div> 
+            <p class="text-info">
+                <span class="glyphicon glyphicon-exclamation-sign"></span>No podes compartir datos
+                personales por aquí</p>                           
+                }
             }
         }
-        <p class="text-info">
-            <span class="glyphicon glyphicon-exclamation-sign"></span>No podes compartir datos
-            personales por aquí</p>
     </div>
 </div>

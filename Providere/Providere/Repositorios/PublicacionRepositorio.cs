@@ -247,5 +247,14 @@ namespace Providere.Repositorios
                           select pr).First();
             return pregunta;
         }
+
+        public Calificacion NoExistenCalificaciones(int idUsuario)
+        {
+            var calificacion = (from ca in context.Calificacion
+                                where ca.IdCalificado == idUsuario
+                                select ca).First();
+            return calificacion;
+                                
+        }
     }
 }
