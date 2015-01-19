@@ -15,6 +15,11 @@ namespace Providere.Servicios
             return cor.traerContratacionesRealizadas(idUsuario);
         }
 
+        public List<Contratacion> traerQuienesMeContrataron(int idUsuario)
+        {
+            return cor.traerQuienesMeContrataron(idUsuario);
+        }
+
         internal Contratacion nuevaContratacion(Publicacion publicacion, Usuario usuario)
         {
             return cor.nuevaContratacion(publicacion, usuario);

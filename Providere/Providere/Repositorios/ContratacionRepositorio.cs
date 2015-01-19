@@ -26,6 +26,28 @@ namespace Providere.Repositorios
             return context.Contratacion.Where(x => x.Usuario.Id == idUsuario).ToList();
         }
 
+        internal List<Contratacion> traerQuienesMeContrataron(int idUsuario)
+        {
+
+            var misPublicaciones = (from publi in context.Publicacion
+                                    where publi.IdUsuario == idUsuario
+                                    select new { publi.Id });
+
+
+            List<int> listaPublicaciones = new List<int>();
+
+            foreach (var item in misPublicaciones)
+            {
+                listaPublicaciones.Add(item.Id);
+            }
+
+            var resultado = from cont in context.Contratacion
+                            where listaPublicaciones.Contains(cont.IdPublicacion)
+                            select cont;
+
+            return resultado.ToList();
+        }
+         
 
         internal Contratacion nuevaContratacion(Publicacion publicacion, Usuario usuario)
         {

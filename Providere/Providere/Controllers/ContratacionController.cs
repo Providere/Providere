@@ -18,10 +18,29 @@ namespace Providere.Controllers
         {
               ViewBag.Error = TempData["Error"];
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+
             var contrataciones = cs.traerContratacionesRealizadas(idUsuario);
 
-            return View(contrataciones);
+            var quienMeContrato = cs.traerQuienesMeContrataron(idUsuario);
+
+            ViewBag.ContratacionesRealizadas = new Contratacion();
+
+            ViewBag.QuienesMeContrataron = new Contratacion();
+
+            ViewBag.ContratacionesRealizadas = contrataciones;
+            ViewBag.QuienesMeContrataron = quienMeContrato;
+
+            return View();
         }
+
+        /*[ActionName("Index")] public ActionResult SegundaSolapa()
+        {
+            ViewBag.Error = TempData["Error"];
+            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+            var quienMeContrato = cs.traerQuienesMeContrataron(idUsuario);
+
+            return View(quienMeContrato);
+        }*/
 
         public ActionResult Contratar(Publicacion publicacion)
         {

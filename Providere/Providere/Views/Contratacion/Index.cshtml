@@ -46,7 +46,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var item in ViewBag.ContratacionesRealizadas)
                         {
                             <tr>
                                 <td>
@@ -96,26 +96,26 @@
                         </tr>
                     </thead>
                      <tbody>
-                       @* @foreach (var item in Model)
+                       @foreach (var item in ViewBag.QuienesMeContrataron)
                         {
                             <tr>
                                 <td>
                                   <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a>
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Publicacion.Usuario.Nombre)
+                                    @Html.DisplayFor(modelItem => item.Usuario.Nombre)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Publicacion.Usuario.Apellido)
+                                    @Html.DisplayFor(modelItem => item.Usuario.Apellido)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Publicacion.Usuario.Telefono)
+                                    @Html.DisplayFor(modelItem => item.Usuario.Telefono)
                                 </td>
                                 <td>
                                     @Html.ActionLink("Calificar servicio", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id })
                                 </td>
                             </tr>
-                        }*@
+                        }
                     </tbody>
                 </table>
             </div>
