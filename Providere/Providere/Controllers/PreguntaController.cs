@@ -43,6 +43,7 @@ namespace Providere.Controllers
                 catch (System.Net.Mail.SmtpException ex)
                 {
                     ClientException.LogException(ex, "Error al enviar el mail"); //No puede enviar el mail pero igual publica la pregunta
+                    TempData["Exito"] = "Su pregunta fue publicada correctamente";
                     return RedirectToAction("Home", "Home");
                 }
                 
