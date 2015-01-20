@@ -11,6 +11,8 @@ namespace Providere.Controllers
     public class PreguntaController : Controller
     {
         PreguntaServicios prs = new PreguntaServicios();
+        PublicacionServicios ps = new PublicacionServicios();
+        MailServicios mailing = new MailServicios();
 
         public ActionResult Index()
         {
@@ -21,6 +23,7 @@ namespace Providere.Controllers
         public ActionResult Preguntar(int idUsuario, int id, string preguntar)
         {
             int idUser = Convert.ToInt16(this.Session["IdUsuario"]);
+           
             if (idUsuario == idUser)
             {
                 TempData["Error"] = "No podes preguntar en tu publicación";
@@ -31,6 +34,18 @@ namespace Providere.Controllers
             if (!string.IsNullOrWhiteSpace(preguntar))
             {
                 prs.PreguntarEnPublicacion(idUsuario,id, preguntar);
+                try
+                {
+                    //Traer todo de la publicacion, para tener el mail del prestador:
+                    Publicacion publicacion = ps.TraerPublicacionPorId(id);
+                    mailing.EnviarMailPregunta(publicacion);
+                }
+                catch (System.Net.Mail.SmtpException ex)
+                {
+                    ClientException.LogException(ex, "Error al enviar el mail"); //No puede enviar el mail pero igual publica la pregunta
+                    return RedirectToAction("Home", "Home");
+                }
+                
                 TempData["Exito"] = "Pregunta publicada correctamente";
                 return RedirectToAction("Home", "Home"); 
             }
