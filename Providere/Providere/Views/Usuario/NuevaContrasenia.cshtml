@@ -17,6 +17,8 @@
                     <div class="col-xs-3">
                         @Html.PasswordFor(m => m.Contrasenia, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Contrasenia)
+                        <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Entre
+                            5 y 10 caracteres. Debe contener, al menos, 1 numero y 1 mayuscula</small>
                     </div>
                 </div>
                 <div class="form-group">

@@ -139,6 +139,7 @@
         <div role="tabpanel" class="tab-pane" id="editar2">
             <h3>
                 Borrar imagenes de trabajos anteriores</h3>
+                <br />
             <div class="content">
                 <div class="col-md-12">
                     <div class="row">
@@ -150,16 +151,15 @@
                             <div class="col-md-3">
                                 <a href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="roadtrip">
                                     <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "200px" />
-                                </a>
-                                @if (item.Nombre != null)
-                                {
-                                    <div class="form-group">
-                                        <div class="col-md-offset-5">
-                                            <button type="submit" id="btnBorrar" class="btn btn-warning btn-sm">
+                                </a>                              
+                               @* @if (item.Nombre != null)
+                                {*@
+                                        <div class="col-md-offset-1">
+                                       <br />
+                                            <button type="submit" id="btnBorrar" class="btn btn-warning btn-xs glyphicon glyphicon-remove">
                                                 Borrar</button>
                                         </div>
-                                    </div>
-                                }
+                               @* }*@
                             </div>                      
                             }
                         }
