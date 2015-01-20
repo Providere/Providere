@@ -44,7 +44,6 @@ namespace Providere.Controllers
 
             ViewBag.ubicacionElegida = Request["geocomplete"];
 
-            publicaciones = ps.traerPublicacionesMasRecientes(8);
 
                 return View(publicaciones);
         }

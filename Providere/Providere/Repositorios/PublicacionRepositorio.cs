@@ -42,19 +42,19 @@ namespace Providere.Repositorios
 
         internal List<Publicacion> buscarPorRubroSubRubroUbicacion(Rubro Rubro, SubRubro SubRubro, string Ubicacion)
         {
-            var publicaciones = (from publicacion in context.Publicacion select publicacion);
+            var publicaciones = context.Publicacion.AsQueryable();
             if (Rubro != null)
             {
-                publicaciones = publicaciones.Where(b => Rubro.Id.Equals(21));
+                publicaciones = publicaciones.Where(b => b.IdRubro.Equals(Rubro.Id)).Select(x => x);
             }
             if (SubRubro != null)
             {
-                publicaciones = publicaciones.Where(b => SubRubro.Id.Equals(b.Rubro.Id));
+                publicaciones = publicaciones.Where(b => b.IdSubRubro.Equals(SubRubro.Id)).Select(x => x);
             }
 
-            if (Ubicacion != null)
+            if (!String.IsNullOrWhiteSpace(Ubicacion))
             {
-                publicaciones = publicaciones.Where(b => b.Usuario.Ubicacion.Equals(Ubicacion));
+                publicaciones = publicaciones.Where(b => b.Usuario.Ubicacion.Equals(Ubicacion)).Select(x => x);
             }
             return publicaciones.ToList();
 
