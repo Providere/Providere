@@ -174,8 +174,7 @@ namespace Providere.Servicios
         }
 
 
-
-        internal object TraerPuntaje(int id)
+        public object TraerPuntaje(int id)
         {
             return pr.TraerPuntaje(id);
         }

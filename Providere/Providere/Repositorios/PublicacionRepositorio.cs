@@ -257,7 +257,7 @@ namespace Providere.Repositorios
                                 
         }
 
-        internal object TraerPuntaje(int p)
+        public object TraerPuntaje(int p)
         {
             var puntaje = (from punt in context.Puntaje
                            

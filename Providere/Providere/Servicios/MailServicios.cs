@@ -84,7 +84,7 @@ namespace Providere.Servicios
             body += "<br /><a href='"
                 + HttpContext.Current.Request.Url.Scheme
                 + "://"
-                + HttpContext.Current.Request.Url.Authority + "/publicacion/VisualizarPublicacion/"
+                + HttpContext.Current.Request.Url.Authority + "/Publicacion/VisualizarPublicacion/"
                   + publicacion.Id
                 + "'>Hace click aqui para ver la publicacion</a>";
             body += "<br /><br />El equipo de Providere!";
