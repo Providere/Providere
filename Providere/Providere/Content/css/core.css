@@ -19,6 +19,11 @@ body {
   margin-bottom: 60px;
 }
 
+hr 
+{    
+    border-top: 1px solid #D2D2D2;
+}
+
 .header {
 
  background: url('../img/index.jpg') no-repeat scroll center center transparent;
@@ -34,8 +39,6 @@ body {
 #buscador {
 	margin-top: -25px;
 }
-
-
 
 #contenedor-botones-index li{
 	margin-left: 10px;margin-top: 37px;
@@ -158,6 +161,16 @@ footer.transparente .container
     height: 400px
 }
 
+.mensaje-sin-registros 
+{
+    min-height:300px
+}
+
+.mensaje-sin-registros .text-muted 
+{
+    padding-top:130px
+}
+
 /*PARA GOOGLE MAPS*/
 .map_canvas
 {
@@ -165,3 +178,4 @@ footer.transparente .container
     height:281px;
     margin: auto;
 }
+
