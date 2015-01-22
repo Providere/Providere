@@ -10,9 +10,9 @@ namespace Providere.Servicios
     public class PreguntaServicios
     {
         PreguntaRepositorio prr = new PreguntaRepositorio();
-        public void PreguntarEnPublicacion(int idUsuario, int id, string preguntar)
+        public void PreguntarEnPublicacion(int idUser, int id, string preguntar)
         {
-            prr.PreguntarEnPublicacion(idUsuario, id, preguntar);
+            prr.PreguntarEnPublicacion(idUser, id, preguntar);
         }
     }
 }
