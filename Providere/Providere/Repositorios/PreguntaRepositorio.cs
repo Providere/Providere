@@ -11,11 +11,11 @@ namespace Providere.Repositorios
     {
         ProvidereEntities context = new ProvidereEntities();
 
-        public void PreguntarEnPublicacion(int idUsuario, int id, string preguntar)
+        public void PreguntarEnPublicacion(int idUser, int id, string preguntar)
         {
             PreguntaRespuesta miPregunta = new PreguntaRespuesta();
             miPregunta.IdPublicacion = Convert.ToInt16(id);
-            miPregunta.IdUsuario = Convert.ToInt16(idUsuario);
+            miPregunta.IdUsuario = Convert.ToInt16(idUser);
             miPregunta.Pregunta = preguntar;
             context.PreguntaRespuesta.AddObject(miPregunta);
             context.SaveChanges();

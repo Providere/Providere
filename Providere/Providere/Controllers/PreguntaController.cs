@@ -33,7 +33,7 @@ namespace Providere.Controllers
             {
             if (!string.IsNullOrWhiteSpace(preguntar))
             {
-                prs.PreguntarEnPublicacion(idUsuario,id, preguntar);
+                prs.PreguntarEnPublicacion(idUser,id, preguntar);
                 try
                 {
                     //Traer todo de la publicacion, para tener el mail del prestador:
