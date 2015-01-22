@@ -1,76 +1,90 @@
 ﻿@model Providere.Models.Calificacion
 
 @{
-    ViewBag.Title = "CalificarUsuario";
+    ViewBag.Title = "Calificar Usuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container well">
 <h2>CalificarUsuario</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("CalificarUsuario", "Calificacion", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" })) {
     @Html.ValidationSummary(true)
 
-    <fieldset>
+    <fieldset >
         <legend>Calificacion</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Descripcion)
+         <div class="form-group">
+        <div class="col-sm-2 control-label">
+            @Html.LabelFor( model => model.Descripcion)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Descripcion)
+        <div class="col-sm-10 editor-field">
+            @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Descripcion)
         </div>
+        </div>
 
-        <div class="editor-label">
+        <div class="form-group">
+        <div class="col-sm-2 control-label editor-label">
             @Html.LabelFor(model => model.IdCalificador)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.IdCalificador)
+        <div class="col-sm-10 editor-field">
+            @Html.TextBoxFor(model => model.IdCalificador, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.IdCalificador)
         </div>
-
-        <div class="editor-label">
+ </div>
+  <div class="form-group">
+        <div class="col-sm-2 control-label editor-label">
             @Html.LabelFor(model => model.IdCalificado)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.IdCalificado)
+        <div class="col-sm-10 editor-field">
+            @Html.TextBoxFor(model => model.IdCalificado, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.IdCalificado)
         </div>
-
-        <div class="editor-label">
+        
+ </div>
+  <div class="form-group">
+        <div class="col-sm-2 control-label editor-label">
             @Html.LabelFor(model => model.IdContratacion)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.IdContratacion)
+        <div class="col-sm-10 editor-field">
+            @Html.TextBoxFor(model => model.IdContratacion, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.IdContratacion)
         </div>
-
-        <div class="editor-label">
+        
+ </div>
+  <div class="form-group">
+        <div class="col-sm-2 control-label editor-label">
             @Html.LabelFor(model => model.IdTipoEvaluacion)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.IdTipoEvaluacion)
+        <div class="col-sm-10 editor-field">
+            @Html.TextBoxFor(model => model.IdTipoEvaluacion, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.IdTipoEvaluacion)
         </div>
-
-        <div class="editor-label">
+        
+ </div>
+  <div class="form-group">
+        <div class="col-sm-2 control-label editor-label">
             @Html.LabelFor(model => model.IdTipoCalificacion)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.IdTipoCalificacion)
+        <div class="col-sm-10 editor-field">
+            @Html.TextBoxFor(model => model.IdTipoCalificacion, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.IdTipoCalificacion)
         </div>
+        
+ </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" class="btn btn-default" value="Create" />
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
+    </div>
+ </div>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a listado de contrataciones", "Index", "Contratacion")
 </div>
-
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

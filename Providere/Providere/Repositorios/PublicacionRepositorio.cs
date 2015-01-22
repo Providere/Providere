@@ -45,11 +45,11 @@ namespace Providere.Repositorios
             var publicaciones = context.Publicacion.AsQueryable();
             if (Rubro != null)
             {
-                publicaciones = publicaciones.Where(b => b.IdRubro.Equals(Rubro.Id)).Select(x => x);
+                publicaciones = publicaciones.Where(b => b.IdRubro == Rubro.Id).Select(x => x);
             }
             if (SubRubro != null)
             {
-                publicaciones = publicaciones.Where(b => b.IdSubRubro.Equals(SubRubro.Id)).Select(x => x);
+                publicaciones = publicaciones.Where(b => b.IdSubRubro == SubRubro.Id).Select(x => x);
             }
 
             if (!String.IsNullOrWhiteSpace(Ubicacion))
