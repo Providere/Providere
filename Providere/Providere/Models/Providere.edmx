@@ -178,6 +178,7 @@
           <Property Name="Negativo" Type="smallint" Nullable="false" />
           <Property Name="Total" Type="smallint" Nullable="false" />
           <Property Name="IdPublicacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaTotal" Type="datetime" />
         </EntityType>
         <EntityType Name="Replica">
           <Key>
@@ -671,6 +672,7 @@
           <Property Name="Total" Type="Int16" Nullable="false" />
           <Property Name="IdPublicacion" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Puntaje_Publicacion" FromRole="Puntaje" ToRole="Publicacion" />
+          <Property Type="DateTime" Name="FechaTotal" />
         </EntityType>
         <EntityType Name="Replica">
           <Key>
@@ -1065,6 +1067,7 @@
           <EntitySetMapping Name="Puntaje">
             <EntityTypeMapping TypeName="ProvidereModel.Puntaje">
               <MappingFragment StoreEntitySet="Puntaje">
+                <ScalarProperty Name="FechaTotal" ColumnName="FechaTotal" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Positivo" ColumnName="Positivo" />
                 <ScalarProperty Name="Neutro" ColumnName="Neutro" />

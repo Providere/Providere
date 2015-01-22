@@ -1,13 +1,16 @@
-/*Sentencias para modificar campos en tablas:*/
+			/*Sentencias para modificar campos en tablas:*/
 USE [Providere]
 GO
------------------------TABLA USUARIO--------------------------------------
+-----------------------TABLA Usuario--------------------------------------
 alter table dbo.Usuario alter column Telefono varchar(20) not null
 alter table dbo.Usuario alter column Contrasenia varchar(50) not null
 alter table dbo.Usuario add Dni varchar(10) not null 
 
------------------------TABLA PUBLICACION----------------------------------
+-----------------------TABLA Publicacion----------------------------------
 alter table dbo.Publicacion add PrecioOpcion int not null
 
 -----------------------TABLA PreguntaRespuesta----------------------------
 alter table dbo.PreguntaRespuesta add FechaRespuesta datetime null 
+
+-----------------------TABLA Puntaje-------------------------------------
+alter table dbo.Puntaje add FechaTotal datetime  null 

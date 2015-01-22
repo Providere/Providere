@@ -260,10 +260,9 @@ namespace Providere.Repositorios
         public object TraerPuntaje(int p)
         {
             var puntaje = (from punt in context.Puntaje
-                           
                            where punt.IdPublicacion == p
-                           group punt by 1 into g
-                           select g.Max(x=>x.Total)).FirstOrDefault();
+                           orderby punt.FechaTotal descending
+                           select punt.Total).FirstOrDefault();
             return puntaje;
         }
     }
