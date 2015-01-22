@@ -46,30 +46,27 @@
                 > <img src="../../Imagenes/Publicacion/@item.imagen.Nombre" width="110%" alt=""
                 height= "200px" /> <div class="caption text-center"> <h4> <a href="#">
                 @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4> <strong>@item.publicacion.Rubro.Nombre</strong>
-                <span class="badge">@item.puntaje.Total</span> <br /> <span><a href="#">@item.publicacion.Titulo</a></span>
-                <br /> <h6 class="text-danger">
+                <span class="badge">@item.puntaje.Total</span> <br /> <span><a href="/publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span>
+                <br /> 
                 @if (@item.publicacion.PrecioOpcion == 1)
                 {
-                    @Html.Label("Precio:")
+                   
                     @Html.Label("A Convenir") 
                 }
                 else
                 {
-                    @Html.Label("Precio: $") 
+                    @Html.Label("$") 
                     @String.Format("{0:0.00}", @item.publicacion.Precio)                     
                    
                 }
-            </h6> </div> </div> </a> </div>
+             </div> </div> </a> </div>
             }
         }
         else
         {
             <div class="text-center">
-                <span class="text-muted">No hubo resultados.</span>
+                <span class="text-muted">No hubo resultados</span>
             </div>
         }
-    </div>
-    
-    <br />
-    <br />
+    </div>   
 </div>
