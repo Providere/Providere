@@ -266,7 +266,7 @@ namespace Providere.Repositorios
             return puntaje;
         }
 
-        public object TraerContratadas(int idPublicacion, int idUsuario)
+        public object TraerContratada(int idPublicacion, int idUsuario)
         {
             var contratacion = (from contrata in context.Contratacion
                                 where (contrata.IdUsuario == idUsuario && contrata.IdPublicacion == idPublicacion)

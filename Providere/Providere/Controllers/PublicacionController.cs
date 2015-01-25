@@ -165,9 +165,9 @@ namespace Providere.Controllers
             {
                 ViewBag.MostrarPuntaje = traerPuntaje;
             }
-
+            //Si el servicio(publicacion) fue contratado, se muestra el telefono del prestador:
            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-           var contratadas =  ps.TraerContratadas(idPublicacion,idUsuario);
+           var contratadas =  ps.TraerContratada(idPublicacion,idUsuario);
            ViewBag.Contratada = contratadas;
 
             return View("VisualizarMiPublicacion", miPublicacion);
