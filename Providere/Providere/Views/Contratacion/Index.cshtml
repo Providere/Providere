@@ -61,8 +61,13 @@
                                 <td>
                                     @item.Publicacion.Usuario.Telefono
                                 </td>
+                                <td> @*SACAR!!!!!*@
+
+                                @item.Id
+                                </td>
+
                                 <td>
-                                    @Html.ActionLink("Calificar servicio", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id })
+                                    @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id }, null)
                                 </td>
                             </tr>
                         }
@@ -112,7 +117,7 @@
                                     @item.Usuario.Telefono
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Calificar servicio", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id })
+                                    @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id }, null)
                                 </td>
                             </tr>
                         }

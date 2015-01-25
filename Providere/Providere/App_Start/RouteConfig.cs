@@ -36,10 +36,16 @@ namespace Providere
             );
 
             routes.MapRoute(
+              "Calificar",
+              "Contratacion/CalificarUsuario/{idContratacion}",
+              new { controller = "Calificacion", action = "CalificarUsuario", idContratacion = UrlParameter.Optional }
+          );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Index", action = "Index", id = UrlParameter.Optional }
-            );
+            );     
         }
     }
 }
