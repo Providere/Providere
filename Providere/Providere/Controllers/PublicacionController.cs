@@ -167,8 +167,8 @@ namespace Providere.Controllers
             }
             //Si el servicio(publicacion) fue contratado, se muestra el telefono del prestador:
            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-           var contratadas =  ps.TraerContratada(idPublicacion,idUsuario);
-           ViewBag.Contratada = contratadas;
+           var contratada =  ps.TraerContratada(idPublicacion,idUsuario);
+           ViewBag.Contratada = contratada;
 
             return View("VisualizarMiPublicacion", miPublicacion);
         }
