@@ -166,6 +166,10 @@ namespace Providere.Controllers
                 ViewBag.MostrarPuntaje = traerPuntaje;
             }
 
+           int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+           var contratadas =  ps.TraerContratadas(idPublicacion,idUsuario);
+           ViewBag.Contratada = contratadas;
+
             return View("VisualizarMiPublicacion", miPublicacion);
         }
 

@@ -173,10 +173,14 @@ namespace Providere.Servicios
             return true;
         }
 
-
         public object TraerPuntaje(int id)
         {
             return pr.TraerPuntaje(id);
+        }
+
+        public object TraerContratadas(int idPublicacion, int idUsuario)
+        {
+            return pr.TraerContratadas(idPublicacion, idUsuario);
         }
     }
 }

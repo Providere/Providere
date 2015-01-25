@@ -265,5 +265,13 @@ namespace Providere.Repositorios
                            select punt.Total).FirstOrDefault();
             return puntaje;
         }
+
+        public object TraerContratadas(int idPublicacion, int idUsuario)
+        {
+            var contratacion = (from contrata in context.Contratacion
+                                where (contrata.IdUsuario == idUsuario && contrata.IdPublicacion == idPublicacion)
+                                select contrata).FirstOrDefault();
+            return contratacion;
+        }
     }
 }

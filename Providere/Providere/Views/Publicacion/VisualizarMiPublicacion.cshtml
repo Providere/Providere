@@ -60,24 +60,32 @@
 
                 }
                 <div>
-                    @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
+                    @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
                     {
-                        @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary glyphicon glyphicon-ok" })
-               
+                        <button name="btnTel" class="btn btn-success btn-lg disabled" type="submit">
+                            @Model.Usuario.Telefono</button>
                     }
                     else
                     {
-                        if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
+                        if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
                         {
-                        @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg disabled glyphicon glyphicon-ok" })
+                        @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary glyphicon glyphicon-ok" })
+               
                         }
-
                         else
                         {
-                            if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
+                            if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
                             {
+                        @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg disabled glyphicon glyphicon-ok" })
+                            }
+
+                            else
+                            {
+                                if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
+                                {
                 
                         @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg disabled glyphicon glyphicon-ok" })
+                                }
                             }
                         }
                     }
@@ -88,7 +96,7 @@
                     Calificaciones</h3>
                 @ViewBag.NoExistenCalificaciones
                 <div class="row">
-                   @* @foreach (var item in Model.Usuario.Calificacion)
+                    @* @foreach (var item in Model.Usuario.Calificacion)
                     {
                         <div class="col-md-12">
                             <div class="avatar">
@@ -190,7 +198,7 @@
                 <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
                     Enviar</button>
             </div>  
-             <p class="text-info">
+            <p class="text-info">
                 <span class="glyphicon glyphicon-exclamation-sign"></span>No podes compartir datos
                 personales por aquí</p>        
             }
