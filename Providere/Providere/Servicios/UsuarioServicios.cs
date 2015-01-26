@@ -105,6 +105,11 @@ namespace Providere.Servicios
             return miUsuario.Id;
         }
 
+        public List<Usuario> traerPorZona(Usuario user,int limite)
+        {
+            return ur.traerPorZona(user,limite);
+        }
+
 
         public void CrearCookie(Usuario model)
         {
@@ -178,6 +183,11 @@ namespace Providere.Servicios
         public void RestablecerContrasenia(string id, string contrasenia)
         {
             ur.RestablecerContrasenia(id, contrasenia);
+        }
+
+        internal Usuario traerUsuario(int id)
+        {
+            return ur.traerPorId(id);
         }
     }
 }

@@ -35,6 +35,8 @@ namespace Providere.Servicios
             return obtenerPuntajeImagen(pr.traerPublicacionesPorZona(zona, limite));
         }
 
+        // Obtiene el puntaje y la imagen a mostrar de un listado de publicaciones
+        // Probablemente no es necesario
         public ListaPublicacionesModel obtenerPuntajeImagen(List<Publicacion> resPublicaciones)
         {
             ListaPublicacionesModel publicaciones = new ListaPublicacionesModel();

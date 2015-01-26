@@ -76,14 +76,13 @@
         </div>
     }
     <hr />
- 
-    @*@if (ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones.Count > 0)*@
-    @if (ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones.Count > 5455)
-    {
-        <div id="prestadores-mejores">
+ <div id="prestadores-mejores">
             <h2>
                 Prestadores mejor calificados</h2>
             <br />
+    @if (ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones.Count > 0)    
+    {
+        
             <div class="row">
                 @foreach (var item in ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones)
                 {
@@ -110,35 +109,33 @@
                     <button type="button" class="btn btn-primary">
                         Ver mas prestadores</button></a>
             </center>
-        </div>
     }
     else
     {
         <div class="text-center mensaje-sin-registros">
-            <div class="text-muted">Hoy no hay publicaciones destacadas.</div>
+            <div class="text-muted">Aún no hay publicaciones calificadas.</div>
         </div>
     }
+        </div>
     <hr />
-    
-    @*@if (ViewBag.PublicacionesMasCercanas.listadoDePublicaciones.Count > 0)*@
-    @if (ViewBag.PublicacionesMasCercanas.listadoDePublicaciones.Count >45444)
-    {
-        <div id="prestadores-zona">
+    <div id="prestadores-zona">
             <h2>
                 Prestadores de mi zona</h2>
             <br />
+    @if (ViewBag.UsuariosMasCercanos.Count > 0)
+    {
+        
             <div class="row">
-                @foreach (var item in ViewBag.PublicacionesMasCercanas.listadoDePublicaciones)
+                @foreach (var item in ViewBag.UsuariosMasCercanos)
                 {
                 
                     <div class="col-xs-3">
                         <div class="thumbnail" style="height: 360px">
-                            <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
+                            <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Id })" alt="plomero" width="100%"/>
                             <div class="caption text-center">
                                 <h4>
                                     <a href="#">
-                                        @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
-                                <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                        @item.Nombre @item.Apellido</a></h4>
                                 <br />
                             </div>
                         </div>
@@ -151,7 +148,6 @@
                         Ver mas prestadores en mi zona</button>
                 </a>
             </center>
-        </div>
     }
     else
     {
@@ -159,4 +155,6 @@
             <div class="text-muted">Hoy no hay publicaciones de tu zona.</div>
         </div>
     }
+    
+        </div>
 </div>

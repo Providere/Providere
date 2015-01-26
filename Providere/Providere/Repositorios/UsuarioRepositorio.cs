@@ -166,5 +166,15 @@ namespace Providere.Repositorios
             user.Contrasenia = Encryptor.MD5Hash(contrasenia);
             context.SaveChanges();
         }
+
+        internal List<Usuario> traerPorZona(Usuario user, int limite)
+        {
+            return context.Usuario.Where(e => e.Ubicacion.Equals(user.Ubicacion)).Where(e => !e.Id.Equals(user.Id)).Take(limite).ToList();
+        }
+
+        internal Usuario traerPorId(int id)
+        {
+            return context.Usuario.Where(x => x.Id == id).FirstOrDefault();
+        }
     }
 }

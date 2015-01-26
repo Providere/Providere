@@ -15,7 +15,7 @@ namespace Providere.Repositorios
 
         internal List<Publicacion> traerPublicacionesPorZona(String zona, int limite)
         {
-            var publicaciones = (from publicacion in context.Publicacion where publicacion.Estado == 1  select publicacion).Take(limite).ToList();
+            var publicaciones = buscarPorRubroSubRubroUbicacion(null,null,zona).Take(limite).ToList();
             return publicaciones;
         }
 

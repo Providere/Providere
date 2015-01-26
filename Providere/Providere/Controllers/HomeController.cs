@@ -12,9 +12,11 @@ namespace Providere.Controllers
     public class HomeController : Controller
     {
         PublicacionServicios ps = new PublicacionServicios();
+        UsuarioServicios us = new UsuarioServicios();
 
-        public ActionResult Home(Usuario user)
+        public ActionResult Home()
         {
+            
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
 
@@ -22,9 +24,7 @@ namespace Providere.Controllers
 
             ViewBag.PublicacionesMejorCalificadas = ps.traerPublicacionesMejorCalificadas(4);
 
-            ViewBag.PublicacionesMasCercanas = ps.traerPublicacionesMasCercanas(user.Ubicacion, 4);
-
-           // ViewBag.PublicacionesMasCercanas = ps.traerPublicacionesMasCercanas(user.Ubicacion, 4);
+            ViewBag.UsuariosMasCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), 4);
 
 
             return View();
