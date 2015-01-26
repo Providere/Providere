@@ -16,6 +16,13 @@ namespace Providere.Controllers
 
         public ActionResult Index()
         {
+            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+
+            var preguntasSinResponder = prs.traerPreguntasSinResponder(idUsuario);
+            ViewBag.PreguntasSinResponder = preguntasSinResponder;
+
+            var preguntasQueHice = prs.traerPreguntasQueHice(idUsuario);
+            ViewBag.PreguntasQueHice = preguntasQueHice;
             return View();
         }
 

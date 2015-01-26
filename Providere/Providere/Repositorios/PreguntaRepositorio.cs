@@ -20,5 +20,30 @@ namespace Providere.Repositorios
             context.PreguntaRespuesta.AddObject(miPregunta);
             context.SaveChanges();
         }
+
+        public List<PreguntaRespuesta> TraerPreguntasSinRespoder(int idUsuario)
+        {
+            var misPublicaciones = (from publicacion in context.Publicacion
+                                    where publicacion.IdUsuario == idUsuario
+                                    select new { publicacion.Id });
+            List<int> listaDePublicaciones = new List<int>();
+            foreach (var item in misPublicaciones)
+            {
+                listaDePublicaciones.Add(item.Id);
+            }
+            var resultados = (from preguntas in context.PreguntaRespuesta
+                              where (listaDePublicaciones.Contains(preguntas.IdPublicacion) && preguntas.Respuesta == null)
+                              select preguntas).ToList();
+            return resultados;
+
+        }
+
+        public object traerPreguntasQueHice(int idUsuario)
+        {
+            var result = (from preg in context.PreguntaRespuesta
+                          where preg.IdUsuario == idUsuario
+                          select preg).ToList();
+            return result;
+        }
     }
 }
