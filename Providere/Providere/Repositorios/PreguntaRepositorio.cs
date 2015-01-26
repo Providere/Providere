@@ -38,12 +38,12 @@ namespace Providere.Repositorios
 
         }
 
-        public object traerPreguntasQueHice(int idUsuario)
+        public object TraerPreguntasQueHice(int idUsuario)
         {
-            var result = (from preg in context.PreguntaRespuesta
+            var resultado = (from preg in context.PreguntaRespuesta
                           where preg.IdUsuario == idUsuario
                           select preg).ToList();
-            return result;
+            return resultado;
         }
     }
 }
