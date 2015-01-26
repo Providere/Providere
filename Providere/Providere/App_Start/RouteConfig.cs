@@ -35,11 +35,11 @@ namespace Providere
                 new { controller = "Usuario", action = "NuevaContrasenia", id = UrlParameter.Optional }
             );
 
-            routes.MapRoute(
+           /* routes.MapRoute(
               "Calificar",
-              "Contratacion/CalificarUsuario/{idContratacion}",
-              new { controller = "Calificacion", action = "CalificarUsuario", idContratacion = UrlParameter.Optional }
-          );
+              "Contratacion/CalificarUsuario/{idContratacion}/{idTipoCalificacion}",
+              new { controller = "Calificacion", action = "CalificarUsuario", idContratacion = UrlParameter.Optional, idTipoCalificacion = UrlParameter.Optional }
+          ); */
 
             routes.MapRoute(
                 name: "Default",
