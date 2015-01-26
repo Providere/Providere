@@ -115,15 +115,7 @@ namespace Providere.Repositorios
             return resultado;
         }
 
-        public Publicacion TraerPublicacion(int Id, int idUsuario)
-        {
-            var publicacion = (from publicaciones in context.Publicacion
-                               where (publicaciones.IdUsuario == idUsuario) && (publicaciones.Id == Id) 
-                               select publicaciones).FirstOrDefault(); 
-            return publicacion;
-        }
-
-
+       
         internal Publicacion TraerPublicacionPorId(int idPublicacion)
         {
             var publicacion = (from publicaciones in context.Publicacion
