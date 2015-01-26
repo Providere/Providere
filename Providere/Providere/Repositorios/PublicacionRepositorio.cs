@@ -35,7 +35,7 @@ namespace Providere.Repositorios
                                              join puntaje in context.Puntaje on publicacion.Id equals puntaje.IdPublicacion
                                              where publicacion.Estado == 1 //Habilitada
                                              orderby puntaje.Total descending
-                                             select publicacion).Take(limite).ToList();
+                                             select publicacion).Distinct().Take(limite).ToList();
 
             return publicacionesMasPopulares;
         }

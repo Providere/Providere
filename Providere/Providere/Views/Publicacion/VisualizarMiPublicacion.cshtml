@@ -62,8 +62,8 @@
                 <div>
                     @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
                     {
-                        <button name="btnTel" class="btn btn-success btn-lg disabled" type="submit">
-                            @Model.Usuario.Telefono</button>
+                        <button name="btnTel" class="btn btn-primary btn-lg btn-block" type="button">
+                           Telefono: <br /> @Model.Usuario.Telefono</button>
                     }
                     else
                     {
