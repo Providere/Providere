@@ -16,20 +16,32 @@ namespace Providere.Controllers
         public ActionResult CalificarUsuario()
         {
             return View();
-
         }
 
         [HttpPost]
-        public ActionResult CalificarUsuario(int idContratacion)
+        public ActionResult CalificarUsuario(int idContratacion, int idTipoCalificacion)
         {
-            int idCalificador = Int32.Parse(this.Session["IdUsuario"].ToString());
-            int idTipoEvaluacion = Int32.Parse(Request["idTipoEvaluacion"]);
-            int idTipoCalificacion = Int32.Parse(Request["idTipoCalificacion"]);
-            cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion);
 
-            ViewBag.Mensaje = "La publicacion se ha calificado con éxito";
+            if (idTipoCalificacion == 1)
+            {
 
-            return View("Index","Contratacion");
+                int idCalificador = Int32.Parse(this.Session["IdUsuario"].ToString());
+                int idTipoEvaluacion = Int32.Parse(Request["idTipoEvaluacion"]);
+                // int idTipoCalificacion = Int32.Parse(Request["idTipoCalificacion"]);
+                cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion);
+
+            }
+            else
+            { 
+            
+            
+            
+            
+            }
+
+            ViewBag.Mensaje = "El usuario se ha calificado con éxito";
+
+            return View("Index", "Contratacion");
 
         }
     }
