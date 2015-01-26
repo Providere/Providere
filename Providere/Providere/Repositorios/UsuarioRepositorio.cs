@@ -169,7 +169,7 @@ namespace Providere.Repositorios
 
         internal List<Usuario> traerPorZona(Usuario user, int limite)
         {
-            return context.Usuario.Where(e => e.Ubicacion.Equals(user.Ubicacion)).Where(e => !e.Id.Equals(user.Id)).Take(limite).ToList();
+            return context.Usuario.Where(e => e.Ubicacion.Equals(user.Ubicacion)).Where(e => !e.Id.Equals(user.Id)).Shuffle().Take(limite).ToList();
         }
 
         internal Usuario traerPorId(int id)

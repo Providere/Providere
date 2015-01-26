@@ -171,6 +171,7 @@
     <Compile Include="Servicios\CalificacionServicios.cs" />
     <Compile Include="Servicios\ContratacionServicios.cs" />
     <Compile Include="Servicios\Encryptor.cs" />
+    <Compile Include="Servicios\IEnumerableExtension.cs" />
     <Compile Include="Servicios\MailServicios.cs" />
     <Compile Include="Servicios\PreguntaServicios.cs" />
     <Compile Include="Servicios\PublicacionServicios.cs" />
