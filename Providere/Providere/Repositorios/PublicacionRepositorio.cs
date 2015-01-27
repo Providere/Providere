@@ -35,7 +35,7 @@ namespace Providere.Repositorios
                                              join puntaje in context.Puntaje on publicacion.Id equals puntaje.IdPublicacion
                                              where publicacion.Estado == 1 //Habilitada
                                              orderby puntaje.Total descending
-                                             select publicacion).Take(limite).ToList();
+                                             select publicacion).Distinct().Take(limite).ToList();
 
             return publicacionesMasPopulares;
         }
@@ -115,15 +115,7 @@ namespace Providere.Repositorios
             return resultado;
         }
 
-        public Publicacion TraerPublicacion(int Id, int idUsuario)
-        {
-            var publicacion = (from publicaciones in context.Publicacion
-                               where (publicaciones.IdUsuario == idUsuario) && (publicaciones.Id == Id) 
-                               select publicaciones).FirstOrDefault(); 
-            return publicacion;
-        }
-
-
+       
         internal Publicacion TraerPublicacionPorId(int idPublicacion)
         {
             var publicacion = (from publicaciones in context.Publicacion

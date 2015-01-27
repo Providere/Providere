@@ -74,12 +74,6 @@ namespace Providere.Servicios
             return misPublicaciones;
         }
 
-        public Publicacion TraerPublicacion(int Id, int idUsuario)
-        {
-            Publicacion miPublicacion = pr.TraerPublicacion(Id, idUsuario);
-            return miPublicacion;
-        }
-
         internal Publicacion TraerPublicacionPorId(int idPublicacion)
         {
             return pr.TraerPublicacionPorId(idPublicacion);

@@ -103,8 +103,7 @@ namespace Providere.Controllers
         public ActionResult VisualizarMiPublicacion(int id)
         {
             ViewBag.Error = TempData["Error"];
-            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            Publicacion miPublicacion = ps.TraerPublicacion(id, idUsuario);
+            Publicacion miPublicacion = ps.TraerPublicacionPorId(id);
 
                 if (ps.NoExistenImagenes(id) == false)
                 {
@@ -191,8 +190,7 @@ namespace Providere.Controllers
 
         public ActionResult EditarPublicacion(int id)
         {
-            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            Publicacion publicacion = ps.TraerPublicacion(id, idUsuario);
+            Publicacion publicacion = ps.TraerPublicacionPorId(id);
 
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
@@ -235,10 +233,12 @@ namespace Providere.Controllers
                                     ps.CargarImagenesEdicion(pathImagen, idUsuario, id);
                                 }
                             }
+                            TempData["Exito"] = "Publicación editada correctamente";
                             return RedirectToAction("ListarPublicaciones");
                         }
                         else
                         {
+                            TempData["Exito"] = "Publicación editada correctamente";
                             return RedirectToAction("ListarPublicaciones");
                         }
                     }

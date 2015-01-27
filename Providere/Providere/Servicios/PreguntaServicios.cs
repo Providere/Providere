@@ -14,5 +14,15 @@ namespace Providere.Servicios
         {
             prr.PreguntarEnPublicacion(idUser, id, preguntar);
         }
+
+        public List<PreguntaRespuesta> TraerPreguntasSinResponder(int idUsuario)
+        {
+            return prr.TraerPreguntasSinRespoder(idUsuario);
+        }
+
+        public object TraerPreguntasQueHice(int idUsuario)
+        {
+            return prr.TraerPreguntasQueHice(idUsuario);
+        }
     }
 }

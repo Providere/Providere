@@ -16,6 +16,14 @@ namespace Providere.Controllers
 
         public ActionResult Index()
         {
+            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+
+            var preguntasSinResponder = prs.TraerPreguntasSinResponder(idUsuario);
+            ViewBag.PreguntasSinResponder = preguntasSinResponder;
+
+            var preguntasQueHice = prs.TraerPreguntasQueHice(idUsuario);
+            ViewBag.PreguntasQueHice = preguntasQueHice;
+
             return View();
         }
 
@@ -53,6 +61,12 @@ namespace Providere.Controllers
             TempData["Error"] = "La pregunta no puede ser vacia";
             return RedirectToAction("VisualizarPublicacion", "Publicacion", new { idPublicacion = id });
             }
+        }
+
+        [HttpPost]
+        public ActionResult Responder(int id)
+        {
+            return View();
         }
     }
 }
