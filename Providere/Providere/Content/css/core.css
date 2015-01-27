@@ -37,7 +37,8 @@ hr
 }
 
 #buscador {
-	margin-top: -25px;
+margin-top: -25px;
+margin-bottom: 5px;
 }
 
 #contenedor-botones-index li{
