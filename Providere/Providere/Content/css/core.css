@@ -180,3 +180,25 @@ footer.transparente .container
     margin: auto;
 }
 
+.ficha-publicante
+{
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 5px;
+    padding:  20px;
+    background-color: #0995B2;
+    color: white;
+    text-align: center;
+}
+
+.ficha-publicante>div>*
+{
+    color:#FFF;
+}
+
+.ficha-publicante .ubicacion
+{
+    
+    border-top: 1px solid white;  
+    margin: 10px auto 0;
+    padding: 10px 0 0;
+}
