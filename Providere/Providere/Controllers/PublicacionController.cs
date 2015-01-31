@@ -115,15 +115,13 @@ namespace Providere.Controllers
                     ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
                 }
 
+                //Para mostrar todas las calificaciones de la publicacion:
                 var traerCalificaciones = ps.TraerCalificaciones(id);
-                if (traerCalificaciones == null)
-                {
-                    ViewBag.NoExistenCalificaciones = "No existen calificaciones para mostrar";
-                }
-                else
-                {
-                    ViewBag.Calificaciones = traerCalificaciones;
-                }
+                ViewBag.Calificaciones = traerCalificaciones;
+
+                //Para mostrar las primeras 5:
+                var traerPrimerasCalificaciones = ps.TraerPrimerasCalificaciones(5, id);
+                ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
 
                 ViewBag.accionPadre = "VisualizarMiPublicacion";
                  var traerPuntaje = ps.TraerPuntaje(id);
@@ -153,6 +151,9 @@ namespace Providere.Controllers
             {
                 ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
             }
+
+            var traerPrimerasCalificaciones = ps.TraerPrimerasCalificaciones(5, idPublicacion);
+            ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
 
             var traerCalificaciones = ps.TraerCalificaciones(idPublicacion);             
             ViewBag.Calificaciones = traerCalificaciones;

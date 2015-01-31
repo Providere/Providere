@@ -272,5 +272,22 @@ namespace Providere.Repositorios
                               select calificacion).ToList();
             return resultado;
         }
+
+        //Trae las primeras 5 calificaciones para mostrar en la publicacion
+        public object TraerPrimerasCalificaciones(int limite, int idPublicacion)
+        {
+            var contratacion = (from contrata in context.Contratacion
+                                where contrata.IdPublicacion == idPublicacion
+                                select new { contrata.Id });
+            List<int> listaDeContrataciones = new List<int>();
+            foreach (var item in contratacion)
+            {
+                listaDeContrataciones.Add(item.Id);
+            }
+            var resultado = (from calificacion in context.Calificacion
+                             where (listaDeContrataciones.Contains(calificacion.IdContratacion))
+                             select calificacion).Take(limite).ToList();
+            return resultado;
+        }
     }
 }

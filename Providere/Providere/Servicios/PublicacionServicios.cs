@@ -171,5 +171,9 @@ namespace Providere.Servicios
             return pr.TraerCalificaciones(idPublicacion);
         }
 
+        public object TraerPrimerasCalificaciones(int limite, int idPublicacion)
+        {
+            return pr.TraerPrimerasCalificaciones(limite, idPublicacion);
+        }
     }
 }
