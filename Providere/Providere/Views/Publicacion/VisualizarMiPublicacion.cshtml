@@ -62,7 +62,7 @@
                 <div>
                     @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
                     {
-                        <button name="btnTel" class="btn btn-primary btn-lg btn-block" type="button">
+                        <button name="btnTel" class="btn btn-primary btn-lg disabled" type="button">
                            Telefono: <br /> @Model.Usuario.Telefono</button>
                     }
                     else
@@ -178,7 +178,6 @@
                     }
                 </dl>
             }
-            <hr />
             </div>
         </div>
     }
