@@ -30,11 +30,10 @@
                 <div class="col-xs-3">
                     <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >
                         <div class="thumbnail">
-                        
-                                    <div class="contenedor-img">
-                            <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
+                            <div class="contenedor-img">
+                                <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
                                  width="110%" alt="" height= "200px" />
-                                 </div>
+                            </div>
                             <div class="caption text-center">
                                 <h4>
                                     <a href="#">
@@ -43,7 +42,7 @@
                                 <br />
                                 <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span>
                                 <br />
-                                  <p>
+                                <p>
                                     @if (@item.publicacion.PrecioOpcion == 1)
                                     {
                                        
@@ -72,58 +71,57 @@
     else
     {
         <div class="mensaje-sin-registros text-center">
-            <div class="text-muted">Hoy no hay publicaciones recientes.</div>
+            <div class="text-muted">
+                Hoy no hay publicaciones recientes.</div>
         </div>
     }
     <hr />
- <div id="prestadores-mejores">
-            <h2>
-                Prestadores mejor calificados</h2>
-            <br />
-    @if (ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones.Count > 0)    
-    {
-        
+    <div id="prestadores-mejores">
+        <h2>
+            Prestadores mejor calificados</h2>
+        <br />
+        @if (ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones.Count > 0)
+        {        
             <div class="row">
                 @foreach (var item in ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones)
                 {
-                
                     <div class="col-xs-3">
-                            <div class="thumbnail" style="height: 330px">
-                                
-                                    <div class="contenedor-img">
-                            <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
-                                 width="110%" alt="" height= "200px" />
-                                 </div> <div class="caption text-center">
-                                    <h4>
-                                        <a href="#">
-                                            @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
-                                    <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
-                                    <br />
-                                </div>
+                        <div class="thumbnail" style="height: 330px">
+                            <div class="contenedor-img">
+                                <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
                             </div>
-                       @* </a>*@
+                            <div class="caption text-center">
+                                <h4>
+                                    <a href="#">
+                                        @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                <br />
+                            </div>
+                        </div>
                     </div>
-                }</div>
+                }
+            </div>
             <center>
                 <a href="/Publicacion/Lista">
                     <button type="button" class="btn btn-primary">
                         Ver mas prestadores</button></a>
             </center>
-    }
-    else
-    {
-        <div class="text-center mensaje-sin-registros">
-            <div class="text-muted">Aún no hay publicaciones calificadas.</div>
-        </div>
-    }
-        </div>
+        }
+        else
+        {
+            <div class="text-center mensaje-sin-registros">
+                <div class="text-muted">
+                    Aún no hay publicaciones calificadas.</div>
+            </div>
+        }
+    </div>
     <hr />
     <div id="prestadores-zona">
-            <h2>
-                Prestadores de mi zona</h2>
-            <br />
-    @if (ViewBag.UsuariosMasCercanos.Count > 0)
-    {
+        <h2>
+            Prestadores de mi zona</h2>
+        <br />
+        @if (ViewBag.UsuariosMasCercanos.Count > 0)
+        {
         
             <div class="row">
                 @foreach (var item in ViewBag.UsuariosMasCercanos)
@@ -148,13 +146,13 @@
                         Ver mas prestadores en mi zona</button>
                 </a>
             </center>
-    }
-    else
-    {
-        <div class="mensaje-sin-registros text-center">
-            <div class="text-muted">Hoy no hay publicaciones de tu zona.</div>
-        </div>
-    }
-    
-        </div>
+        }
+        else
+        {
+            <div class="mensaje-sin-registros text-center">
+                <div class="text-muted">
+                    Hoy no hay publicaciones de tu zona.</div>
+            </div>
+        }
+    </div>
 </div>

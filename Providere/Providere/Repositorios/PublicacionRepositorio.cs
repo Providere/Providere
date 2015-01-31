@@ -240,15 +240,6 @@ namespace Providere.Repositorios
             return pregunta;
         }
 
-        public Calificacion NoExistenCalificaciones(int idUsuario)
-        {
-            var calificacion = (from ca in context.Calificacion
-                                where ca.IdCalificado == idUsuario
-                                select ca).First();
-            return calificacion;
-                                
-        }
-
         public object TraerPuntaje(int p)
         {
             var puntaje = (from punt in context.Puntaje
@@ -264,6 +255,22 @@ namespace Providere.Repositorios
                                 where (contrata.IdUsuario == idUsuario && contrata.IdPublicacion == idPublicacion)
                                 select contrata).FirstOrDefault();
             return contratacion;
+        }
+
+        public List<Calificacion> TraerCalificaciones(int idPublicacion)
+        {
+            var contratacion = (from contrata in context.Contratacion
+                                  where contrata.IdPublicacion == idPublicacion
+                                  select new { contrata.Id});
+            List<int> listaDeContrataciones = new List<int>();
+            foreach (var item in contratacion)
+            {
+                listaDeContrataciones.Add(item.Id);
+            }
+            var resultado = (from calificacion in context.Calificacion
+                              where (listaDeContrataciones.Contains(calificacion.IdContratacion)) 
+                              select calificacion).ToList();
+            return resultado;
         }
     }
 }

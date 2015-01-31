@@ -34,7 +34,7 @@
         </h1>
         <hr />
         
-        <div class="col-md-9">        
+        <div class="col-md-9">
             <div class="col-md-8">
                 <h3>
                     Descripción</h3>
@@ -63,7 +63,9 @@
                     @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
                     {
                         <button name="btnTel" class="btn btn-primary btn-lg disabled" type="button">
-                           Telefono: <br /> @Model.Usuario.Telefono</button>
+                            Telefono:
+                            <br />
+                            @Model.Usuario.Telefono</button>
                     }
                     else
                     {
@@ -94,20 +96,42 @@
             <div class="col-md-12">
                 <h3>
                     Calificaciones</h3>
-                @ViewBag.NoExistenCalificaciones
                 <div class="row">
-                    @* @foreach (var item in Model.Usuario.Calificacion)
+                    @if (ViewBag.Calificaciones.Count > 0)
                     {
+                        foreach (var item in ViewBag.Calificaciones)
+                        {
                         <div class="col-md-12">
                             <div class="avatar">
-                                <img src="../../Imagenes/FotoPerfil/@item.IdCalificador" width="50px" alt="avatar"/>
+                                <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <a href="#">@item.Contratacion.Usuario.Nombre</a>
                             </div>
-                            <a href="#">NOMBRE DEL CALIFICADOR</a>
                             <div>
-                                <span class="glyphicon glyphicon-chevron-up"></span><span>@item.Descripcion</span>
+                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                {
+                                    <span class="text-success"><i class="glyphicon glyphicon-plus"></i></span>
+                                    <span>@item.Descripcion</span>
+                                }
+                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                {
+                                    <span class="text-info"><i class="glyphicon glyphicon-record"></i></span>
+                                    <span>@item.Descripcion</span>
+                                }
+                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                {
+                                    <span class="text-warning"><i class="glyphicon glyphicon-minus"></i></span>
+                                    <span>@item.Descripcion</span>
+                                }
                             </div>
                         </div>
-                    }*@
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-md-12">
+                            No existen calificaciones para mostrar
+                        </div>
+                    }
                 </div>
             </div>
             <div class="col-md-12">
@@ -129,15 +153,12 @@
         <div id="ficha-publicante" class="ficha-publicante col-md-3">
             <div class="contenedor-imagen-publicacion">
                 @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
-                {
-                
-                    <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />
-             
+                {               
+                    <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />             
                 }
                 else
                 {
-                    <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = Model.IdUsuario })" alt="plomero" width="100%"/>
-                
+                    <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = Model.IdUsuario })" alt="avatar" width="100%"/>
                 }
             </div>
             <div class="contenedor-info-publicante">
@@ -156,28 +177,28 @@
             </div>
         </div>
         <div class="col-md-9">
-          <div class="col-md-12">
-            <h3>
-                Preguntas al prestador</h3>
-            @ViewBag.NoExistenPreguntas
-            @foreach (var item in Model.PreguntaRespuesta)
-            {
+            <div class="col-md-12">
+                <h3>
+                    Preguntas al prestador</h3>
+                @ViewBag.NoExistenPreguntas
+                @foreach (var item in Model.PreguntaRespuesta)
+                {
                
-                <dl class="question" id="pregunta">
-                    <dd class="txt">
-                        <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
-                    </dd>
-                    <br />
-                    @if (item.Respuesta != null)
-                    {
-                        <dd class="col-md-offset-1">
-                            <span class="text-info"><i class="glyphicon glyphicon-user"></i></span><span>@item.Respuesta</span>
-                            <br />
-                            <span class="help-block">@item.FechaRespuesta</span>
+                    <dl class="question" id="pregunta">
+                        <dd class="txt">
+                            <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
                         </dd>
-                    }
-                </dl>
-            }
+                        <br />
+                        @if (item.Respuesta != null)
+                        {
+                            <dd class="col-md-offset-1">
+                                <span class="text-info"><i class="glyphicon glyphicon-user"></i></span><span>@item.Respuesta</span>
+                                <br />
+                                <span class="help-block">@item.FechaRespuesta</span>
+                            </dd>
+                        }
+                    </dl>
+                }
             </div>
         </div>
     }

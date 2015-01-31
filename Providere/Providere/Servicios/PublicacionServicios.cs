@@ -156,19 +156,6 @@ namespace Providere.Servicios
             return true;
         }
 
-        public bool NoExistenCalificaciones(int idUsuario)
-        {
-            try
-            {
-                Calificacion calificacion = pr.NoExistenCalificaciones(idUsuario);
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
-        }
-
         public object TraerPuntaje(int id)
         {
             return pr.TraerPuntaje(id);
@@ -178,5 +165,11 @@ namespace Providere.Servicios
         {
             return pr.TraerContratada(idPublicacion, idUsuario);
         }
+
+        public object TraerCalificaciones(int idPublicacion)
+        {
+            return pr.TraerCalificaciones(idPublicacion);
+        }
+
     }
 }
