@@ -41,7 +41,7 @@
                 <p>
                     @Html.DisplayFor(model => model.Descripcion)</p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-8">
                 <h3>
                     Precio
                 </h3>
@@ -57,9 +57,9 @@
                     @Html.Label("$") 
                     @Html.DisplayFor(model => model.Precio)
                     }
-
                 }
-                <div>
+                </div>
+               <div class="col-md-3">
                     @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
                     {
                         <button name="btnTel" class="btn btn-primary btn-lg disabled" type="button">
@@ -92,7 +92,6 @@
                         }
                     }
                 </div>
-            </div>
             <div class="col-md-12">
                 <h3>
                     Calificaciones</h3>
@@ -104,7 +103,7 @@
                         <div class="col-md-12">
                             <div>
                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                <a href="#">@item.Contratacion.Usuario.Nombre</a>
+                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                             </div>
                             <div>
                                 @if (@item.IdTipoEvaluacion == 1) //Positiva
@@ -125,6 +124,7 @@
                                    <em>@item.Descripcion</em>
                                    <span class="help-block">@item.FechaCalificacion</span>  
                                 }
+                                                            <br />
                             </div>
                         </div>                      
                         }
@@ -154,7 +154,7 @@
                                             <div class="row">
                                                 <div>
                                                     <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                    <a href="#">@item.Contratacion.Usuario.Nombre</a>
+                                                    <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                                                 </div>
                                                 <div>
                                                     @if (@item.IdTipoEvaluacion == 1) //Positiva
@@ -196,7 +196,12 @@
             <div class="col-md-12">
                 <h3>
                     Últimos trabajos realizados</h3>
+                    @if (ViewBag.NoExistenImagenes == "No existen imagenes para mostrar")
+                    {
                 @ViewBag.NoExistenImagenes
+                    }
+                    else
+                    {
                 <div class="row">
                     @foreach (var item in Model.Imagen)
                     {
@@ -207,6 +212,7 @@
                         </div>
                     }
                 </div>
+                       }
             </div>
         </div>
         <div id="ficha-publicante" class="ficha-publicante col-md-3">
