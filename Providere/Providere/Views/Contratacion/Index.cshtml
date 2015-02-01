@@ -70,7 +70,19 @@
                                     @item.Publicacion.Usuario.Telefono
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 1 }, null)
+
+                                    @foreach (var item2 in ViewBag.tieneCalificacionContrataciones)
+                                    {
+                                        if (item.Id == item2.Id)
+                                        {
+                                            @Html.DisplayName("Ver CALIFICACION")
+                                        }
+                                        else
+                                        {   
+                                            @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 1 }, null)
+                                        }
+                                    }
+
                                 </td>
                             </tr>
                         }
@@ -105,7 +117,7 @@
                     </thead>
                      <tbody>
                        @foreach (var item in ViewBag.QuienesMeContrataron)
-                        {
+                       {
                             <tr>
                                 <td>
                                   <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a>

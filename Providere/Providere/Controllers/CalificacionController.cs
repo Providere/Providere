@@ -25,7 +25,6 @@ namespace Providere.Controllers
 
             ViewBag.Contratacion = traigoContratacion;
 
-           // ViewBag.IdContratacion = idContratacion;
             ViewBag.IdTipoCalificacion = idTipoCalificacion;
 
             return View();

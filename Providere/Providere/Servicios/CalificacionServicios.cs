@@ -42,5 +42,12 @@ namespace Providere.Servicios
             cr.calificarUsuario(calificacion);
         }
 
+        public List<Calificacion> tieneCalificacionContrataciones(List<Contratacion> listaContratacion)
+        {
+            var tieneCalificacion = cr.tieneCalificacionContrataciones(listaContratacion);
+
+            return tieneCalificacion;
+        }
+
     }
 }

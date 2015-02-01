@@ -14,6 +14,8 @@ namespace Providere.Controllers
         // GET: /Contratacion/
         ContratacionServicios cs = new ContratacionServicios();
         UsuarioServicios us = new UsuarioServicios();
+        CalificacionServicios cas = new CalificacionServicios();
+
         public ActionResult Index()
         {
             ViewBag.Exito = TempData["Exito"];
@@ -24,24 +26,16 @@ namespace Providere.Controllers
 
             var quienMeContrato = cs.traerQuienesMeContrataron(idUsuario);
 
-            //ViewBag.ContratacionesRealizadas = new Contratacion();
-
-            //ViewBag.QuienesMeContrataron = new Contratacion();
+            var tieneCalificacionContrataciones = cas.tieneCalificacionContrataciones(contrataciones);
+            //var tieneCalificacionQuienMeContrato = cas.tieneCalificacion(quienMeContrato);
 
             ViewBag.ContratacionesRealizadas = contrataciones;
             ViewBag.QuienesMeContrataron = quienMeContrato;
 
+            ViewBag.tieneCalificacionContrataciones = tieneCalificacionContrataciones;
+
             return View();
         }
-
-        /*[ActionName("Index")] public ActionResult SegundaSolapa()
-        {
-            ViewBag.Error = TempData["Error"];
-            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            var quienMeContrato = cs.traerQuienesMeContrataron(idUsuario);
-
-            return View(quienMeContrato);
-        }*/
 
         public ActionResult Contratar(Publicacion publicacion)
         {
