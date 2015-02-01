@@ -16,7 +16,16 @@ namespace Providere.Controllers
 
         public ActionResult CalificarUsuario(int idContratacion, int idTipoCalificacion)
         {
-            ViewBag.IdContratacion = idContratacion;
+            if (idTipoCalificacion == 1)
+                ViewBag.Texto = "por el servicio brindado";
+            else
+                ViewBag.Texto = "por la contratación de";
+
+            var traigoContratacion = crs.traerPorId(idContratacion);
+
+            ViewBag.Contratacion = traigoContratacion;
+
+           // ViewBag.IdContratacion = idContratacion;
             ViewBag.IdTipoCalificacion = idTipoCalificacion;
 
             return View();
@@ -26,7 +35,7 @@ namespace Providere.Controllers
         public ActionResult CalificarUsuario()
         {
 
-            int idContratacion = Int32.Parse(Request["IdContratacion"]);
+            int idContratacion = Int32.Parse(Request["idContratacion"]);
 
             int idTipoCalificacion = Int32.Parse(Request["idTipoCalificacion"]);
 

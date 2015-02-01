@@ -13,9 +13,9 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Calificacion</legend>
+        <legend>Califique al usuario @ViewBag.Contratacion.Usuario.Nombre @ViewBag.Contratacion.Usuario.Apellido @ViewBag.Texto <a href="/Publicacion/VisualizarPublicacion/@ViewBag.Contratacion.Publicacion.Id">@ViewBag.Contratacion.Publicacion.Titulo</a> </legend>
 
-        @Html.Hidden("IdContratacion", "ViewBag.IdContratacion")
+        @Html.Hidden("idContratacion", "ViewBag.IdContratacion.Id")
         @Html.Hidden("idTipoCalificacion", "ViewBag.IdTipoCalificacion")
 
         <div class="form-group">
