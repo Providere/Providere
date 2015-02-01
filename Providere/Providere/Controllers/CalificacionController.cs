@@ -43,12 +43,19 @@ namespace Providere.Controllers
                 
             string comentario = Convert.ToString(Request["Descripcion"]);
 
-            cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion, comentario);
+            if (!string.IsNullOrWhiteSpace(comentario))
+            {
+                cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion, comentario);
 
-            TempData["Exito"] = "El usuario se ha calificado con éxito";
+                TempData["Exito"] = "El usuario se ha calificado con éxito";
 
-            return RedirectToAction("Index", "Contratacion");
-
+                return RedirectToAction("Index", "Contratacion");
+            }
+            else
+            {
+                TempData["Error"] = "El comentario no puede ser vacío";
+                return RedirectToAction("Index", "Contratacion");
+            }
         }
     }
 }
