@@ -13,25 +13,30 @@ namespace Providere.Controllers
         CalificacionServicios cs = new CalificacionServicios();
         ContratacionServicios crs = new ContratacionServicios();
 
-        public ActionResult CalificarUsuario()
+        public ActionResult CalificarUsuario(int idContratacion, int idTipoCalificacion)
         {
-            //ViewBag.IdContratacion = idContratacion;
-            //ViewBag.IdTipoCalificacion = idTipoCalificacion;
+            ViewBag.IdContratacion = idContratacion;
+            ViewBag.IdTipoCalificacion = idTipoCalificacion;
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult CalificarUsuario(int idContratacion, int idTipoCalificacion)
+        public ActionResult CalificarUsuario()
         {
 
-                // int idCalificador = Int32.Parse(this.Session["IdUsuario"].ToString());
-                int idTipoEvaluacion = Int32.Parse(Request["calificacion"]);
-                // int idTipoCalificacion = Int32.Parse(Request["idTipoCalificacion"]);
+            // int idCalificador = Int32.Parse(this.Session["IdUsuario"].ToString());
+            // int idTipoCalificacion = Int32.Parse(Request["idTipoCalificacion"]);
 
-                string comentario = Convert.ToString(Request["Descripcion"]);
+            int idContratacion = Int32.Parse(Request["IdContratacion"]);
 
-                cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion, comentario);
+            int idTipoCalificacion = Int32.Parse(Request["idTipoCalificacion"]);
+
+            int idTipoEvaluacion = Int32.Parse(Request["calificacion"]);
+                
+            string comentario = Convert.ToString(Request["Descripcion"]);
+
+            cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion, comentario);
 
             ViewBag.Mensaje = "El usuario se ha calificado con éxito";
 
