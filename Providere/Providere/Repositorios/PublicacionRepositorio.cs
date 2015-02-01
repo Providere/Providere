@@ -257,7 +257,7 @@ namespace Providere.Repositorios
             return contratacion;
         }
 
-        public List<Calificacion> TraerCalificaciones(int idPublicacion)
+        public List<Calificacion> TraerCalificaciones(int idPublicacion, int idUsuario)
         {
             var contratacion = (from contrata in context.Contratacion
                                   where contrata.IdPublicacion == idPublicacion
@@ -268,13 +268,13 @@ namespace Providere.Repositorios
                 listaDeContrataciones.Add(item.Id);
             }
             var resultado = (from calificacion in context.Calificacion
-                              where (listaDeContrataciones.Contains(calificacion.IdContratacion)) 
+                              where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdCalificado == idUsuario) 
                               select calificacion).ToList();
             return resultado;
         }
 
         //Trae las primeras 5 calificaciones para mostrar en la publicacion
-        public object TraerPrimerasCalificaciones(int limite, int idPublicacion)
+        public object TraerPrimerasCalificaciones(int limite, int idPublicacion, int idUsuario)
         {
             var contratacion = (from contrata in context.Contratacion
                                 where contrata.IdPublicacion == idPublicacion
@@ -285,7 +285,7 @@ namespace Providere.Repositorios
                 listaDeContrataciones.Add(item.Id);
             }
             var resultado = (from calificacion in context.Calificacion
-                             where (listaDeContrataciones.Contains(calificacion.IdContratacion))
+                             where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdCalificado == idUsuario)
                              select calificacion).Take(limite).ToList();
             return resultado;
         }

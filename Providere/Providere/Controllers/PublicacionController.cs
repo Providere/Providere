@@ -114,13 +114,12 @@ namespace Providere.Controllers
                 {
                     ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
                 }
-
                 //Para mostrar todas las calificaciones de la publicacion:
-                var traerCalificaciones = ps.TraerCalificaciones(id);
+                var traerCalificaciones = ps.TraerCalificaciones(id, miPublicacion.IdUsuario);
                 ViewBag.Calificaciones = traerCalificaciones;
 
                 //Para mostrar las primeras 5:
-                var traerPrimerasCalificaciones = ps.TraerPrimerasCalificaciones(5, id);
+                var traerPrimerasCalificaciones = ps.TraerPrimerasCalificaciones(5, id, miPublicacion.IdUsuario);
                 ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
 
                 ViewBag.accionPadre = "VisualizarMiPublicacion";
@@ -152,10 +151,10 @@ namespace Providere.Controllers
                 ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
             }
 
-            var traerPrimerasCalificaciones = ps.TraerPrimerasCalificaciones(5, idPublicacion);
+            var traerPrimerasCalificaciones = ps.TraerPrimerasCalificaciones(5, idPublicacion, miPublicacion.IdUsuario );
             ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
 
-            var traerCalificaciones = ps.TraerCalificaciones(idPublicacion);             
+            var traerCalificaciones = ps.TraerCalificaciones(idPublicacion, miPublicacion.IdUsuario);             
             ViewBag.Calificaciones = traerCalificaciones;
            
             ViewBag.accionPadre = "VisualizarPublicacion";
@@ -168,8 +167,9 @@ namespace Providere.Controllers
             {
                 ViewBag.MostrarPuntaje = traerPuntaje;
             }
+
             //Si el servicio(publicacion) fue contratado, se muestra el telefono del prestador:
-           int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
            var contratada =  ps.TraerContratada(idPublicacion,idUsuario);
            ViewBag.Contratada = contratada;
 

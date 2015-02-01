@@ -125,39 +125,59 @@
                             </div>
                         </div>
                         }
-                        <a class="btn btn-link" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
-                            aria-controls="collapseExample">Ver mas calificaciones </a>
-                        <div class="collapse" id="collapseExample">
-                            <div class="well">
-                                @if (ViewBag.Calificaciones.Count > 0)
-                                {
-                                    foreach (var item in ViewBag.Calificaciones)
-                                    {
-                                        <div class="avatar">
-                                            <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                            <a href="#">@item.Contratacion.Usuario.Nombre</a>
-                                        </div>
-                                        <div>
-                                            @if (@item.IdTipoEvaluacion == 1) //Positiva
+                        if (ViewBag.Calificaciones.Count > 5)
+                        {
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">
+                            Ver mas calificaciones
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            Calificaciones otorgadas por los clientes para esta publicación<h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        @if (ViewBag.Calificaciones.Count > 0)
+                                        {
+                                            foreach (var item in ViewBag.Calificaciones)
                                             {
-                                                <span class="text-success"><i class="glyphicon glyphicon-plus"></i></span>
-                                                <span>@item.Descripcion</span>
+                                            <div class="row">
+                                                <div class="avatar">
+                                                    <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                    <a href="#">@item.Contratacion.Usuario.Nombre</a>
+                                                </div>
+                                                <div>
+                                                    @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                                    {
+                                                        <span class="text-success"><i class="glyphicon glyphicon-plus"></i></span>
+                                                        <span>@item.Descripcion</span>
+                                                    }
+                                                    @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                                    {
+                                                        <span class="text-info"><i class="glyphicon glyphicon-record"></i></span>
+                                                        <span>@item.Descripcion</span>
+                                                    }
+                                                    @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                                    {
+                                                        <span class="text-warning"><i class="glyphicon glyphicon-minus"></i></span>
+                                                        <span>@item.Descripcion</span>
+                                                    }
+                                                </div>
+                                            </div>
                                             }
-                                            @if (@item.IdTipoEvaluacion == 2) //Neutro
-                                            {
-                                                <span class="text-info"><i class="glyphicon glyphicon-record"></i></span>
-                                                <span>@item.Descripcion</span>
-                                            }
-                                            @if (@item.IdTipoEvaluacion == 3) //Negativo
-                                            {
-                                                <span class="text-warning"><i class="glyphicon glyphicon-minus"></i></span>
-                                                <span>@item.Descripcion</span>
-                                            }
-                                        </div>
-                                    }
-                                }
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        }
                     }
                     else
                     {
