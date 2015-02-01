@@ -36,7 +36,7 @@ namespace Providere.Controllers
 
             cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion, comentario);
 
-            ViewBag.Exito = "El usuario se ha calificado con éxito";
+            TempData["Exito"] = "El usuario se ha calificado con éxito";
 
             return RedirectToAction("Index", "Contratacion");
 
