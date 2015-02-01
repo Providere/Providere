@@ -104,7 +104,7 @@
                         <div class="col-md-12">
                             <div>
                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                <a href="#">@item.Contratacion.Usuario.Nombre</a>
+                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                             </div>
                             <div>
                                 @if (@item.IdTipoEvaluacion == 1) //Positiva
@@ -125,6 +125,7 @@
                                    <em>@item.Descripcion</em>
                                    <span class="help-block">@item.FechaCalificacion</span>  
                                 }
+                                                            <br />
                             </div>
                         </div>                      
                         }
@@ -154,7 +155,7 @@
                                             <div class="row">
                                                 <div>
                                                     <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                    <a href="#">@item.Contratacion.Usuario.Nombre</a>
+                                                    <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                                                 </div>
                                                 <div>
                                                     @if (@item.IdTipoEvaluacion == 1) //Positiva
