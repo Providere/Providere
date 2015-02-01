@@ -12,93 +12,45 @@
 {
     @Html.ValidationSummary(true)
 
-    <fieldset >
+    <fieldset>
         <legend>Calificacion</legend>
 
-        <div class="form-group">
-        <div class="col-sm-2 control-label">
-            @Html.DisplayName("Calificación")
-        </div>
-        <div class="col-sm-10 editor-field">
-            @Html.RadioButton("calificacion", 1) @Html.DisplayName("Positivo")
-        </div>
-        <div class="col-sm-10 editor-field">
-            @Html.RadioButton("calificacion", 2) @Html.DisplayName("Neutro")
-        </div>
-        <div class="col-sm-10 editor-field">
-            @Html.RadioButton("calificacion", 3) @Html.DisplayName("Negativo")
-        </div>
-        </div>
+      @*  @Html.Hidden("IdContratacion", "ViewBag.IdContratacion");
+        @Html.Hidden("idTipoCalificacion", "ViewBag.IdTipoCalificacion"); *@
 
         <div class="form-group">
-        <div class="col-sm-2 control-label">
-            @Html.DisplayName("Comentario")
-        </div>
-        <div class="col-sm-10 editor-field">
-            @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Descripcion)
-        </div>
+            <div class="col-sm-2 control-label">
+                @Html.DisplayName("Calificación")
+            </div>
+            <div class="col-sm-10 editor-field">
+                @Html.RadioButton("calificacion", 1) @Html.DisplayName("Positiva")
+            </div>
+            <div class="col-sm-10 editor-field">
+                @Html.RadioButton("calificacion", 2) @Html.DisplayName("Neutra")
+            </div>
+            <div class="col-sm-10 editor-field">
+                @Html.RadioButton("calificacion", 3) @Html.DisplayName("Negativa")
+            </div>
         </div>
 
-@*
         <div class="form-group">
-        <div class="col-sm-2 control-label editor-label">
-            @Html.LabelFor(model => model.IdCalificador)
-        </div>
-        <div class="col-sm-10 editor-field">
-            @Html.TextBoxFor(model => model.IdCalificador, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.IdCalificador)
+            <div class="col-sm-2 control-label">
+                @Html.DisplayName("Comentario")
+            </div>
+            <div class="col-sm-10 editor-field">
+                @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Descripcion)
+            </div>
         </div>
 
- </div>
-  <div class="form-group">
-        <div class="col-sm-2 control-label editor-label">
-            @Html.LabelFor(model => model.IdCalificado)
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" class="btn btn-default" value="Create" />
+            </div>
         </div>
-        <div class="col-sm-10 editor-field">
-            @Html.TextBoxFor(model => model.IdCalificado, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.IdCalificado)
-        </div>
-        
- </div>
-  <div class="form-group">
-        <div class="col-sm-2 control-label editor-label">
-            @Html.LabelFor(model => model.IdContratacion)
-        </div>
-        <div class="col-sm-10 editor-field">
-            @Html.TextBoxFor(model => model.IdContratacion, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.IdContratacion)
-        </div>
-        
- </div>
-  <div class="form-group">
-        <div class="col-sm-2 control-label editor-label">
-            @Html.LabelFor(model => model.IdTipoEvaluacion)
-        </div>
-        <div class="col-sm-10 editor-field">
-            @Html.TextBoxFor(model => model.IdTipoEvaluacion, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.IdTipoEvaluacion)
-        </div>
-        
- </div>
-  <div class="form-group">
-        <div class="col-sm-2 control-label editor-label">
-            @Html.LabelFor(model => model.IdTipoCalificacion)
-        </div>
-        <div class="col-sm-10 editor-field">
-            @Html.TextBoxFor(model => model.IdTipoCalificacion, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.IdTipoCalificacion)
-        </div>
-        
- </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-            <input type="submit" class="btn btn-default" value="Create" />
-
-    </div>
- </div>
- *@
+    
     </fieldset>
+    
 }
 
 <div>

@@ -12,9 +12,12 @@ namespace Providere.Controllers
 
         CalificacionServicios cs = new CalificacionServicios();
         ContratacionServicios crs = new ContratacionServicios();
-        
+
         public ActionResult CalificarUsuario()
         {
+            //ViewBag.IdContratacion = idContratacion;
+            //ViewBag.IdTipoCalificacion = idTipoCalificacion;
+
             return View();
         }
 
@@ -22,22 +25,13 @@ namespace Providere.Controllers
         public ActionResult CalificarUsuario(int idContratacion, int idTipoCalificacion)
         {
 
-            if (idTipoCalificacion == 1)
-            {
-
-                int idCalificador = Int32.Parse(this.Session["IdUsuario"].ToString());
-                int idTipoEvaluacion = Int32.Parse(Request["idTipoEvaluacion"]);
+                // int idCalificador = Int32.Parse(this.Session["IdUsuario"].ToString());
+                int idTipoEvaluacion = Int32.Parse(Request["calificacion"]);
                 // int idTipoCalificacion = Int32.Parse(Request["idTipoCalificacion"]);
-                cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion);
 
-            }
-            else
-            { 
-            
-            
-            
-            
-            }
+                string comentario = Convert.ToString(Request["Descripcion"]);
+
+                cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion, comentario);
 
             ViewBag.Mensaje = "El usuario se ha calificado con éxito";
 
