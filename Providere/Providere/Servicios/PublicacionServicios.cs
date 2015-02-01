@@ -166,14 +166,14 @@ namespace Providere.Servicios
             return pr.TraerContratada(idPublicacion, idUsuario);
         }
 
-        public object TraerCalificaciones(int idPublicacion, int idUsuario)
+        public object TraerCalificaciones(int idPublicacion)
         {
-            return pr.TraerCalificaciones(idPublicacion, idUsuario);
+            return pr.TraerCalificaciones(idPublicacion);
         }
 
-        public object TraerPrimerasCalificaciones(int limite, int idPublicacion, int idUsuario)
+        public object TraerPrimerasCalificaciones(int limite, int idPublicacion)
         {
-            return pr.TraerPrimerasCalificaciones(limite, idPublicacion, idUsuario);
+            return pr.TraerPrimerasCalificaciones(limite, idPublicacion);
         }
     }
 }

@@ -257,7 +257,7 @@ namespace Providere.Repositorios
             return contratacion;
         }
 
-        public List<Calificacion> TraerCalificaciones(int idPublicacion, int idUsuario)
+        public List<Calificacion> TraerCalificaciones(int idPublicacion)
         {
             var contratacion = (from contrata in context.Contratacion
                                   where contrata.IdPublicacion == idPublicacion
@@ -268,13 +268,14 @@ namespace Providere.Repositorios
                 listaDeContrataciones.Add(item.Id);
             }
             var resultado = (from calificacion in context.Calificacion
-                              where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdCalificado == idUsuario) 
+                              where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdTipoCalificacion == 1) 
+                              orderby calificacion.FechaCalificacion descending
                               select calificacion).ToList();
             return resultado;
         }
 
         //Trae las primeras 5 calificaciones para mostrar en la publicacion
-        public object TraerPrimerasCalificaciones(int limite, int idPublicacion, int idUsuario)
+        public object TraerPrimerasCalificaciones(int limite, int idPublicacion)
         {
             var contratacion = (from contrata in context.Contratacion
                                 where contrata.IdPublicacion == idPublicacion
@@ -285,7 +286,8 @@ namespace Providere.Repositorios
                 listaDeContrataciones.Add(item.Id);
             }
             var resultado = (from calificacion in context.Calificacion
-                             where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdCalificado == idUsuario)
+                             where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdTipoCalificacion == 1) //para el prestador
+                             orderby calificacion.FechaCalificacion descending
                              select calificacion).Take(limite).ToList();
             return resultado;
         }
