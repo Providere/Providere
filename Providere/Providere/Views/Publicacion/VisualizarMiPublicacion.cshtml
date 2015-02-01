@@ -102,35 +102,35 @@
                         foreach (var item in ViewBag.PrimerasCalificaciones)
                         {
                         <div class="col-md-12">
-                            <div class="avatar">
-                                <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <div>
+                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
                                 <a href="#">@item.Contratacion.Usuario.Nombre</a>
                             </div>
                             <div>
                                 @if (@item.IdTipoEvaluacion == 1) //Positiva
                                 {
-                                    <span class="text-success"><i class="glyphicon glyphicon-plus"></i></span>
-                                    <span>@item.Descripcion</span>
+                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                    <em>@item.Descripcion</em>
                                 }
                                 @if (@item.IdTipoEvaluacion == 2) //Neutro
                                 {
-                                    <span class="text-info"><i class="glyphicon glyphicon-record"></i></span>
-                                    <span>@item.Descripcion</span>
+                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <em>@item.Descripcion</em>
                                 }
                                 @if (@item.IdTipoEvaluacion == 3) //Negativo
                                 {
-                                    <span class="text-warning"><i class="glyphicon glyphicon-minus"></i></span>
-                                    <span>@item.Descripcion</span>
+                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                   <em>@item.Descripcion</em>
                                 }
                             </div>
-                        </div>
-                        }
+                        </div>                      
+                        }                       
                         if (ViewBag.Calificaciones.Count > 5)
                         {
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">
+                       <center><button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">
                             Ver mas calificaciones
-                        </button>
+                        </button></center>
 
                         <!-- Modal -->
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -141,7 +141,7 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span></button>
                                         <h4 class="modal-title" id="myModalLabel">
-                                            Calificaciones otorgadas por los clientes para esta publicación<h4>
+                                            Calificaciones otorgadas por los clientes para esta publicación</h4>
                                     </div>
                                     <div class="modal-body">
                                         @if (ViewBag.Calificaciones.Count > 0)
@@ -149,25 +149,25 @@
                                             foreach (var item in ViewBag.Calificaciones)
                                             {
                                             <div class="row">
-                                                <div class="avatar">
-                                                    <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <div>
+                                                    <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
                                                     <a href="#">@item.Contratacion.Usuario.Nombre</a>
                                                 </div>
                                                 <div>
                                                     @if (@item.IdTipoEvaluacion == 1) //Positiva
                                                     {
-                                                        <span class="text-success"><i class="glyphicon glyphicon-plus"></i></span>
-                                                        <span>@item.Descripcion</span>
+                                                        <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                        <em>@item.Descripcion</em>
                                                     }
                                                     @if (@item.IdTipoEvaluacion == 2) //Neutro
                                                     {
-                                                        <span class="text-info"><i class="glyphicon glyphicon-record"></i></span>
-                                                        <span>@item.Descripcion</span>
+                                                        <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                        <em>@item.Descripcion</em>
                                                     }
                                                     @if (@item.IdTipoEvaluacion == 3) //Negativo
                                                     {
-                                                        <span class="text-warning"><i class="glyphicon glyphicon-minus"></i></span>
-                                                        <span>@item.Descripcion</span>
+                                                        <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                        <em>@item.Descripcion</em>
                                                     }
                                                 </div>
                                             </div>
@@ -236,7 +236,6 @@
                 @ViewBag.NoExistenPreguntas
                 @foreach (var item in Model.PreguntaRespuesta)
                 {
-               
                     <dl class="question" id="pregunta">
                         <dd class="txt">
                             <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
