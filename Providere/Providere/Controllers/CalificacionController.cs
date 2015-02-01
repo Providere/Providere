@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Providere.Servicios;
+using Providere.Models;
 
 namespace Providere.Controllers
 {
@@ -25,9 +26,6 @@ namespace Providere.Controllers
         public ActionResult CalificarUsuario()
         {
 
-            // int idCalificador = Int32.Parse(this.Session["IdUsuario"].ToString());
-            // int idTipoCalificacion = Int32.Parse(Request["idTipoCalificacion"]);
-
             int idContratacion = Int32.Parse(Request["IdContratacion"]);
 
             int idTipoCalificacion = Int32.Parse(Request["idTipoCalificacion"]);
@@ -38,9 +36,9 @@ namespace Providere.Controllers
 
             cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion, comentario);
 
-            ViewBag.Mensaje = "El usuario se ha calificado con éxito";
+            ViewBag.Exito = "El usuario se ha calificado con éxito";
 
-            return View("Index", "Contratacion");
+            return RedirectToAction("Index", "Contratacion");
 
         }
     }

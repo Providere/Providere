@@ -3,6 +3,14 @@
     ViewBag.Title = "Contratacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@if (ViewBag.Exito != null)
+{
+   <div class="alert alert-success alert-dismissable">
+       <button type="button" class="close" data-dismiss="alert">
+           &times;</button>
+       @ViewBag.Exito
+   </div>
+}
 @if (ViewBag.Error != null)
 {
     <div class="alert alert-danger alert-dismissable">

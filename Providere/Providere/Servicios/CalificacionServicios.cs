@@ -34,10 +34,11 @@ namespace Providere.Servicios
             }
 
             calificacion.Descripcion = comentario;
-            calificacion.Contratacion = contratacion;
-            calificacion.TipoEvaluacion = tipoEvaluacion;
-            calificacion.TipoCalificacion = tipoCalificacion;
-
+            calificacion.IdContratacion = contratacion.Id;
+            calificacion.IdTipoCalificacion = tipoCalificacion.Id;
+            calificacion.IdTipoEvaluacion = tipoEvaluacion.Id;
+            calificacion.FechaCalificacion = DateTime.Now;
+            
             cr.calificarUsuario(calificacion);
         }
 

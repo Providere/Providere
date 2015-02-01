@@ -16,7 +16,8 @@ namespace Providere.Controllers
         UsuarioServicios us = new UsuarioServicios();
         public ActionResult Index()
         {
-              ViewBag.Error = TempData["Error"];
+            ViewBag.Exito = TempData["Exito"];
+            ViewBag.Error = TempData["Error"];
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
 
             var contrataciones = cs.traerContratacionesRealizadas(idUsuario);
