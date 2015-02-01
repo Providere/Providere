@@ -45,5 +45,13 @@ namespace Providere.Repositorios
                           select preg).ToList();
             return resultado;
         }
+
+        public void Responder(int id, string responder)
+        {
+            PreguntaRespuesta miRespuesta =  context.PreguntaRespuesta.Where(e=>e.Id == id).FirstOrDefault();
+            miRespuesta.Respuesta = responder;
+            miRespuesta.FechaRespuesta = DateTime.Now;
+            context.SaveChanges();
+        }
     }
 }
