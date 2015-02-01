@@ -109,6 +109,7 @@
           <Property Name="IdContratacion" Type="smallint" Nullable="false" />
           <Property Name="IdTipoEvaluacion" Type="smallint" Nullable="false" />
           <Property Name="IdTipoCalificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaCalificacion" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Contratacion">
           <Key>
@@ -587,6 +588,7 @@
           <NavigationProperty Name="Usuario1" Relationship="ProvidereModel.FK_Calificador_Usuario" FromRole="Calificacion" ToRole="Usuario" />
           <NavigationProperty Name="Denuncia" Relationship="ProvidereModel.FK_Denuncia_Calificacion" FromRole="Calificacion" ToRole="Denuncia" />
           <NavigationProperty Name="Replica" Relationship="ProvidereModel.FK_Replica_Calificacion" FromRole="Calificacion" ToRole="Replica" />
+          <Property Type="DateTime" Name="FechaCalificacion" Nullable="false" />
         </EntityType>
         <EntityType Name="Contratacion">
           <Key>
@@ -990,6 +992,7 @@
           <EntitySetMapping Name="Calificacion">
             <EntityTypeMapping TypeName="ProvidereModel.Calificacion">
               <MappingFragment StoreEntitySet="Calificacion">
+                <ScalarProperty Name="FechaCalificacion" ColumnName="FechaCalificacion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="IdCalificador" ColumnName="IdCalificador" />

@@ -481,7 +481,8 @@ namespace Providere.Models
         /// <param name="idContratacion">Valor inicial de la propiedad IdContratacion.</param>
         /// <param name="idTipoEvaluacion">Valor inicial de la propiedad IdTipoEvaluacion.</param>
         /// <param name="idTipoCalificacion">Valor inicial de la propiedad IdTipoCalificacion.</param>
-        public static Calificacion CreateCalificacion(global::System.Int16 id, global::System.String descripcion, global::System.Int16 idCalificador, global::System.Int16 idCalificado, global::System.Int16 idContratacion, global::System.Int16 idTipoEvaluacion, global::System.Int16 idTipoCalificacion)
+        /// <param name="fechaCalificacion">Valor inicial de la propiedad FechaCalificacion.</param>
+        public static Calificacion CreateCalificacion(global::System.Int16 id, global::System.String descripcion, global::System.Int16 idCalificador, global::System.Int16 idCalificado, global::System.Int16 idContratacion, global::System.Int16 idTipoEvaluacion, global::System.Int16 idTipoCalificacion, global::System.DateTime fechaCalificacion)
         {
             Calificacion calificacion = new Calificacion();
             calificacion.Id = id;
@@ -491,6 +492,7 @@ namespace Providere.Models
             calificacion.IdContratacion = idContratacion;
             calificacion.IdTipoEvaluacion = idTipoEvaluacion;
             calificacion.IdTipoCalificacion = idTipoCalificacion;
+            calificacion.FechaCalificacion = fechaCalificacion;
             return calificacion;
         }
 
@@ -668,6 +670,30 @@ namespace Providere.Models
         private global::System.Int16 _IdTipoCalificacion;
         partial void OnIdTipoCalificacionChanging(global::System.Int16 value);
         partial void OnIdTipoCalificacionChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FechaCalificacion
+        {
+            get
+            {
+                return _FechaCalificacion;
+            }
+            set
+            {
+                OnFechaCalificacionChanging(value);
+                ReportPropertyChanging("FechaCalificacion");
+                _FechaCalificacion = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FechaCalificacion");
+                OnFechaCalificacionChanged();
+            }
+        }
+        private global::System.DateTime _FechaCalificacion;
+        partial void OnFechaCalificacionChanging(global::System.DateTime value);
+        partial void OnFechaCalificacionChanged();
 
         #endregion
 

@@ -111,20 +111,23 @@
                                 {
                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                     <em>@item.Descripcion</em>
+                                    <span class="help-block">@item.FechaCalificacion</span>
                                 }
                                 @if (@item.IdTipoEvaluacion == 2) //Neutro
                                 {
                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <em>@item.Descripcion</em>
+                                    <span class="help-block">@item.FechaCalificacion</span>
                                 }
                                 @if (@item.IdTipoEvaluacion == 3) //Negativo
                                 {
                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                    <em>@item.Descripcion</em>
+                                   <span class="help-block">@item.FechaCalificacion</span>  
                                 }
                             </div>
                         </div>                      
-                        }                       
+                        }
                         if (ViewBag.Calificaciones.Count > 5)
                         {
                         <!-- Button trigger modal -->
@@ -158,16 +161,19 @@
                                                     {
                                                         <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                         <em>@item.Descripcion</em>
+                                                         <span class="help-block">@item.FechaCalificacion</span>
                                                     }
                                                     @if (@item.IdTipoEvaluacion == 2) //Neutro
                                                     {
                                                         <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                         <em>@item.Descripcion</em>
+                                                         <span class="help-block">@item.FechaCalificacion</span>
                                                     }
                                                     @if (@item.IdTipoEvaluacion == 3) //Negativo
                                                     {
                                                         <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                         <em>@item.Descripcion</em>
+                                                         <span class="help-block">@item.FechaCalificacion</span>
                                                     }
                                                 </div>
                                             </div>

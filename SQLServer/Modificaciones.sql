@@ -14,3 +14,7 @@ alter table dbo.PreguntaRespuesta add FechaRespuesta datetime null
 
 -----------------------TABLA Puntaje-------------------------------------
 alter table dbo.Puntaje add FechaTotal datetime  null 
+
+-----------------------TABLA Calificacion---------------------------------
+alter table dbo.Calificacion add FechaCalificacion datetime not null
+
