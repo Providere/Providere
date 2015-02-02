@@ -18,6 +18,7 @@
           <EntitySet Name="Rubro" EntityType="ProvidereModel.Store.Rubro" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sancion" EntityType="ProvidereModel.Store.Sancion" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SubRubro" EntityType="ProvidereModel.Store.SubRubro" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="ProvidereModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TipoCalificacion" EntityType="ProvidereModel.Store.TipoCalificacion" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TipoEvaluacion" EntityType="ProvidereModel.Store.TipoEvaluacion" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Usuario" EntityType="ProvidereModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
@@ -109,6 +110,7 @@
           <Property Name="IdContratacion" Type="smallint" Nullable="false" />
           <Property Name="IdTipoEvaluacion" Type="smallint" Nullable="false" />
           <Property Name="IdTipoCalificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaCalificacion" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Contratacion">
           <Key>
@@ -211,6 +213,16 @@
           <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="IdRubro" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TipoCalificacion">
           <Key>
@@ -477,7 +489,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="ProvidereModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="ProvidereEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Calificacion" EntityType="ProvidereModel.Calificacion" />
           <EntitySet Name="Contratacion" EntityType="ProvidereModel.Contratacion" />
           <EntitySet Name="Denuncia" EntityType="ProvidereModel.Denuncia" />
           <EntitySet Name="Estado" EntityType="ProvidereModel.Estado" />
@@ -492,34 +503,6 @@
           <EntitySet Name="TipoCalificacion" EntityType="ProvidereModel.TipoCalificacion" />
           <EntitySet Name="TipoEvaluacion" EntityType="ProvidereModel.TipoEvaluacion" />
           <EntitySet Name="Usuario" EntityType="ProvidereModel.Usuario" />
-          <AssociationSet Name="FK_Calificacion_Contratacion" Association="ProvidereModel.FK_Calificacion_Contratacion">
-            <End Role="Contratacion" EntitySet="Contratacion" />
-            <End Role="Calificacion" EntitySet="Calificacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Calificacion_TipoCalificacion" Association="ProvidereModel.FK_Calificacion_TipoCalificacion">
-            <End Role="TipoCalificacion" EntitySet="TipoCalificacion" />
-            <End Role="Calificacion" EntitySet="Calificacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Calificacion_TipoEvaluacion" Association="ProvidereModel.FK_Calificacion_TipoEvaluacion">
-            <End Role="TipoEvaluacion" EntitySet="TipoEvaluacion" />
-            <End Role="Calificacion" EntitySet="Calificacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Calificado_Usuario" Association="ProvidereModel.FK_Calificado_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Calificacion" EntitySet="Calificacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Calificador_Usuario" Association="ProvidereModel.FK_Calificador_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Calificacion" EntitySet="Calificacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Denuncia_Calificacion" Association="ProvidereModel.FK_Denuncia_Calificacion">
-            <End Role="Calificacion" EntitySet="Calificacion" />
-            <End Role="Denuncia" EntitySet="Denuncia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Replica_Calificacion" Association="ProvidereModel.FK_Replica_Calificacion">
-            <End Role="Calificacion" EntitySet="Calificacion" />
-            <End Role="Replica" EntitySet="Replica" />
-          </AssociationSet>
           <AssociationSet Name="FK_Contratacion_Publicacion" Association="ProvidereModel.FK_Contratacion_Publicacion">
             <End Role="Publicacion" EntitySet="Publicacion" />
             <End Role="Contratacion" EntitySet="Contratacion" />
@@ -568,27 +551,37 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Sancion" EntitySet="Sancion" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="ProvidereModel.sysdiagrams" />
+          <EntitySet Name="Calificacion" EntityType="ProvidereModel.Calificacion" />
+          <AssociationSet Name="FK_Calificacion_Contratacion" Association="ProvidereModel.FK_Calificacion_Contratacion">
+            <End Role="Contratacion" EntitySet="Contratacion" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calificacion_TipoCalificacion" Association="ProvidereModel.FK_Calificacion_TipoCalificacion">
+            <End Role="TipoCalificacion" EntitySet="TipoCalificacion" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calificacion_TipoEvaluacion" Association="ProvidereModel.FK_Calificacion_TipoEvaluacion">
+            <End Role="TipoEvaluacion" EntitySet="TipoEvaluacion" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calificado_Usuario" Association="ProvidereModel.FK_Calificado_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calificador_Usuario" Association="ProvidereModel.FK_Calificador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Calificacion" EntitySet="Calificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Denuncia_Calificacion" Association="ProvidereModel.FK_Denuncia_Calificacion">
+            <End Role="Calificacion" EntitySet="Calificacion" />
+            <End Role="Denuncia" EntitySet="Denuncia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replica_Calificacion" Association="ProvidereModel.FK_Replica_Calificacion">
+            <End Role="Calificacion" EntitySet="Calificacion" />
+            <End Role="Replica" EntitySet="Replica" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Calificacion">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="IdCalificador" Type="Int16" Nullable="false" />
-          <Property Name="IdCalificado" Type="Int16" Nullable="false" />
-          <Property Name="IdContratacion" Type="Int16" Nullable="false" />
-          <Property Name="IdTipoEvaluacion" Type="Int16" Nullable="false" />
-          <Property Name="IdTipoCalificacion" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="Contratacion" Relationship="ProvidereModel.FK_Calificacion_Contratacion" FromRole="Calificacion" ToRole="Contratacion" />
-          <NavigationProperty Name="TipoCalificacion" Relationship="ProvidereModel.FK_Calificacion_TipoCalificacion" FromRole="Calificacion" ToRole="TipoCalificacion" />
-          <NavigationProperty Name="TipoEvaluacion" Relationship="ProvidereModel.FK_Calificacion_TipoEvaluacion" FromRole="Calificacion" ToRole="TipoEvaluacion" />
-          <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_Calificado_Usuario" FromRole="Calificacion" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="ProvidereModel.FK_Calificador_Usuario" FromRole="Calificacion" ToRole="Usuario" />
-          <NavigationProperty Name="Denuncia" Relationship="ProvidereModel.FK_Denuncia_Calificacion" FromRole="Calificacion" ToRole="Denuncia" />
-          <NavigationProperty Name="Replica" Relationship="ProvidereModel.FK_Replica_Calificacion" FromRole="Calificacion" ToRole="Replica" />
-          <Property Type="DateTime" Name="FechaCalificacion" Nullable="false" />
-        </EntityType>
         <EntityType Name="Contratacion">
           <Key>
             <PropertyRef Name="Id" />
@@ -596,9 +589,9 @@
           <Property Name="Id" Type="Int16" Nullable="false" />
           <Property Name="IdUsuario" Type="Int16" Nullable="false" />
           <Property Name="IdPublicacion" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Calificacion_Contratacion" FromRole="Contratacion" ToRole="Calificacion" />
           <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Contratacion_Publicacion" FromRole="Contratacion" ToRole="Publicacion" />
           <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_Contratacion_Usuario" FromRole="Contratacion" ToRole="Usuario" />
+          <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Calificacion_Contratacion" FromRole="Contratacion" ToRole="Calificacion" />
         </EntityType>
         <EntityType Name="Denuncia">
           <Key>
@@ -745,99 +738,15 @@
           <Property Name="CodActivacion" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="FechaCambioEstado" Type="DateTime" Nullable="false" />
           <Property Name="IdEstado" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Calificado_Usuario" FromRole="Usuario" ToRole="Calificacion" />
-          <NavigationProperty Name="Calificacion1" Relationship="ProvidereModel.FK_Calificador_Usuario" FromRole="Usuario" ToRole="Calificacion" />
           <NavigationProperty Name="Contratacion" Relationship="ProvidereModel.FK_Contratacion_Usuario" FromRole="Usuario" ToRole="Contratacion" />
           <NavigationProperty Name="Estado" Relationship="ProvidereModel.FK_Usuario_Estado" FromRole="Usuario" ToRole="Estado" />
           <NavigationProperty Name="PreguntaRespuesta" Relationship="ProvidereModel.FK_PreguntaRespuesta_Usuario" FromRole="Usuario" ToRole="PreguntaRespuesta" />
           <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Publicacion_Usuario" FromRole="Usuario" ToRole="Publicacion" />
           <NavigationProperty Name="Sancion" Relationship="ProvidereModel.FK_Sancion_Usuario" FromRole="Usuario" ToRole="Sancion" />
           <Property Type="String" Name="Dni" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Calificado_Usuario" FromRole="Usuario" ToRole="Calificacion" />
+          <NavigationProperty Name="Calificacion1" Relationship="ProvidereModel.FK_Calificador_Usuario" FromRole="Usuario" ToRole="Calificacion" />
         </EntityType>
-        <Association Name="FK_Calificacion_Contratacion">
-          <End Role="Contratacion" Type="ProvidereModel.Contratacion" Multiplicity="1" />
-          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contratacion">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Calificacion">
-              <PropertyRef Name="IdContratacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Calificacion_TipoCalificacion">
-          <End Role="TipoCalificacion" Type="ProvidereModel.TipoCalificacion" Multiplicity="1" />
-          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoCalificacion">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Calificacion">
-              <PropertyRef Name="IdTipoCalificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Calificacion_TipoEvaluacion">
-          <End Role="TipoEvaluacion" Type="ProvidereModel.TipoEvaluacion" Multiplicity="1" />
-          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoEvaluacion">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Calificacion">
-              <PropertyRef Name="IdTipoEvaluacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Calificado_Usuario">
-          <End Role="Usuario" Type="ProvidereModel.Usuario" Multiplicity="1" />
-          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Calificacion">
-              <PropertyRef Name="IdCalificado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Calificador_Usuario">
-          <End Role="Usuario" Type="ProvidereModel.Usuario" Multiplicity="1" />
-          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Calificacion">
-              <PropertyRef Name="IdCalificador" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Denuncia_Calificacion">
-          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="1" />
-          <End Role="Denuncia" Type="ProvidereModel.Denuncia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Calificacion">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Denuncia">
-              <PropertyRef Name="IdCalificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Replica_Calificacion">
-          <End Role="Calificacion" Type="ProvidereModel.Calificacion" Multiplicity="1" />
-          <End Role="Replica" Type="ProvidereModel.Replica" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Calificacion">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Replica">
-              <PropertyRef Name="IdCalificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Contratacion_Publicacion">
           <End Role="Publicacion" Type="ProvidereModel.Publicacion" Multiplicity="1" />
           <End Role="Contratacion" Type="ProvidereModel.Contratacion" Multiplicity="*" />
@@ -982,25 +891,126 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="version" />
+          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Calificacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int16" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="IdCalificador" Nullable="false" />
+          <Property Type="Int16" Name="IdCalificado" Nullable="false" />
+          <Property Type="Int16" Name="IdContratacion" Nullable="false" />
+          <Property Type="Int16" Name="IdTipoEvaluacion" Nullable="false" />
+          <Property Type="Int16" Name="IdTipoCalificacion" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCalificacion" Nullable="false" />
+          <NavigationProperty Name="Contratacion" Relationship="ProvidereModel.FK_Calificacion_Contratacion" FromRole="Calificacion" ToRole="Contratacion" />
+          <NavigationProperty Name="TipoCalificacion" Relationship="ProvidereModel.FK_Calificacion_TipoCalificacion" FromRole="Calificacion" ToRole="TipoCalificacion" />
+          <NavigationProperty Name="TipoEvaluacion" Relationship="ProvidereModel.FK_Calificacion_TipoEvaluacion" FromRole="Calificacion" ToRole="TipoEvaluacion" />
+          <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_Calificado_Usuario" FromRole="Calificacion" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="ProvidereModel.FK_Calificador_Usuario" FromRole="Calificacion" ToRole="Usuario" />
+          <NavigationProperty Name="Denuncia" Relationship="ProvidereModel.FK_Denuncia_Calificacion" FromRole="Calificacion" ToRole="Denuncia" />
+          <NavigationProperty Name="Replica" Relationship="ProvidereModel.FK_Replica_Calificacion" FromRole="Calificacion" ToRole="Replica" />
+        </EntityType>
+        <Association Name="FK_Calificacion_Contratacion">
+          <End Type="ProvidereModel.Contratacion" Role="Contratacion" Multiplicity="1" />
+          <End Type="ProvidereModel.Calificacion" Role="Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contratacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdContratacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calificacion_TipoCalificacion">
+          <End Type="ProvidereModel.TipoCalificacion" Role="TipoCalificacion" Multiplicity="1" />
+          <End Type="ProvidereModel.Calificacion" Role="Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCalificacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdTipoCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calificacion_TipoEvaluacion">
+          <End Type="ProvidereModel.TipoEvaluacion" Role="TipoEvaluacion" Multiplicity="1" />
+          <End Type="ProvidereModel.Calificacion" Role="Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEvaluacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdTipoEvaluacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calificado_Usuario">
+          <End Type="ProvidereModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="ProvidereModel.Calificacion" Role="Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdCalificado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calificador_Usuario">
+          <End Type="ProvidereModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="ProvidereModel.Calificacion" Role="Calificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calificacion">
+              <PropertyRef Name="IdCalificador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Denuncia_Calificacion">
+          <End Type="ProvidereModel.Calificacion" Role="Calificacion" Multiplicity="1" />
+          <End Type="ProvidereModel.Denuncia" Role="Denuncia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calificacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Denuncia">
+              <PropertyRef Name="IdCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replica_Calificacion">
+          <End Type="ProvidereModel.Calificacion" Role="Calificacion" Multiplicity="1" />
+          <End Type="ProvidereModel.Replica" Role="Replica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calificacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Replica">
+              <PropertyRef Name="IdCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ProvidereModelStoreContainer" CdmEntityContainer="ProvidereEntities">
-          <EntitySetMapping Name="Calificacion">
-            <EntityTypeMapping TypeName="ProvidereModel.Calificacion">
-              <MappingFragment StoreEntitySet="Calificacion">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="IdCalificador" ColumnName="IdCalificador" />
-                <ScalarProperty Name="IdCalificado" ColumnName="IdCalificado" />
-                <ScalarProperty Name="IdContratacion" ColumnName="IdContratacion" />
-                <ScalarProperty Name="IdTipoEvaluacion" ColumnName="IdTipoEvaluacion" />
-                <ScalarProperty Name="IdTipoCalificacion" ColumnName="IdTipoCalificacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Contratacion">
             <EntityTypeMapping TypeName="ProvidereModel.Contratacion">
               <MappingFragment StoreEntitySet="Contratacion">
@@ -1149,6 +1159,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProvidereModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Calificacion">
+            <EntityTypeMapping TypeName="ProvidereModel.Calificacion">
+              <MappingFragment StoreEntitySet="Calificacion">
+                <ScalarProperty Name="FechaCalificacion" ColumnName="FechaCalificacion" />
+                <ScalarProperty Name="IdTipoCalificacion" ColumnName="IdTipoCalificacion" />
+                <ScalarProperty Name="IdTipoEvaluacion" ColumnName="IdTipoEvaluacion" />
+                <ScalarProperty Name="IdContratacion" ColumnName="IdContratacion" />
+                <ScalarProperty Name="IdCalificado" ColumnName="IdCalificado" />
+                <ScalarProperty Name="IdCalificador" ColumnName="IdCalificador" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1170,7 +1205,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Providere" ZoomLevel="89">
-        <EntityTypeShape EntityType="ProvidereModel.Calificacion" Width="1.5" PointX="5.25" PointY="9.25" Height="3.7109993489583317" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Contratacion" Width="1.5" PointX="8.25" PointY="10" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Denuncia" Width="1.5" PointX="7.5" PointY="4" Height="1.787985026041667" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Estado" Width="1.5" PointX="0.75" PointY="10.375" Height="1.5956835937499996" IsExpanded="true" />
@@ -1185,64 +1219,15 @@
         <EntityTypeShape EntityType="ProvidereModel.TipoCalificacion" Width="1.5" PointX="3" PointY="6.125" Height="1.5956835937500031" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.TipoEvaluacion" Width="1.5" PointX="3" PointY="14.5" Height="1.5956835937500014" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Usuario" Width="1.5" PointX="3" PointY="8.75" Height="4.6725065104166674" IsExpanded="true" />
-        <AssociationConnector Association="ProvidereModel.FK_Calificacion_Contratacion" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.25" PointY="11.0862939453125" />
-          <ConnectorPoint PointX="8.1458333333333339" PointY="11.0862939453125" />
-          <ConnectorPoint PointX="7.979166666666667" PointY="11.0862939453125" />
-          <ConnectorPoint PointX="7.958333333333333" PointY="11.0862939453125" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="11.0862939453125" />
-          <ConnectorPoint PointX="6.75" PointY="11.0862939453125" />
-        </AssociationConnector>
-        <AssociationConnector Association="ProvidereModel.FK_Calificacion_TipoCalificacion" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="6.9228417968750016" />
-          <ConnectorPoint PointX="6" PointY="6.9228417968750016" />
-          <ConnectorPoint PointX="6" PointY="9.25" />
-        </AssociationConnector>
-        <AssociationConnector Association="ProvidereModel.FK_Calificacion_TipoEvaluacion" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="15.910584309895835" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="15.910584309895835" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="15.910584309895835" />
-          <ConnectorPoint PointX="5.59375" PointY="15.910584309895835" />
-          <ConnectorPoint PointX="5.59375" PointY="12.960999348958332" />
-        </AssociationConnector>
-        <AssociationConnector Association="ProvidereModel.FK_Calificado_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="11.105499674479166" />
-          <ConnectorPoint PointX="5.25" PointY="11.105499674479166" />
-        </AssociationConnector>
-        <AssociationConnector Association="ProvidereModel.FK_Calificador_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="10.115249837239583" />
-          <ConnectorPoint PointX="5.25" PointY="10.115249837239583" />
-        </AssociationConnector>
-        <AssociationConnector Association="ProvidereModel.FK_Denuncia_Calificacion" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.4062525" PointY="9.25" />
-          <ConnectorPoint PointX="6.4062525" PointY="4.8939925130208337" />
-          <ConnectorPoint PointX="7.5" PointY="4.8939925130208337" />
-        </AssociationConnector>
-        <AssociationConnector Association="ProvidereModel.FK_Replica_Calificacion" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.7968775" PointY="12.960999348958332" />
-          <ConnectorPoint PointX="5.7968775" PointY="19.393992513020834" />
-          <ConnectorPoint PointX="6.635416666666667" PointY="19.393992513020834" />
-          <ConnectorPoint PointX="6.802083333333333" PointY="19.393992513020834" />
-          <ConnectorPoint PointX="7.5" PointY="19.393992513020834" />
-        </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Contratacion_Publicacion" ManuallyRouted="false">
-          <ConnectorPoint PointX="9" PointY="13" />
-          <ConnectorPoint PointX="9" PointY="12.172587890625" />
+          <ConnectorPoint PointX="9.043944307692307" PointY="13" />
+          <ConnectorPoint PointX="9.043944307692307" PointY="12.172587890625" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Contratacion_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.75" PointY="13.422506510416667" />
-          <ConnectorPoint PointX="3.75" PointY="13.672506510416667" />
-          <ConnectorPoint PointX="4.666666666666667" PointY="13.672506510416667" />
-          <ConnectorPoint PointX="4.833333333333333" PointY="13.672506510416667" />
-          <ConnectorPoint PointX="5.510416666666667" PointY="13.672506510416667" />
-          <ConnectorPoint PointX="5.677083333333333" PointY="13.672506510416667" />
-          <ConnectorPoint PointX="5.7135441666666669" PointY="13.672506510416667" />
-          <ConnectorPoint PointX="5.8802108333333329" PointY="13.672506510416667" />
-          <ConnectorPoint PointX="7.875" PointY="13.672506510416667" />
-          <ConnectorPoint PointX="7.875" PointY="10.511894972656251" />
-          <ConnectorPoint PointX="7.979166666666667" PointY="10.511894972656251" />
-          <ConnectorPoint PointX="8.1458333333333339" PointY="10.511894972656251" />
-          <ConnectorPoint PointX="8.25" PointY="10.511894972656251" />
+          <ConnectorPoint PointX="4.5" PointY="11.176915472005208" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="11.176915472005206" />
+          <ConnectorPoint PointX="8.1145833333333339" PointY="11.176915472005208" />
+          <ConnectorPoint PointX="8.25" PointY="11.176915472005208" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Usuario_Estado" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="11.172841796875" />
@@ -1253,21 +1238,23 @@
           <ConnectorPoint PointX="10.5" PointY="13.706492513020834" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_PreguntaRespuesta_Publicacion" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.3123066923076916" PointY="13" />
-          <ConnectorPoint PointX="8.0625" PointY="12.750193307692308" />
-          <ConnectorPoint PointX="8.0625" PointY="9.5523893229166674" />
-          <ConnectorPoint PointX="8.25" PointY="9.3648893229166674" />
+          <ConnectorPoint PointX="8.2753836153846159" PointY="13" />
+          <ConnectorPoint PointX="8.09017556509888" PointY="12.814791949714262" />
+          <ConnectorPoint PointX="7.9723244349011209" PointY="12.696940819516506" />
+          <ConnectorPoint PointX="7.875" PointY="12.599616384615384" />
+          <ConnectorPoint PointX="7.875" PointY="9.9321907552083317" />
+          <ConnectorPoint PointX="7.9723244349011209" PointY="9.83486632030721" />
+          <ConnectorPoint PointX="8.0901755650988783" PointY="9.7170151901094535" />
+          <ConnectorPoint PointX="8.2499999999999982" PointY="9.5571907552083335" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_PreguntaRespuesta_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="8.96875" />
-          <ConnectorPoint PointX="5.916666666666667" PointY="8.96875" />
-          <ConnectorPoint PointX="6.083333333333333" PointY="8.96875" />
-          <ConnectorPoint PointX="6.3229191666666669" PointY="8.96875" />
-          <ConnectorPoint PointX="6.4895858333333329" PointY="8.96875" />
-          <ConnectorPoint PointX="8.25" PointY="8.96875" />
+          <ConnectorPoint PointX="4.5" PointY="9.1223428776041651" />
+          <ConnectorPoint PointX="8.25" PointY="9.1223428776041651" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Publicacion_Rubro" ManuallyRouted="false">
           <ConnectorPoint PointX="7.5" PointY="14.768992513020834" />
+          <ConnectorPoint PointX="7.947916666666667" PointY="14.768992513020834" />
+          <ConnectorPoint PointX="8.1145833333333339" PointY="14.768992513020834" />
           <ConnectorPoint PointX="8.25" PointY="14.768992513020834" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Publicacion_SubRubro" ManuallyRouted="false">
@@ -1276,14 +1263,12 @@
           <ConnectorPoint PointX="9.40625" PointY="17.287903645833332" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Publicacion_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="13.211253255208334" />
-          <ConnectorPoint PointX="5.510416666666667" PointY="13.211253255208334" />
-          <ConnectorPoint PointX="5.677083333333333" PointY="13.211253255208334" />
-          <ConnectorPoint PointX="5.7135441666666669" PointY="13.211253255208334" />
-          <ConnectorPoint PointX="5.8802108333333329" PointY="13.211253255208334" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="13.211253255208334" />
-          <ConnectorPoint PointX="7.958333333333333" PointY="13.211253255208334" />
-          <ConnectorPoint PointX="8.25" PointY="13.211253255208334" />
+          <ConnectorPoint PointX="4.5" PointY="13.307403971354166" />
+          <ConnectorPoint PointX="5.510416666666667" PointY="13.307403971354164" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="13.307403971354166" />
+          <ConnectorPoint PointX="7.947916666666667" PointY="13.307403971354166" />
+          <ConnectorPoint PointX="8.1145833333333339" PointY="13.307403971354166" />
+          <ConnectorPoint PointX="8.25" PointY="13.307403971354166" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Puntaje_Publicacion" ManuallyRouted="false">
           <ConnectorPoint PointX="9.75" PointY="16.268951822916666" />
@@ -1294,10 +1279,59 @@
           <ConnectorPoint PointX="6.71875" PointY="21.375" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Sancion_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="13.422506510416667" />
-          <ConnectorPoint PointX="4.875" PointY="13.797506510416667" />
-          <ConnectorPoint PointX="4.875" PointY="27.865143229166669" />
-          <ConnectorPoint PointX="5.25" PointY="27.865143229166669" />
+          <ConnectorPoint PointX="4.5" PointY="12.242159721679688" />
+          <ConnectorPoint PointX="5.59375" PointY="12.242159721679688" />
+          <ConnectorPoint PointX="5.59375" PointY="26.875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="ProvidereModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="ProvidereModel.Calificacion" Width="1.5" PointX="10.5" PointY="7.125" Height="3.9033007812500031" />
+        <AssociationConnector Association="ProvidereModel.FK_Calificacion_Contratacion" >
+          <ConnectorPoint PointX="9.75" PointY="10.514150390625002" />
+          <ConnectorPoint PointX="10.5" PointY="10.514150390625002" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Calificacion_TipoCalificacion" >
+          <ConnectorPoint PointX="4.5" PointY="6.53125" />
+          <ConnectorPoint PointX="10.760414166666665" PointY="6.5312499999999991" />
+          <ConnectorPoint PointX="10.927080833333333" PointY="6.53125" />
+          <ConnectorPoint PointX="11.25" PointY="6.53125" />
+          <ConnectorPoint PointX="11.25" PointY="7.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Calificacion_TipoEvaluacion" >
+          <ConnectorPoint PointX="4.5" PointY="15.297841796874998" />
+          <ConnectorPoint PointX="5.510416666666667" PointY="15.297841796874998" />
+          <ConnectorPoint PointX="5.677083333333333" PointY="15.297841796874998" />
+          <ConnectorPoint PointX="5.75" PointY="15.297841796874998" />
+          <ConnectorPoint PointX="5.75" PointY="12.375" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="12.374999999999998" />
+          <ConnectorPoint PointX="8.1145833333333339" PointY="12.375" />
+          <ConnectorPoint PointX="8.960610974358973" PointY="12.375" />
+          <ConnectorPoint PointX="9.12727764102564" PointY="12.375" />
+          <ConnectorPoint PointX="11.25" PointY="12.375" />
+          <ConnectorPoint PointX="11.25" PointY="11.028300781250003" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Calificado_Usuario" >
+          <ConnectorPoint PointX="4.5" PointY="9.7785953776041659" />
+          <ConnectorPoint PointX="7.9452620442708328" PointY="9.7785953776041659" />
+          <ConnectorPoint PointX="8.1145833333333339" PointY="9.7785953776041659" />
+          <ConnectorPoint PointX="10.5" PointY="9.7785953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Calificador_Usuario" >
+          <ConnectorPoint PointX="4.5" PointY="9.9205476888020829" />
+          <ConnectorPoint PointX="7.947916666666667" PointY="9.9205476888020829" />
+          <ConnectorPoint PointX="8.1145833333333339" PointY="9.9205476888020829" />
+          <ConnectorPoint PointX="10.5" PointY="9.9205476888020829" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Denuncia_Calificacion" >
+          <ConnectorPoint PointX="10.8437475" PointY="7.125" />
+          <ConnectorPoint PointX="10.8437475" PointY="4.8939925130208337" />
+          <ConnectorPoint PointX="9" PointY="4.8939925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProvidereModel.FK_Replica_Calificacion" >
+          <ConnectorPoint PointX="10.5" PointY="9.6678905664062551" />
+          <ConnectorPoint PointX="8.22263352213541" PointY="9.6678905664062551" />
+          <ConnectorPoint PointX="8.0559668554687427" PointY="9.6678905664062551" />
+          <ConnectorPoint PointX="8.03125" PointY="9.6678905664062551" />
+          <ConnectorPoint PointX="8.03125" PointY="18.5" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
