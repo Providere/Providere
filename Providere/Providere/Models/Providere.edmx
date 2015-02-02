@@ -18,7 +18,6 @@
           <EntitySet Name="Rubro" EntityType="ProvidereModel.Store.Rubro" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sancion" EntityType="ProvidereModel.Store.Sancion" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SubRubro" EntityType="ProvidereModel.Store.SubRubro" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="ProvidereModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TipoCalificacion" EntityType="ProvidereModel.Store.TipoCalificacion" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TipoEvaluacion" EntityType="ProvidereModel.Store.TipoEvaluacion" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Usuario" EntityType="ProvidereModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
@@ -116,7 +115,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="smallint" Nullable="false" />
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IdUsuario" Type="smallint" Nullable="false" />
           <Property Name="IdPublicacion" Type="smallint" Nullable="false" />
         </EntityType>
@@ -174,7 +173,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="smallint" Nullable="false" />
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Positivo" Type="smallint" Nullable="false" />
           <Property Name="Neutro" Type="smallint" Nullable="false" />
           <Property Name="Negativo" Type="smallint" Nullable="false" />
@@ -186,7 +185,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="smallint" Nullable="false" />
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Comentario" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="IdCalificacion" Type="smallint" Nullable="false" />
         </EntityType>
@@ -213,16 +212,6 @@
           <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="IdRubro" Type="smallint" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TipoCalificacion">
           <Key>
@@ -551,7 +540,6 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Sancion" EntitySet="Sancion" />
           </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="ProvidereModel.sysdiagrams" />
           <EntitySet Name="Calificacion" EntityType="ProvidereModel.Calificacion" />
           <AssociationSet Name="FK_Calificacion_Contratacion" Association="ProvidereModel.FK_Calificacion_Contratacion">
             <End Role="Contratacion" EntitySet="Contratacion" />
@@ -891,16 +879,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="principal_id" Nullable="false" />
-          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="version" />
-          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="Calificacion">
           <Key>
             <PropertyRef Name="Id" />
@@ -1159,17 +1137,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ProvidereModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Calificacion">
             <EntityTypeMapping TypeName="ProvidereModel.Calificacion">
               <MappingFragment StoreEntitySet="Calificacion">
@@ -1204,7 +1171,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Providere" ZoomLevel="89">
+      <Diagram Name="Providere" ZoomLevel="86">
         <EntityTypeShape EntityType="ProvidereModel.Contratacion" Width="1.5" PointX="8.25" PointY="10" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Denuncia" Width="1.5" PointX="7.5" PointY="4" Height="1.787985026041667" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Estado" Width="1.5" PointX="0.75" PointY="10.375" Height="1.5956835937499996" IsExpanded="true" />
@@ -1283,7 +1250,6 @@
           <ConnectorPoint PointX="5.59375" PointY="12.242159721679688" />
           <ConnectorPoint PointX="5.59375" PointY="26.875" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProvidereModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="ProvidereModel.Calificacion" Width="1.5" PointX="10.5" PointY="7.125" Height="3.9033007812500031" />
         <AssociationConnector Association="ProvidereModel.FK_Calificacion_Contratacion" >
           <ConnectorPoint PointX="9.75" PointY="10.514150390625002" />

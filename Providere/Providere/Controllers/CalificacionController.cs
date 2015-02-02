@@ -53,7 +53,7 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "El comentario no puede ser vacío";
+                TempData["Error"] = "No se pudo guardar la calificación, intentalo nuevamente";
                 return RedirectToAction("Index", "Contratacion");
             }
         }
