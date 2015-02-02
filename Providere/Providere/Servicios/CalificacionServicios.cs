@@ -42,5 +42,10 @@ namespace Providere.Servicios
             cr.calificarUsuario(calificacion);
         }
 
+
+        internal List<Calificacion> obtenerNegativasDeUsuario(Usuario usuario)
+        {
+            return cr.obtenerNegativasDeUsuario(usuario);
+        }
     }
 }

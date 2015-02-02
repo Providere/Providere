@@ -109,13 +109,12 @@
           <Property Name="IdContratacion" Type="smallint" Nullable="false" />
           <Property Name="IdTipoEvaluacion" Type="smallint" Nullable="false" />
           <Property Name="IdTipoCalificacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaCalificacion" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Contratacion">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="smallint" Nullable="false" />
           <Property Name="IdUsuario" Type="smallint" Nullable="false" />
           <Property Name="IdPublicacion" Type="smallint" Nullable="false" />
         </EntityType>
@@ -173,7 +172,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="smallint" Nullable="false" />
           <Property Name="Positivo" Type="smallint" Nullable="false" />
           <Property Name="Neutro" Type="smallint" Nullable="false" />
           <Property Name="Negativo" Type="smallint" Nullable="false" />
@@ -185,7 +184,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="smallint" Nullable="false" />
           <Property Name="Comentario" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="IdCalificacion" Type="smallint" Nullable="false" />
         </EntityType>
@@ -992,7 +991,6 @@
           <EntitySetMapping Name="Calificacion">
             <EntityTypeMapping TypeName="ProvidereModel.Calificacion">
               <MappingFragment StoreEntitySet="Calificacion">
-                <ScalarProperty Name="FechaCalificacion" ColumnName="FechaCalificacion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="IdCalificador" ColumnName="IdCalificador" />
@@ -1171,7 +1169,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Providere">
+      <Diagram Name="Providere" ZoomLevel="89">
         <EntityTypeShape EntityType="ProvidereModel.Calificacion" Width="1.5" PointX="5.25" PointY="9.25" Height="3.7109993489583317" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Contratacion" Width="1.5" PointX="8.25" PointY="10" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Denuncia" Width="1.5" PointX="7.5" PointY="4" Height="1.787985026041667" IsExpanded="true" />

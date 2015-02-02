@@ -176,5 +176,20 @@ namespace Providere.Repositorios
         {
             return context.Usuario.Where(x => x.Id == id).FirstOrDefault();
         }
+        
+        internal void cambiarEstado(Usuario usuario)
+        {
+            Estado estado = new Estado();
+            estado.Id = 1;
+            usuario.Estado = estado;
+
+            context.SaveChanges();
+        }
+
+
+        internal IEnumerable<Usuario> traerTodosConDenuncias(List<Denuncia> denuncias)
+        {
+            //context.Usuario.Where(u => u.Calificacion.Contains(de));
+        }
     }
 }

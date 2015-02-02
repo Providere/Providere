@@ -17,5 +17,13 @@ namespace Providere.Repositorios
             context.Calificacion.AddObject(model);
             context.SaveChanges();
         }
+
+
+        internal List<Calificacion> obtenerNegativasDeUsuario(Usuario usuario)
+        {
+            return context.Calificacion.Where(x => x.Usuario.Id == usuario.Id).Where(x => x.Denuncia.Count > 1).ToList();
+        }
+
+    
     }
 }
