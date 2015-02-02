@@ -146,6 +146,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Buscador.cs" />
+    <Compile Include="Models\CalificacionModel.cs" />
     <Compile Include="Models\ListaPublicacionesModel.cs" />
     <Compile Include="Models\Providere.Designer.cs">
       <AutoGen>True</AutoGen>

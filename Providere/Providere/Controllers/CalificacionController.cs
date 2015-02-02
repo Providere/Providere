@@ -16,7 +16,16 @@ namespace Providere.Controllers
 
         public ActionResult CalificarUsuario(int idContratacion, int idTipoCalificacion)
         {
-            ViewBag.IdContratacion = idContratacion;
+            if (idTipoCalificacion == 1)
+                ViewBag.Texto = "por el servicio brindado";
+            else
+                ViewBag.Texto = "por la contratación de";
+
+            var traigoContratacion = crs.traerPorId(idContratacion);
+
+            ViewBag.Contratacion = traigoContratacion;
+
+           // ViewBag.IdContratacion = idContratacion;
             ViewBag.IdTipoCalificacion = idTipoCalificacion;
 
             return View();
@@ -26,20 +35,27 @@ namespace Providere.Controllers
         public ActionResult CalificarUsuario()
         {
 
-            int idContratacion = Int32.Parse(Request["IdContratacion"]);
+            int idContratacion = Int32.Parse(Request["idContratacion"]);
 
             int idTipoCalificacion = Int32.Parse(Request["idTipoCalificacion"]);
 
-            int idTipoEvaluacion = Int32.Parse(Request["calificacion"]);
+            int idTipoEvaluacion = Int32.Parse(Request["IdTipoEvaluacion"]);
                 
             string comentario = Convert.ToString(Request["Descripcion"]);
 
-            cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion, comentario);
+            if (ModelState.IsValid)
+            {
+                cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion, comentario);
 
-            TempData["Exito"] = "El usuario se ha calificado con éxito";
+                TempData["Exito"] = "El usuario se ha calificado con éxito";
 
-            return RedirectToAction("Index", "Contratacion");
-
+                return RedirectToAction("Index", "Contratacion");
+            }
+            else
+            {
+                TempData["Error"] = "El comentario no puede ser vacío";
+                return RedirectToAction("Index", "Contratacion");
+            }
         }
     }
 }
