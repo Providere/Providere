@@ -186,10 +186,18 @@ namespace Providere.Repositorios
             context.SaveChanges();
         }
 
+        internal List<Usuario> traerTodos()
+        {
+            return context.Usuario.Select(x => x).ToList();
+        }
+
 
         internal IEnumerable<Usuario> traerTodosConDenuncias(List<Denuncia> denuncias)
         {
-            //context.Usuario.Where(u => u.Calificacion.Contains(de));
+            // No se si el calificador es Usuario o Usuario1
+            IEnumerable<Usuario> usuarios = denuncias.Select(r => r.Calificacion.Usuario);
+
+            return usuarios;
         }
     }
 }
