@@ -39,11 +39,11 @@ namespace Providere.Controllers
 
             int idTipoCalificacion = Int32.Parse(Request["idTipoCalificacion"]);
 
-            int idTipoEvaluacion = Int32.Parse(Request["calificacion"]);
+            int idTipoEvaluacion = Int32.Parse(Request["IdTipoEvaluacion"]);
                 
             string comentario = Convert.ToString(Request["Descripcion"]);
 
-            if (!string.IsNullOrWhiteSpace(comentario))
+            if (ModelState.IsValid)
             {
                 cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion, comentario);
 

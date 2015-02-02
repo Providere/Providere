@@ -9,6 +9,7 @@
     @using (Html.BeginForm("CalificarUsuario", "Calificacion", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
     {
         @Html.ValidationSummary(true)
+       
 
         <legend>Califique al usuario @ViewBag.Contratacion.Usuario.Nombre @ViewBag.Contratacion.Usuario.Apellido
             @ViewBag.Texto <a href="/Publicacion/VisualizarPublicacion/@ViewBag.Contratacion.Publicacion.Id">@ViewBag.Contratacion.Publicacion.Titulo</a>
@@ -19,16 +20,16 @@
             <center>
                 <div class="row">
                     <div class="col-sm-4 editor-field">
-                        @Html.RadioButton("calificacion", 1) <span class="text-success"><i class="glyphicon glyphicon-plus-sign">
-                        </i></span>@Html.DisplayName("Positiva")
+                        @Html.RadioButtonFor(model => model.IdTipoEvaluacion, 1) <span class="text-success">
+                            <i class="glyphicon glyphicon-plus-sign"></i></span>@Html.DisplayName("Positiva")
                     </div>
                     <div class="col-sm-4 editor-field">
-                        @Html.RadioButton("calificacion", 2, true) <span class="text-primary"><i class="glyphicon glyphicon-record">
-                        </i></span>@Html.DisplayName("Neutra")
+                        @Html.RadioButtonFor(model => model.IdTipoEvaluacion, 2) <span class="text-primary">
+                            <i class="glyphicon glyphicon-record"></i></span>@Html.DisplayName("Neutra")
                     </div>
                     <div class="col-sm-4 editor-field">
-                        @Html.RadioButton("calificacion", 3) <span class="text-warning"><i class="glyphicon glyphicon-minus-sign">
-                        </i></span>@Html.DisplayName("Negativa")
+                        @Html.RadioButtonFor(model => model.IdTipoEvaluacion, 3) <span class="text-warning">
+                            <i class="glyphicon glyphicon-minus-sign"></i></span>@Html.DisplayName("Negativa")
                     </div>
                 </div>
             </center>
@@ -38,16 +39,18 @@
                 </div>
                 <div class="col-sm-4 editor-field">
                     @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Descripcion)
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-5">
                     <button type="submit" id="btnGuardar" class="btn btn-info btn-sm">
-                        Guardar</button>
+                        Calificar</button>
                     @Html.ActionLink("Cancelar", "Index", "Contratacion", null, new { @class = "btn btn-warning btn-sm" })
                 </div>
             </div>
+            @Html.ValidationMessageFor(model => model.IdTipoEvaluacion, "Debe seleccionar un tipo de calificacion")
+            <br />
+            @Html.ValidationMessageFor(model => model.Descripcion, "Debe ingresar un comentario")
         </div>
     
     }
