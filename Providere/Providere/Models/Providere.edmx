@@ -1171,7 +1171,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Providere" ZoomLevel="86">
+      <Diagram Name="Providere" ZoomLevel="55">
         <EntityTypeShape EntityType="ProvidereModel.Contratacion" Width="1.5" PointX="8.25" PointY="10" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Denuncia" Width="1.5" PointX="7.5" PointY="4" Height="1.787985026041667" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Estado" Width="1.5" PointX="0.75" PointY="10.375" Height="1.5956835937499996" IsExpanded="true" />
