@@ -13,6 +13,7 @@ namespace Providere.Controllers
     {
         PublicacionServicios ps = new PublicacionServicios();
         UsuarioServicios us = new UsuarioServicios();
+        SancionServicios ss = new SancionServicios();
 
         public ActionResult Home()
         {
@@ -26,8 +27,8 @@ namespace Providere.Controllers
 
             ViewBag.UsuariosMasCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), 4);
 
-            ViewBag.Usuario = us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"]));
-
+            ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
+            
             return View();
         }
 

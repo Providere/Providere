@@ -166,6 +166,7 @@
     <Compile Include="Repositorios\PublicacionRepositorio.cs" />
     <Compile Include="Repositorios\PuntajeRepositorio.cs" />
     <Compile Include="Repositorios\RubroRepositorio.cs" />
+    <Compile Include="Repositorios\SancionRepositorio.cs" />
     <Compile Include="Repositorios\SubRubroRepositorio.cs" />
     <Compile Include="Repositorios\UsuarioRepositorio.cs" />
     <Compile Include="Repositorios\TipoEvaluacionRepositorio.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Servicios\PublicacionServicios.cs" />
     <Compile Include="Servicios\RubroServicios.cs" />
     <Compile Include="Servicios\RubrosParaSelect.cs" />
+    <Compile Include="Servicios\SancionServicios.cs" />
     <Compile Include="Servicios\SubRubroServicios.cs" />
     <Compile Include="Servicios\UsuarioServicios.cs" />
   </ItemGroup>

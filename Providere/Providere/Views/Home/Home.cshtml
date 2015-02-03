@@ -18,13 +18,13 @@
         @ViewBag.Error
     </div>
 }
-@if (ViewBag.Usuario.Estado.Id == 2)
+@if (ViewBag.Sancion != null)
 {
     <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert">
             &times;</button>
         Usted ha sido sancionado por las múltiples denuncias realizadas a sus mensajes.
-        <!-- La penalización finalizará el xx/xx/xxxx. -->
+        La penalización finalizará el @ViewBag.Sancion.FechaFin.ToString("f")
     </div>
 }
 <div>
