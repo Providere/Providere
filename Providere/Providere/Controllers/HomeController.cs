@@ -26,6 +26,7 @@ namespace Providere.Controllers
 
             ViewBag.UsuariosMasCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), 4);
 
+            ViewBag.Usuario = us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"]));
 
             return View();
         }

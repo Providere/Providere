@@ -192,10 +192,10 @@ namespace Providere.Servicios
 
         /*
          * Los parámetros a evaluar son
-Cantidad de denuncias en rea lacion a Calificaciones Negativas
+         * Cantidad de denuncias en relacion a Calificaciones Negativas
          * 
-Condiciones de bloqueo:
-+ 90% de denuncias 
+         * Condiciones de bloqueo:
+         * + 90% de denuncias 
          * Al tener el listado su estado como sancionados se activara por 15 dias
          * */
         internal void DetectarSancionados()
