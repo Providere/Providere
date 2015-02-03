@@ -115,7 +115,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="smallint" Nullable="false" />
           <Property Name="IdUsuario" Type="smallint" Nullable="false" />
           <Property Name="IdPublicacion" Type="smallint" Nullable="false" />
         </EntityType>
@@ -173,7 +173,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="smallint" Nullable="false" />
           <Property Name="Positivo" Type="smallint" Nullable="false" />
           <Property Name="Neutro" Type="smallint" Nullable="false" />
           <Property Name="Negativo" Type="smallint" Nullable="false" />
@@ -185,7 +185,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="smallint" Nullable="false" />
           <Property Name="Comentario" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="IdCalificacion" Type="smallint" Nullable="false" />
         </EntityType>
