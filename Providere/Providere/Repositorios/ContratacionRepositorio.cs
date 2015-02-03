@@ -53,8 +53,6 @@ namespace Providere.Repositorios
         {
             Contratacion contratacionNueva = new Contratacion();
 
-            //var maxReservationId = context.Contratacion.Max(u => (short?)u.Id) ?? 0;
-            //contratacionNueva.Id = maxReservationId;
             contratacionNueva.IdPublicacion = publicacion.Id;
             contratacionNueva.IdUsuario = usuario.Id;
 
