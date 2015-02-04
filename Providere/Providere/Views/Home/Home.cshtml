@@ -71,9 +71,8 @@
             }
         </div>
         <center>
-            <a href="/Publicacion/Lista">
-                <button type="button" class="btn btn-primary">
-                    Ver mas publicaciones</button></a>
+            <a href="@Url.Action("VerMasPublicaciones", "Publicacion")" class="btn btn-primary">Ver mas
+                publicaciones</a>
         </center>
     </div>
     }
@@ -111,9 +110,7 @@
                 }
             </div>
             <center>
-                <a href="/Publicacion/Lista">
-                    <button type="button" class="btn btn-primary">
-                        Ver mas prestadores</button></a>
+                <a href="@Url.Action("VerMasPrestadores", "Publicacion")" class="btn btn-primary">Ver mas prestadores</a>
             </center>
         }
         else
@@ -150,11 +147,9 @@
                 }
             </div>
             <center>
-                <a href="/Publicacion/Lista">
-                    <button type="button" class="btn btn-primary">
-                        Ver mas prestadores en mi zona</button>
-                </a>
+                   <a href="@Url.Action("VerMasPrestadoresZona", "Publicacion")" class="btn btn-primary">Ver mas prestadores de mi zona</a>
             </center>
+            <br />
         }
         else
         {

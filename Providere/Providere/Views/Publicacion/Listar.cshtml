@@ -1,6 +1,20 @@
 ﻿@{
-    ViewBag.Title = "Listar";
+    ViewBag.Title = "Ver mas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Listar</h2>
+  @if (ViewBag.Principal == "VerMasPublicaciones")
+  {
+      <h2>Ver mas publicaciones</h2>
+  }
+  
+   @if (ViewBag.Principal == "VerMasPrestadores")
+  {
+      <h2>Ver mas prestadores</h2>
+  }
+  
+   @if (ViewBag.Principal == "VerMasPrestadoresZona")
+  {
+      <h2>Ver mas prestadores de mi zona</h2>
+  }
+  

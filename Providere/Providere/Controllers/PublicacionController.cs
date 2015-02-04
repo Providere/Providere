@@ -27,13 +27,13 @@ namespace Providere.Controllers
         }
 
         // Listado publico
-        public ActionResult Listar()
-        {
-            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            var publicaciones = ps.ListarMisPublicaciones(idUsuario);
+        //public ActionResult Listar()
+        //{
+        //    int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+        //    var publicaciones = ps.ListarMisPublicaciones(idUsuario);
 
-            return View();
-        }
+        //    return View();
+        //}
 
         public ActionResult NuevaPublicacion()
         {
@@ -329,6 +329,25 @@ namespace Providere.Controllers
         public ActionResult ContratarPublicacion(Publicacion publicacion)
         {
             return RedirectToAction("Contratar", "Contratacion", publicacion);
+        }
+
+
+        public ActionResult VerMasPublicaciones()
+        {
+            ViewBag.Principal = "VerMasPublicaciones";
+            return View("Listar");
+        }
+
+        public ActionResult VerMasPrestadores()
+        {
+            ViewBag.Principal = "VerMasPrestadores";
+            return View("Listar");
+        }
+
+        public ActionResult VerMasPrestadoresZona()
+        {
+            ViewBag.Principal = "VerMasPrestadoresZona";
+            return View("Listar");
         }
 
     }
