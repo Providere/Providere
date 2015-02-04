@@ -35,7 +35,7 @@ namespace Providere.Repositorios
                                              join puntaje in context.Puntaje on publicacion.Id equals puntaje.IdPublicacion
                                              where publicacion.Estado == 1 //Habilitada
                                              orderby puntaje.Total descending
-                                             select publicacion).Distinct().Take(limite).ToList();
+                                             select publicacion).Take(limite).ToList();
 
             return publicacionesMasPopulares;
         }
@@ -244,7 +244,6 @@ namespace Providere.Repositorios
         {
             var puntaje = (from punt in context.Puntaje
                            where punt.IdPublicacion == p
-                           orderby punt.FechaTotal descending
                            select punt.Total).FirstOrDefault();
             return puntaje;
         }

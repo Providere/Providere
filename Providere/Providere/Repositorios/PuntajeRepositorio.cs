@@ -16,7 +16,6 @@ namespace Providere.Repositorios
         {
             var puntuacion = (from puntuacionSeleccionada in context.Puntaje
                               where puntuacionSeleccionada.IdPublicacion == publicacion.Id
-                             orderby puntuacionSeleccionada.FechaTotal descending
                               select puntuacionSeleccionada).FirstOrDefault();
 
             if (puntuacion == null)
