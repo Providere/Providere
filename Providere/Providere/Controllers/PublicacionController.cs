@@ -12,6 +12,7 @@ namespace Providere.Controllers
     public class PublicacionController : Controller
     {
         PublicacionServicios ps = new PublicacionServicios();
+        UsuarioServicios us = new UsuarioServicios();
         ProvidereEntities context = new ProvidereEntities();
 
 
@@ -335,18 +336,24 @@ namespace Providere.Controllers
         public ActionResult VerMasPublicaciones()
         {
             ViewBag.Principal = "VerMasPublicaciones";
+            int limite = 10;
+            ViewBag.VerMasPublicacionesMasRecientes = ps.traerPublicacionesMasRecientes(limite); //Las 10 mas recientes
             return View("Listar");
         }
 
         public ActionResult VerMasPrestadores()
         {
             ViewBag.Principal = "VerMasPrestadores";
+            int limite = 10;
+            ViewBag.VerMasPrestadoresMejorCalificadas = ps.traerPublicacionesMejorCalificadas(limite); //Los 10 mejor calificados
             return View("Listar");
         }
 
         public ActionResult VerMasPrestadoresZona()
         {
             ViewBag.Principal = "VerMasPrestadoresZona";
+            int limite = 10;
+            ViewBag.VerMasUsuariosMasCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), limite);
             return View("Listar");
         }
 

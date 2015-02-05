@@ -21,11 +21,13 @@ namespace Providere.Controllers
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
 
-            ViewBag.PublicacionesMasRecientes = ps.traerPublicacionesMasRecientes(4);
+            int limite = 4;
 
-            ViewBag.PublicacionesMejorCalificadas = ps.traerPublicacionesMejorCalificadas(4);
+            ViewBag.PublicacionesMasRecientes = ps.traerPublicacionesMasRecientes(limite);
 
-            ViewBag.UsuariosMasCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), 4);
+            ViewBag.PublicacionesMejorCalificadas = ps.traerPublicacionesMejorCalificadas(limite);
+
+            ViewBag.UsuariosMasCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), limite);
 
             ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
             
