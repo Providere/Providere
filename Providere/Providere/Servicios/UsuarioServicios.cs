@@ -190,33 +190,7 @@ namespace Providere.Servicios
             return ur.traerPorId(id);
         }
 
-        /*
-         * Los parámetros a evaluar son
-         * Cantidad de denuncias en relacion a Calificaciones Negativas
-         * 
-         * Condiciones de bloqueo:
-         * + 90% de denuncias 
-         * Al tener el listado su estado como sancionados se activara por 15 dias
-         * */
-        internal void DetectarSancionados()
-        {
-            CalificacionServicios cs = new CalificacionServicios();
-
-            foreach (Usuario usuario in traerTodosConDenuncias())
-            {
-
-                List<Calificacion> calificacionesNegativas = cs.obtenerNegativasDeUsuario(usuario);
-
-                int porcentajeDeDenuncias = (calificacionesNegativas.Count * 100) / usuario.Calificacion.Count;
-
-                if(porcentajeDeDenuncias > 90){
-                    ur.cambiarEstado(usuario);
-                }
-
-            }
-        }
-
-        private IEnumerable<Usuario> traerTodosConDenuncias()
+        public IEnumerable<Usuario> traerTodosConDenuncias()
         {
             DenunciaRepositorio dr = new DenunciaRepositorio();
 
