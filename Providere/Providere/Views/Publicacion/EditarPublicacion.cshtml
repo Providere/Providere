@@ -110,7 +110,7 @@
                                 @Html.DropDownListFor(model => model.PrecioOpcion, listPrecio, new { @class = "form-control", name = "pg1", onchange = "d1(this)" })
                             </div>
                             <div class="col-xs-1">
-                                @Html.Hidden("oculto",Model.Precio)
+                                @Html.Hidden("oculto", Model.Precio)
                                 @Html.TextBoxFor(model => model.Precio, new { @class = "form-control", name = "2", id = "prg1", disabled = "disabled" })
                                 @Html.ValidationMessageFor(model => model.Precio)
                             </div>
@@ -129,7 +129,7 @@
                             <div class="col-md-offset-5">
                                 <button type="submit" id="btnGuardar" class="btn btn-info btn-sm">
                                     Guardar cambios</button>
-                                @Html.ActionLink("Cancelar", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
+                                @Html.ActionLink("Cancelar", "Home", "Home", null, new { @class = "btn btn-warning btn-sm" })
                             </div>
                         </div>
                     </fieldset>
@@ -139,27 +139,24 @@
         <div role="tabpanel" class="tab-pane" id="editar2">
             <h3>
                 Borrar imagenes de trabajos realizados</h3>
-                <br />
+            <br />
             <div class="content">
                 <div class="col-md-12">
                     <div class="row">
                         @ViewBag.NoExistenImagenes
                         @foreach (var item in Model.Imagen)
                         {
-                            using (Html.BeginForm("EliminarImagen", "Publicacion", new { id = item.Id, idPublicacion = item.IdPublicacion}, FormMethod.Post, new { @class = "form-horizontal" }))
+                            using (Html.BeginForm("EliminarImagen", "Publicacion", new { id = item.Id, idPublicacion = item.IdPublicacion }, FormMethod.Post, new { @class = "form-horizontal" }))
                             {                  
                             <div class="col-md-3">
                                 <a href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="roadtrip">
                                     <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "200px" />
-                                </a>                              
-                               @* @if (item.Nombre != null)
-                                {*@
-                                        <div class="col-md-offset-1">
-                                       <br />
-                                            <button type="submit" id="btnBorrar" class="btn btn-warning btn-xs glyphicon glyphicon-remove">
-                                                Borrar</button>
-                                        </div>
-                               @* }*@
+                                </a>
+                                <div class="col-md-offset-1">
+                                    <br />
+                                    <button type="submit" id="btnBorrar" class="btn btn-warning btn-xs glyphicon glyphicon-remove">
+                                        Borrar</button>
+                                </div>
                             </div>                      
                             }
                         }
