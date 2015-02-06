@@ -43,6 +43,7 @@ namespace Providere.Controllers
             return View(quienMeContrato);
         }*/
 
+        [HttpPost]
         public ActionResult Contratar(Publicacion publicacion)
         {
 
@@ -56,8 +57,6 @@ namespace Providere.Controllers
             else
             {
                 var contratacion = cs.nuevaContratacion(publicacion, usuario);
-
-
                 return RedirectToAction("Index");
             }
         }

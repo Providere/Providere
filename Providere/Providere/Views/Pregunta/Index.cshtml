@@ -3,6 +3,14 @@
     ViewBag.Title = "Preguntas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
 <div class="container well">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#responder" role="tab" data-toggle="tab">
@@ -19,8 +27,8 @@
                 { 
                 <br />              
                 <div class="col-md-12">
-                    <h4>
-                        <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></h4>
+                    <legend>
+                        <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
                     <div>
                         <dl class="question" id="1">
                             <dd class="txt">
@@ -39,7 +47,7 @@
                             </div>
                         </div>
                     }
-                    <hr />
+                   @* <hr />*@
                 </div> 
                 }
             }
@@ -57,9 +65,8 @@
                 { 
                 <br />
                 <div class="col-md-12">
-                    <h4>
-                        <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></h4>
-                    <br />
+                    <legend>
+                        <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
                     <dl class="question" id="6">
                         <dd class="txt">
                             <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
@@ -74,7 +81,7 @@
                         <a href="@Url.Action("EliminarPregunta", "Pregunta", new { id = item.Id })" class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-trash"></span>Borrar pregunta</a>
                     </dl>
-                    <hr />
+                    <br />
                 </div>
                 }
             }
