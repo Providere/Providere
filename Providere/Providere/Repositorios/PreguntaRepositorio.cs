@@ -17,6 +17,7 @@ namespace Providere.Repositorios
             miPregunta.IdPublicacion = Convert.ToInt16(id);
             miPregunta.IdUsuario = Convert.ToInt16(idUser);
             miPregunta.Pregunta = preguntar;
+            miPregunta.Estado = 1; //No oculta
             context.PreguntaRespuesta.AddObject(miPregunta);
             context.SaveChanges();
         }
@@ -41,7 +42,7 @@ namespace Providere.Repositorios
         public object TraerPreguntasQueHice(int idUsuario)
         {
             var resultado = (from preg in context.PreguntaRespuesta
-                             where preg.IdUsuario == idUsuario
+                             where preg.IdUsuario == idUsuario && preg.Estado == 1
                              orderby preg.FechaRespuesta descending
                              select preg ).ToList();
             return resultado;
@@ -52,6 +53,16 @@ namespace Providere.Repositorios
             PreguntaRespuesta miRespuesta =  context.PreguntaRespuesta.Where(e=>e.Id == id).FirstOrDefault();
             miRespuesta.Respuesta = responder;
             miRespuesta.FechaRespuesta = DateTime.Now;
+            context.SaveChanges();
+        }
+
+        public void CambiarDeEstado(int id)
+        {
+            PreguntaRespuesta pregunta = context.PreguntaRespuesta.Where(e => e.Id == id).FirstOrDefault();
+            if (pregunta.Estado == 1) //No oculta
+            {
+                pregunta.Estado = 0; //Pasa a estado oculto
+            }
             context.SaveChanges();
         }
     }

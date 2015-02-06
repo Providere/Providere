@@ -29,5 +29,10 @@ namespace Providere.Servicios
         {
            prr.Responder(id, responder);
         }
+
+        public void CambiarDeEstado(int id)
+        {
+            prr.CambiarDeEstado(id);
+        }
     }
 }

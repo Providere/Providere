@@ -152,6 +152,7 @@
           <Property Name="IdUsuario" Type="smallint" Nullable="false" />
           <Property Name="IdPublicacion" Type="smallint" Nullable="false" />
           <Property Name="FechaRespuesta" Type="datetime" />
+          <Property Name="Estado" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Publicacion">
           <Key>
@@ -619,6 +620,7 @@
           <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_PreguntaRespuesta_Publicacion" FromRole="PreguntaRespuesta" ToRole="Publicacion" />
           <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_PreguntaRespuesta_Usuario" FromRole="PreguntaRespuesta" ToRole="Usuario" />
           <Property Type="DateTime" Name="FechaRespuesta" />
+          <Property Type="Byte" Name="Estado" Nullable="false" />
         </EntityType>
         <EntityType Name="Publicacion">
           <Key>
@@ -1027,6 +1029,7 @@
           <EntitySetMapping Name="PreguntaRespuesta">
             <EntityTypeMapping TypeName="ProvidereModel.PreguntaRespuesta">
               <MappingFragment StoreEntitySet="PreguntaRespuesta">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="FechaRespuesta" ColumnName="FechaRespuesta" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />

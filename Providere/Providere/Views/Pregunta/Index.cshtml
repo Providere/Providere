@@ -11,6 +11,14 @@
         @ViewBag.Error
     </div>
 }
+@if (ViewBag.Exito != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Exito
+    </div>
+}
 <div class="container well">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#responder" role="tab" data-toggle="tab">
@@ -27,8 +35,7 @@
                 { 
                 <br />              
                 <div class="col-md-12">
-                    <legend>
-                        <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
+                    <legend><a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
                     <div>
                         <dl class="question" id="1">
                             <dd class="txt">
@@ -47,7 +54,7 @@
                             </div>
                         </div>
                     }
-                   @* <hr />*@
+                    @* <hr />*@
                 </div> 
                 }
             }
@@ -56,17 +63,19 @@
                 <span>No hay preguntas pendientes a responder</span>
             }
         </div>
+
         <div role="tabpanel" class="tab-pane" id="meContestaron">
             <h2>
                 Preguntas realizadas como cliente</h2>
             @if (ViewBag.PreguntasQueHice.Count > 0)
             {
                 foreach (var item in ViewBag.PreguntasQueHice)
-                { 
+                {
+                    using (Html.BeginForm("EliminarPregunta", "Pregunta", new { id = item.Id }, FormMethod.Post))
+                    {
                 <br />
                 <div class="col-md-12">
-                    <legend>
-                        <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
+                    <legend><a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
                     <dl class="question" id="6">
                         <dd class="txt">
                             <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
@@ -78,11 +87,12 @@
                                 <span class="text-info"><i class="glyphicon glyphicon-user"></i></span><span>@item.Respuesta</span><span
                                     class="help-block">@item.FechaRespuesta</span></dd>      
                         }
-                        <a href="@Url.Action("EliminarPregunta", "Pregunta", new { id = item.Id })" class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-trash"></span>Borrar pregunta</a>
+                        <button name="btnBorrar" class="btn btn-primary btn-sm" type="submit">
+                            <span class="glyphicon glyphicon-trash"></span>Borrar pregunta</button>
                     </dl>
                     <br />
                 </div>
+                    }
                 }
             }
             else

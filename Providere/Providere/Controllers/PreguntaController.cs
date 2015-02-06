@@ -17,6 +17,7 @@ namespace Providere.Controllers
         public ActionResult Index()
         {
             ViewBag.Error = TempData["Error"];
+            ViewBag.Error = TempData["Exito"];
 
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
 
@@ -83,7 +84,17 @@ namespace Providere.Controllers
         [HttpPost]
         public ActionResult EliminarPregunta(int id)
         {
-            return RedirectToAction("Index","Index");
+            try
+            {
+                prs.CambiarDeEstado(id);//No se elimina pasa a estado 0:Oculta - 1: No oculta
+                TempData["Exito"] = "Pregunta eliminada correctamente"; 
+                return RedirectToAction("Index", "Pregunta");
+            }
+            catch(Exception ex)
+            {
+                ClientException.LogException(ex, "Error al eliminar la pregunta");
+                return RedirectToAction("Error", "Shared");
+            }
         }
     }
 }
