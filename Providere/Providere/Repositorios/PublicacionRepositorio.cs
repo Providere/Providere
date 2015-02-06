@@ -56,7 +56,7 @@ namespace Providere.Repositorios
             {
                 publicaciones = publicaciones.Where(b => b.Usuario.Ubicacion.Equals(Ubicacion)).Select(x => x);
             }
-            return publicaciones.ToList();
+            return publicaciones.Where(x => x.Estado.Equals(1)).ToList();
 
         }
 
@@ -111,7 +111,7 @@ namespace Providere.Repositorios
         {
             var resultado = (from publicaciones in context.Publicacion
                              where (publicaciones.IdUsuario == idUsuario)  //Listar todas mis publicaciones
-                             select publicaciones).ToList();
+                             select publicaciones).Where(x => x.Estado.Equals(1)).ToList();
             return resultado;
         }
 
@@ -256,6 +256,7 @@ namespace Providere.Repositorios
             return contratacion;
         }
 
+        // TO DO: esto deberia ir en calificacion service
         public List<Calificacion> TraerCalificaciones(int idPublicacion)
         {
             var contratacion = (from contrata in context.Contratacion
