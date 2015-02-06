@@ -27,7 +27,7 @@
                                 <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span></dd>
                         </dl>
                     </div>
-                    @using (Html.BeginForm("Responder", "Pregunta", new {id= item.Id},FormMethod.Post))
+                    @using (Html.BeginForm("Responder", "Pregunta", new { id = item.Id }, FormMethod.Post))
                     {  
                         <div class="row">
                             <div class="form-group col-md-10">
@@ -71,6 +71,9 @@
                                 <span class="text-info"><i class="glyphicon glyphicon-user"></i></span><span>@item.Respuesta</span><span
                                     class="help-block">@item.FechaRespuesta</span></dd>      
                         }
+                        <button type="button" class="btn btn-link">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
                     </dl>
                     <hr />
                 </div>

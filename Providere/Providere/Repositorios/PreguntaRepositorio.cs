@@ -41,8 +41,9 @@ namespace Providere.Repositorios
         public object TraerPreguntasQueHice(int idUsuario)
         {
             var resultado = (from preg in context.PreguntaRespuesta
-                          where preg.IdUsuario == idUsuario
-                          select preg).ToList();
+                             where preg.IdUsuario == idUsuario
+                             orderby preg.FechaRespuesta descending
+                             select preg ).ToList();
             return resultado;
         }
 
