@@ -45,7 +45,7 @@
             }
             else
             {
-                <span>No hay preguntas pendientes a responder para mostrar</span>
+                <span>No hay preguntas pendientes a responder</span>
             }
         </div>
         <div role="tabpanel" class="tab-pane" id="meContestaron">
@@ -71,9 +71,8 @@
                                 <span class="text-info"><i class="glyphicon glyphicon-user"></i></span><span>@item.Respuesta</span><span
                                     class="help-block">@item.FechaRespuesta</span></dd>      
                         }
-                        <button type="button" class="btn btn-link">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </button>
+                        <a href="@Url.Action("EliminarPregunta", "Pregunta", new { id = item.Id })" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-trash"></span>Borrar pregunta</a>
                     </dl>
                     <hr />
                 </div>

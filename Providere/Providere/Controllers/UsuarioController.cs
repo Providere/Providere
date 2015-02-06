@@ -258,7 +258,6 @@ namespace Providere.Controllers
             }
         }
 
-        [HttpPost]
         public ActionResult EliminarCuenta()
         {
             bool estado = bool.Parse(Request.Form.GetValues("ckbEliminar")[0]);

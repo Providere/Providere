@@ -27,7 +27,7 @@ namespace Providere.Controllers
             return View();
         }
 
-
+        [HttpPost]
         public ActionResult Preguntar(int idUsuario, int id, string preguntar)
         {
             int idUser = Convert.ToInt16(this.Session["IdUsuario"]);
@@ -76,6 +76,12 @@ namespace Providere.Controllers
                 TempData["Error"] = "La respuesta no puede ser vacía";
                 return RedirectToAction("Home", "Home");
             }
+        }
+
+        [HttpPost]
+        public ActionResult EliminarPregunta(int id)
+        {
+            return RedirectToAction("Index","Index");
         }
     }
 }
