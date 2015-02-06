@@ -111,7 +111,7 @@ namespace Providere.Repositorios
         {
             var resultado = (from publicaciones in context.Publicacion
                              where (publicaciones.IdUsuario == idUsuario)  //Listar todas mis publicaciones
-                             select publicaciones).Where(x => x.Estado.Equals(1)).ToList();
+                             select publicaciones).ToList();
             return resultado;
         }
 
