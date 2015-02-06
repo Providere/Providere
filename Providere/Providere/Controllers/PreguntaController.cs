@@ -16,6 +16,8 @@ namespace Providere.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Error = TempData["Error"];
+
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
 
             var preguntasSinResponder = prs.TraerPreguntasSinResponder(idUsuario);
@@ -74,7 +76,7 @@ namespace Providere.Controllers
             else
             {
                 TempData["Error"] = "La respuesta no puede ser vacía";
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("Index", "Pregunta");
             }
         }
 
