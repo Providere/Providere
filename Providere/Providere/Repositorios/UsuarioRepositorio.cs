@@ -177,15 +177,6 @@ namespace Providere.Repositorios
             return context.Usuario.Where(x => x.Id == id).FirstOrDefault();
         }
         
-        internal void cambiarEstado(Usuario usuario)
-        {
-            Estado estado = new Estado();
-            estado.Id = 1;
-            usuario.Estado = estado;
-
-            context.SaveChanges();
-        }
-
         internal List<Usuario> traerTodos()
         {
             return context.Usuario.Select(x => x).ToList();

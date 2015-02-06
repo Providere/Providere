@@ -9,14 +9,14 @@ namespace Providere.Controllers
 {
     public class SancionController : Controller
     {
-        //
+        SancionServicios ss = new SancionServicios();
+
         // GET: /Sancion/DetectarSancionados
         // A principio de cada mes todos los usuarios son evaluados para determinar si son bloqueados o no. 
 
         public ActionResult DetectarSancionados()
         {
-            UsuarioServicios us = new UsuarioServicios();
-            us.DetectarSancionados();
+            ss.DetectarSancionados();
             return View();
         }
 

@@ -17,5 +17,14 @@ namespace Providere.Repositorios
             return sancion;
         }
 
+
+        internal object establecerSancion(Usuario usuario)
+        {
+            Sancion sancion = new Sancion();
+            sancion.Usuario = usuario;
+            sancion.FechaInicio = DateTime.Now;
+            sancion.FechaFin = DateTime.Now.AddDays(15);
+            throw new NotImplementedException();
+        }
     }
 }

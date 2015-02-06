@@ -15,6 +15,7 @@ namespace Providere.Controllers
         UsuarioServicios us = new UsuarioServicios();
         ProvidereEntities context = new ProvidereEntities();
 
+        SancionServicios ss = new SancionServicios();
 
         public ActionResult ListarPublicaciones()
         {
@@ -133,7 +134,10 @@ namespace Providere.Controllers
                  {
                      ViewBag.MostrarPuntaje = traerPuntaje;
                  }
-                return View(miPublicacion);
+
+
+                 ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
+                 return View(miPublicacion);
         }
 
         // Publicacion/VisualizarPublicacion
@@ -174,7 +178,9 @@ namespace Providere.Controllers
            var contratada =  ps.TraerContratada(idPublicacion,idUsuario);
            ViewBag.Contratada = contratada;
 
-            return View("VisualizarMiPublicacion", miPublicacion);
+
+           ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
+           return View("VisualizarMiPublicacion", miPublicacion);
         }
 
         public ActionResult MostrarFotoPerfil(int id)
