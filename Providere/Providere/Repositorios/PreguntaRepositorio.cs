@@ -65,5 +65,13 @@ namespace Providere.Repositorios
             }
             context.SaveChanges();
         }
+
+        public PreguntaRespuesta NoExistenPreguntas(int id)
+        {
+            var pregunta = (from pr in context.PreguntaRespuesta
+                            where (pr.IdPublicacion == id)
+                            select pr).First();
+            return pregunta;
+        }
     }
 }

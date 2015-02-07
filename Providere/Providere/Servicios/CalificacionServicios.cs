@@ -47,5 +47,15 @@ namespace Providere.Servicios
         {
             return cr.obtenerNegativasDeUsuario(usuario);
         }
+
+        public object TraerCalificaciones(int idPublicacion)
+        {
+            return cr.TraerCalificaciones(idPublicacion);
+        }
+
+        public object TraerPrimerasCalificaciones(int limite, int idPublicacion)
+        {
+            return cr.TraerPrimerasCalificaciones(limite, idPublicacion);
+        }
     }
 }

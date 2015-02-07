@@ -61,5 +61,13 @@ namespace Providere.Repositorios
 
             return contratacionNueva;
         }
+
+        public object TraerContratada(int idPublicacion, int idUsuario)
+        {
+            var contratacion = (from contrata in context.Contratacion
+                                where (contrata.IdUsuario == idUsuario && contrata.IdPublicacion == idPublicacion)
+                                select contrata).FirstOrDefault();
+            return contratacion;
+        }
     }
 }

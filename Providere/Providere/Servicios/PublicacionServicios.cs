@@ -41,7 +41,7 @@ namespace Providere.Servicios
         {
             ListaPublicacionesModel publicaciones = new ListaPublicacionesModel();
             List<PublicacionPuntaje> publiList = new List<PublicacionPuntaje>();
-            
+
             foreach (var publiMasPopular in resPublicaciones)
             {
                 PublicacionPuntaje pj = new PublicacionPuntaje();
@@ -96,7 +96,7 @@ namespace Providere.Servicios
 
         public void CargarImagenesEdicion(string pathImagen, int idUsuario, int id)
         {
-            pr.CargarImagenesEdicion(pathImagen, idUsuario,id);
+            pr.CargarImagenesEdicion(pathImagen, idUsuario, id);
         }
 
         public bool NoExistenImagenes(int id)
@@ -127,7 +127,7 @@ namespace Providere.Servicios
             {
                 return false;
             }
-          return true;
+            return true;
         }
 
         public bool VerificarSubrubro(int idUsuario, int? idSubRubro)
@@ -143,37 +143,9 @@ namespace Providere.Servicios
             return true;
         }
 
-        public bool NoExistenPreguntas(int id)
-        {
-            try
-            {
-                PreguntaRespuesta pregunta = pr.NoExistenPreguntas(id);
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
-        }
-
         public object TraerPuntaje(int id)
         {
-            return pr.TraerPuntaje(id);
-        }
-
-        public object TraerContratada(int idPublicacion, int idUsuario)
-        {
-            return pr.TraerContratada(idPublicacion, idUsuario);
-        }
-
-        public object TraerCalificaciones(int idPublicacion)
-        {
-            return pr.TraerCalificaciones(idPublicacion);
-        }
-
-        public object TraerPrimerasCalificaciones(int limite, int idPublicacion)
-        {
-            return pr.TraerPrimerasCalificaciones(limite, idPublicacion);
+            return pur.TraerPuntaje(id);
         }
     }
 }
