@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Providere.Models.Calificacion>
+@{
+    ViewBag.Title = "Calificaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container well">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#obtenidas" role="tab" data-toggle="tab">
+            Obtenidas</a></li>
+        <li role="presentation"><a href="#otorgadas" role="tab" data-toggle="tab">Otorgadas</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="obtenidas">
+            <h2>Calificaciones obtenidas como prestador</h2>
+           
+          
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="otorgadas">
+            <h2>
+                Calificaciones otorgadas como cliente</h2>
+          
+        </div>
+    </div>
+</div>

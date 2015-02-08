@@ -14,6 +14,12 @@ namespace Providere.Controllers
         CalificacionServicios cs = new CalificacionServicios();
         ContratacionServicios crs = new ContratacionServicios();
 
+
+        public ActionResult Index ()
+        {
+            return View();
+        }
+
         public ActionResult CalificarUsuario(int idContratacion, int idTipoCalificacion)
         {
             if (idTipoCalificacion == 1)
