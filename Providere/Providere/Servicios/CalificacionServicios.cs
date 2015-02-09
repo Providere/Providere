@@ -59,14 +59,24 @@ namespace Providere.Servicios
         }
 
 
-        public object TraerCalificacionesObtenidas(int idUsuario)
+        public object TraerCalificacionesObtenidas(int idUsuario,int limite)
         {
-            return cr.TraerCalificacionesObtenidas(idUsuario);
+            return cr.TraerCalificacionesObtenidas(idUsuario, limite);
         }
 
-        public object TraerCalificacionesOtorgadas(int idUsuario)
+        public object TraerCalificacionesOtorgadas(int idUsuario, int limite)
         {
-            return cr.TraerCalificacionesOtorgadas(idUsuario);
+            return cr.TraerCalificacionesOtorgadas(idUsuario, limite);
+        }
+
+        public object TraerCalificacionesObtenidasTodas(int idUsuario)
+        {
+            return cr.TraerCalificacionObtenidasTodas(idUsuario);
+        }
+
+        public object TraerCalificacionesOtorgadasTodas(int idUsuario)
+        {
+            return cr.TraerCalificacionesOtorgadasTodas(idUsuario);
         }
     }
 }
