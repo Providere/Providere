@@ -52,9 +52,9 @@
                     <th>
                         @Html.DisplayName("Precio")
                     </th>
-                    <th>
+                    @*<th>
                         Edición
-                    </th>
+                    </th>*@
                     <th>
                         Acción
                     </th>
@@ -148,9 +148,9 @@
                             }
                             
                         </td>
-                        <td class="text-center">
+                       @* <td class="text-center">
                             @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })
-                        </td>
+                        </td>*@
                         <td>
                             @if (item.Estado == 1)
                             {
