@@ -28,6 +28,15 @@ namespace Providere.Repositorios
             {
                 return puntuacion;
             }
+
+        }
+
+        public object TraerPuntaje(int p)
+        {
+            var puntaje = (from punt in context.Puntaje
+                           where punt.IdPublicacion == p
+                           select punt.Total).FirstOrDefault();
+            return puntaje;
         }
     }
 }

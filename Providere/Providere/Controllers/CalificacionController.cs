@@ -14,6 +14,18 @@ namespace Providere.Controllers
         CalificacionServicios cs = new CalificacionServicios();
         ContratacionServicios crs = new ContratacionServicios();
 
+
+        public ActionResult Index ()
+        {
+            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+            var obtenidas = cs.TraerCalificacionesObtenidas(idUsuario); //Soy calificado
+            var otorgadas = cs.TraerCalificacionesOtorgadas(idUsuario); //Soy calificador
+            ViewBag.Obtenidas = obtenidas; 
+            ViewBag.Otorgadas = otorgadas;
+
+            return View();
+        }
+
         public ActionResult CalificarUsuario(int idContratacion, int idTipoCalificacion)
         {
             if (idTipoCalificacion == 1)

@@ -11,6 +11,7 @@ alter table dbo.Publicacion add PrecioOpcion int not null
 
 -----------------------TABLA PreguntaRespuesta----------------------------
 alter table dbo.PreguntaRespuesta add FechaRespuesta datetime null 
+alter table dbo.PreguntaRespuesta add Estado tinyint not null
 
 -----------------------TABLA Puntaje-------------------------------------
 alter table dbo.Puntaje add FechaTotal datetime  null 

@@ -1577,13 +1577,15 @@ namespace Providere.Models
         /// <param name="pregunta">Valor inicial de la propiedad Pregunta.</param>
         /// <param name="idUsuario">Valor inicial de la propiedad IdUsuario.</param>
         /// <param name="idPublicacion">Valor inicial de la propiedad IdPublicacion.</param>
-        public static PreguntaRespuesta CreatePreguntaRespuesta(global::System.Int16 id, global::System.String pregunta, global::System.Int16 idUsuario, global::System.Int16 idPublicacion)
+        /// <param name="estado">Valor inicial de la propiedad Estado.</param>
+        public static PreguntaRespuesta CreatePreguntaRespuesta(global::System.Int16 id, global::System.String pregunta, global::System.Int16 idUsuario, global::System.Int16 idPublicacion, global::System.Byte estado)
         {
             PreguntaRespuesta preguntaRespuesta = new PreguntaRespuesta();
             preguntaRespuesta.Id = id;
             preguntaRespuesta.Pregunta = pregunta;
             preguntaRespuesta.IdUsuario = idUsuario;
             preguntaRespuesta.IdPublicacion = idPublicacion;
+            preguntaRespuesta.Estado = estado;
             return preguntaRespuesta;
         }
 
@@ -1737,6 +1739,30 @@ namespace Providere.Models
         private Nullable<global::System.DateTime> _FechaRespuesta;
         partial void OnFechaRespuestaChanging(Nullable<global::System.DateTime> value);
         partial void OnFechaRespuestaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte Estado
+        {
+            get
+            {
+                return _Estado;
+            }
+            set
+            {
+                OnEstadoChanging(value);
+                ReportPropertyChanging("Estado");
+                _Estado = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Estado");
+                OnEstadoChanged();
+            }
+        }
+        private global::System.Byte _Estado;
+        partial void OnEstadoChanging(global::System.Byte value);
+        partial void OnEstadoChanged();
 
         #endregion
 

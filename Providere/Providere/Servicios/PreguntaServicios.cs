@@ -29,5 +29,23 @@ namespace Providere.Servicios
         {
            prr.Responder(id, responder);
         }
+
+        public void CambiarDeEstado(int id)
+        {
+            prr.CambiarDeEstado(id);
+        }
+
+        public bool NoExistenPreguntas(int id)
+        {
+            try
+            {
+                PreguntaRespuesta pregunta = prr.NoExistenPreguntas(id);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

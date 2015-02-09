@@ -348,6 +348,7 @@
     <Content Include="Views\Usuario\OlvideContrasenia.cshtml" />
     <Content Include="Views\Usuario\NuevaContrasenia.cshtml" />
     <Content Include="Views\Pregunta\Index.cshtml" />
+    <Content Include="Views\Calificacion\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
