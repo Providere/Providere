@@ -58,6 +58,22 @@ namespace Providere.Repositorios
                              select calificacion).Take(limite).ToList();
             return resultado;
         }
-    
+
+
+        public object TraerCalificacionesObtenidas(int idUsuario)
+        {
+            var resultados = (from califica in context.Calificacion
+                              where califica.IdCalificado == idUsuario
+                              select califica).ToList();
+            return resultados;
+        }
+
+        public object TraerCalificacionesOtorgadas(int idUsuario)
+        {
+            var resultados = (from califica in context.Calificacion
+                              where califica.IdCalificador == idUsuario
+                              select califica).ToList();
+            return resultados;
+        }
     }
 }

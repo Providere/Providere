@@ -57,5 +57,16 @@ namespace Providere.Servicios
         {
             return cr.TraerPrimerasCalificaciones(limite, idPublicacion);
         }
+
+
+        public object TraerCalificacionesObtenidas(int idUsuario)
+        {
+            return cr.TraerCalificacionesObtenidas(idUsuario);
+        }
+
+        public object TraerCalificacionesOtorgadas(int idUsuario)
+        {
+            return cr.TraerCalificacionesOtorgadas(idUsuario);
+        }
     }
 }

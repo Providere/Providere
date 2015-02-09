@@ -12,14 +12,90 @@
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="obtenidas">
-            <h2>Calificaciones obtenidas como prestador</h2>
-           
+            <h2>Calificaciones obtenidas</h2>
+           @if (ViewBag.Obtenidas.Count > 0)
+           {
+               foreach (var item in ViewBag.Obtenidas)
+               {
+                    <div class="col-md-12">
+                            <div>
+                             <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                            </div>
+                            <div>
+                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                {
+                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                    <em>@item.Descripcion </em>
+                                    <span class="help-block">@item.FechaCalificacion</span>
+                                }
+                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                {
+                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <em>@item.Descripcion</em>
+                                    <span class="help-block">@item.FechaCalificacion</span>
+                                }
+                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                {
+                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                    <em>@item.Descripcion</em>
+                                    <span class="help-block">@item.FechaCalificacion</span>  
+                                }
+                                <br />
+                            </div>
+                        </div> 
+               }
+
+           }
+           else
+           {
+               <span>No hay calificaciones para mostrar</span>
+           }
           
         </div>
 
         <div role="tabpanel" class="tab-pane" id="otorgadas">
             <h2>
-                Calificaciones otorgadas como cliente</h2>
+                Calificaciones otorgadas</h2>
+                @if (ViewBag.Otorgadas.Count > 0)
+                {
+                    foreach (var item in ViewBag.Otorgadas)
+                    {
+                        <div class="col-md-12">
+                            <div>
+                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                            </div>
+                            <div>
+                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                {
+                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                    <em>@item.Descripcion</em>
+                                    <span class="help-block">@item.FechaCalificacion</span>
+                                }
+                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                {
+                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <em>@item.Descripcion</em>
+                                    <span class="help-block">@item.FechaCalificacion</span>
+                                }
+                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                {
+                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                    <em>@item.Descripcion</em>
+                                    <span class="help-block">@item.FechaCalificacion</span>  
+                                }
+                                <br />
+                            </div>
+                        </div> 
+                    }
+                }
+                else
+                {
+                    <span>No hay calificaciones para mostrar</span>
+                }
           
         </div>
     </div>
