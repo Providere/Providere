@@ -24,7 +24,7 @@ namespace Providere.Controllers
         {
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             var publicaciones = ps.ListarMisPublicaciones(idUsuario);
-
+            ViewBag.Listado = publicaciones;
             ViewBag.Error = TempData["Error"];
             ViewBag.Exito = TempData["Exito"];
 
