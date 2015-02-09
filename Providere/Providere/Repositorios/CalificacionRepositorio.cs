@@ -60,7 +60,23 @@ namespace Providere.Repositorios
         }
 
 
-        public object TraerCalificacionesObtenidas(int idUsuario)
+        public object TraerCalificacionesObtenidas(int idUsuario, int limite)
+        {
+            var resultados = (from califica in context.Calificacion
+                              where califica.IdCalificado == idUsuario
+                              select califica).Take(limite).ToList();
+            return resultados;
+        }
+
+        public object TraerCalificacionesOtorgadas(int idUsuario, int limite)
+        {
+            var resultados = (from califica in context.Calificacion
+                              where califica.IdCalificador == idUsuario
+                              select califica).Take(limite).ToList();
+            return resultados;
+        }
+
+        public object TraerCalificacionObtenidasTodas(int idUsuario)
         {
             var resultados = (from califica in context.Calificacion
                               where califica.IdCalificado == idUsuario
@@ -68,7 +84,7 @@ namespace Providere.Repositorios
             return resultados;
         }
 
-        public object TraerCalificacionesOtorgadas(int idUsuario)
+        public object TraerCalificacionesOtorgadasTodas(int idUsuario)
         {
             var resultados = (from califica in context.Calificacion
                               where califica.IdCalificador == idUsuario

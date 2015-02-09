@@ -18,10 +18,16 @@ namespace Providere.Controllers
         public ActionResult Index ()
         {
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            var obtenidas = cs.TraerCalificacionesObtenidas(idUsuario); //Soy calificado
-            var otorgadas = cs.TraerCalificacionesOtorgadas(idUsuario); //Soy calificador
+            int limite = 4;
+            var obtenidas = cs.TraerCalificacionesObtenidas(idUsuario,limite); //Soy calificado
+            var otorgadas = cs.TraerCalificacionesOtorgadas(idUsuario,limite); //Soy calificador
             ViewBag.Obtenidas = obtenidas; 
             ViewBag.Otorgadas = otorgadas;
+
+            var obtenidasTodas = cs.TraerCalificacionesObtenidasTodas(idUsuario); 
+            var otorgadasTodas = cs.TraerCalificacionesOtorgadasTodas(idUsuario); 
+            ViewBag.ObtenidasTodas = obtenidasTodas;
+            ViewBag.OtorgadasTodas = otorgadasTodas;
 
             return View();
         }

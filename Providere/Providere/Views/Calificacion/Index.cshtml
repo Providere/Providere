@@ -13,156 +13,355 @@
         <div role="tabpanel" class="tab-pane active" id="obtenidas">
             <h2>
                 Calificaciones obtenidas</h2>
-            @if (ViewBag.Obtenidas.Count > 0)
-            {
-                foreach (var item in ViewBag.Obtenidas)
+            <div class="row">
+                @if (ViewBag.Obtenidas.Count > 0)
                 {
-                    if (item.IdTipoCalificacion == 1)
+                    foreach (var item in ViewBag.Obtenidas)
                     {
-                <div class="col-md-12">
-                    <div>
-                        <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
-                        <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                        <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
-                    </div>
-                    <div>
-                        @if (@item.IdTipoEvaluacion == 1) //Positiva
+                        if (item.IdTipoCalificacion == 1)
                         {
-                            <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                            <em>@item.Descripcion </em>
-                            <span class="help-block">@item.FechaCalificacion</span>
+                    <div class="col-md-12">
+                        <div>
+                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                            <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                        </div>
+                        <div>
+                            @if (@item.IdTipoEvaluacion == 1) //Positiva
+                            {
+                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                <em>@item.Descripcion </em>
+                                <button type="button" class="btn btn-link">Denunciar</button>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            @if (@item.IdTipoEvaluacion == 2) //Neutro
+                            {
+                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                <em>@item.Descripcion</em>
+                                <button type="button" class="btn btn-link">Denunciar</button>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            @if (@item.IdTipoEvaluacion == 3) //Negativo
+                            {
+                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                <em>@item.Descripcion</em>
+                                <button type="button" class="btn btn-link">Denunciar</button>
+                                <span class="help-block">@item.FechaCalificacion</span>  
+                            }
+                            <br />
+                        </div>
+                    </div> 
                         }
-                        @if (@item.IdTipoEvaluacion == 2) //Neutro
+                        else
                         {
-                            <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                            <em>@item.Descripcion</em>
-                            <span class="help-block">@item.FechaCalificacion</span>
+                    <div class="col-md-12">
+                        <div>
+                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                            <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                        </div>
+                        <div>
+                            @if (@item.IdTipoEvaluacion == 1) //Positiva
+                            {
+                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                <em>@item.Descripcion </em>
+                                <button type="button" class="btn btn-link">Denunciar</button>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            @if (@item.IdTipoEvaluacion == 2) //Neutro
+                            {
+                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                <em>@item.Descripcion</em>
+                                <button type="button" class="btn btn-link">Denunciar</button>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            @if (@item.IdTipoEvaluacion == 3) //Negativo
+                            {
+                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                <em>@item.Descripcion</em>
+                                <button type="button" class="btn btn-link">Denunciar</button>
+                                <span class="help-block">@item.FechaCalificacion</span>  
+                            }
+                            <br />
+                        </div>
+                    </div> 
                         }
-                        @if (@item.IdTipoEvaluacion == 3) //Negativo
-                        {
-                            <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                            <em>@item.Descripcion</em>
-                            <span class="help-block">@item.FechaCalificacion</span>  
-                        }
-                        <br />
-                    </div>
-                </div> 
                     }
-                    else
+                    if (ViewBag.ObtenidasTodas.Count > 4)
                     {
-                <div class="col-md-12">
-                    <div>
-                        <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
-                        <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                        <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                    <!-- Button trigger modal -->
+                    <center>
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">
+                            Ver mas calificaciones
+                        </button>
+                    </center>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">
+                                        Calificaciones obtenidas</h4>
+                                </div>
+                                <div class="modal-body">
+                                    @if (ViewBag.ObtenidasTodas.Count > 0)
+                                    {
+                                        foreach (var item in ViewBag.ObtenidasTodas)
+                                        {
+                                            if (item.IdTipoCalificacion == 1)
+                                            {
+                                        <div class="row">
+                                            <div>
+                                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                            </div>
+                                            <div>
+                                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                                {
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                    <em>@item.Descripcion </em>
+                                                    <button type="button" class="btn btn-link">Denunciar</button>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                                {
+                                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <button type="button" class="btn btn-link">Denunciar</button>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                                {
+                                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <button type="button" class="btn btn-link">Denunciar</button>
+                                                    <span class="help-block">@item.FechaCalificacion</span>  
+                                                }
+                                            </div>
+                                        </div> 
+                                            }
+                                            else
+                                            {
+                                        <div class="row">
+                                            <div>
+                                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                                            </div>
+                                            <div>
+                                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                                {
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                    <em>@item.Descripcion </em>
+                                                    <button type="button" class="btn btn-link">Denunciar</button>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                                {
+                                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <button type="button" class="btn btn-link">Denunciar</button>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                                {
+                                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <button type="button" class="btn btn-link">Denunciar</button>
+                                                    <span class="help-block">@item.FechaCalificacion</span>  
+                                                }
+                                            </div>
+                                        </div>                       
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        @if (@item.IdTipoEvaluacion == 1) //Positiva
-                        {
-                            <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                            <em>@item.Descripcion </em>
-                            <span class="help-block">@item.FechaCalificacion</span>
-                        }
-                        @if (@item.IdTipoEvaluacion == 2) //Neutro
-                        {
-                            <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                            <em>@item.Descripcion</em>
-                            <span class="help-block">@item.FechaCalificacion</span>
-                        }
-                        @if (@item.IdTipoEvaluacion == 3) //Negativo
-                        {
-                            <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                            <em>@item.Descripcion</em>
-                            <span class="help-block">@item.FechaCalificacion</span>  
-                        }
-                        <br />
-                    </div>
-                </div> 
-                       
                     }
                 }
-
-            }
-            else
-            {
-                <span>No hay calificaciones para mostrar</span>
-            }
+                else
+                {
+                    <span>No hay calificaciones para mostrar</span>
+                }
+            </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="otorgadas">
             <h2>
                 Calificaciones otorgadas</h2>
-            @if (ViewBag.Otorgadas.Count > 0)
-            {
-                foreach (var item in ViewBag.Otorgadas)
+            <div class="row">
+                @if (ViewBag.Otorgadas.Count > 0)
                 {
-                    if (item.IdTipoCalificacion == 1)
+                    foreach (var item in ViewBag.Otorgadas)
                     {
-                <div class="col-md-12">
-                    <div>
-                        <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
-                        <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                        <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                        if (item.IdTipoCalificacion == 1)
+                        {
+                    <div class="col-md-12">
+                        <div>
+                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                            <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                        </div>
+                        <div>
+                            @if (@item.IdTipoEvaluacion == 1) //Positiva
+                            {
+                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            @if (@item.IdTipoEvaluacion == 2) //Neutro
+                            {
+                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            @if (@item.IdTipoEvaluacion == 3) //Negativo
+                            {
+                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>  
+                            }
+                            <br />
+                        </div>
                     </div>
-                    <div>
-                        @if (@item.IdTipoEvaluacion == 1) //Positiva
-                        {
-                            <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                            <em>@item.Descripcion</em>
-                            <span class="help-block">@item.FechaCalificacion</span>
                         }
-                        @if (@item.IdTipoEvaluacion == 2) //Neutro
+                        else
                         {
-                            <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                            <em>@item.Descripcion</em>
-                            <span class="help-block">@item.FechaCalificacion</span>
+                    <div class="col-md-12">
+                        <div>
+                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                            <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                        </div>
+                        <div>
+                            @if (@item.IdTipoEvaluacion == 1) //Positiva
+                            {
+                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            @if (@item.IdTipoEvaluacion == 2) //Neutro
+                            {
+                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            @if (@item.IdTipoEvaluacion == 3) //Negativo
+                            {
+                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>  
+                            }
+                            <br />
+                        </div>
+                    </div>     
                         }
-                        @if (@item.IdTipoEvaluacion == 3) //Negativo
-                        {
-                            <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                            <em>@item.Descripcion</em>
-                            <span class="help-block">@item.FechaCalificacion</span>  
-                        }
-                        <br />
-                    </div>
-                </div>
                     }
-                    else
+
+                    if (ViewBag.OtorgadasTodas.Count > 4)
                     {
-                <div class="col-md-12">
-                    <div>
-                        <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
-                        <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                        <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                    <!-- Button trigger modal -->
+                    <center>
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal2">
+                            Ver mas calificaciones
+                        </button>
+                    </center>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">
+                                        Calificaciones Otorgadas</h4>
+                                </div>
+                                <div class="modal-body">
+                                    @if (ViewBag.OtorgadasTodas.Count > 0)
+                                    {
+                                        foreach (var item in ViewBag.OtorgadasTodas)
+                                        {
+                                            if (item.IdTipoCalificacion == 1)
+                                            {
+                                        <div class="row">
+                                            <div>
+                                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                            </div>
+                                            <div>
+                                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                                {
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                    <em>@item.Descripcion </em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                                {
+                                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                                {
+                                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>  
+                                                }
+                                            </div>
+                                        </div> 
+                                            }
+                                            else
+                                            {
+                                        <div class="row">
+                                            <div>
+                                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                                            </div>
+                                            <div>
+                                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                                {
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                    <em>@item.Descripcion </em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                                {
+                                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                                {
+                                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>  
+                                                }
+                                            </div>
+                                        </div>                       
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        @if (@item.IdTipoEvaluacion == 1) //Positiva
-                        {
-                            <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                            <em>@item.Descripcion</em>
-                            <span class="help-block">@item.FechaCalificacion</span>
-                        }
-                        @if (@item.IdTipoEvaluacion == 2) //Neutro
-                        {
-                            <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                            <em>@item.Descripcion</em>
-                            <span class="help-block">@item.FechaCalificacion</span>
-                        }
-                        @if (@item.IdTipoEvaluacion == 3) //Negativo
-                        {
-                            <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                            <em>@item.Descripcion</em>
-                            <span class="help-block">@item.FechaCalificacion</span>  
-                        }
-                        <br />
-                    </div>
-                </div>     
                     }
                 }
-            }
-            else
-            {
-                <span>No hay calificaciones para mostrar</span>
-            }
+                else
+                {
+                    <span>No hay calificaciones para mostrar</span>
+                }
+            </div>
         </div>
     </div>
 </div>
