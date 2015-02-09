@@ -28,53 +28,54 @@
     </div>
 }
 <div>
+    <h2>
+        Ultimas publicaciones</h2>
     @if (ViewBag.PublicacionesMasRecientes.listadoDePublicaciones.Count > 0)
-    {<div class="listado-publicaciones" id="ultimas-publicaciones">
-        <h2>
-            Ultimas publicaciones</h2>
-        <br />
-        <div class="row">
-            @foreach (var item in ViewBag.PublicacionesMasRecientes.listadoDePublicaciones)
-            {               
-                <div class="col-xs-3">
-                    <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >
-                        <div class="thumbnail">
-                            <div class="contenedor-img">
-                                <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
+    {
+        <div class="listado-publicaciones" id="ultimas-publicaciones">
+            <br />
+            <div class="row">
+                @foreach (var item in ViewBag.PublicacionesMasRecientes.listadoDePublicaciones)
+                {               
+                    <div class="col-xs-3">
+                        <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >
+                            <div class="thumbnail">
+                                <div class="contenedor-img">
+                                    <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
                                  width="110%" alt="" height= "200px" />
-                            </div>
-                            <div class="caption text-center">
-                                <h4>
-                                    <a href="#">
-                                        @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
-                                <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
-                                <br />
-                                <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span>
-                                <br />
-                                <p>
-                                    @if (@item.publicacion.PrecioOpcion == 1)
-                                    {
+                                </div>
+                                <div class="caption text-center">
+                                    <h4>
+                                        <a href="#">
+                                            @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                    <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                    <br />
+                                    <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span>
+                                    <br />
+                                    <p>
+                                        @if (@item.publicacion.PrecioOpcion == 1)
+                                        {
                                        
-                                        @Html.Label("A Convenir") 
-                                    }
-                                    else
-                                    {
-                                        @Html.Label("$") 
-                                        @String.Format("{0:0.00}", @item.publicacion.Precio)                     
+                                            @Html.Label("A Convenir") 
+                                        }
+                                        else
+                                        {
+                                            @Html.Label("$") 
+                                            @String.Format("{0:0.00}", @item.publicacion.Precio)                     
                    
-                                    }
-                                </p>
+                                        }
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            }
+                        </a>
+                    </div>
+                }
+            </div>
+            <center>
+                <a href="@Url.Action("VerMasPublicaciones", "Publicacion")" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-chevron-right"></span>Ver mas publicaciones</a>
+            </center>
         </div>
-        <center>
-            <a href="@Url.Action("VerMasPublicaciones", "Publicacion")" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-right"></span>Ver mas
-                publicaciones</a>
-        </center>
-    </div>
     }
     else
     {
@@ -110,7 +111,8 @@
                 }
             </div>
             <center>
-                <a href="@Url.Action("VerMasPrestadores", "Publicacion")" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-right"></span>Ver mas prestadores</a>
+                <a href="@Url.Action("VerMasPrestadores", "Publicacion")" class="btn btn-primary"><span
+                    class="glyphicon glyphicon-chevron-right"></span>Ver mas prestadores</a>
             </center>
         }
         else
@@ -147,7 +149,9 @@
                 }
             </div>
             <center>
-                   <a href="@Url.Action("VerMasPrestadoresZona", "Publicacion")" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-right"></span>Ver mas prestadores de mi zona</a>
+                <a href="@Url.Action("VerMasPrestadoresZona", "Publicacion")" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-chevron-right"></span>Ver mas prestadores de mi
+                    zona</a>
             </center>
             <br />
         }
