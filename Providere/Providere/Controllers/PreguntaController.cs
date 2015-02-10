@@ -44,22 +44,12 @@ namespace Providere.Controllers
                 if (!string.IsNullOrWhiteSpace(preguntar))
                 {
                     prs.PreguntarEnPublicacion(idUser, id, preguntar);
-                    try
-                    {
-                        //Traer todo de la publicacion, para tener el mail del prestador:
-                        Publicacion publicacion = ps.TraerPublicacionPorId(id);
-                        mailing.EnviarMailPregunta(publicacion);
-                    }
-                    catch (System.Net.Mail.SmtpException ex)
-                    {
-                        ClientException.LogException(ex, "Error al enviar el mail"); //No puede enviar el mail pero igual publica la pregunta
-                        TempData["Exito"] = "Su pregunta fue publicada correctamente";
-                        return RedirectToAction("Home", "Home");
-                    }
+                    Publicacion publicacion = ps.TraerPublicacionPorId(id);
 
                     TempData["Exito"] = "Pregunta publicada correctamente";
                     return RedirectToAction("Home", "Home");
                 }
+
                 TempData["Error"] = "La pregunta no puede ser vacia";
                 return RedirectToAction("VisualizarPublicacion", "Publicacion", new { idPublicacion = id });
             }

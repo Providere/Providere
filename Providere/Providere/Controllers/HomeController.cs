@@ -21,11 +21,8 @@ namespace Providere.Controllers
             
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
-            //ViewBag.MensajePregunta = "Tiene preguntas sin responder";
 
             ViewBag.PreguntaSinResponder = prs.TraerPreguntasSinResponder(Convert.ToInt16(this.Session["IdUsuario"]));
-
-
 
             int limite = 4;
 

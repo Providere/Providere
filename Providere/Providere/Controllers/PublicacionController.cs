@@ -31,15 +31,6 @@ namespace Providere.Controllers
             return View(publicaciones);
         }
 
-        // Listado publico
-        //public ActionResult Listar()
-        //{
-        //    int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-        //    var publicaciones = ps.ListarMisPublicaciones(idUsuario);
-
-        //    return View();
-        //}
-
         public ActionResult NuevaPublicacion()
         {
             ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre");
