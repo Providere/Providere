@@ -27,6 +27,14 @@
         La penalización finalizará el @ViewBag.Sancion.FechaFin.ToString("f")
     </div>
 }
+@if (ViewBag.PreguntaSinResponder.Count > 0)
+{  
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        <center>Tienes preguntas sin responder. Para responderlas hace click en la sección Preguntas de tu menú de usuario</center>
+    </div>   
+}
 <div>
     <h2>
         Ultimas publicaciones</h2>
