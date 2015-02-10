@@ -60,8 +60,8 @@ namespace Providere.Controllers
         {
             if (!string.IsNullOrWhiteSpace(responder))
             {
-                prs.TraerPreguntasSinResponder(id, responder);
-                TempData["Exito"] = "Respuesta cargada con exito";
+                prs.Responder(id, responder);
+                TempData["Exito"] = "Respuesta publicada con exito";
                 return RedirectToAction("Home", "Home");
             }
             else
