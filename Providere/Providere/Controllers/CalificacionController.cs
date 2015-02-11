@@ -13,9 +13,10 @@ namespace Providere.Controllers
 
         CalificacionServicios cs = new CalificacionServicios();
         ContratacionServicios crs = new ContratacionServicios();
+        DenunciaServicios ds = new DenunciaServicios();
 
-
-        public ActionResult Index ()
+         
+        public ActionResult Index()
         {
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             int limite = 4;
@@ -74,6 +75,19 @@ namespace Providere.Controllers
                 TempData["Error"] = "No se pudo guardar la calificación, intentalo nuevamente";
                 return RedirectToAction("Index", "Contratacion");
             }
+        }
+
+        [HttpPost]
+        public ActionResult DenunciarComentario(int id)
+        {
+            ds.DenunciaComentario(id);
+
+            if (ds.VerificarComentarioDenunciado(id) == false)
+            {
+                ViewBag.ComentarioNoDenunciado = "Comentario no denunciado";
+            }
+
+            return RedirectToAction("Index","Calificacion");
         }
     }
 }
