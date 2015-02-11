@@ -25,7 +25,7 @@ namespace Providere.Servicios
             return prr.TraerPreguntasQueHice(idUsuario);
         }
 
-        public void TraerPreguntasSinResponder(int id, string responder)
+        public void Responder(int id, string responder)
         {
            prr.Responder(id, responder);
         }
@@ -46,6 +46,11 @@ namespace Providere.Servicios
                 return false;
             }
             return true;
+        }
+
+        public object TraerPreguntasPublicacion(int id)
+        {
+            return prr.TraerPreguntasPublicacion(id);
         }
     }
 }

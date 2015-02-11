@@ -43,7 +43,7 @@ namespace Providere.Controllers
             return View(quienMeContrato);
         }*/
 
-        [HttpPost]
+     
         public ActionResult Contratar(Publicacion publicacion)
         {
 

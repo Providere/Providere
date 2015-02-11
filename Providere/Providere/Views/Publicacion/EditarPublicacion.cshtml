@@ -84,8 +84,8 @@
                         <br />
                         <div class="row">
                             @Html.LabelFor(model => model.Descripcion, new { @class = "col-sm-5 control-label" })
-                            <div class="col-xs-3">
-                                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control" })
+                            <div class="col-xs-5">
+                                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", row = 5})
                                 @Html.ValidationMessageFor(model => model.Descripcion)
                             </div>
                         </div>

@@ -31,21 +31,22 @@
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion </em>
-                                <button type="button" class="btn btn-link">Denunciar</button>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
                             @if (@item.IdTipoEvaluacion == 2) //Neutro
                             {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
-                                <button type="button" class="btn btn-link">Denunciar</button>
+                                <button type="button" class="btn btn-link">
+                                    Denunciar</button>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
                             @if (@item.IdTipoEvaluacion == 3) //Negativo
                             {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em>
-                                <button type="button" class="btn btn-link">Denunciar</button>
+                                <button type="button" class="btn btn-link">
+                                    Denunciar</button>
                                 <span class="help-block">@item.FechaCalificacion</span>  
                             }
                             <br />
@@ -65,21 +66,22 @@
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion </em>
-                                <button type="button" class="btn btn-link">Denunciar</button>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
                             @if (@item.IdTipoEvaluacion == 2) //Neutro
                             {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
-                                <button type="button" class="btn btn-link">Denunciar</button>
+                                <button type="button" class="btn btn-link">
+                                    Denunciar</button>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
                             @if (@item.IdTipoEvaluacion == 3) //Negativo
                             {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em>
-                                <button type="button" class="btn btn-link">Denunciar</button>
+                                <button type="button" class="btn btn-link">
+                                    Denunciar</button>
                                 <span class="help-block">@item.FechaCalificacion</span>  
                             }
                             <br />
@@ -125,21 +127,22 @@
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
-                                                    <button type="button" class="btn btn-link">Denunciar</button>
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                 }
                                                 @if (@item.IdTipoEvaluacion == 2) //Neutro
                                                 {
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <button type="button" class="btn btn-link">Denunciar</button>
+                                                    <button type="button" class="btn btn-link">
+                                                        Denunciar</button>
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                 }
                                                 @if (@item.IdTipoEvaluacion == 3) //Negativo
                                                 {
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <button type="button" class="btn btn-link">Denunciar</button>
+                                                    <button type="button" class="btn btn-link">
+                                                        Denunciar</button>
                                                     <span class="help-block">@item.FechaCalificacion</span>  
                                                 }
                                             </div>
@@ -158,21 +161,22 @@
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
-                                                    <button type="button" class="btn btn-link">Denunciar</button>
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                 }
                                                 @if (@item.IdTipoEvaluacion == 2) //Neutro
                                                 {
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <button type="button" class="btn btn-link">Denunciar</button>
+                                                    <button type="button" class="btn btn-link">
+                                                        Denunciar</button>
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                 }
                                                 @if (@item.IdTipoEvaluacion == 3) //Negativo
                                                 {
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <button type="button" class="btn btn-link">Denunciar</button>
+                                                    <button type="button" class="btn btn-link">
+                                                        Denunciar</button>
                                                     <span class="help-block">@item.FechaCalificacion</span>  
                                                 }
                                             </div>
@@ -188,7 +192,8 @@
                 }
                 else
                 {
-                    <span>No hay calificaciones para mostrar</span>
+                    <div class="col-md-12">
+                        No hay calificaciones para mostrar</div>
                 }
             </div>
         </div>
@@ -359,7 +364,8 @@
                 }
                 else
                 {
-                    <span>No hay calificaciones para mostrar</span>
+                    <div class="col-md-12">
+                        No hay calificaciones para mostrar</div>
                 }
             </div>
         </div>

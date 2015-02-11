@@ -17,6 +17,7 @@ namespace Providere.Controllers
         PreguntaServicios prs = new PreguntaServicios();
         ContratacionServicios cos = new ContratacionServicios();
         CalificacionServicios cas = new CalificacionServicios();
+        PreguntaServicios ppr = new PreguntaServicios();
 
         SancionServicios ss = new SancionServicios();
 
@@ -24,21 +25,12 @@ namespace Providere.Controllers
         {
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             var publicaciones = ps.ListarMisPublicaciones(idUsuario);
-
+            ViewBag.Listado = publicaciones;
             ViewBag.Error = TempData["Error"];
             ViewBag.Exito = TempData["Exito"];
 
             return View(publicaciones);
         }
-
-        // Listado publico
-        //public ActionResult Listar()
-        //{
-        //    int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-        //    var publicaciones = ps.ListarMisPublicaciones(idUsuario);
-
-        //    return View();
-        //}
 
         public ActionResult NuevaPublicacion()
         {
@@ -119,6 +111,10 @@ namespace Providere.Controllers
                 {
                     ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
                 }
+
+                var mostrarPreguntas = ppr.TraerPreguntasPublicacion(id);
+                ViewBag.MotrarPreguntas = mostrarPreguntas;
+
                 //Para mostrar todas las calificaciones de la publicacion:
                 var traerCalificaciones = cas.TraerCalificaciones(id);
                 ViewBag.Calificaciones = traerCalificaciones;
@@ -159,6 +155,9 @@ namespace Providere.Controllers
                 ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
             }
 
+            var mostrarPreguntas = ppr.TraerPreguntasPublicacion(idPublicacion);
+            ViewBag.MotrarPreguntas = mostrarPreguntas;
+
             var traerPrimerasCalificaciones = cas.TraerPrimerasCalificaciones(5, idPublicacion);
             ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
 
@@ -177,7 +176,7 @@ namespace Providere.Controllers
                 ViewBag.MostrarPuntaje = traerPuntaje;
             }
 
-            //Si el servicio(publicacion) fue contratado, se muestra el telefono del prestador:
+            //Si el servicio fue contratado, se muestra el telefono del prestador:
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
            var contratada =  cos.TraerContratada(idPublicacion,idUsuario);
            ViewBag.Contratada = contratada;
