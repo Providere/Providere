@@ -44,7 +44,6 @@ namespace Providere.Controllers
                 if (!string.IsNullOrWhiteSpace(preguntar))
                 {
                     prs.PreguntarEnPublicacion(idUser, id, preguntar);
-                    Publicacion publicacion = ps.TraerPublicacionPorId(id);
 
                     TempData["Exito"] = "Pregunta publicada correctamente";
                     return RedirectToAction("Home", "Home");
@@ -76,7 +75,7 @@ namespace Providere.Controllers
         {
             try
             {
-                prs.CambiarDeEstado(id);//No se elimina pasa a estado 0:Oculta - 1: No oculta
+                prs.CambiarDeEstado(id);//No se elimina cambia de estado
                 TempData["Exito"] = "Pregunta eliminada correctamente"; 
                 return RedirectToAction("Index", "Pregunta");
             }

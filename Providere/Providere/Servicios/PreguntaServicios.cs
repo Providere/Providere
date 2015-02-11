@@ -47,5 +47,10 @@ namespace Providere.Servicios
             }
             return true;
         }
+
+        public object TraerPreguntasPublicacion(int id)
+        {
+            return prr.TraerPreguntasPublicacion(id);
+        }
     }
 }
