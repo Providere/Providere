@@ -3,12 +3,12 @@
     ViewBag.Title = "Publicacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    @if (ViewBag.Sancion != null)
-                    {
- <div class="alert alert-danger alert-dismissable container">
+@if (ViewBag.Sancion != null)
+{
+    <div class="alert alert-danger alert-dismissable container">
         <button type="button" class="close" data-dismiss="alert">
             &times;</button>
-        Su cuenta esta actualmente bloqueada por lo cual no puede realizar contrataciones.
+        Su cuenta esta actualmente bloqueada por lo cual no puede realizar contrataciones
     </div>
                     }
 <div class="col-md-12 well">
@@ -102,10 +102,12 @@
                                 }
                             }
                         }
-                    }else {  
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block disabled glyphicon glyphicon-ok" })
                     }
-                } 
+                    else
+                    {  
+                    @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block disabled glyphicon glyphicon-ok" })
+                    }
+                }
             </div>
             <div class="col-md-12">
                 <h3>
@@ -121,19 +123,19 @@
                                 <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                             </div>
                             <div>
-                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                @if (item.IdTipoEvaluacion == 1) //Positiva
                                 {
                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                     <em>@item.Descripcion</em>
                                     <span class="help-block">@item.FechaCalificacion</span>
                                 }
-                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                @if (item.IdTipoEvaluacion == 2) //Neutro
                                 {
                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <em>@item.Descripcion</em>
                                     <span class="help-block">@item.FechaCalificacion</span>
                                 }
-                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                @if (item.IdTipoEvaluacion == 3) //Negativo
                                 {
                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                     <em>@item.Descripcion</em>
@@ -174,19 +176,19 @@
                                                     <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                                                 </div>
                                                 <div>
-                                                    @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                                    @if (item.IdTipoEvaluacion == 1) //Positiva
                                                     {
                                                         <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                         <em>@item.Descripcion</em>
                                                         <span class="help-block">@item.FechaCalificacion</span>
                                                     }
-                                                    @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                                    @if (item.IdTipoEvaluacion == 2) //Neutro
                                                     {
                                                         <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                         <em>@item.Descripcion</em>
                                                         <span class="help-block">@item.FechaCalificacion</span>
                                                     }
-                                                    @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                                    @if (item.IdTipoEvaluacion == 3) //Negativo
                                                     {
                                                         <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                         <em>@item.Descripcion</em>
@@ -263,7 +265,7 @@
                 <h3>
                     Preguntas al prestador</h3>
                 @ViewBag.NoExistenPreguntas
-                @foreach (var item in ViewBag.MotrarPreguntas)
+                @foreach (var item in ViewBag.MostrarPreguntas)
                 {
                     <dl class="question" id="pregunta">
                         <dd class="txt">
@@ -295,11 +297,11 @@
                 @Html.HiddenFor(model => model.IdUsuario)
             </div>
             <div class="form-group col-md-10">
-            <br />
+                <br />
                 @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta..." })
             </div>
             <div class="form-group col-md-2">
-            <br />
+                <br />
                 <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
                     Enviar</button>
             </div>  
@@ -313,11 +315,11 @@
             if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
             {
             <div class="form-group col-md-10">
-            <br />
+                <br />
                 @Html.TextArea("preguntar", new { @class = "form-control", placeholder = "Escribe tu pregunta..." })
             </div>
             <div class="form-group col-md-2">
-            <br />
+                <br />
                 <button name="btnEnviar" class="btn btn-primary btn-lg disabled" type="submit">
                     Enviar</button>
             </div> 
@@ -331,11 +333,11 @@
                 {
                 
             <div class="form-group col-md-10">
-            <br />
+                <br />
                 @Html.TextArea("preguntar", new { @class = "form-control", placeholder = "Escribe tu pregunta..." })
             </div>
             <div class="form-group col-md-2">
-            <br />
+                <br />
                 <button name="btnEnviar" class="btn btn-primary btn-lg disabled" type="submit">
                     Enviar</button>
             </div> 

@@ -30,6 +30,12 @@ namespace Providere.Controllers
             ViewBag.ObtenidasTodas = obtenidasTodas;
             ViewBag.OtorgadasTodas = otorgadasTodas;
 
+            var comentariosDenunciados = ds.TraerDenunciados(idUsuario);
+            if (comentariosDenunciados == false)
+            {
+                ViewBag.ComentariosDenunciados = "Comentario no Denunciado";
+            }
+
             return View();
         }
 

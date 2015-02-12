@@ -113,7 +113,7 @@ namespace Providere.Controllers
                 }
 
                 var mostrarPreguntas = ppr.TraerPreguntasPublicacion(id);
-                ViewBag.MotrarPreguntas = mostrarPreguntas;
+                ViewBag.MostrarPreguntas = mostrarPreguntas;
 
                 //Para mostrar todas las calificaciones de la publicacion:
                 var traerCalificaciones = cas.TraerCalificaciones(id);
@@ -156,7 +156,7 @@ namespace Providere.Controllers
             }
 
             var mostrarPreguntas = ppr.TraerPreguntasPublicacion(idPublicacion);
-            ViewBag.MotrarPreguntas = mostrarPreguntas;
+            ViewBag.MostrarPreguntas = mostrarPreguntas;
 
             var traerPrimerasCalificaciones = cas.TraerPrimerasCalificaciones(5, idPublicacion);
             ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
