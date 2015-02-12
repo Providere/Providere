@@ -482,7 +482,8 @@ namespace Providere.Models
         /// <param name="idTipoEvaluacion">Valor inicial de la propiedad IdTipoEvaluacion.</param>
         /// <param name="idTipoCalificacion">Valor inicial de la propiedad IdTipoCalificacion.</param>
         /// <param name="fechaCalificacion">Valor inicial de la propiedad FechaCalificacion.</param>
-        public static Calificacion CreateCalificacion(global::System.Int16 id, global::System.String descripcion, global::System.Int16 idCalificador, global::System.Int16 idCalificado, global::System.Int16 idContratacion, global::System.Int16 idTipoEvaluacion, global::System.Int16 idTipoCalificacion, global::System.DateTime fechaCalificacion)
+        /// <param name="denunciado">Valor inicial de la propiedad Denunciado.</param>
+        public static Calificacion CreateCalificacion(global::System.Int16 id, global::System.String descripcion, global::System.Int16 idCalificador, global::System.Int16 idCalificado, global::System.Int16 idContratacion, global::System.Int16 idTipoEvaluacion, global::System.Int16 idTipoCalificacion, global::System.DateTime fechaCalificacion, global::System.Byte denunciado)
         {
             Calificacion calificacion = new Calificacion();
             calificacion.Id = id;
@@ -493,6 +494,7 @@ namespace Providere.Models
             calificacion.IdTipoEvaluacion = idTipoEvaluacion;
             calificacion.IdTipoCalificacion = idTipoCalificacion;
             calificacion.FechaCalificacion = fechaCalificacion;
+            calificacion.Denunciado = denunciado;
             return calificacion;
         }
 
@@ -694,6 +696,30 @@ namespace Providere.Models
         private global::System.DateTime _FechaCalificacion;
         partial void OnFechaCalificacionChanging(global::System.DateTime value);
         partial void OnFechaCalificacionChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte Denunciado
+        {
+            get
+            {
+                return _Denunciado;
+            }
+            set
+            {
+                OnDenunciadoChanging(value);
+                ReportPropertyChanging("Denunciado");
+                _Denunciado = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Denunciado");
+                OnDenunciadoChanged();
+            }
+        }
+        private global::System.Byte _Denunciado;
+        partial void OnDenunciadoChanging(global::System.Byte value);
+        partial void OnDenunciadoChanged();
 
         #endregion
 

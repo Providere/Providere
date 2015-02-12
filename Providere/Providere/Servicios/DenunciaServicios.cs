@@ -20,35 +20,5 @@ namespace Providere.Servicios
         {
             dr.DenunciarComentario(id);
         }
-
-        public bool VerificarComentarioDenunciado(int id)
-        {
-            try
-            {
-                Denuncia denuncia = dr.VerificarComentarioDenunciado(id);
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public bool TraerDenunciados(int idUsuario)
-        {
-            try
-            {
-               List<Denuncia> denuncia = dr.TraerDenunciados(idUsuario);
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
-
-
-
-            
-        }
     }
 }

@@ -38,6 +38,8 @@ namespace Providere.Servicios
             calificacion.IdTipoCalificacion = tipoCalificacion.Id;
             calificacion.IdTipoEvaluacion = tipoEvaluacion.Id;
             calificacion.FechaCalificacion = DateTime.Now;
+            calificacion.Denunciado = 0; //no fue denunciada ese calificacion todavia
+
             
             cr.calificarUsuario(calificacion);
         }
