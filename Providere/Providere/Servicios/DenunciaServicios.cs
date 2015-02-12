@@ -33,5 +33,22 @@ namespace Providere.Servicios
             }
             return true;
         }
+
+        public bool TraerDenunciados(int idUsuario)
+        {
+            try
+            {
+               List<Denuncia> denuncia = dr.TraerDenunciados(idUsuario);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+
+
+
+            
+        }
     }
 }

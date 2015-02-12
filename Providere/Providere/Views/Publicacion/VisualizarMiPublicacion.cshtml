@@ -121,19 +121,19 @@
                                 <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                             </div>
                             <div>
-                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                @if (item.IdTipoEvaluacion == 1) //Positiva
                                 {
                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                     <em>@item.Descripcion</em>
                                     <span class="help-block">@item.FechaCalificacion</span>
                                 }
-                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                @if (item.IdTipoEvaluacion == 2) //Neutro
                                 {
                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <em>@item.Descripcion</em>
                                     <span class="help-block">@item.FechaCalificacion</span>
                                 }
-                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                @if (item.IdTipoEvaluacion == 3) //Negativo
                                 {
                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                     <em>@item.Descripcion</em>
@@ -174,19 +174,19 @@
                                                     <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                                                 </div>
                                                 <div>
-                                                    @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                                    @if (item.IdTipoEvaluacion == 1) //Positiva
                                                     {
                                                         <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                         <em>@item.Descripcion</em>
                                                         <span class="help-block">@item.FechaCalificacion</span>
                                                     }
-                                                    @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                                    @if (item.IdTipoEvaluacion == 2) //Neutro
                                                     {
                                                         <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                         <em>@item.Descripcion</em>
                                                         <span class="help-block">@item.FechaCalificacion</span>
                                                     }
-                                                    @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                                    @if (item.IdTipoEvaluacion == 3) //Negativo
                                                     {
                                                         <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                         <em>@item.Descripcion</em>

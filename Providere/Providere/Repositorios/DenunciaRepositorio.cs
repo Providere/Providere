@@ -41,5 +41,26 @@ namespace Providere.Repositorios
                             select de).FirstOrDefault();
             return denuncia;
         }
+
+        public List<Denuncia> TraerDenunciados(int idUsuario)
+        {
+            var calificacionesOtorgadas = (from califica in context.Calificacion
+                                           where califica.IdCalificado == idUsuario
+                                           select new { califica.Id});
+
+
+            List<int> listaCalificacionesOtorgadas = new List<int>();
+
+            foreach (var item in calificacionesOtorgadas)
+            {
+                listaCalificacionesOtorgadas.Add(item.Id);
+            }
+
+            var resultado = from denun in context.Denuncia
+                            where  listaCalificacionesOtorgadas.Contains(denun.IdCalificacion)              
+                            select denun;
+
+            return resultado.ToList();
+        }
     }
 }
