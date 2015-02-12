@@ -3,16 +3,15 @@
     ViewBag.Title = "Publicacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    @if (ViewBag.Sancion != null)
-                    {
- <div class="alert alert-danger alert-dismissable container">
+@if (ViewBag.Sancion != null)
+{
+    <div class="alert alert-danger alert-dismissable container">
         <button type="button" class="close" data-dismiss="alert">
             &times;</button>
-        Su cuenta esta actualmente bloqueada por lo cual no puede realizar contrataciones.
+        Su cuenta esta actualmente bloqueada por lo cual no puede realizar contrataciones
     </div>
-                    }
+}
 <div class="container well">
-                
     @if (ViewBag.Error != null)
     {
         <div class="alert alert-danger alert-dismissable">
@@ -102,10 +101,12 @@
                                 }
                             }
                         }
-                    }else {  
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block disabled glyphicon glyphicon-ok" })
                     }
-                } 
+                    else
+                    {  
+                    @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block disabled glyphicon glyphicon-ok" })
+                    }
+                }
             </div>
             <div class="col-md-12">
                 <h3>
@@ -263,7 +264,7 @@
                 <h3>
                     Preguntas al prestador</h3>
                 @ViewBag.NoExistenPreguntas
-                @foreach (var item in ViewBag.MotrarPreguntas)
+                @foreach (var item in ViewBag.MostrarPreguntas)
                 {
                     <dl class="question" id="pregunta">
                         <dd class="txt">
@@ -295,11 +296,11 @@
                 @Html.HiddenFor(model => model.IdUsuario)
             </div>
             <div class="form-group col-md-10">
-            <br />
+                <br />
                 @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta..." })
             </div>
             <div class="form-group col-md-2">
-            <br />
+                <br />
                 <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
                     Enviar</button>
             </div>  
@@ -313,11 +314,11 @@
             if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
             {
             <div class="form-group col-md-10">
-            <br />
+                <br />
                 @Html.TextArea("preguntar", new { @class = "form-control", placeholder = "Escribe tu pregunta..." })
             </div>
             <div class="form-group col-md-2">
-            <br />
+                <br />
                 <button name="btnEnviar" class="btn btn-primary btn-lg disabled" type="submit">
                     Enviar</button>
             </div> 
@@ -331,11 +332,11 @@
                 {
                 
             <div class="form-group col-md-10">
-            <br />
+                <br />
                 @Html.TextArea("preguntar", new { @class = "form-control", placeholder = "Escribe tu pregunta..." })
             </div>
             <div class="form-group col-md-2">
-            <br />
+                <br />
                 <button name="btnEnviar" class="btn btn-primary btn-lg disabled" type="submit">
                     Enviar</button>
             </div> 
