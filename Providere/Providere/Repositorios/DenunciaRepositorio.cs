@@ -24,5 +24,22 @@ namespace Providere.Repositorios
                     )
                     ).ToList();
         }
+
+        public void DenunciarComentario(int id)
+        {
+            Denuncia denuncia = new Denuncia();
+            denuncia.IdCalificacion = Convert.ToInt16(id);
+            denuncia.Fecha = DateTime.Now;
+            context.Denuncia.AddObject(denuncia);
+            context.SaveChanges();
+        }
+
+        public Denuncia VerificarComentarioDenunciado(int id)
+        {
+            var denuncia = (from de in context.Denuncia
+                            where (de.IdCalificacion == id)
+                            select de).FirstOrDefault();
+            return denuncia;
+        }
     }
 }

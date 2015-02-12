@@ -27,27 +27,56 @@
                             <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                         </div>
                         <div>
-                            @if (@item.IdTipoEvaluacion == 1) //Positiva
+                            @if (item.IdTipoEvaluacion == 1) //Positiva
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion </em>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
-                            @if (@item.IdTipoEvaluacion == 2) //Neutro
+                            @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                             {
+                                if (item.IdTipoEvaluacion == 2 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Neutro
+                                {
+                               
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
-                                <button type="button" class="btn btn-link">
-                                    Denunciar</button>
-                                <span class="help-block">@item.FechaCalificacion</span>
+                                
+                                <input type="submit" id="btnDenunciarNeutro1" value="Denunciar" class="btn btn-link" />
+                                <span class="help-block">@item.FechaCalificacion</span>   
+                                
+                                }
+                                else
+                                {
+                                    if (item.IdTipoEvaluacion == 2)
+                                    {
+                                <div class="alert alert-danger alert-dismissable">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
+                                        denunciado por ser ofensivo hacia terceros</span>
+                                </div>
+                                    }
+                                }
                             }
-                            @if (@item.IdTipoEvaluacion == 3) //Negativo
+                            @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                             {
+                                if (item.IdTipoEvaluacion == 3 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Negativo
+                                {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em>
-                                <button type="button" class="btn btn-link">
-                                    Denunciar</button>
+                               
+                                <input type="submit" id="btnDenunciarNegativo1" value="Denunciar" class="btn btn-link" />   
+                                
                                 <span class="help-block">@item.FechaCalificacion</span>  
+                                }
+                                else
+                                {
+                                    if (item.IdTipoEvaluacion == 3)
+                                    {
+                                <div class="alert alert-danger alert-dismissable">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
+                                        denunciado por ser ofensivo hacia terceros</span>
+                                </div>
+                                    }
+                                }
                             }
                             <br />
                         </div>
@@ -62,27 +91,56 @@
                             <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
                         </div>
                         <div>
-                            @if (@item.IdTipoEvaluacion == 1) //Positiva
+                            @if (item.IdTipoEvaluacion == 1) //Positiva
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion </em>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
-                            @if (@item.IdTipoEvaluacion == 2) //Neutro
+                            @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                             {
+                                if (item.IdTipoEvaluacion == 2 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Neutro
+                                {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
-                                <button type="button" class="btn btn-link">
-                                    Denunciar</button>
+                                
+                                <input type="submit" id="btnDenunciarNeutro2" value="Denunciar" class="btn btn-link" />   
+                                
                                 <span class="help-block">@item.FechaCalificacion</span>
+                                }
+
+                                else
+                                {
+                                    if (item.IdTipoEvaluacion == 2)
+                                    {
+                                <div class="alert alert-danger alert-dismissable">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
+                                        denunciado por ser ofensivo hacia terceros</span>
+                                </div>
+                                    }
+                                }
                             }
-                            @if (@item.IdTipoEvaluacion == 3) //Negativo
+                            @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                             {
+                                if (item.IdTipoEvaluacion == 3 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Negativo
+                                {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em>
-                                <button type="button" class="btn btn-link">
-                                    Denunciar</button>
+                               
+                                <input type="submit" id="btnDenunciarNegativo2" value="Denunciar" class="btn btn-link" />   
                                 <span class="help-block">@item.FechaCalificacion</span>  
+                                }
+
+                                else
+                                {
+                                    if (item.IdTipoEvaluacion == 3)
+                                    {
+                                <div class="alert alert-danger alert-dismissable">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
+                                        denunciado por ser ofensivo hacia terceros</span>
+                                </div>
+                                    }
+                                }
                             }
                             <br />
                         </div>
@@ -123,27 +181,55 @@
                                                 <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                                             </div>
                                             <div>
-                                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                                @if (item.IdTipoEvaluacion == 1) //Positiva
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                 }
-                                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                                @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                 {
+                                                    if (item.IdTipoEvaluacion == 2 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Neutro
+                                                    {
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <button type="button" class="btn btn-link">
-                                                        Denunciar</button>
+                                                    
+                                                    <input type="submit" id="btnDenunciarNeutro3" value="Denunciar" class="btn btn-link" />   
+                                                    
                                                     <span class="help-block">@item.FechaCalificacion</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        if (item.IdTipoEvaluacion == 2)
+                                                        {
+                                                    <div class="alert alert-danger alert-dismissable">
+                                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
+                                                            denunciado por ser ofensivo hacia terceros</span>
+                                                    </div>
+                                                        }
+                                                    }
                                                 }
-                                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                                @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                 {
+                                                    if (item.IdTipoEvaluacion == 3 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Negativo
+                                                    {
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <button type="button" class="btn btn-link">
-                                                        Denunciar</button>
+                                                   
+                                                    <input type="submit" id="btnDenunciarNegativo3" value="Denunciar" class="btn btn-link" />   
+                                                    
                                                     <span class="help-block">@item.FechaCalificacion</span>  
+                                                    }
+                                                    else
+                                                    {
+                                                        if (item.IdTipoEvaluacion == 3)
+                                                        {
+                                                    <div class="alert alert-danger alert-dismissable">
+                                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
+                                                            denunciado por ser ofensivo hacia terceros</span>
+                                                    </div>
+                                                        }
+                                                    }
                                                 }
                                             </div>
                                         </div> 
@@ -157,27 +243,55 @@
                                                 <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
                                             </div>
                                             <div>
-                                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                                @if (item.IdTipoEvaluacion == 1) //Positiva
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                 }
-                                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                                @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                 {
+                                                    if (item.IdTipoEvaluacion == 2 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Neutro
+                                                    {
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <button type="button" class="btn btn-link">
-                                                        Denunciar</button>
+                                                    
+                                                    <input type="submit" id="btnDenunciarNeutro4" value="Denunciar" class="btn btn-link" />   
+                                                    
                                                     <span class="help-block">@item.FechaCalificacion</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        if (item.IdTipoEvaluacion == 2)
+                                                        {
+                                                    <div class="alert alert-danger alert-dismissable">
+                                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
+                                                            denunciado por ser ofensivo hacia terceros</span>
+                                                    </div>
+                                                        }
+                                                    }
                                                 }
-                                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                                @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                 {
+                                                    if (item.IdTipoEvaluacion == 3 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Negativo
+                                                    {
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <button type="button" class="btn btn-link">
-                                                        Denunciar</button>
+                                                    
+                                                    <input type="submit" id="btnDenunciarNegativo4" value="Denunciar" class="btn btn-link" />   
+                                                    
                                                     <span class="help-block">@item.FechaCalificacion</span>  
+                                                    }
+                                                    else
+                                                    {
+                                                        if (item.IdTipoEvaluacion == 3)
+                                                        {
+                                                    <div class="alert alert-danger alert-dismissable">
+                                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
+                                                            denunciado por ser ofensivo hacia terceros</span>
+                                                    </div>
+                                                        }
+                                                    }
                                                 }
                                             </div>
                                         </div>                       
@@ -214,19 +328,19 @@
                             <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                         </div>
                         <div>
-                            @if (@item.IdTipoEvaluacion == 1) //Positiva
+                            @if (item.IdTipoEvaluacion == 1) //Positiva
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion</em>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
-                            @if (@item.IdTipoEvaluacion == 2) //Neutro
+                            @if (item.IdTipoEvaluacion == 2) //Neutro
                             {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
-                            @if (@item.IdTipoEvaluacion == 3) //Negativo
+                            @if (item.IdTipoEvaluacion == 3) //Negativo
                             {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em>
@@ -245,19 +359,19 @@
                             <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
                         </div>
                         <div>
-                            @if (@item.IdTipoEvaluacion == 1) //Positiva
+                            @if (item.IdTipoEvaluacion == 1) //Positiva
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion</em>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
-                            @if (@item.IdTipoEvaluacion == 2) //Neutro
+                            @if (item.IdTipoEvaluacion == 2) //Neutro
                             {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
-                            @if (@item.IdTipoEvaluacion == 3) //Negativo
+                            @if (item.IdTipoEvaluacion == 3) //Negativo
                             {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em>
@@ -303,19 +417,19 @@
                                                 <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                                             </div>
                                             <div>
-                                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                                @if (item.IdTipoEvaluacion == 1) //Positiva
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                 }
-                                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                                @if (item.IdTipoEvaluacion == 2) //Neutro
                                                 {
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                 }
-                                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                                @if (item.IdTipoEvaluacion == 3) //Negativo
                                                 {
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
@@ -333,19 +447,19 @@
                                                 <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
                                             </div>
                                             <div>
-                                                @if (@item.IdTipoEvaluacion == 1) //Positiva
+                                                @if (item.IdTipoEvaluacion == 1) //Positiva
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                 }
-                                                @if (@item.IdTipoEvaluacion == 2) //Neutro
+                                                @if (item.IdTipoEvaluacion == 2) //Neutro
                                                 {
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                 }
-                                                @if (@item.IdTipoEvaluacion == 3) //Negativo
+                                                @if (item.IdTipoEvaluacion == 3) //Negativo
                                                 {
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
