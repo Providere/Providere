@@ -135,6 +135,7 @@
     <Compile Include="Controllers\CalificacionController.cs" />
     <Compile Include="Controllers\ContratacionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagenController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\PreguntaController.cs" />
     <Compile Include="Controllers\PublicacionController.cs" />
@@ -176,7 +177,9 @@
     <Compile Include="Servicios\ContratacionServicios.cs" />
     <Compile Include="Servicios\DenunciaServicios.cs" />
     <Compile Include="Servicios\Encryptor.cs" />
+    <Compile Include="Servicios\FileHelper.cs" />
     <Compile Include="Servicios\IEnumerableExtension.cs" />
+    <Compile Include="Servicios\ImageHelper.cs" />
     <Compile Include="Servicios\MailServicios.cs" />
     <Compile Include="Servicios\PreguntaServicios.cs" />
     <Compile Include="Servicios\PublicacionServicios.cs" />

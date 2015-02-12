@@ -124,6 +124,7 @@
                 }
             </div>
         </div>
+
         <div role="tabpanel" class="tab-pane" id="cambiarFoto">
             @using (Html.BeginForm("CambiarFotoPerfil", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
@@ -149,9 +150,25 @@
                             @Html.ActionLink("Cancelar", "Home", "Home", null, new { @class = "btn btn-warning btn-sm" })
                         </div>
                     </div>
+
+                    
+                     <div class="avatar pull-right col-md-6">
+                                <img id="my-origin-image" class="img-responsive" src="~/Imagenes/FotoPerfil/imagen.@{@Model.Id}.jpg" alt="avatar" />
+                            <div class="form-group">
+                        <div class="col-md-offset-5">
+                            <span  id="hl-crop-image" class="btn btn-info btn-sm">
+                                Recortar</span>
+                        </div>
+                    </div>
+    <img id="my-cropped-image" src="#" style="display:none;" />
+    </div>
+
+                    
                 </div>
             }
         </div>
+
+
         <div role="tabpanel" class="tab-pane" id="eliminar">
             @using (Html.BeginForm("EliminarCuenta", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
             {
@@ -186,4 +203,69 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    
+      <script src="@Url.Content("~/Scripts/jquery.Jcrop.min.js")" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.Jcrop.min.css")" type="text/css" />
+
+ <script type="text/javascript">
+
+     var imageCropWidth = 0;
+     var imageCropHeight = 0;
+     var cropPointX = 0;
+     var cropPointY = 0;
+
+     $(document).ready(function () {
+         initCrop();
+     });
+
+     $("#hl-crop-image").on("click", function (e) {
+         e.preventDefault();
+         cropImage();
+     });
+
+     function initCrop() {
+         $('#my-origin-image').Jcrop({
+             onChange: setCoordsAndImgSize,
+             aspectRatio: 1
+         });
+     }
+
+     function setCoordsAndImgSize(e) {
+
+         imageCropWidth = e.w;
+         imageCropHeight = e.h;
+
+         cropPointX = e.x;
+         cropPointY = e.y;
+     }
+
+     function cropImage() {
+
+         if (imageCropWidth == 0 && imageCropHeight == 0) {
+             alert("Please select crop area.");
+             return;
+         }
+
+         $.ajax({
+             url: '/Imagen/RecortarImagen',
+             type: 'POST',
+             data: {
+                 imagePath: $("#my-origin-image").attr("src"),
+                 cropPointX: cropPointX,
+                 cropPointY: cropPointY,
+                 imageCropWidth: imageCropWidth,
+                 imageCropHeight: imageCropHeight
+             },
+             success: function (data) {
+                 $("#my-cropped-image")
+                        .attr("src", data.photoPath + "?t=" + new Date().getTime())
+                        .show();
+             },
+             error: function (data) { }
+         });
+     }
+ 
+    </script>
+
 }
