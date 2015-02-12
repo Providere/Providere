@@ -163,7 +163,7 @@ namespace Providere.Controllers
             return RedirectToAction("Index", "Index");
         }
 
-        public ActionResult EditarPerfil()
+        public ActionResult EditarPerfil(int? ActivePanel)
         {
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Usuario usuario = us.ObtenerUsuarioEditar(idUsuario);
@@ -172,6 +172,15 @@ namespace Providere.Controllers
 
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
+
+            if (ActivePanel == null)
+            {
+                ViewBag.ActivePanel = 1;
+            }
+            else
+            {
+                ViewBag.ActivePanel = ActivePanel;
+            }
 
             return View(usuario);
         }

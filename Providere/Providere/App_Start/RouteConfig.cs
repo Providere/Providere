@@ -35,6 +35,12 @@ namespace Providere
                 new { controller = "Usuario", action = "NuevaContrasenia", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                "EditarPerfil",
+                "Usuario/EditarPerfil/{ActivePanel}",
+                new { controller = "Usuario", action = "EditarPerfil", ActivePanel = UrlParameter.Optional }
+            );
+
            /* routes.MapRoute(
               "Calificar",
               "Contratacion/CalificarUsuario/{idContratacion}/{idTipoCalificacion}",

@@ -37,8 +37,10 @@ namespace Providere.Controllers
                 return new HttpStatusCodeResult((int)HttpStatusCode.InternalServerError);
             }
 
-            string photoPath = string.Concat("/Imagenes/FotoPerfil/", ConfigurationManager.AppSettings["Image.TempFolderName"], "/", fileName);
-            return Json(new { photoPath = photoPath }, JsonRequestBehavior.AllowGet);
+            string photoPath = string.Concat("/Imagenes/FotoPerfil", ConfigurationManager.AppSettings["Image.TempFolderName"], "/", fileName);
+            //return Json(new { photoPath = photoPath }, JsonRequestBehavior.AllowGet);
+            return Json(new { result = "Redirect", url = Url.Action("EditarPerfil", "Usuario", new { ActivePanel = 2 }) });
+
         }
 
     }
