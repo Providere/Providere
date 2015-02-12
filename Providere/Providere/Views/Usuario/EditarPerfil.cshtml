@@ -157,8 +157,14 @@
                     </div>
                     <div class="col-md-6">
                         <h2>
-                            Modificar mi foto de perfil</h2>
+                            Recortar mi foto</h2>
                         <hr />
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <input type="file" id="ajax_file" name="ajax_file" />
+                            </div>
+                        </div>
+
                             <img id="my-origin-image" class="imagen-a-recortar" src="~/Imagenes/FotoPerfil/imagen.@{@Model.Id}.jpg" alt="avatar" />
                        
                         <div class="form-group">
@@ -210,6 +216,34 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.Jcrop.min.css")" type="text/css" />
     <script type="text/javascript">
 
+        $("#ajax_file").change(function () {
+            var data = new FormData();
+            var files = $("#ajax_file").get(0).files;
+            if (files.length > 0) {
+                data.append("HelpSectionImages", files[0]);
+            }
+            $.ajax({
+                url: '/Imagen/CambiarFotoPerfil',
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    console.log(response.path);
+                    destroyCrop();
+                    d = new Date();
+                    $('#my-origin-image').attr('src', response.path + "?" + d.getTime());
+                    $('#my-origin-image').css('width', "100%");
+                    $('#my-origin-image').css('height', 'auto');
+                    initCrop();
+                },
+                error: function (er) {
+                    alert(er);
+                }
+
+            });
+        });
+
         var imageCropWidth = 0;
         var imageCropHeight = 0;
         var cropPointX = 0;
@@ -225,14 +259,19 @@
         });
 
         function initCrop() {
-            var ancho = ($('#my-origin-image').width / 2);
-            console.log(ancho);
+            var ancho = ($('#my-origin-image').width() /2);
             $('#my-origin-image').Jcrop({
                 onChange: setCoordsAndImgSize,
                 aspectRatio: 1,
                 minSize: [50, 50],
                 setSelect: [ancho, ancho, 150, 150]
+            }, function () {
+                jcrop_api = this;
             });
+        }
+
+        function destroyCrop() {
+            jcrop_api.destroy();
         }
 
         function setCoordsAndImgSize(e) {
@@ -251,24 +290,28 @@
                 return;
             }
 
+            console.log('cropping: ' + $("#my-origin-image").attr("src"));
+            var cropImg = $("#my-origin-image").attr("src").replace(/&?((crop-image)|(subscription))=([^&]$|[^&]*)/gi, "");
+            var cropImg = cropImg.replace(/&?[\?]\d*$/gi, "");
+
+            console.log('cropping: ' + cropImg)
             $.ajax({
                 url: '/Imagen/RecortarImagen',
                 type: 'POST',
                 data: {
-                    imagePath: $("#my-origin-image").attr("src"),
+                    imagePath: cropImg,
                     cropPointX: cropPointX,
                     cropPointY: cropPointY,
                     imageCropWidth: imageCropWidth,
                     imageCropHeight: imageCropHeight
                 },
                 success: function (data) {
-                    /*$("#my-origin-image")
-                        .attr("src", data.photoPath + "?t=" + new Date().getTime())
-                        .show();*/
                     window.location = data.url;
 
                 },
-                error: function (data) { }
+                error: function (data) {
+                    console.log('error:' + data);
+                }
             });
         }
  
