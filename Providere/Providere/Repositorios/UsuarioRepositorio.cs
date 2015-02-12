@@ -190,5 +190,11 @@ namespace Providere.Repositorios
 
             return usuarios;
         }
+
+        public bool UsuarioBloqueado(Usuario model)
+        {
+            bool usuarioBloqueado = context.Usuario.Any(user => user.Mail == model.Mail && user.IdEstado == 2); //Estado bloqueado
+            return usuarioBloqueado;
+        }
     }
 }
