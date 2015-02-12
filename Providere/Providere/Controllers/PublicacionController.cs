@@ -18,6 +18,7 @@ namespace Providere.Controllers
         ContratacionServicios cos = new ContratacionServicios();
         CalificacionServicios cas = new CalificacionServicios();
         PreguntaServicios ppr = new PreguntaServicios();
+        DenunciaServicios ds = new DenunciaServicios();
 
         SancionServicios ss = new SancionServicios();
 
@@ -134,9 +135,8 @@ namespace Providere.Controllers
                      ViewBag.MostrarPuntaje = traerPuntaje;
                  }
 
-
-                 ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
-                 return View(miPublicacion);
+                ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
+                return View(miPublicacion);
         }
 
         // Publicacion/VisualizarPublicacion
@@ -178,12 +178,11 @@ namespace Providere.Controllers
 
             //Si el servicio fue contratado, se muestra el telefono del prestador:
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-           var contratada =  cos.TraerContratada(idPublicacion,idUsuario);
-           ViewBag.Contratada = contratada;
+            var contratada =  cos.TraerContratada(idPublicacion,idUsuario);
+            ViewBag.Contratada = contratada;
 
-
-           ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
-           return View("VisualizarMiPublicacion", miPublicacion);
+            ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
+            return View("VisualizarMiPublicacion", miPublicacion);
         }
 
         public ActionResult MostrarFotoPerfil(int id)

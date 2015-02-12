@@ -110,6 +110,7 @@
           <Property Name="IdTipoEvaluacion" Type="smallint" Nullable="false" />
           <Property Name="IdTipoCalificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaCalificacion" Type="datetime" Nullable="false" />
+          <Property Name="Denunciado" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Contratacion">
           <Key>
@@ -900,6 +901,7 @@
           <NavigationProperty Name="Usuario1" Relationship="ProvidereModel.FK_Calificador_Usuario" FromRole="Calificacion" ToRole="Usuario" />
           <NavigationProperty Name="Denuncia" Relationship="ProvidereModel.FK_Denuncia_Calificacion" FromRole="Calificacion" ToRole="Denuncia" />
           <NavigationProperty Name="Replica" Relationship="ProvidereModel.FK_Replica_Calificacion" FromRole="Calificacion" ToRole="Replica" />
+          <Property Type="Byte" Name="Denunciado" Nullable="false" />
         </EntityType>
         <Association Name="FK_Calificacion_Contratacion">
           <End Type="ProvidereModel.Contratacion" Role="Contratacion" Multiplicity="1" />
@@ -1143,6 +1145,7 @@
           <EntitySetMapping Name="Calificacion">
             <EntityTypeMapping TypeName="ProvidereModel.Calificacion">
               <MappingFragment StoreEntitySet="Calificacion">
+                <ScalarProperty Name="Denunciado" ColumnName="Denunciado" />
                 <ScalarProperty Name="FechaCalificacion" ColumnName="FechaCalificacion" />
                 <ScalarProperty Name="IdTipoCalificacion" ColumnName="IdTipoCalificacion" />
                 <ScalarProperty Name="IdTipoEvaluacion" ColumnName="IdTipoEvaluacion" />
@@ -1174,7 +1177,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Providere" ZoomLevel="55">
+      <Diagram Name="Providere" ZoomLevel="82">
         <EntityTypeShape EntityType="ProvidereModel.Contratacion" Width="1.5" PointX="8.25" PointY="10" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Denuncia" Width="1.5" PointX="7.5" PointY="4" Height="1.787985026041667" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Estado" Width="1.5" PointX="0.75" PointY="10.375" Height="1.5956835937499996" IsExpanded="true" />

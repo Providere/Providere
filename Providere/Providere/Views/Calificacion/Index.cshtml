@@ -33,49 +33,50 @@
                                 <em>@item.Descripcion </em>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
-                            @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                            @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                             {
-                                if (item.IdTipoEvaluacion == 2 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Neutro
+                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                 {
-                               
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
-                                
                                 <input type="submit" id="btnDenunciarNeutro1" value="Denunciar" class="btn btn-link" />
                                 <span class="help-block">@item.FechaCalificacion</span>   
-                                
-                                }
-                                else
-                                {
-                                    if (item.IdTipoEvaluacion == 2)
-                                    {
-                                <div class="alert alert-danger alert-dismissable">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                        denunciado por ser ofensivo hacia terceros</span>
-                                </div>
-                                    }
                                 }
                             }
-                            @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                            else
                             {
-                                if (item.IdTipoEvaluacion == 3 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Negativo
+                                if (item.IdTipoEvaluacion == 2)
+                                {
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                            por ser ofensivo hacia terceros</span>
+                                    </div>
+                                </div>
+                                }
+                            }
+                            @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
+                            {
+                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                 {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                <em>@item.Descripcion</em>
-                               
+                                <em>@item.Descripcion</em>                             
                                 <input type="submit" id="btnDenunciarNegativo1" value="Denunciar" class="btn btn-link" />   
-                                
                                 <span class="help-block">@item.FechaCalificacion</span>  
                                 }
-                                else
+                            }
+                            else
+                            {
+                                if (item.IdTipoEvaluacion == 3)
                                 {
-                                    if (item.IdTipoEvaluacion == 3)
-                                    {
-                                <div class="alert alert-danger alert-dismissable">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                        denunciado por ser ofensivo hacia terceros</span>
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                            por ser ofensivo hacia terceros</span>
+                                    </div>
                                 </div>
-                                    }
                                 }
                             }
                             <br />
@@ -97,49 +98,50 @@
                                 <em>@item.Descripcion </em>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
-                            @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                            @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                             {
-                                if (item.IdTipoEvaluacion == 2 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Neutro
-                                {
+                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                {                                
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                                <em>@item.Descripcion</em>
-                                
-                                <input type="submit" id="btnDenunciarNeutro2" value="Denunciar" class="btn btn-link" />   
-                                
+                                <em>@item.Descripcion</em>                               
+                                <input type="submit" id="btnDenunciarNeutro2" value="Denunciar" class="btn btn-link" />                                   
                                 <span class="help-block">@item.FechaCalificacion</span>
                                 }
-
-                                else
+                            }
+                            else
+                            {
+                                if (item.IdTipoEvaluacion == 2)
                                 {
-                                    if (item.IdTipoEvaluacion == 2)
-                                    {
-                                <div class="alert alert-danger alert-dismissable">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                        denunciado por ser ofensivo hacia terceros</span>
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                            por ser ofensivo hacia terceros</span>
+                                    </div>
                                 </div>
-                                    }
                                 }
                             }
-                            @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                            @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
                             {
-                                if (item.IdTipoEvaluacion == 3 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Negativo
-                                {
+                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                {                                
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                <em>@item.Descripcion</em>
-                               
+                                <em>@item.Descripcion</em>                               
                                 <input type="submit" id="btnDenunciarNegativo2" value="Denunciar" class="btn btn-link" />   
                                 <span class="help-block">@item.FechaCalificacion</span>  
                                 }
-
-                                else
+                            }
+                            else
+                            {
+                                if (item.IdTipoEvaluacion == 3)
                                 {
-                                    if (item.IdTipoEvaluacion == 3)
-                                    {
-                                <div class="alert alert-danger alert-dismissable">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                        denunciado por ser ofensivo hacia terceros</span>
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                            por ser ofensivo hacia terceros</span>
+                                    </div>
                                 </div>
-                                    }
                                 }
                             }
                             <br />
@@ -193,48 +195,51 @@
                                                     <em>@item.Descripcion </em>
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                 }
-                                                @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                                                 {
-                                                    if (item.IdTipoEvaluacion == 2 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Neutro
+                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                     {
+                                                    
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    
-                                                    <input type="submit" id="btnDenunciarNeutro3" value="Denunciar" class="btn btn-link" />   
-                                                    
+                                                    <input type="submit" id="btnDenunciarNeutro3" value="Denunciar" class="btn btn-link" />                                                      
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                     }
-                                                    else
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 2)
                                                     {
-                                                        if (item.IdTipoEvaluacion == 2)
-                                                        {
-                                                    <div class="alert alert-danger alert-dismissable">
-                                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                                            denunciado por ser ofensivo hacia terceros</span>
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                                                por ser ofensivo hacia terceros</span>
+                                                        </div>
                                                     </div>
-                                                        }
                                                     }
                                                 }
-                                                @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
                                                 {
-                                                    if (item.IdTipoEvaluacion == 3 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Negativo
+                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                     {
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                   
                                                     <input type="submit" id="btnDenunciarNegativo3" value="Denunciar" class="btn btn-link" />   
-                                                    
                                                     <span class="help-block">@item.FechaCalificacion</span>  
                                                     }
-                                                    else
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 3)
                                                     {
-                                                        if (item.IdTipoEvaluacion == 3)
-                                                        {
-                                                    <div class="alert alert-danger alert-dismissable">
-                                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                                            denunciado por ser ofensivo hacia terceros</span>
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                                                por ser ofensivo hacia terceros</span>
+                                                        </div>
                                                     </div>
-                                                        }
                                                     }
                                                 }
                                             </div>
@@ -255,48 +260,52 @@
                                                     <em>@item.Descripcion </em>
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                 }
-                                                @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                                                 {
-                                                    if (item.IdTipoEvaluacion == 2 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Neutro
+                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                     {
+                                                    
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    
                                                     <input type="submit" id="btnDenunciarNeutro4" value="Denunciar" class="btn btn-link" />   
-                                                    
                                                     <span class="help-block">@item.FechaCalificacion</span>
                                                     }
-                                                    else
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 2)
                                                     {
-                                                        if (item.IdTipoEvaluacion == 2)
-                                                        {
-                                                    <div class="alert alert-danger alert-dismissable">
-                                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                                            denunciado por ser ofensivo hacia terceros</span>
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                                                por ser ofensivo hacia terceros</span>
+                                                        </div>
                                                     </div>
-                                                        }
                                                     }
                                                 }
-                                                @using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
                                                 {
-                                                    if (item.IdTipoEvaluacion == 3 && ViewBag.ComentarioNoDenunciado == "Comentario no denunciado") //Negativo
+                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                     {
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    
                                                     <input type="submit" id="btnDenunciarNegativo4" value="Denunciar" class="btn btn-link" />   
-                                                    
                                                     <span class="help-block">@item.FechaCalificacion</span>  
+                                                    
                                                     }
-                                                    else
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 3)
                                                     {
-                                                        if (item.IdTipoEvaluacion == 3)
-                                                        {
-                                                    <div class="alert alert-danger alert-dismissable">
-                                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                                            denunciado por ser ofensivo hacia terceros</span>
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                                                por ser ofensivo hacia terceros</span>
+                                                        </div>
                                                     </div>
-                                                        }
                                                     }
                                                 }
                                             </div>
@@ -335,36 +344,42 @@
                                 <em>@item.Descripcion</em>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
-                            @if (item.IdTipoEvaluacion == 2 && ViewBag.ComentariosDenunciados == "Comentario no Denunciado") //Neutro
+                            @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
                             {
-                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                                <em>@item.Descripcion</em>
-                                <span class="help-block">@item.FechaCalificacion</span>
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                            por ser ofensivo hacia terceros</span>
+                                    </div>
+                                </div>
                             }
                             else
                             {
                                 if (item.IdTipoEvaluacion == 2)
                                 {
-                                <div class="alert alert-danger alert-dismissable">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                        denunciado por ser ofensivo hacia terceros</span>
-                                </div>
+                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
                                 }
                             }
-                            @if (item.IdTipoEvaluacion == 3 && ViewBag.ComentariosDenunciados == "Comentario no Denunciado") //Negativo
+                            @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 1) //Negativo
                             {
-                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                <em>@item.Descripcion</em>
-                                <span class="help-block">@item.FechaCalificacion</span>  
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                            por ser ofensivo hacia terceros</span>
+                                    </div>
+                                </div>
                             }
                             else
                             {
                                 if (item.IdTipoEvaluacion == 3)
                                 {
-                                <div class="alert alert-danger alert-dismissable">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                        denunciado por ser ofensivo hacia terceros</span>
-                                </div>
+                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
                                 }
                             }
                             <br />
@@ -386,36 +401,42 @@
                                 <em>@item.Descripcion</em>
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
-                            @if (item.IdTipoEvaluacion == 2 && ViewBag.ComentariosDenunciados == "Comentario no Denunciado") //Neutro
+                            @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
                             {
-                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                                <em>@item.Descripcion</em>
-                                <span class="help-block">@item.FechaCalificacion</span>
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                            por ser ofensivo hacia terceros</span>
+                                    </div>
+                                </div>                             
                             }
                             else
                             {
                                 if (item.IdTipoEvaluacion == 2)
                                 {
-                                <div class="alert alert-danger alert-dismissable">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                        denunciado por ser ofensivo hacia terceros</span>
-                                </div>
+                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
                                 }
                             }
-                            @if (item.IdTipoEvaluacion == 3 && ViewBag.ComentariosDenunciados == "Comentario no Denunciado") //Negativo
+                            @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 1) //Negativo
                             {
-                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                <em>@item.Descripcion</em>
-                                <span class="help-block">@item.FechaCalificacion</span>  
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                            por ser ofensivo hacia terceros</span>
+                                    </div>
+                                </div>
                             }
                             else
                             {
                                 if (item.IdTipoEvaluacion == 3)
                                 {
-                                <div class="alert alert-danger alert-dismissable">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                        denunciado por ser ofensivo hacia terceros</span>
-                                </div>
+                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
                                 }
                             }
                             <br />
@@ -429,136 +450,149 @@
                     <div class="col-md-12">
                         No hay calificaciones para mostrar</div>
                 }
-                @if (ViewBag.OtorgadasTodas.Count > 4) {
-                <!-- Button trigger modal -->
-                <center>
-                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal2">
-                        Ver mas calificaciones
-                    </button>
-                </center>
-                <!-- Modal -->
-                <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">
-                                    Calificaciones Otorgadas</h4>
-                            </div>
-                            <div class="modal-body">
-                                @if (ViewBag.OtorgadasTodas.Count > 0)
-                                {
-                                    foreach (var item in ViewBag.OtorgadasTodas)
+                @if (ViewBag.OtorgadasTodas.Count > 4)
+                {
+                    <!-- Button trigger modal -->
+                    <center>
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal2">
+                            Ver mas calificaciones
+                        </button>
+                    </center>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel2">
+                                        Calificaciones Otorgadas</h4>
+                                </div>
+                                <div class="modal-body">
+                                    @if (ViewBag.OtorgadasTodas.Count > 0)
                                     {
-                                        if (item.IdTipoCalificacion == 1)
+                                        foreach (var item in ViewBag.OtorgadasTodas)
                                         {
-                                    <div class="row">
-                                        <div>
-                                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
-                                            <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                            <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
-                                        </div>
-                                        <div>
-                                            @if (item.IdTipoEvaluacion == 1) //Positiva
+                                            if (item.IdTipoCalificacion == 1)
                                             {
-                                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                                                <em>@item.Descripcion </em>
-                                                <span class="help-block">@item.FechaCalificacion</span>
-                                            }
-                                            @if (item.IdTipoEvaluacion == 2 && ViewBag.ComentariosDenunciados == "Comentario no Denunciado") //Neutro
-                                            {
-                                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                                                <em>@item.Descripcion</em>
-                                                <span class="help-block">@item.FechaCalificacion</span>
+                                        <div class="row">
+                                            <div>
+                                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                            </div>
+                                            <div>
+                                                @if (item.IdTipoEvaluacion == 1) //Positiva
+                                                {
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                    <em>@item.Descripcion </em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
+                                                {
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                                                por ser ofensivo hacia terceros</span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 2)
+                                                    {
+                                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    }
+                                                }
+                                                @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 1) //Negativo
+                                                {
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                                                por ser ofensivo hacia terceros</span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 3)
+                                                    {
+                                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    }
+                                                }
+                                            </div>
+                                        </div> 
                                             }
                                             else
                                             {
-                                                if (item.IdTipoEvaluacion == 2)
+                                        <div class="row">
+                                            <div>
+                                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                                            </div>
+                                            <div>
+                                                @if (item.IdTipoEvaluacion == 1) //Positiva
                                                 {
-                                                <div class="alert alert-danger alert-dismissable">
-                                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                                        denunciado por ser ofensivo hacia terceros</span>
-                                                </div>
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                    <em>@item.Descripcion </em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
                                                 }
-                                            }
-                                            @if (item.IdTipoEvaluacion == 3 && ViewBag.ComentariosDenunciados == "Comentario no Denunciado") //Negativo
-                                            {
-                                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                                <em>@item.Descripcion</em>
-                                                <span class="help-block">@item.FechaCalificacion</span>  
-                                            }
-                                            else
-                                            {
-                                                if (item.IdTipoEvaluacion == 3)
+                                                @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
                                                 {
-                                                <div class="alert alert-danger alert-dismissable">
-                                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                                        denunciado por ser ofensivo hacia terceros</span>
-                                                </div>
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                                                por ser ofensivo hacia terceros</span>
+                                                        </div>
+                                                    </div>
                                                 }
-                                            }
-                                        </div>
-                                    </div> 
-                                        }
-                                        else
-                                        {
-                                    <div class="row">
-                                        <div>
-                                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
-                                            <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                            <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
-                                        </div>
-                                        <div>
-                                            @if (item.IdTipoEvaluacion == 1) //Positiva
-                                            {
-                                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                                                <em>@item.Descripcion </em>
-                                                <span class="help-block">@item.FechaCalificacion</span>
-                                            }
-                                            @if (item.IdTipoEvaluacion == 2 && ViewBag.ComentariosDenunciados == "Comentario no Denunciado") //Neutro
-                                            {
-                                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                                                <em>@item.Descripcion</em>
-                                                <span class="help-block">@item.FechaCalificacion</span>
-                                            }
-                                            else
-                                            {
-                                                if (item.IdTipoEvaluacion == 2)
+                                                else
                                                 {
-                                                <div class="alert alert-danger alert-dismissable">
-                                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                                        denunciado por ser ofensivo hacia terceros</span>
-                                                </div>
+                                                    if (item.IdTipoEvaluacion == 2)
+                                                    {
+                                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    }
                                                 }
-                                            }
-                                            @if (item.IdTipoEvaluacion == 3 && ViewBag.ComentariosDenunciados == "Comentario no Denunciado") //Negativo
-                                            {
-                                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                                <em>@item.Descripcion</em>
-                                                <span class="help-block">@item.FechaCalificacion</span>  
-                                            }
-                                            else
-                                            {
-                                                if (item.IdTipoEvaluacion == 3)
+                                                @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 1) //Negativo
                                                 {
-                                                <div class="alert alert-danger alert-dismissable">
-                                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span>Comentario
-                                                        denunciado por ser ofensivo hacia terceros</span>
-                                                </div>
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                                                por ser ofensivo hacia terceros</span>
+                                                        </div>
+                                                    </div>
                                                 }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 3)
+                                                    {
+                                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>                       
                                             }
-                                        </div>
-                                    </div>                       
                                         }
                                     }
-                                }
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                } 
+                }
             </div>
         </div>
     </div>

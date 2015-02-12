@@ -30,12 +30,6 @@ namespace Providere.Controllers
             ViewBag.ObtenidasTodas = obtenidasTodas;
             ViewBag.OtorgadasTodas = otorgadasTodas;
 
-            var comentariosDenunciados = ds.TraerDenunciados(idUsuario);
-            if (comentariosDenunciados == false)
-            {
-                ViewBag.ComentariosDenunciados = "Comentario no Denunciado";
-            }
-
             return View();
         }
 
@@ -87,11 +81,6 @@ namespace Providere.Controllers
         public ActionResult DenunciarComentario(int id)
         {
             ds.DenunciaComentario(id);
-
-            if (ds.VerificarComentarioDenunciado(id) == false)
-            {
-                ViewBag.ComentarioNoDenunciado = "Comentario no denunciado";
-            }
 
             return RedirectToAction("Index","Calificacion");
         }

@@ -129,17 +129,43 @@
                                     <em>@item.Descripcion</em>
                                     <span class="help-block">@item.FechaCalificacion</span>
                                 }
-                                @if (item.IdTipoEvaluacion == 2) //Neutro
+                                @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                                 {
                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <em>@item.Descripcion</em>
                                     <span class="help-block">@item.FechaCalificacion</span>
                                 }
-                                @if (item.IdTipoEvaluacion == 3) //Negativo
+                                else
+                                {
+                                    if (item.IdTipoEvaluacion == 2)
+                                    {
+                                    <div class="col-md-8">
+                                        <br />
+                                        <div class="alert alert-danger alert-dismissable">
+                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                                por ser ofensivo hacia terceros</span>
+                                        </div>
+                                    </div>
+                                    }
+                                }
+                                @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
                                 {
                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                     <em>@item.Descripcion</em>
                                     <span class="help-block">@item.FechaCalificacion</span>  
+                                }
+                                else
+                                {
+                                    if (item.IdTipoEvaluacion == 3)
+                                    {
+                                    <div class="col-md-8">
+                                        <br />
+                                        <div class="alert alert-danger alert-dismissable">
+                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                                por ser ofensivo hacia terceros</span>
+                                        </div>
+                                    </div>
+                                    }
                                 }
                                 <br />
                             </div>
@@ -182,17 +208,43 @@
                                                         <em>@item.Descripcion</em>
                                                         <span class="help-block">@item.FechaCalificacion</span>
                                                     }
-                                                    @if (item.IdTipoEvaluacion == 2) //Neutro
+                                                    @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                                                     {
                                                         <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                         <em>@item.Descripcion</em>
                                                         <span class="help-block">@item.FechaCalificacion</span>
                                                     }
-                                                    @if (item.IdTipoEvaluacion == 3) //Negativo
+                                                    else
+                                                    {
+                                                        if (item.IdTipoEvaluacion == 2)
+                                                        {
+                                                        <div class="col-md-10">
+                                                            <br />
+                                                            <div class="alert alert-danger alert-dismissable">
+                                                                <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                                                    por ser ofensivo hacia terceros</span>
+                                                            </div>
+                                                        </div>
+                                                        }
+                                                    }
+                                                    @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
                                                     {
                                                         <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                         <em>@item.Descripcion</em>
                                                         <span class="help-block">@item.FechaCalificacion</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        if (item.IdTipoEvaluacion == 3)
+                                                        {
+                                                        <div class="col-md-10">
+                                                            <br />
+                                                            <div class="alert alert-danger alert-dismissable">
+                                                                <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
+                                                                    por ser ofensivo hacia terceros</span>
+                                                            </div>
+                                                        </div>
+                                                        }
                                                     }
                                                 </div>
                                             </div>

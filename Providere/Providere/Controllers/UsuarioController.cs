@@ -129,7 +129,7 @@ namespace Providere.Controllers
 
                 if (us.UsuarioExistente(model))
                 {
-                    if (us.UsuarioActivo(model))
+                    if (us.UsuarioActivo(model) || us.UsuarioBloqueado(model))
                     {
                         us.CrearCookie(model);
                         Session["IdUsuario"] = us.traerIdUsuario(model);

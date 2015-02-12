@@ -197,5 +197,10 @@ namespace Providere.Servicios
             var listaUsuariosConDenuncias = ur.traerTodosConDenuncias(dr.traerDenunciasDelMes()); 
             return listaUsuariosConDenuncias;
         }
+
+        public bool UsuarioBloqueado(Usuario model)
+        {
+            return ur.UsuarioBloqueado(model);
+        }
     }
 }
