@@ -22,17 +22,23 @@
 <div class="col-md-12 well">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#editar" role="tab" data-toggle="tab">
+        <li role="presentation" class="@if (ViewBag.ActivePanel == 1) { 
+                                                 @:active 
+                                                 }"><a href="#editar" role="tab" data-toggle="tab">
             Editar datos personales</a></li>
-        <li role="presentation"><a href="#cambiarFoto" role="tab" data-toggle="tab">Modificar
+        <li role="presentation" class="@if (ViewBag.ActivePanel == 2) { 
+                                                 @:active 
+                                                 }"><a href="#cambiarFoto" role="tab" data-toggle="tab">Modificar
             foto de perfil</a></li>
-        <li role="presentation"><a href="#eliminar" role="tab" data-toggle="tab">Eliminar cuenta</a></li>
+        <li role="presentation" class="@if (ViewBag.ActivePanel == 3) { 
+                                                 @:active 
+                                                 }"><a href="#eliminar" role="tab" data-toggle="tab">Eliminar cuenta</a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane @if (ViewBag.ActivePanel == 1) { 
                                                  @:active 
-                                                 } " id="editar">
+                                                 }" id="editar">
             @using (Html.BeginForm("EditarPerfil", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
             {
                 <div>
@@ -262,9 +268,7 @@
             var ancho = ($('#my-origin-image').width() /2);
             $('#my-origin-image').Jcrop({
                 onChange: setCoordsAndImgSize,
-                aspectRatio: 1,
-                minSize: [50, 50],
-                setSelect: [ancho, ancho, 150, 150]
+                aspectRatio: 1
             }, function () {
                 jcrop_api = this;
             });
