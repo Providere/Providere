@@ -165,6 +165,7 @@ namespace Providere.Controllers
 
         public ActionResult EditarPerfil(int? ActivePanel)
         {
+            ImageHelper ih = new ImageHelper();
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Usuario usuario = us.ObtenerUsuarioEditar(idUsuario);
             ViewBag.geocomplete2 = usuario.Ubicacion;
@@ -182,6 +183,7 @@ namespace Providere.Controllers
                 ViewBag.ActivePanel = ActivePanel;
             }
 
+            ViewBag.ProfileImageExists = ih.ProfileImageExists(usuario);
             return View(usuario);
         }
 

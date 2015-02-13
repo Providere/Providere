@@ -67,5 +67,15 @@ namespace Providere.Servicios
                 return result;
             }
         }
+
+
+        public bool  ProfileImageExists(Models.Usuario usuario)
+        {
+            string filePath = Server.MapPath("~/Content/Images/image.jpg");
+            return System.IO.File.Exists(filePath);
+           
+            
+
+        }
     }
 }

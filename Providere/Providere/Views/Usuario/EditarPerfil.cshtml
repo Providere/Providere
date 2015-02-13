@@ -22,21 +22,23 @@
 <div class="col-md-12 well">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="@if (ViewBag.ActivePanel == 1) { 
+        <li role="presentation" class="@if (ViewBag.ActivePanel == 1)
+                                       { 
                                                  @:active 
-                                                 }"><a href="#editar" role="tab" data-toggle="tab">
-            Editar datos personales</a></li>
-        <li role="presentation" class="@if (ViewBag.ActivePanel == 2) { 
+                                                 }"><a href="#editar" role="tab" data-toggle="tab">Editar datos personales</a></li>
+        <li role="presentation" class="@if (ViewBag.ActivePanel == 2)
+                                       { 
                                                  @:active 
-                                                 }"><a href="#cambiarFoto" role="tab" data-toggle="tab">Modificar
-            foto de perfil</a></li>
-        <li role="presentation" class="@if (ViewBag.ActivePanel == 3) { 
+                                                 }"><a href="#cambiarFoto" role="tab" data-toggle="tab">Modificar foto de perfil</a></li>
+        <li role="presentation" class="@if (ViewBag.ActivePanel == 3)
+                                       { 
                                                  @:active 
                                                  }"><a href="#eliminar" role="tab" data-toggle="tab">Eliminar cuenta</a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane @if (ViewBag.ActivePanel == 1) { 
+        <div role="tabpanel" class="tab-pane @if (ViewBag.ActivePanel == 1)
+                                             { 
                                                  @:active 
                                                  }" id="editar">
             @using (Html.BeginForm("EditarPerfil", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
@@ -132,15 +134,18 @@
                 }
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane @if (ViewBag.ActivePanel == 2) { 
+        <div role="tabpanel" class="tab-pane @if (ViewBag.ActivePanel == 2)
+                                             { 
                                                  @:active 
                                                  }" id="cambiarFoto">
-            @using (Html.BeginForm("CambiarFotoPerfil", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <div id="page-wrapper">
-                    <div class="col-md-6">
+            <div id="page-wrapper">
+                <div class="col-md-12">
+                @if (ViewBag.ProfileImageExists)
+                { 
+                    @using (Html.BeginForm("CambiarFotoPerfil", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
                         <h2>
-                            Modificar mi foto de perfil</h2>
+                            Agregar foto de perfil</h2>
                         <hr />
                         <p class="text-info">
                             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>El
@@ -160,29 +165,34 @@
                                 @Html.ActionLink("Cancelar", "Home", "Home", null, new { @class = "btn btn-warning btn-sm" })
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <h2>
-                            Recortar mi foto</h2>
-                        <hr />
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <input type="file" id="ajax_file" name="ajax_file" />
-                            </div>
-                        </div>
-
-                            <img id="my-origin-image" class="imagen-a-recortar" src="~/Imagenes/FotoPerfil/imagen.@{@Model.Id}.jpg" alt="avatar" />
-                       
-                        <div class="form-group">
-                            <div class="col-md-offset-5">
-                                <span id="hl-crop-image" class="btn btn-info btn-sm">Recortar</span>
-                            </div>
+                    }
+                }
+                else
+                {
+                    <h2>
+                        Modificar mi foto de perfil</h2>
+                    <hr />
+                    <p class="text-info">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>El
+                        formato de la imágen debe ser .jpg, caso contrario el cambio no tendrá efecto</p>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <input type="file" id="ajax_file" name="ajax_file" />
                         </div>
                     </div>
-                </div>
-            }
+                    <img id="my-origin-image" class="imagen-a-recortar" src="~/Imagenes/FotoPerfil/imagen.@{@Model.Id}.jpg" alt="avatar" />
+                    <div class="form-group">
+                        <div class="col-md-offset-5">
+                            <span id="hl-crop-image" class="btn btn-info btn-sm">Recortar</span>
+                        </div>
+                    </div>
+                }
+                    </div>
+            </div>
         </div>
-        <div role="tabpanel" class="tab-pane @if (ViewBag.ActivePanel == 3) { 
+        <div role="tabpanel" class="tab-pane @if (ViewBag.ActivePanel == 3)
+                                             { 
                                                  @:active 
                                                  }" id="eliminar">
             @using (Html.BeginForm("EliminarCuenta", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
@@ -265,7 +275,7 @@
         });
 
         function initCrop() {
-            var ancho = ($('#my-origin-image').width() /2);
+            var ancho = ($('#my-origin-image').width() / 2);
             $('#my-origin-image').Jcrop({
                 onChange: setCoordsAndImgSize,
                 aspectRatio: 1
