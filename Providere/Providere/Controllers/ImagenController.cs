@@ -29,6 +29,7 @@ namespace Providere.Controllers
             string tempFolderName = Server.MapPath("~/Imagenes/FotoPerfil/" + ConfigurationManager.AppSettings["Image.TempFolderName"]);
             string fileName = Path.GetFileName(imagePath);
 
+            fileName = Regex.Replace(fileName, @"(Temp-)", "");
             try
             {
                 FileHelper.SaveFile(croppedImage, Path.Combine(tempFolderName, fileName));
@@ -38,6 +39,13 @@ namespace Providere.Controllers
                 //Log an error     
                 return new HttpStatusCodeResult((int)HttpStatusCode.InternalServerError);
             }
+
+            string fullPath = Server.MapPath("~/Imagenes/FotoPerfil/Temp-" + fileName);
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
+
 
             string photoPath = string.Concat("/Imagenes/FotoPerfil", ConfigurationManager.AppSettings["Image.TempFolderName"], "/", fileName);
             //return Json(new { photoPath = photoPath }, JsonRequestBehavior.AllowGet);
@@ -60,7 +68,7 @@ namespace Providere.Controllers
                 {
                     try
                     {
-                        string uniqueFileName = Path.ChangeExtension("imagen", Convert.ToString(id));
+                        string uniqueFileName = Path.ChangeExtension("Temp-imagen", Convert.ToString(id));
                         string path = Path.Combine(Server.MapPath("~/Imagenes/FotoPerfil"),
                                            Path.GetFileName(uniqueFileName + extension));
                         file.SaveAs(path);
