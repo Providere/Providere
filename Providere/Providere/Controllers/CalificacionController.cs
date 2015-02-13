@@ -20,15 +20,19 @@ namespace Providere.Controllers
         {
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             int limite = 4;
-            var obtenidas = cs.TraerCalificacionesObtenidas(idUsuario,limite); //Soy calificado
-            var otorgadas = cs.TraerCalificacionesOtorgadas(idUsuario,limite); //Soy calificador
-            ViewBag.Obtenidas = obtenidas; 
-            ViewBag.Otorgadas = otorgadas;
+
+            var obtenidasLimite = cs.TraerCalificacionesObtenidas(idUsuario,limite); //Soy calificado
+            var otorgadasLimite = cs.TraerCalificacionesOtorgadas(idUsuario,limite); //Soy calificador
+            ViewBag.ObtenidasLimite = obtenidasLimite; 
+            ViewBag.OtorgadasLimite = otorgadasLimite;
 
             var obtenidasTodas = cs.TraerCalificacionesObtenidasTodas(idUsuario); 
             var otorgadasTodas = cs.TraerCalificacionesOtorgadasTodas(idUsuario); 
             ViewBag.ObtenidasTodas = obtenidasTodas;
             ViewBag.OtorgadasTodas = otorgadasTodas;
+
+            ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sanciado";
+            ViewBag.Exito = TempData["Exito"];
 
             return View();
         }

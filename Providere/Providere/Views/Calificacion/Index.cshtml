@@ -3,6 +3,14 @@
     ViewBag.Title = "Calificaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@if (ViewBag.Exito != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Exito
+    </div>
+}
 <div class="col-md-12 well">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#obtenidas" role="tab" data-toggle="tab">
@@ -14,9 +22,9 @@
             <h2>
                 Calificaciones obtenidas</h2>
             <div class="row">
-                @if (ViewBag.Obtenidas.Count > 0)
+                @if (ViewBag.ObtenidasLimite.Count > 0)
                 {
-                    foreach (var item in ViewBag.Obtenidas)
+                    foreach (var item in ViewBag.ObtenidasLimite)
                     {
                         if (item.IdTipoCalificacion == 1)
                         {
@@ -40,9 +48,8 @@
                                 using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                 {
                                 <input type="submit" id="btnDenunciarNeutro1" value="Denunciar" class="btn btn-link" />
+                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">Replicar</a>
                                 }
-                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample1" aria-expanded="false"
-                                    aria-controls="collapseExample">Replicar</a>
                                 <div class="collapse" id="collapseExample1">
                                     <div class="well">
                                         <div class="row">
@@ -60,7 +67,6 @@
                                         </div>
                                     </div>
                                 </div> 
-                               
                                 <span class="help-block">@item.FechaCalificacion</span>                                
                             }
                             else
@@ -70,8 +76,7 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                            ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
                                 </div>
                                 }
@@ -84,9 +89,9 @@
                                 {
                                                           
                                 <input type="submit" id="btnDenunciarNegativo1" value="Denunciar" class="btn btn-link" />  
-                                }
                                 <a class="btn btn-link" data-toggle="collapse" href="#collapseExample2" aria-expanded="false"
                                     aria-controls="collapseExample">Replicar</a>
+                                }
                                 <div class="collapse" id="collapseExample2">
                                     <div class="well">
                                         <div class="row">
@@ -104,7 +109,6 @@
                                         </div>
                                     </div>
                                 </div>  
-                                
                                 <span class="help-block">@item.FechaCalificacion</span>  
                             }
                             else
@@ -114,8 +118,7 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                            ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
                                 </div>
                                 }
@@ -146,10 +149,9 @@
                                 <em>@item.Descripcion</em> 
                                 using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                 {                                 
-                                <input type="submit" id="btnDenunciarNeutro2" value="Denunciar" class="btn btn-link" />      
-                                }   
-                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample3" aria-expanded="false"
-                                    aria-controls="collapseExample">Replicar</a>
+                                <input type="submit" id="btnDenunciarNeutro2" value="Denunciar" class="btn btn-link" />   
+                                   <a class="btn btn-link" data-toggle="collapse" href="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">Replicar</a>   
+                                }                           
                                 <div class="collapse" id="collapseExample3">
                                     <div class="well">
                                         <div class="row">
@@ -165,8 +167,7 @@
                                             }
                                         </div>
                                     </div>
-                                </div> 
-                                                           
+                                </div>                                                           
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
                             else
@@ -176,8 +177,7 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                            ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
                                 </div>
                                 }
@@ -189,9 +189,8 @@
                                 using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                 {                              
                                 <input type="submit" id="btnDenunciarNegativo2" value="Denunciar" class="btn btn-link" /> 
+                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">Replicar</a>
                                 }
-                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample4" aria-expanded="false"
-                                    aria-controls="collapseExample">Replicar</a>
                                 <div class="collapse" id="collapseExample4">
                                     <div class="well">
                                         <div class="row">
@@ -208,7 +207,6 @@
                                         </div>
                                     </div>
                                 </div> 
-                                  
                                 <span class="help-block">@item.FechaCalificacion</span>   
                             }
                             else
@@ -218,8 +216,7 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                            ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
                                 </div>
                                 }
@@ -283,9 +280,9 @@
                                                     using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                     {
                                                     <input type="submit" id="btnDenunciarNeutro3" value="Denunciar" class="btn btn-link" />  
+                                                     <a class="btn btn-link" data-toggle="collapse" href="#collapseExample5" aria-expanded="false" aria-controls="collapseExample">Replicar</a>
                                                     }      
-                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample5" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>
+                                                   
                                                     <div class="collapse" id="collapseExample5">
                                                         <div class="well">
                                                             <div class="row">
@@ -301,8 +298,7 @@
                                                                 }
                                                             </div>
                                                         </div>
-                                                    </div>   
-                                                                                                
+                                                    </div>                                          
                                                     <span class="help-block">@item.FechaCalificacion</span> 
                                                 }
                                                 else
@@ -312,8 +308,7 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                                                ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                                         </div>
                                                     </div>
                                                     }
@@ -325,11 +320,10 @@
                                                     <em>@item.Descripcion</em>
                                                     using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                     {
-                                                    <input type="submit" id="btnDenunciarNegativo3" value="Denunciar" class="btn btn-link" /> 
+                                                    <input type="submit" id="btnDenunciarNegativo3" value="Denunciar" class="btn btn-link" />
+                                                     <a class="btn btn-link" data-toggle="collapse" href="#collapseExample6" aria-expanded="false" aria-controls="collapseExample">Replicar</a> 
                                                     }  
-                                                    
-                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample6" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>
+                                                            
                                                     <div class="collapse" id="collapseExample6">
                                                         <div class="well">
                                                             <div class="row">
@@ -346,7 +340,6 @@
                                                             </div>
                                                         </div>
                                                     </div> 
-                                                    
                                                     <span class="help-block">@item.FechaCalificacion</span>   
                                                 }
                                                 else
@@ -356,8 +349,7 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                                                ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                                         </div>
                                                     </div>
                                                     }
@@ -387,9 +379,9 @@
                                                     using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                     {
                                                     <input type="submit" id="btnDenunciarNeutro4" value="Denunciar" class="btn btn-link" /> 
+                                                     <a class="btn btn-link" data-toggle="collapse" href="#collapseExample7" aria-expanded="false" aria-controls="collapseExample">Replicar</a>
                                                     }  
-                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample7" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>
+                                                   
                                                     <div class="collapse" id="collapseExample7">
                                                         <div class="well">
                                                             <div class="row">
@@ -406,7 +398,6 @@
                                                             </div>
                                                         </div>
                                                     </div> 
-                                                    
                                                     <span class="help-block">@item.FechaCalificacion</span>  
                                                 }
                                                 else
@@ -416,8 +407,7 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                                                ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                                         </div>
                                                     </div>
                                                     }
@@ -429,9 +419,9 @@
                                                     using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                     {
                                                     <input type="submit" id="btnDenunciarNegativo4" value="Denunciar" class="btn btn-link" />
+                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample8" aria-expanded="false" aria-controls="collapseExample">Replicar</a>
                                                     }  
-                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample8" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>
+                                                    
                                                     <div class="collapse" id="collapseExample8">
                                                         <div class="well">
                                                             <div class="row">
@@ -448,7 +438,6 @@
                                                             </div>
                                                         </div>
                                                     </div> 
-                                                    
                                                     <span class="help-block">@item.FechaCalificacion</span>   
                                                 }
                                                 else
@@ -458,8 +447,7 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                                                ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                                         </div>
                                                     </div>
                                                     }
@@ -480,9 +468,9 @@
             <h2>
                 Calificaciones otorgadas</h2>
             <div class="row">
-                @if (ViewBag.Otorgadas.Count > 0)
+                @if (ViewBag.OtorgadasLimite.Count > 0)
                 {
-                    foreach (var item in ViewBag.Otorgadas)
+                    foreach (var item in ViewBag.OtorgadasLimite)
                     {
 
                         if (item.IdTipoCalificacion == 1)
@@ -505,8 +493,7 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                            ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
                                 </div>
                             }
@@ -524,8 +511,7 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                            ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
                                 </div>
                             }
@@ -562,8 +548,7 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                            ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
                                 </div>                             
                             }
@@ -581,8 +566,7 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                            ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
                                 </div>
                             }
@@ -650,8 +634,7 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                                                ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                                         </div>
                                                     </div>
                                                 }
@@ -669,8 +652,7 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                                                ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                                         </div>
                                                     </div>
                                                 }
@@ -706,8 +688,7 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                                                ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                                         </div>
                                                     </div>
                                                 }
@@ -725,8 +706,7 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
-                                                                ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                                         </div>
                                                     </div>
                                                 }
