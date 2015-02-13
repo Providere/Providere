@@ -14,6 +14,7 @@ namespace Providere.Controllers
         CalificacionServicios cs = new CalificacionServicios();
         ContratacionServicios crs = new ContratacionServicios();
         DenunciaServicios ds = new DenunciaServicios();
+        ReplicaServicios rs = new ReplicaServicios();
 
          
         public ActionResult Index()
@@ -33,6 +34,7 @@ namespace Providere.Controllers
 
             ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sanciado";
             ViewBag.Exito = TempData["Exito"];
+            ViewBag.Error = TempData["Error"];
 
             return View();
         }
@@ -98,17 +100,26 @@ namespace Providere.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReplicarComentario(int id)
+        public ActionResult ReplicarComentario(int id, string replicar)
         {
-            try
+            if (!string.IsNullOrWhiteSpace(replicar))
             {
-                TempData["Exito"] = "Comentario replicado con éxito";
-                return RedirectToAction("Index", "Calificacion");
+                try
+                {
+                    rs.ReplicarComentario(id, replicar);
+                    TempData["Exito"] = "Comentario replicado con éxito";
+                    return RedirectToAction("Index", "Calificacion");
+                }
+                catch (Exception ex)
+                {
+                    ClientException.LogException(ex, "Error al replicar comentario");
+                    return RedirectToAction("Error", "Shared");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                ClientException.LogException(ex, "Error al replicar comentario");
-                return RedirectToAction("Error", "Shared");
+                TempData["Error"] = "La réplica no puede ser vacía";
+                return RedirectToAction("Index", "Calificacion");
             }
         }
     }

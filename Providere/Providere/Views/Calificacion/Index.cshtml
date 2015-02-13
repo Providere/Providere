@@ -11,6 +11,14 @@
         @ViewBag.Exito
     </div>
 }
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
 <div class="col-md-12 well">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#obtenidas" role="tab" data-toggle="tab">
