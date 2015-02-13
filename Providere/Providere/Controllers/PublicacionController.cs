@@ -102,6 +102,8 @@ namespace Providere.Controllers
         {
             ViewBag.Error = TempData["Error"];
             ViewBag.Exito = TempData["Exito"];
+            ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sanciado";
+
             Publicacion miPublicacion = ps.TraerPublicacionPorId(id);
 
             if (ps.NoExistenImagenes(id) == false)
@@ -145,6 +147,8 @@ namespace Providere.Controllers
         {
             ViewBag.Error = TempData["Error"];
             ViewBag.Exito = TempData["Exito"];
+            ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sanciado";
+
             Publicacion miPublicacion = ps.TraerPublicacionPorId(idPublicacion);
 
             if (ps.NoExistenImagenes(idPublicacion) == false)
