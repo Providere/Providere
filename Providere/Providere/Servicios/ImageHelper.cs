@@ -3,11 +3,12 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Web.Hosting;
 
 
 namespace Providere.Servicios
 {
-    public static class ImageHelper
+    public class ImageHelper
     {
         public static byte[] CropImage(byte[] content, int x, int y, int width, int height)
 
@@ -71,10 +72,9 @@ namespace Providere.Servicios
 
         public bool  ProfileImageExists(Models.Usuario usuario)
         {
-            string filePath = Server.MapPath("~/Content/Images/image.jpg");
+            string filePath = HostingEnvironment.MapPath("~/Imagenes/FotoPerfil/imagen."+usuario.Id+".jpg");
             return System.IO.File.Exists(filePath);
-           
-            
+                     
 
         }
     }

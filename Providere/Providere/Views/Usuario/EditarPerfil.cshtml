@@ -140,9 +140,9 @@
                                                  }" id="cambiarFoto">
             <div id="page-wrapper">
                 <div class="col-md-12">
-                @if (ViewBag.ProfileImageExists)
+                @if (!ViewBag.ProfileImageExists)
                 { 
-                    @using (Html.BeginForm("CambiarFotoPerfil", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    using (Html.BeginForm("CambiarFotoPerfil", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         <h2>
                             Agregar foto de perfil</h2>
