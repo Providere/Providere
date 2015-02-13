@@ -3,7 +3,7 @@
     ViewBag.Title = "Calificaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container well">
+<div class="col-md-12 well">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#obtenidas" role="tab" data-toggle="tab">
             Obtenidas</a></li>
@@ -34,14 +34,34 @@
                                 <span class="help-block">@item.FechaCalificacion</span>
                             }
                             @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
-                            {
-                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                {
+                            {                                
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
+                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                {
                                 <input type="submit" id="btnDenunciarNeutro1" value="Denunciar" class="btn btn-link" />
-                                <span class="help-block">@item.FechaCalificacion</span>   
                                 }
+                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample1" aria-expanded="false"
+                                    aria-controls="collapseExample">Replicar</a>
+                                <div class="collapse" id="collapseExample1">
+                                    <div class="well">
+                                        <div class="row">
+                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                            {
+                                                <div class="form-group col-md-10">
+                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                </div>
+                                            
+                                                <div class="form-group col-md-2">
+                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                        Enviar</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div> 
+                               
+                                <span class="help-block">@item.FechaCalificacion</span>                                
                             }
                             else
                             {
@@ -50,21 +70,42 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                            por ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                            ser ofensivo hacia terceros</span>
                                     </div>
                                 </div>
                                 }
                             }
                             @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
                             {
+                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                <em>@item.Descripcion</em>   
                                 using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                 {
-                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                <em>@item.Descripcion</em>                             
-                                <input type="submit" id="btnDenunciarNegativo1" value="Denunciar" class="btn btn-link" />   
-                                <span class="help-block">@item.FechaCalificacion</span>  
+                                                          
+                                <input type="submit" id="btnDenunciarNegativo1" value="Denunciar" class="btn btn-link" />  
                                 }
+                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample2" aria-expanded="false"
+                                    aria-controls="collapseExample">Replicar</a>
+                                <div class="collapse" id="collapseExample2">
+                                    <div class="well">
+                                        <div class="row">
+                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                            {
+                                                <div class="form-group col-md-10">
+                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                </div>
+                                            
+                                                <div class="form-group col-md-2">
+                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                        Enviar</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>  
+                                
+                                <span class="help-block">@item.FechaCalificacion</span>  
                             }
                             else
                             {
@@ -73,8 +114,8 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                            por ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                            ser ofensivo hacia terceros</span>
                                     </div>
                                 </div>
                                 }
@@ -100,13 +141,33 @@
                             }
                             @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                             {
-                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                {                                
+                                                            
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                                <em>@item.Descripcion</em>                               
-                                <input type="submit" id="btnDenunciarNeutro2" value="Denunciar" class="btn btn-link" />                                   
+                                <em>@item.Descripcion</em> 
+                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                {                                 
+                                <input type="submit" id="btnDenunciarNeutro2" value="Denunciar" class="btn btn-link" />      
+                                }   
+                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample3" aria-expanded="false"
+                                    aria-controls="collapseExample">Replicar</a>
+                                <div class="collapse" id="collapseExample3">
+                                    <div class="well">
+                                        <div class="row">
+                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                            {
+                                                <div class="form-group col-md-10">
+                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                        Enviar</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div> 
+                                                           
                                 <span class="help-block">@item.FechaCalificacion</span>
-                                }
                             }
                             else
                             {
@@ -115,21 +176,40 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                            por ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                            ser ofensivo hacia terceros</span>
                                     </div>
                                 </div>
                                 }
                             }
                             @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
-                            {
-                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                {                                
+                            {                              
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                <em>@item.Descripcion</em>                               
-                                <input type="submit" id="btnDenunciarNegativo2" value="Denunciar" class="btn btn-link" />   
-                                <span class="help-block">@item.FechaCalificacion</span>  
+                                <em>@item.Descripcion</em> 
+                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                {                              
+                                <input type="submit" id="btnDenunciarNegativo2" value="Denunciar" class="btn btn-link" /> 
                                 }
+                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample4" aria-expanded="false"
+                                    aria-controls="collapseExample">Replicar</a>
+                                <div class="collapse" id="collapseExample4">
+                                    <div class="well">
+                                        <div class="row">
+                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                            {
+                                                <div class="form-group col-md-10">
+                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                </div>                                            
+                                                <div class="form-group col-md-2">
+                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                        Enviar</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div> 
+                                  
+                                <span class="help-block">@item.FechaCalificacion</span>   
                             }
                             else
                             {
@@ -138,8 +218,8 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                            por ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                            ser ofensivo hacia terceros</span>
                                     </div>
                                 </div>
                                 }
@@ -197,14 +277,33 @@
                                                 }
                                                 @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                                                 {
-                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                    {
-                                                    
+                                                  
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <input type="submit" id="btnDenunciarNeutro3" value="Denunciar" class="btn btn-link" />                                                      
-                                                    <span class="help-block">@item.FechaCalificacion</span>
-                                                    }
+                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                    {
+                                                    <input type="submit" id="btnDenunciarNeutro3" value="Denunciar" class="btn btn-link" />  
+                                                    }      
+                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample5" aria-expanded="false"
+                                                        aria-controls="collapseExample">Replicar</a>
+                                                    <div class="collapse" id="collapseExample5">
+                                                        <div class="well">
+                                                            <div class="row">
+                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                                {
+                                                                    <div class="form-group col-md-10">
+                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                                    </div>                                            
+                                                                    <div class="form-group col-md-2">
+                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                                            Enviar</button>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>   
+                                                                                                
+                                                    <span class="help-block">@item.FechaCalificacion</span> 
                                                 }
                                                 else
                                                 {
@@ -213,21 +312,42 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                                                por ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                                                ser ofensivo hacia terceros</span>
                                                         </div>
                                                     </div>
                                                     }
                                                 }
                                                 @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
                                                 {
-                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                    {
+                                                    
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <input type="submit" id="btnDenunciarNegativo3" value="Denunciar" class="btn btn-link" />   
-                                                    <span class="help-block">@item.FechaCalificacion</span>  
-                                                    }
+                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                    {
+                                                    <input type="submit" id="btnDenunciarNegativo3" value="Denunciar" class="btn btn-link" /> 
+                                                    }  
+                                                    
+                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample6" aria-expanded="false"
+                                                        aria-controls="collapseExample">Replicar</a>
+                                                    <div class="collapse" id="collapseExample6">
+                                                        <div class="well">
+                                                            <div class="row">
+                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                                {
+                                                                    <div class="form-group col-md-10">
+                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                                    </div>                                            
+                                                                    <div class="form-group col-md-2">
+                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                                            Enviar</button>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    
+                                                    <span class="help-block">@item.FechaCalificacion</span>   
                                                 }
                                                 else
                                                 {
@@ -236,8 +356,8 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                                                por ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                                                ser ofensivo hacia terceros</span>
                                                         </div>
                                                     </div>
                                                     }
@@ -262,14 +382,32 @@
                                                 }
                                                 @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                                                 {
-                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                    {
-                                                    
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <input type="submit" id="btnDenunciarNeutro4" value="Denunciar" class="btn btn-link" />   
-                                                    <span class="help-block">@item.FechaCalificacion</span>
-                                                    }
+                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                    {
+                                                    <input type="submit" id="btnDenunciarNeutro4" value="Denunciar" class="btn btn-link" /> 
+                                                    }  
+                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample7" aria-expanded="false"
+                                                        aria-controls="collapseExample">Replicar</a>
+                                                    <div class="collapse" id="collapseExample7">
+                                                        <div class="well">
+                                                            <div class="row">
+                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                                {
+                                                                    <div class="form-group col-md-10">
+                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                                    </div>                                            
+                                                                    <div class="form-group col-md-2">
+                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                                            Enviar</button>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    
+                                                    <span class="help-block">@item.FechaCalificacion</span>  
                                                 }
                                                 else
                                                 {
@@ -278,22 +416,40 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                                                por ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                                                ser ofensivo hacia terceros</span>
                                                         </div>
                                                     </div>
                                                     }
                                                 }
                                                 @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
-                                                {
-                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                    {
+                                                {                                                  
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <input type="submit" id="btnDenunciarNegativo4" value="Denunciar" class="btn btn-link" />   
-                                                    <span class="help-block">@item.FechaCalificacion</span>  
+                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                    {
+                                                    <input type="submit" id="btnDenunciarNegativo4" value="Denunciar" class="btn btn-link" />
+                                                    }  
+                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample8" aria-expanded="false"
+                                                        aria-controls="collapseExample">Replicar</a>
+                                                    <div class="collapse" id="collapseExample8">
+                                                        <div class="well">
+                                                            <div class="row">
+                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                                {
+                                                                    <div class="form-group col-md-10">
+                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                                    </div>                                            
+                                                                    <div class="form-group col-md-2">
+                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                                            Enviar</button>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div> 
                                                     
-                                                    }
+                                                    <span class="help-block">@item.FechaCalificacion</span>   
                                                 }
                                                 else
                                                 {
@@ -302,8 +458,8 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                                                por ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                                                ser ofensivo hacia terceros</span>
                                                         </div>
                                                     </div>
                                                     }
@@ -349,8 +505,8 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                            por ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                            ser ofensivo hacia terceros</span>
                                     </div>
                                 </div>
                             }
@@ -368,8 +524,8 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                            por ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                            ser ofensivo hacia terceros</span>
                                     </div>
                                 </div>
                             }
@@ -406,8 +562,8 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                            por ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                            ser ofensivo hacia terceros</span>
                                     </div>
                                 </div>                             
                             }
@@ -425,8 +581,8 @@
                                 <div class="col-md-5">
                                     <br />
                                     <div class="alert alert-danger alert-dismissable">
-                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                            por ser ofensivo hacia terceros</span>
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                            ser ofensivo hacia terceros</span>
                                     </div>
                                 </div>
                             }
@@ -494,8 +650,8 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                                                por ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                                                ser ofensivo hacia terceros</span>
                                                         </div>
                                                     </div>
                                                 }
@@ -513,8 +669,8 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                                                por ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                                                ser ofensivo hacia terceros</span>
                                                         </div>
                                                     </div>
                                                 }
@@ -550,8 +706,8 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                                                por ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                                                ser ofensivo hacia terceros</span>
                                                         </div>
                                                     </div>
                                                 }
@@ -569,8 +725,8 @@
                                                     <div class="col-md-10">
                                                         <br />
                                                         <div class="alert alert-danger alert-dismissable">
-                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                                                por ser ofensivo hacia terceros</span>
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                                                ser ofensivo hacia terceros</span>
                                                         </div>
                                                     </div>
                                                 }

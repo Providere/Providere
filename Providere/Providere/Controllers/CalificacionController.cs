@@ -80,9 +80,32 @@ namespace Providere.Controllers
         [HttpPost]
         public ActionResult DenunciarComentario(int id)
         {
-            ds.DenunciaComentario(id);
+            try
+            {
+                ds.DenunciaComentario(id);
+                TempData["Exito"] = "Comentario denunciado con éxito";
+                return RedirectToAction("Index", "Calificacion");
+            }
+            catch (Exception ex)
+            {
+                ClientException.LogException(ex, "Error al denunciar comentario");
+                return RedirectToAction("Error", "Shared");
+            }
+        }
 
-            return RedirectToAction("Index","Calificacion");
+        [HttpPost]
+        public ActionResult ReplicarComentario(int id)
+        {
+            try
+            {
+                TempData["Exito"] = "Comentario replicado con éxito";
+                return RedirectToAction("Index", "Calificacion");
+            }
+            catch (Exception ex)
+            {
+                ClientException.LogException(ex, "Error al replicar comentario");
+                return RedirectToAction("Error", "Shared");
+            }
         }
     }
 }
