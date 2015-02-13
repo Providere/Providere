@@ -44,8 +44,8 @@ namespace Providere.Controllers
 
         [HttpPost]
         public ActionResult NuevaPublicacion(int idUsuario, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio, IEnumerable<HttpPostedFileBase> files)
-        {         
-            if (ps.VerificarRubro(idUsuario, idRubro) || ps.VerificarSubrubro(idUsuario,idSubRubro))
+        {
+            if (ps.VerificarRubro(idUsuario, idRubro) || ps.VerificarSubrubro(idUsuario, idSubRubro))
             {
                 TempData["Error"] = "Ya tenes una publicacion creada en ese rubro o subrubro";
                 return RedirectToAction("NuevaPublicacion");
@@ -101,48 +101,50 @@ namespace Providere.Controllers
         public ActionResult VisualizarMiPublicacion(int id)
         {
             ViewBag.Error = TempData["Error"];
+            ViewBag.Exito = TempData["Exito"];
             Publicacion miPublicacion = ps.TraerPublicacionPorId(id);
 
-                if (ps.NoExistenImagenes(id) == false)
-                {
-                    ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
-                }
+            if (ps.NoExistenImagenes(id) == false)
+            {
+                ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+            }
 
-                if (prs.NoExistenPreguntas(id) == false)
-                {
-                    ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
-                }
+            if (prs.NoExistenPreguntas(id) == false)
+            {
+                ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
+            }
 
-                var mostrarPreguntas = ppr.TraerPreguntasPublicacion(id);
-                ViewBag.MostrarPreguntas = mostrarPreguntas;
+            var mostrarPreguntas = ppr.TraerPreguntasPublicacion(id);
+            ViewBag.MostrarPreguntas = mostrarPreguntas;
 
-                //Para mostrar todas las calificaciones de la publicacion:
-                var traerCalificaciones = cas.TraerCalificaciones(id);
-                ViewBag.Calificaciones = traerCalificaciones;
+            //Para mostrar todas las calificaciones de la publicacion:
+            var traerCalificaciones = cas.TraerCalificaciones(id);
+            ViewBag.Calificaciones = traerCalificaciones;
 
-                //Para mostrar las primeras 5:
-                var traerPrimerasCalificaciones = cas.TraerPrimerasCalificaciones(5, id);
-                ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
+            //Para mostrar las primeras 5:
+            var traerPrimerasCalificaciones = cas.TraerPrimerasCalificaciones(5, id);
+            ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
 
-                ViewBag.accionPadre = "VisualizarMiPublicacion";
-                 var traerPuntaje = ps.TraerPuntaje(id);
-                 if (traerPuntaje == null)
-                 {
-                     ViewBag.MostrarPuntaje = 0;
-                 }
-                 else
-                 {
-                     ViewBag.MostrarPuntaje = traerPuntaje;
-                 }
+            ViewBag.accionPadre = "VisualizarMiPublicacion";
+            var traerPuntaje = ps.TraerPuntaje(id);
+            if (traerPuntaje == null)
+            {
+                ViewBag.MostrarPuntaje = 0;
+            }
+            else
+            {
+                ViewBag.MostrarPuntaje = traerPuntaje;
+            }
 
-                ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
-                return View(miPublicacion);
+            ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
+            return View(miPublicacion);
         }
 
         // Publicacion/VisualizarPublicacion
         public ActionResult VisualizarPublicacion(int idPublicacion)
         {
             ViewBag.Error = TempData["Error"];
+            ViewBag.Exito = TempData["Exito"];
             Publicacion miPublicacion = ps.TraerPublicacionPorId(idPublicacion);
 
             if (ps.NoExistenImagenes(idPublicacion) == false)
@@ -161,9 +163,9 @@ namespace Providere.Controllers
             var traerPrimerasCalificaciones = cas.TraerPrimerasCalificaciones(5, idPublicacion);
             ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
 
-            var traerCalificaciones = cas.TraerCalificaciones(idPublicacion);             
+            var traerCalificaciones = cas.TraerCalificaciones(idPublicacion);
             ViewBag.Calificaciones = traerCalificaciones;
-           
+
             ViewBag.accionPadre = "VisualizarPublicacion";
 
             var traerPuntaje = ps.TraerPuntaje(idPublicacion);
@@ -178,7 +180,7 @@ namespace Providere.Controllers
 
             //Si el servicio fue contratado, se muestra el telefono del prestador:
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            var contratada =  cos.TraerContratada(idPublicacion,idUsuario);
+            var contratada = cos.TraerContratada(idPublicacion, idUsuario);
             ViewBag.Contratada = contratada;
 
             ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
@@ -207,65 +209,65 @@ namespace Providere.Controllers
 
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
-                if (ps.NoExistenImagenes(id) == false) //Si devuelve false es porque no existen imagenes para esa publicacion
-                {
-                    ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
-                }
+            if (ps.NoExistenImagenes(id) == false) //Si devuelve false es porque no existen imagenes para esa publicacion
+            {
+                ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+            }
 
-                ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre", publicacion.IdRubro);
-                ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre", publicacion.IdSubRubro);
+            ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre", publicacion.IdRubro);
+            ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre", publicacion.IdSubRubro);
 
-                return View(publicacion);
+            return View(publicacion);
         }
 
         [HttpPost]
-        public ActionResult EditarPublicacion(int idUsuario,int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio,decimal? oculto, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult EditarPublicacion(int idUsuario, int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio, decimal? oculto, IEnumerable<HttpPostedFileBase> files)
         {
-               if (ModelState.IsValid)
+            if (ModelState.IsValid)
+            {
+                try
                 {
-                    try
+                    ps.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio, oculto);
+                    int verificar = ps.VerificarCantidadImagenes(id); // Verifico para no pasar la cant de 4 imagenes.Devuelve la cantidad real o sino 0
+                    int cant = files.Count();
+                    int total = (verificar + cant);
+                    if (files.First() != null && total < 5)
                     {
-                        ps.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio, oculto);
-                        int verificar = ps.VerificarCantidadImagenes(id); // Verifico para no pasar la cant de 4 imagenes.Devuelve la cantidad real o sino 0
-                        int cant = files.Count();
-                        int total = (verificar + cant);
-                        if (files.First() != null && total < 5)
+                        foreach (var file in files)
                         {
-                            foreach (var file in files)
+
+                            string extension = Path.GetExtension(file.FileName);
+                            if (file.ContentLength > 0 && extension == ".jpg")
                             {
+                                string uniqueFileName = Path.ChangeExtension(file.FileName, Convert.ToString(idUsuario));
+                                string path = Path.Combine(Server.MapPath("~/Imagenes/Publicacion"),
+                                            Path.GetFileName(uniqueFileName + extension));
+                                file.SaveAs(path);
+                                string pathImagen = uniqueFileName + extension;
 
-                                string extension = Path.GetExtension(file.FileName);
-                                if (file.ContentLength > 0 && extension == ".jpg")
-                                {
-                                    string uniqueFileName = Path.ChangeExtension(file.FileName, Convert.ToString(idUsuario));
-                                    string path = Path.Combine(Server.MapPath("~/Imagenes/Publicacion"),
-                                                Path.GetFileName(uniqueFileName + extension));
-                                    file.SaveAs(path);
-                                    string pathImagen = uniqueFileName + extension;
-
-                                    ps.CargarImagenesEdicion(pathImagen, idUsuario, id);
-                                }
+                                ps.CargarImagenesEdicion(pathImagen, idUsuario, id);
                             }
-                            TempData["Exito"] = "Publicación editada correctamente";
-                            return RedirectToAction("ListarPublicaciones");
                         }
-                        else
-                        {
-                            TempData["Exito"] = "Publicación editada correctamente";
-                            return RedirectToAction("ListarPublicaciones");
-                        }
+                        TempData["Exito"] = "Publicación editada correctamente";
+                        return RedirectToAction("ListarPublicaciones");
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        ClientException.LogException(ex, "Error al editar la publicación");
-                        return RedirectToAction("Error", "Shared");
+                        TempData["Exito"] = "Publicación editada correctamente";
+                        return RedirectToAction("ListarPublicaciones");
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    TempData["Error"] = "No se pudo editar la publicación, intentalo nuevamente";
-                    return RedirectToAction("EditarPublicacion", new { id = id });
+                    ClientException.LogException(ex, "Error al editar la publicación");
+                    return RedirectToAction("Error", "Shared");
                 }
+            }
+            else
+            {
+                TempData["Error"] = "No se pudo editar la publicación, intentalo nuevamente";
+                return RedirectToAction("EditarPublicacion", new { id = id });
+            }
         }
 
         [HttpPost]
@@ -275,7 +277,7 @@ namespace Providere.Controllers
             {
                 ps.EliminarImagen(id);
                 TempData["Exito"] = "Imagen eliminada correctamente";
-                return RedirectToAction("EditarPublicacion",new { id = idPublicacion });
+                return RedirectToAction("EditarPublicacion", new { id = idPublicacion });
             }
             catch (Exception ex)
             {
@@ -307,7 +309,7 @@ namespace Providere.Controllers
                 ClientException.LogException(ex, "Error al deshabilitar la publicación");
                 return RedirectToAction("Error", "Shared");
             }
-           
+
         }
 
         [HttpPost]

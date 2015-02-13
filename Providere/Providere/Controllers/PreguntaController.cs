@@ -43,10 +43,18 @@ namespace Providere.Controllers
             {
                 if (!string.IsNullOrWhiteSpace(preguntar))
                 {
-                    prs.PreguntarEnPublicacion(idUser, id, preguntar);
+                    try
+                    {
+                        prs.PreguntarEnPublicacion(idUser, id, preguntar);
 
-                    TempData["Exito"] = "Pregunta publicada correctamente";
-                    return RedirectToAction("Home", "Home");
+                        TempData["Exito"] = "Pregunta publicada correctamente";
+                        return RedirectToAction("VisualizarPublicacion", "Publicacion", new { idPublicacion = id });
+                    }
+                    catch (Exception ex)
+                    {
+                        ClientException.LogException(ex, "Error al guardar la pregunta");
+                        return RedirectToAction("Error", "Shared");
+                    }
                 }
 
                 TempData["Error"] = "La pregunta no puede ser vacia";

@@ -10,17 +10,24 @@
             &times;</button>
         Su cuenta esta actualmente bloqueada por lo cual no puede realizar contrataciones
     </div>
-                    }
+}
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
+@if (ViewBag.Exito != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Exito
+    </div>
+}
 <div class="col-md-12 well">
-                
-    @if (ViewBag.Error != null)
-    {
-        <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert">
-                &times;</button>
-            @ViewBag.Error
-        </div>
-    }
     @using (Html.BeginForm("VisualizarMiPublicacion", "Publicacion", FormMethod.Post))
     {
         <h1 class="text-right">
@@ -142,8 +149,8 @@
                                     <div class="col-md-8">
                                         <br />
                                         <div class="alert alert-danger alert-dismissable">
-                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                                por ser ofensivo hacia terceros</span>
+                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                                ser ofensivo hacia terceros</span>
                                         </div>
                                     </div>
                                     }
@@ -161,8 +168,8 @@
                                     <div class="col-md-8">
                                         <br />
                                         <div class="alert alert-danger alert-dismissable">
-                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                                por ser ofensivo hacia terceros</span>
+                                            <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                                ser ofensivo hacia terceros</span>
                                         </div>
                                     </div>
                                     }
@@ -221,8 +228,8 @@
                                                         <div class="col-md-10">
                                                             <br />
                                                             <div class="alert alert-danger alert-dismissable">
-                                                                <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                                                    por ser ofensivo hacia terceros</span>
+                                                                <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                                                    ser ofensivo hacia terceros</span>
                                                             </div>
                                                         </div>
                                                         }
@@ -240,8 +247,8 @@
                                                         <div class="col-md-10">
                                                             <br />
                                                             <div class="alert alert-danger alert-dismissable">
-                                                                <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado
-                                                                    por ser ofensivo hacia terceros</span>
+                                                                <span class="glyphicon glyphicon-warning-sign"></span><span>Comentario denunciado por
+                                                                    ser ofensivo hacia terceros</span>
                                                             </div>
                                                         </div>
                                                         }
