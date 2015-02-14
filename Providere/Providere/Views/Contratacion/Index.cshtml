@@ -71,7 +71,16 @@
                                 </td>
                                 <td>
 
-                                    @foreach (var item2 in ViewBag.tieneCalificacionContrataciones)
+                                    @if (item.FlagCalificoCliente == 0)
+                                    { 
+                                        @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 1 }, null)
+                                    }
+                                    else
+                                    { 
+                                        @Html.DisplayName("Ver CALIFICACION")
+                                    }
+
+                                   @* @foreach (var item2 in ViewBag.tieneCalificacionContrataciones)
                                     {
                                         if (item.Id == item2.IdContratacion)
                                         {
@@ -86,7 +95,7 @@
                                     @if (ViewBag.tieneCalificacionContrataciones.Count == 0)
                                     {
                                          @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 1 }, null)
-                                    }
+                                    } *@
 
                                 </td>
                             </tr>

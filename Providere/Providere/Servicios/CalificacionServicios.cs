@@ -24,12 +24,12 @@ namespace Providere.Servicios
 
         }
 
-        public List<Calificacion> tieneCalificacionContrataciones(List<Contratacion> listaContratacion)
+       /* public List<Calificacion> tieneCalificacionContrataciones(List<Contratacion> listaContratacion)
         {
             var tieneCalificacion = cr.tieneCalificacionContrataciones(listaContratacion);
 
             return tieneCalificacion;
-        }
+        } */
 
         internal List<Calificacion> obtenerNegativasDeUsuario(Usuario usuario)
         {

@@ -37,27 +37,14 @@ namespace Providere.Repositorios
 
             context.Calificacion.AddObject(calificacion);
 
-           // Calificacion calificacion = context.Calificacion.Where(e => e.Id == id).FirstOrDefault();
-            //calificacion.Replicado = 1; //comentario de la calificacion fue replicado
-
-
-
             Contratacion cambioEstado = context.Contratacion.Where(e => e.Id == contratacion.Id).FirstOrDefault();
-            //calificacion.Replicado = 1; //comentario de la calificacion fue replicado
-
-
-
-
+            cambioEstado.FlagCalificoCliente = 1; //en este caso se marca que el cliente califico al prestador
 
             context.SaveChanges();
         }
 
-        internal List<Calificacion> tieneCalificacionContrataciones(List<Contratacion> listaContratacion)
+      /*  internal List<Calificacion> tieneCalificacionContrataciones(List<Contratacion> listaContratacion)
         {
-            /*var calificacion = (from calif in context.Calificacion
-                                where calif.IdContratacion == cont.Id
-                                and calif.IdUsuario == cont.IdUsuario
-                                select calif).FirstOrDefault();*/
 
             List<int> listaContratacionesPorId = new List<int>();
 
@@ -73,7 +60,7 @@ namespace Providere.Repositorios
 
             return resultado.ToList();
 
-        }
+        } */
 
         internal List<Calificacion> obtenerNegativasDeUsuario(Usuario usuario)
         {

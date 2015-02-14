@@ -26,13 +26,13 @@ namespace Providere.Controllers
 
             var quienMeContrato = cs.traerQuienesMeContrataron(idUsuario);
 
-            var tieneCalificacionContrataciones = cas.tieneCalificacionContrataciones(contrataciones);
+            //var tieneCalificacionContrataciones = cas.tieneCalificacionContrataciones(contrataciones);
             //var tieneCalificacionQuienMeContrato = cas.tieneCalificacion(quienMeContrato);
 
             ViewBag.ContratacionesRealizadas = contrataciones;
             ViewBag.QuienesMeContrataron = quienMeContrato;
 
-            ViewBag.tieneCalificacionContrataciones = tieneCalificacionContrataciones;
+            //ViewBag.tieneCalificacionContrataciones = tieneCalificacionContrataciones;
 
             return View();
         }
