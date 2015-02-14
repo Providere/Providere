@@ -32,6 +32,9 @@ namespace Providere.Controllers
             ViewBag.ObtenidasTodas = obtenidasTodas;
             ViewBag.OtorgadasTodas = otorgadasTodas;
 
+            var replicasTodas = rs.TraerTodasLasReplicas();
+            ViewBag.Replicas = replicasTodas;
+
             ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sanciado";
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
@@ -123,12 +126,5 @@ namespace Providere.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult VerReplica(int id)
-        {
-           var replicaComentario = rs.TraerComentarioReplica(id);
-           ViewBag.VerReplica = replicaComentario;
-           return RedirectToAction("VisualizarMiPublicacion", "Publicacion");
-        }
     }
 }
