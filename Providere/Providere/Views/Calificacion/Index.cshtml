@@ -38,6 +38,7 @@
                         {
                     <div class="col-md-12">
                         <div>
+                            <br />
                             <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
                             <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
@@ -47,13 +48,44 @@
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion </em>
-                                <span class="help-block">@item.FechaCalificacion</span>
+                                <br />
+                                <br />
+                                if (item.Replicado == 1)
+                                {
+                                    foreach (var rep in ViewBag.Replicas)
+                                    {
+                                        if (rep.IdCalificacion == item.Id)
+                                        {
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                        }
+                                    }
+                                }
+                                else
+                                {   
+                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExamplePos1" aria-expanded="false"
+                                    aria-controls="collapseExample">Replicar</a>   
+                                }
+                                <div class="collapse" id="collapseExamplePos1">
+                                    <div class="well">
+                                        <div class="row">
+                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                            {
+                                                <div class="form-group col-md-10">
+                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                        Enviar</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
                             }
                             @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                             {                                
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
-                                <span class="help-block">@item.FechaCalificacion</span>          
                                 using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                 {
                                 <input type="submit" id="btnDenunciarNeutro1" value="Denunciar" class="btn btn-link" />
@@ -64,18 +96,15 @@
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
-                                <span class="glyphicon glyphicon-chevron-right"></span><em>@rep.Comentario</em>
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
                                         }
                                     }
                                 }
                                 else
-                                {
-                                        
+                                {   
                                 <a class="btn btn-link" data-toggle="collapse" href="#collapseExample1" aria-expanded="false"
-                                    aria-controls="collapseExample">Replicar</a>
-                                        
-                                }
-                            
+                                    aria-controls="collapseExample">Replicar</a>   
+                                }                              
                                 <div class="collapse" id="collapseExample1">
                                     <div class="well">
                                         <div class="row">
@@ -110,12 +139,25 @@
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em>   
                                 using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                {
-                                                          
+                                {                        
                                 <input type="submit" id="btnDenunciarNegativo1" value="Denunciar" class="btn btn-link" />  
-                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample2" aria-expanded="false"
-                                    aria-controls="collapseExample">Replicar</a>
                                 }
+                                if (item.Replicado == 1)
+                                {
+                                    foreach (var rep in ViewBag.Replicas)
+                                    {
+                                        if (rep.IdCalificacion == item.Id)
+                                        {
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                        }
+                                    }
+                                }
+                                else
+                                {   
+                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample2" aria-expanded="false"
+                                    aria-controls="collapseExample">Replicar</a>   
+                                }
+                                 
                                 <div class="collapse" id="collapseExample2">
                                     <div class="well">
                                         <div class="row">
@@ -133,7 +175,6 @@
                                         </div>
                                     </div>
                                 </div>  
-                                <span class="help-block">@item.FechaCalificacion</span>  
                             }
                             else
                             {
@@ -164,19 +205,64 @@
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion </em>
-                                <span class="help-block">@item.FechaCalificacion</span>
+                                <br />
+                                <br />
+                                if (item.Replicado == 1)
+                                {
+                                    foreach (var rep in ViewBag.Replicas)
+                                    {
+                                        if (rep.IdCalificacion == item.Id)
+                                        {
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                        }
+                                    }
+                                }
+                                else
+                                {   
+                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExamplePos2" aria-expanded="false"
+                                    aria-controls="collapseExample">Replicar</a>   
+                                }
+                                <div class="collapse" id="collapseExamplePos2">
+                                    <div class="well">
+                                        <div class="row">
+                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                            {
+                                                <div class="form-group col-md-10">
+                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                        Enviar</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
                             }
                             @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
-                            {
-                                                            
+                            {                                                          
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em> 
                                 using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                 {                                 
                                 <input type="submit" id="btnDenunciarNeutro2" value="Denunciar" class="btn btn-link" />   
+                                }
+                                if (item.Replicado == 1)
+                                {
+                                    foreach (var rep in ViewBag.Replicas)
+                                    {
+                                        if (rep.IdCalificacion == item.Id)
+                                        {
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                        }
+                                    }
+                                }
+                                else
+                                {   
                                 <a class="btn btn-link" data-toggle="collapse" href="#collapseExample3" aria-expanded="false"
                                     aria-controls="collapseExample">Replicar</a>   
-                                }                           
+                                }
+                                                        
                                 <div class="collapse" id="collapseExample3">
                                     <div class="well">
                                         <div class="row">
@@ -193,7 +279,6 @@
                                         </div>
                                     </div>
                                 </div>                                                           
-                                <span class="help-block">@item.FechaCalificacion</span>
                             }
                             else
                             {
@@ -214,8 +299,21 @@
                                 using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                 {                              
                                 <input type="submit" id="btnDenunciarNegativo2" value="Denunciar" class="btn btn-link" /> 
+                                }
+                                if (item.Replicado == 1)
+                                {
+                                    foreach (var rep in ViewBag.Replicas)
+                                    {
+                                        if (rep.IdCalificacion == item.Id)
+                                        {
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                        }
+                                    }
+                                }
+                                else
+                                {   
                                 <a class="btn btn-link" data-toggle="collapse" href="#collapseExample4" aria-expanded="false"
-                                    aria-controls="collapseExample">Replicar</a>
+                                    aria-controls="collapseExample">Replicar</a>   
                                 }
                                 <div class="collapse" id="collapseExample4">
                                     <div class="well">
@@ -232,8 +330,7 @@
                                             }
                                         </div>
                                     </div>
-                                </div> 
-                                <span class="help-block">@item.FechaCalificacion</span>   
+                                </div>                                
                             }
                             else
                             {
@@ -296,7 +393,39 @@
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
-                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    <br />
+                                                    <br />
+                                                    if (item.Replicado == 1)
+                                                    {
+                                                        foreach (var rep in ViewBag.Replicas)
+                                                        {
+                                                            if (rep.IdCalificacion == item.Id)
+                                                            {
+                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {   
+                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExamplePos3" aria-expanded="false"
+                                                        aria-controls="collapseExample">Replicar</a>   
+                                                    }
+                                                    <div class="collapse" id="collapseExamplePos3">
+                                                        <div class="well">
+                                                            <div class="row">
+                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                                {
+                                                                    <div class="form-group col-md-10">
+                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                                    </div>                                            
+                                                                    <div class="form-group col-md-2">
+                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                                            Enviar</button>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>       
                                                 }
                                                 @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                                                 {
@@ -306,10 +435,22 @@
                                                     using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                     {
                                                     <input type="submit" id="btnDenunciarNeutro3" value="Denunciar" class="btn btn-link" />  
+                                                    }
+                                                    if (item.Replicado == 1)
+                                                    {
+                                                        foreach (var rep in ViewBag.Replicas)
+                                                        {
+                                                            if (rep.IdCalificacion == item.Id)
+                                                            {
+                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {   
                                                     <a class="btn btn-link" data-toggle="collapse" href="#collapseExample5" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>
-                                                    }      
-                                                   
+                                                        aria-controls="collapseExample">Replicar</a>   
+                                                    }
                                                     <div class="collapse" id="collapseExample5">
                                                         <div class="well">
                                                             <div class="row">
@@ -326,7 +467,6 @@
                                                             </div>
                                                         </div>
                                                     </div>                                          
-                                                    <span class="help-block">@item.FechaCalificacion</span> 
                                                 }
                                                 else
                                                 {
@@ -348,10 +488,22 @@
                                                     using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                     {
                                                     <input type="submit" id="btnDenunciarNegativo3" value="Denunciar" class="btn btn-link" />
+                                                    }
+                                                    if (item.Replicado == 1)
+                                                    {
+                                                        foreach (var rep in ViewBag.Replicas)
+                                                        {
+                                                            if (rep.IdCalificacion == item.Id)
+                                                            {
+                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {   
                                                     <a class="btn btn-link" data-toggle="collapse" href="#collapseExample6" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a> 
-                                                    }  
-                                                            
+                                                        aria-controls="collapseExample">Replicar</a>   
+                                                    }      
                                                     <div class="collapse" id="collapseExample6">
                                                         <div class="well">
                                                             <div class="row">
@@ -368,7 +520,6 @@
                                                             </div>
                                                         </div>
                                                     </div> 
-                                                    <span class="help-block">@item.FechaCalificacion</span>   
                                                 }
                                                 else
                                                 {
@@ -398,7 +549,39 @@
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
-                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    <br />
+                                                    <br />
+                                                    if (item.Replicado == 1)
+                                                    {
+                                                        foreach (var rep in ViewBag.Replicas)
+                                                        {
+                                                            if (rep.IdCalificacion == item.Id)
+                                                            {
+                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {   
+                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExamplePos4" aria-expanded="false"
+                                                        aria-controls="collapseExample">Replicar</a>   
+                                                    }
+                                                    <div class="collapse" id="collapseExamplePos4">
+                                                        <div class="well">
+                                                            <div class="row">
+                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                                {
+                                                                    <div class="form-group col-md-10">
+                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                                    </div>                                            
+                                                                    <div class="form-group col-md-2">
+                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                                            Enviar</button>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div> 
                                                 }
                                                 @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                                                 {
@@ -407,10 +590,22 @@
                                                     using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                     {
                                                     <input type="submit" id="btnDenunciarNeutro4" value="Denunciar" class="btn btn-link" /> 
+                                                    }
+                                                    if (item.Replicado == 1)
+                                                    {
+                                                        foreach (var rep in ViewBag.Replicas)
+                                                        {
+                                                            if (rep.IdCalificacion == item.Id)
+                                                            {
+                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {   
                                                     <a class="btn btn-link" data-toggle="collapse" href="#collapseExample7" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>
-                                                    }  
-                                                   
+                                                        aria-controls="collapseExample">Replicar</a>   
+                                                    }
                                                     <div class="collapse" id="collapseExample7">
                                                         <div class="well">
                                                             <div class="row">
@@ -427,7 +622,6 @@
                                                             </div>
                                                         </div>
                                                     </div> 
-                                                    <span class="help-block">@item.FechaCalificacion</span>  
                                                 }
                                                 else
                                                 {
@@ -448,10 +642,22 @@
                                                     using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
                                                     {
                                                     <input type="submit" id="btnDenunciarNegativo4" value="Denunciar" class="btn btn-link" />
+                                                    }
+                                                    if (item.Replicado == 1)
+                                                    {
+                                                        foreach (var rep in ViewBag.Replicas)
+                                                        {
+                                                            if (rep.IdCalificacion == item.Id)
+                                                            {
+                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {   
                                                     <a class="btn btn-link" data-toggle="collapse" href="#collapseExample8" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>
-                                                    }  
-                                                    
+                                                        aria-controls="collapseExample">Replicar</a>   
+                                                    }
                                                     <div class="collapse" id="collapseExample8">
                                                         <div class="well">
                                                             <div class="row">
@@ -467,8 +673,7 @@
                                                                 }
                                                             </div>
                                                         </div>
-                                                    </div> 
-                                                    <span class="help-block">@item.FechaCalificacion</span>   
+                                                    </div>  
                                                 }
                                                 else
                                                 {
@@ -504,9 +709,10 @@
                     {
 
                         if (item.IdTipoCalificacion == 1)
-                        {
+                        { 
                     <div class="col-md-12">
                         <div>
+                            <br />
                             <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
                             <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
@@ -516,7 +722,16 @@
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion</em>
-                                <span class="help-block">@item.FechaCalificacion</span>
+                                <br />
+                                <br />
+                                
+                                foreach (var rep in ViewBag.Replicas)
+                                {
+                                    if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
+                                    {
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplicasss:</span> <em>@rep.Comentario</em>
+                                    }
+                                }
                             }
                             @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
                             {
@@ -533,7 +748,15 @@
                                 {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
-                                <span class="help-block">@item.FechaCalificacion</span>
+                                <br />
+                                <br />
+                                    foreach (var rep in ViewBag.Replicas)
+                                    {
+                                        if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
+                                        {
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                        }
+                                    }
                                 }
                             }
                             @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 1) //Negativo
@@ -551,7 +774,16 @@
                                 {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em>
-                                <span class="help-block">@item.FechaCalificacion</span>
+                                <br />
+                                <br />
+                                    foreach (var rep in ViewBag.Replicas)
+                                    {
+                                        if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
+                                        {
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                        }
+                                    }
+
                                 }
                             }
                             <br />
@@ -562,6 +794,7 @@
                         {
                     <div class="col-md-12">
                         <div>
+                            <br />
                             <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
                             <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
@@ -571,7 +804,17 @@
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion</em>
-                                <span class="help-block">@item.FechaCalificacion</span>
+                                <br />
+                                <br />
+                                
+                                foreach (var rep in ViewBag.Replicas)
+                                {
+                                    if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
+                                    {
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                    }
+                                }
+
                             }
                             @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
                             {
@@ -588,7 +831,16 @@
                                 {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
-                                <span class="help-block">@item.FechaCalificacion</span>
+                                <br />
+                                <br />
+                                    foreach (var rep in ViewBag.Replicas)
+                                    {
+                                        if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
+                                        {
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                        }
+                                    }
+
                                 }
                             }
                             @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 1) //Negativo
@@ -606,7 +858,16 @@
                                 {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em>
-                                <span class="help-block">@item.FechaCalificacion</span>
+                                <br />
+                                <br />
+                                
+                                    foreach (var rep in ViewBag.Replicas)
+                                    {
+                                        if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
+                                        {
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                        }
+                                    }
                                 }
                             }
                             <br />
@@ -657,7 +918,16 @@
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
-                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    <br />
+                                                    <br />
+                                                   
+                                                    foreach (var rep in ViewBag.Replicas)
+                                                    {
+                                                        if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
+                                                        {
+                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                        }
+                                                    }
                                                 }
                                                 @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
                                                 {
@@ -674,7 +944,16 @@
                                                     {
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                   
+                                                    <br />
+                                                    <br />
+                                                        foreach (var rep in ViewBag.Replicas)
+                                                        {
+                                                            if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
+                                                            {
+                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                            }
+                                                        }
                                                     }
                                                 }
                                                 @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 1) //Negativo
@@ -692,7 +971,17 @@
                                                     {
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    <br />
+                                                    <br />
+                                                    
+                                                   
+                                                        foreach (var rep in ViewBag.Replicas)
+                                                        {
+                                                            if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
+                                                            {
+                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             </div>
@@ -711,7 +1000,17 @@
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
-                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    <br />
+                                                    <br />
+                                                    
+                                                    foreach (var rep in ViewBag.Replicas)
+                                                    {
+                                                        if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
+                                                        {
+                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                        }
+                                                    }
+
                                                 }
                                                 @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
                                                 {
@@ -728,7 +1027,17 @@
                                                     {
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    <br />
+                                                    <br />
+                                                    
+                                                    
+                                                        foreach (var rep in ViewBag.Replicas)
+                                                        {
+                                                            if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
+                                                            {
+                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                            }
+                                                        }
                                                     }
                                                 }
                                                 @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 1) //Negativo
@@ -746,7 +1055,16 @@
                                                     {
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    <br />
+                                                    <br />
+                                                   
+                                                        foreach (var rep in ViewBag.Replicas)
+                                                        {
+                                                            if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
+                                                            {
+                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             </div>
