@@ -86,7 +86,7 @@ namespace Providere.Controllers
             }
         }
 
-        [HttpPost]
+        //[HttpPost]
         public ActionResult DenunciarComentario(int id)
         {
             try

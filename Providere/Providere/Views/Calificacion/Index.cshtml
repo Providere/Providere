@@ -37,8 +37,8 @@
                         if (item.IdTipoCalificacion == 1)
                         {
                     <div class="col-md-12">
+                    <br />
                         <div>
-                            <br />
                             <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
                             <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
@@ -62,7 +62,7 @@
                                 }
                                 else
                                 {   
-                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExamplePos1" aria-expanded="false"
+                                <a class="btn-info btn-link" data-toggle="collapse" href="#collapseExamplePos1" aria-expanded="false"
                                     aria-controls="collapseExample">Replicar</a>   
                                 }
                                 <div class="collapse" id="collapseExamplePos1">
@@ -81,28 +81,29 @@
                                         </div>
                                     </div>
                                 </div>
-                            }
+                            }                          
                             @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
                             {                                
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
-                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                {
-                                <input type="submit" id="btnDenunciarNeutro1" value="Denunciar" class="btn btn-link" />
-                                }
+                                <br />
+                                <br />
                                 if (item.Replicado == 1)
                                 {
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (rep.IdCalificacion == item.Id)
-                                        {
+                                        { @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <br />
+                                <br />
                                 <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
                                         }
                                     }
                                 }
                                 else
                                 {   
-                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample1" aria-expanded="false"
+                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <a class="btn-info btn-link" data-toggle="collapse" href="#collapseExample1" aria-expanded="false"
                                     aria-controls="collapseExample">Replicar</a>   
                                 }                              
                                 <div class="collapse" id="collapseExample1">
@@ -137,24 +138,24 @@
                             @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
                             {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                <em>@item.Descripcion</em>   
-                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                {                        
-                                <input type="submit" id="btnDenunciarNegativo1" value="Denunciar" class="btn btn-link" />  
-                                }
+                                <em>@item.Descripcion</em>                       
                                 if (item.Replicado == 1)
                                 {
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
+                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <br />
+                                <br />
                                 <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
                                         }
                                     }
                                 }
                                 else
                                 {   
-                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample2" aria-expanded="false"
+                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <a class="btn-info btn-link" data-toggle="collapse" href="#collapseExample2" aria-expanded="false"
                                     aria-controls="collapseExample">Replicar</a>   
                                 }
                                  
@@ -196,6 +197,7 @@
                         {
                     <div class="col-md-12">
                         <div>
+                          <br />
                             <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
                             <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
@@ -219,7 +221,7 @@
                                 }
                                 else
                                 {   
-                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExamplePos2" aria-expanded="false"
+                                <a class="btn-info btn-link" data-toggle="collapse" href="#collapseExamplePos2" aria-expanded="false"
                                     aria-controls="collapseExample">Replicar</a>   
                                 }
                                 <div class="collapse" id="collapseExamplePos2">
@@ -243,23 +245,23 @@
                             {                                                          
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em> 
-                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                {                                 
-                                <input type="submit" id="btnDenunciarNeutro2" value="Denunciar" class="btn btn-link" />   
-                                }
                                 if (item.Replicado == 1)
                                 {
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
+                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <br />
+                                <br />
                                 <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
                                         }
                                     }
                                 }
                                 else
-                                {   
-                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample3" aria-expanded="false"
+                                {  
+                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" }) 
+                                <a class="btn-info btn-link" data-toggle="collapse" href="#collapseExample3" aria-expanded="false"
                                     aria-controls="collapseExample">Replicar</a>   
                                 }
                                                         
@@ -296,23 +298,24 @@
                             {                              
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em> 
-                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                {                              
-                                <input type="submit" id="btnDenunciarNegativo2" value="Denunciar" class="btn btn-link" /> 
-                                }
+                                
                                 if (item.Replicado == 1)
                                 {
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
+                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <br />
+                                <br />
                                 <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
                                         }
                                     }
                                 }
                                 else
                                 {   
-                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample4" aria-expanded="false"
+                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <a class="btn-info btn-link" data-toggle="collapse" href="#collapseExample4" aria-expanded="false"
                                     aria-controls="collapseExample">Replicar</a>   
                                 }
                                 <div class="collapse" id="collapseExample4">
@@ -407,7 +410,7 @@
                                                     }
                                                     else
                                                     {   
-                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExamplePos3" aria-expanded="false"
+                                                    <a class="btn-info btn-link" data-toggle="collapse" href="#collapseExamplePos3" aria-expanded="false"
                                                         aria-controls="collapseExample">Replicar</a>   
                                                     }
                                                     <div class="collapse" id="collapseExamplePos3">
@@ -432,23 +435,24 @@
                                                   
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                    {
-                                                    <input type="submit" id="btnDenunciarNeutro3" value="Denunciar" class="btn btn-link" />  
-                                                    }
+                                                   
                                                     if (item.Replicado == 1)
                                                     {
                                                         foreach (var rep in ViewBag.Replicas)
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
+                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <br />
+                                                    <br />
                                                     <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
                                                             }
                                                         }
                                                     }
                                                     else
                                                     {   
-                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample5" aria-expanded="false"
+                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <a class="btn-info btn-link" data-toggle="collapse" href="#collapseExample5" aria-expanded="false"
                                                         aria-controls="collapseExample">Replicar</a>   
                                                     }
                                                     <div class="collapse" id="collapseExample5">
@@ -485,23 +489,25 @@
                                                     
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                    {
-                                                    <input type="submit" id="btnDenunciarNegativo3" value="Denunciar" class="btn btn-link" />
-                                                    }
+                                                    
+                                                   
                                                     if (item.Replicado == 1)
                                                     {
                                                         foreach (var rep in ViewBag.Replicas)
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
+                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <br />
+                                                    <br />
                                                     <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
                                                             }
                                                         }
                                                     }
                                                     else
-                                                    {   
-                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample6" aria-expanded="false"
+                                                    {  
+                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" }) 
+                                                    <a class="btn-info btn-link" data-toggle="collapse" href="#collapseExample6" aria-expanded="false"
                                                         aria-controls="collapseExample">Replicar</a>   
                                                     }      
                                                     <div class="collapse" id="collapseExample6">
@@ -563,7 +569,7 @@
                                                     }
                                                     else
                                                     {   
-                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExamplePos4" aria-expanded="false"
+                                                    <a class="btn-info btn-link" data-toggle="collapse" href="#collapseExamplePos4" aria-expanded="false"
                                                         aria-controls="collapseExample">Replicar</a>   
                                                     }
                                                     <div class="collapse" id="collapseExamplePos4">
@@ -587,23 +593,25 @@
                                                 {
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                    {
-                                                    <input type="submit" id="btnDenunciarNeutro4" value="Denunciar" class="btn btn-link" /> 
-                                                    }
+                                                    
+                                                   
                                                     if (item.Replicado == 1)
                                                     {
                                                         foreach (var rep in ViewBag.Replicas)
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
+                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <br />
+                                                    <br />
                                                     <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
                                                             }
                                                         }
                                                     }
                                                     else
                                                     {   
-                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample7" aria-expanded="false"
+                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <a class="btn-info btn-link" data-toggle="collapse" href="#collapseExample7" aria-expanded="false"
                                                         aria-controls="collapseExample">Replicar</a>   
                                                     }
                                                     <div class="collapse" id="collapseExample7">
@@ -639,23 +647,24 @@
                                                 {                                                  
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                    {
-                                                    <input type="submit" id="btnDenunciarNegativo4" value="Denunciar" class="btn btn-link" />
-                                                    }
+                                                    
+                                                  
                                                     if (item.Replicado == 1)
                                                     {
                                                         foreach (var rep in ViewBag.Replicas)
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
+                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <br />
+                                                    <br />
                                                     <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
                                                             }
                                                         }
                                                     }
                                                     else
                                                     {   
-                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample8" aria-expanded="false"
+                                                    <a class="btn-info btn-link" data-toggle="collapse" href="#collapseExample8" aria-expanded="false"
                                                         aria-controls="collapseExample">Replicar</a>   
                                                     }
                                                     <div class="collapse" id="collapseExample8">
@@ -724,12 +733,11 @@
                                 <em>@item.Descripcion</em>
                                 <br />
                                 <br />
-                                
                                 foreach (var rep in ViewBag.Replicas)
                                 {
                                     if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
                                     {
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplicasss:</span> <em>@rep.Comentario</em>
+                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
                                     }
                                 }
                             }
@@ -972,9 +980,7 @@
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
                                                     <br />
-                                                    <br />
-                                                    
-                                                   
+                                                    <br />                                                   
                                                         foreach (var rep in ViewBag.Replicas)
                                                         {
                                                             if (item.Replicado == 1 && rep.IdCalificacion == item.Id)
@@ -1010,7 +1016,6 @@
                                                     <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
                                                         }
                                                     }
-
                                                 }
                                                 @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
                                                 {
