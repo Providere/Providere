@@ -120,7 +120,8 @@
           <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IdUsuario" Type="smallint" Nullable="false" />
           <Property Name="IdPublicacion" Type="smallint" Nullable="false" />
-          <Property Name="FlagCalificado" Type="tinyint" Nullable="false" />
+          <Property Name="FlagCalificoProveedor" Type="tinyint" Nullable="false" />
+          <Property Name="FlagCalificoCliente" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Denuncia">
           <Key>
@@ -585,6 +586,8 @@
           <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_Contratacion_Usuario" FromRole="Contratacion" ToRole="Usuario" />
           <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Calificacion_Contratacion" FromRole="Contratacion" ToRole="Calificacion" />
           <Property Type="Byte" Name="FlagCalificado" Nullable="false" />
+          <Property Type="Byte" Name="FlagCalificoProveedor" Nullable="false" />
+          <Property Type="Byte" Name="FlagCalificoCliente" Nullable="false" />
         </EntityType>
         <EntityType Name="Denuncia">
           <Key>
@@ -1002,7 +1005,8 @@
           <EntitySetMapping Name="Contratacion">
             <EntityTypeMapping TypeName="ProvidereModel.Contratacion">
               <MappingFragment StoreEntitySet="Contratacion">
-                <ScalarProperty Name="FlagCalificado" ColumnName="FlagCalificado" />
+                <ScalarProperty Name="FlagCalificoCliente" ColumnName="FlagCalificoCliente" />
+                <ScalarProperty Name="FlagCalificoProveedor" ColumnName="FlagCalificoProveedor" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="IdPublicacion" ColumnName="IdPublicacion" />

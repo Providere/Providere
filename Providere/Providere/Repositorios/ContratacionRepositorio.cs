@@ -55,6 +55,8 @@ namespace Providere.Repositorios
 
             contratacionNueva.IdPublicacion = publicacion.Id;
             contratacionNueva.IdUsuario = usuario.Id;
+            contratacionNueva.FlagCalificoProveedor = 0;
+            contratacionNueva.FlagCalificoCliente = 0;
 
             context.Contratacion.AddObject(contratacionNueva);
             context.SaveChanges();

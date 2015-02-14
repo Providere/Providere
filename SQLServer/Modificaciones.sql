@@ -30,3 +30,10 @@ Ejecuten esto:
 EXEC sp_RENAME 'Calificacion.Denunciado', 'FlagDenunciado', 'COLUMN'
 EXEC sp_RENAME 'Calificacion.Replicado', 'FlagReplicado', 'COLUMN'
 EXEC sp_RENAME 'Contratacion.Calificado', 'FlagCalificado', 'COLUMN'
+
+Ultimo:
+
+EXEC sp_RENAME 'Contratacion.FlagCalificado', 'FlagCalificoProveedor', 'COLUMN'
+
+alter table dbo.Contratacion add FlagCalificoCliente tinyint not null -- flag
+

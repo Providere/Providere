@@ -20,29 +20,7 @@ namespace Providere.Servicios
             TipoEvaluacion tipoEvaluacion = tir.traerDatosPorId(idTipoEvaluacion);
             TipoCalificacion tipoCalificacion = tcr.traerDatosPorId(idTipoCalificacion);
 
-            Calificacion calificacion = new Calificacion();
-
-            if (idTipoCalificacion == 1)
-            {
-                calificacion.IdCalificador = contratacion.IdUsuario;
-                calificacion.IdCalificado = contratacion.Publicacion.IdUsuario;
-            }
-            else
-            {
-                calificacion.IdCalificador = contratacion.Publicacion.IdUsuario;
-                calificacion.IdCalificado = contratacion.IdUsuario;
-            }
-
-            calificacion.Descripcion = comentario;
-            calificacion.IdContratacion = contratacion.Id;
-            calificacion.IdTipoCalificacion = tipoCalificacion.Id;
-            calificacion.IdTipoEvaluacion = tipoEvaluacion.Id;
-            calificacion.FechaCalificacion = DateTime.Now;
-            calificacion.Denunciado = 0; //no fue denunciada esa calificacion todavia
-            calificacion.Replicado = 0; //no fue replicado esa calificacion todavia
-
-            
-            cr.calificarUsuario(calificacion);
+            cr.calificarUsuario(comentario, contratacion, tipoEvaluacion, tipoCalificacion, idTipoCalificacion);
         }
 
         public List<Calificacion> tieneCalificacionContrataciones(List<Contratacion> listaContratacion)

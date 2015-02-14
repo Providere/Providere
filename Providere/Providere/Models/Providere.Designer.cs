@@ -1059,13 +1059,17 @@ namespace Providere.Models
         /// <param name="idUsuario">Valor inicial de la propiedad IdUsuario.</param>
         /// <param name="idPublicacion">Valor inicial de la propiedad IdPublicacion.</param>
         /// <param name="flagCalificado">Valor inicial de la propiedad FlagCalificado.</param>
-        public static Contratacion CreateContratacion(global::System.Int16 id, global::System.Int16 idUsuario, global::System.Int16 idPublicacion, global::System.Byte flagCalificado)
+        /// <param name="flagCalificoProveedor">Valor inicial de la propiedad FlagCalificoProveedor.</param>
+        /// <param name="flagCalificoCliente">Valor inicial de la propiedad FlagCalificoCliente.</param>
+        public static Contratacion CreateContratacion(global::System.Int16 id, global::System.Int16 idUsuario, global::System.Int16 idPublicacion, global::System.Byte flagCalificado, global::System.Byte flagCalificoProveedor, global::System.Byte flagCalificoCliente)
         {
             Contratacion contratacion = new Contratacion();
             contratacion.Id = id;
             contratacion.IdUsuario = idUsuario;
             contratacion.IdPublicacion = idPublicacion;
             contratacion.FlagCalificado = flagCalificado;
+            contratacion.FlagCalificoProveedor = flagCalificoProveedor;
+            contratacion.FlagCalificoCliente = flagCalificoCliente;
             return contratacion;
         }
 
@@ -1171,6 +1175,54 @@ namespace Providere.Models
         private global::System.Byte _FlagCalificado;
         partial void OnFlagCalificadoChanging(global::System.Byte value);
         partial void OnFlagCalificadoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte FlagCalificoProveedor
+        {
+            get
+            {
+                return _FlagCalificoProveedor;
+            }
+            set
+            {
+                OnFlagCalificoProveedorChanging(value);
+                ReportPropertyChanging("FlagCalificoProveedor");
+                _FlagCalificoProveedor = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FlagCalificoProveedor");
+                OnFlagCalificoProveedorChanged();
+            }
+        }
+        private global::System.Byte _FlagCalificoProveedor;
+        partial void OnFlagCalificoProveedorChanging(global::System.Byte value);
+        partial void OnFlagCalificoProveedorChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte FlagCalificoCliente
+        {
+            get
+            {
+                return _FlagCalificoCliente;
+            }
+            set
+            {
+                OnFlagCalificoClienteChanging(value);
+                ReportPropertyChanging("FlagCalificoCliente");
+                _FlagCalificoCliente = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FlagCalificoCliente");
+                OnFlagCalificoClienteChanged();
+            }
+        }
+        private global::System.Byte _FlagCalificoCliente;
+        partial void OnFlagCalificoClienteChanging(global::System.Byte value);
+        partial void OnFlagCalificoClienteChanged();
 
         #endregion
 

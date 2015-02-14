@@ -12,9 +12,45 @@ namespace Providere.Repositorios
         ProvidereEntities context = new ProvidereEntities();
 
 
-        internal void calificarUsuario(Calificacion model)
+        internal void calificarUsuario(string comentario, Contratacion contratacion, TipoEvaluacion tipoEvaluacion, TipoCalificacion tipoCalificacion, int idTipoCalificacion)
         {
-            context.Calificacion.AddObject(model);
+
+            
+            Calificacion calificacion = new Calificacion();
+
+            if (idTipoCalificacion == 1)
+            {
+                calificacion.IdCalificador = contratacion.IdUsuario;
+                calificacion.IdCalificado = contratacion.Publicacion.IdUsuario;
+            }
+            else
+            {
+                calificacion.IdCalificador = contratacion.Publicacion.IdUsuario;
+                calificacion.IdCalificado = contratacion.IdUsuario;
+            }
+
+            calificacion.Descripcion = comentario;
+            calificacion.IdContratacion = contratacion.Id;
+            calificacion.IdTipoCalificacion = tipoCalificacion.Id;
+            calificacion.IdTipoEvaluacion = tipoEvaluacion.Id;
+            calificacion.FechaCalificacion = DateTime.Now;
+            calificacion.Denunciado = 0; //no fue denunciada esa calificacion todavia
+            calificacion.Replicado = 0; //no fue replicado esa calificacion todavia
+
+            context.Calificacion.AddObject(calificacion);
+
+           // Calificacion calificacion = context.Calificacion.Where(e => e.Id == id).FirstOrDefault();
+            //calificacion.Replicado = 1; //comentario de la calificacion fue replicado
+
+
+
+            Contratacion cambioEstado = context.Contratacion.Where(e => e.Id == contratacion.Id).FirstOrDefault();
+            //calificacion.Replicado = 1; //comentario de la calificacion fue replicado
+
+
+
+
+
             context.SaveChanges();
         }
 

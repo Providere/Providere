@@ -9,6 +9,7 @@ namespace Providere.Servicios
     public class ReplicaServicios
     {
         ReplicaRepositorio rer = new ReplicaRepositorio();
+
         public void ReplicarComentario(int id, string replicar)
         {
             rer.ReplicarComentario(id, replicar);
