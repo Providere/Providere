@@ -111,6 +111,7 @@
           <Property Name="IdTipoCalificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaCalificacion" Type="datetime" Nullable="false" />
           <Property Name="Denunciado" Type="tinyint" Nullable="false" />
+          <Property Name="Replicado" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Contratacion">
           <Key>
@@ -902,6 +903,7 @@
           <NavigationProperty Name="Denuncia" Relationship="ProvidereModel.FK_Denuncia_Calificacion" FromRole="Calificacion" ToRole="Denuncia" />
           <NavigationProperty Name="Replica" Relationship="ProvidereModel.FK_Replica_Calificacion" FromRole="Calificacion" ToRole="Replica" />
           <Property Type="Byte" Name="Denunciado" Nullable="false" />
+          <Property Type="Byte" Name="Replicado" Nullable="false" />
         </EntityType>
         <Association Name="FK_Calificacion_Contratacion">
           <End Type="ProvidereModel.Contratacion" Role="Contratacion" Multiplicity="1" />
@@ -1145,6 +1147,7 @@
           <EntitySetMapping Name="Calificacion">
             <EntityTypeMapping TypeName="ProvidereModel.Calificacion">
               <MappingFragment StoreEntitySet="Calificacion">
+                <ScalarProperty Name="Replicado" ColumnName="Replicado" />
                 <ScalarProperty Name="Denunciado" ColumnName="Denunciado" />
                 <ScalarProperty Name="FechaCalificacion" ColumnName="FechaCalificacion" />
                 <ScalarProperty Name="IdTipoCalificacion" ColumnName="IdTipoCalificacion" />

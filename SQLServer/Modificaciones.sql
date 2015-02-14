@@ -19,6 +19,7 @@ alter table dbo.Puntaje add FechaTotal datetime  null
 -----------------------TABLA Calificacion---------------------------------
 alter table dbo.Calificacion add FechaCalificacion datetime not null
 alter table dbo.Calificacion add Denunciado tinyint not null
+alter table dbo.Calificacion add Replicado tinyint not null
 
 
 
