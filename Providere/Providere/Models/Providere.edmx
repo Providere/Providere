@@ -110,8 +110,8 @@
           <Property Name="IdTipoEvaluacion" Type="smallint" Nullable="false" />
           <Property Name="IdTipoCalificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaCalificacion" Type="datetime" Nullable="false" />
-          <Property Name="Denunciado" Type="tinyint" Nullable="false" />
-          <Property Name="Replicado" Type="tinyint" Nullable="false" />
+          <Property Name="FlagDenunciado" Type="tinyint" Nullable="false" />
+          <Property Name="FlagReplicado" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Contratacion">
           <Key>
@@ -120,6 +120,7 @@
           <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IdUsuario" Type="smallint" Nullable="false" />
           <Property Name="IdPublicacion" Type="smallint" Nullable="false" />
+          <Property Name="FlagCalificado" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Denuncia">
           <Key>
@@ -583,6 +584,7 @@
           <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Contratacion_Publicacion" FromRole="Contratacion" ToRole="Publicacion" />
           <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_Contratacion_Usuario" FromRole="Contratacion" ToRole="Usuario" />
           <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Calificacion_Contratacion" FromRole="Contratacion" ToRole="Calificacion" />
+          <Property Type="Byte" Name="FlagCalificado" Nullable="false" />
         </EntityType>
         <EntityType Name="Denuncia">
           <Key>
@@ -904,6 +906,8 @@
           <NavigationProperty Name="Replica" Relationship="ProvidereModel.FK_Replica_Calificacion" FromRole="Calificacion" ToRole="Replica" />
           <Property Type="Byte" Name="Denunciado" Nullable="false" />
           <Property Type="Byte" Name="Replicado" Nullable="false" />
+          <Property Type="Byte" Name="FlagDenunciado" Nullable="false" />
+          <Property Type="Byte" Name="FlagReplicado" Nullable="false" />
         </EntityType>
         <Association Name="FK_Calificacion_Contratacion">
           <End Type="ProvidereModel.Contratacion" Role="Contratacion" Multiplicity="1" />
@@ -998,6 +1002,7 @@
           <EntitySetMapping Name="Contratacion">
             <EntityTypeMapping TypeName="ProvidereModel.Contratacion">
               <MappingFragment StoreEntitySet="Contratacion">
+                <ScalarProperty Name="FlagCalificado" ColumnName="FlagCalificado" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="IdPublicacion" ColumnName="IdPublicacion" />
@@ -1147,8 +1152,8 @@
           <EntitySetMapping Name="Calificacion">
             <EntityTypeMapping TypeName="ProvidereModel.Calificacion">
               <MappingFragment StoreEntitySet="Calificacion">
-                <ScalarProperty Name="Replicado" ColumnName="Replicado" />
-                <ScalarProperty Name="Denunciado" ColumnName="Denunciado" />
+                <ScalarProperty Name="FlagReplicado" ColumnName="FlagReplicado" />
+                <ScalarProperty Name="FlagDenunciado" ColumnName="FlagDenunciado" />
                 <ScalarProperty Name="FechaCalificacion" ColumnName="FechaCalificacion" />
                 <ScalarProperty Name="IdTipoCalificacion" ColumnName="IdTipoCalificacion" />
                 <ScalarProperty Name="IdTipoEvaluacion" ColumnName="IdTipoEvaluacion" />

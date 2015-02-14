@@ -18,8 +18,15 @@ alter table dbo.Puntaje add FechaTotal datetime  null
 
 -----------------------TABLA Calificacion---------------------------------
 alter table dbo.Calificacion add FechaCalificacion datetime not null
-alter table dbo.Calificacion add Denunciado tinyint not null
-alter table dbo.Calificacion add Replicado tinyint not null
+alter table dbo.Calificacion add Denunciado tinyint not null -- flag
+alter table dbo.Calificacion add Replicado tinyint not null -- flag
+
+-----------------------TABLA Contratacion---------------------------------
+alter table dbo.Contratacion add Calificado tinyint not null -- flag
 
 
+Ejecuten esto:
 
+EXEC sp_RENAME 'Calificacion.Denunciado', 'FlagDenunciado', 'COLUMN'
+EXEC sp_RENAME 'Calificacion.Replicado', 'FlagReplicado', 'COLUMN'
+EXEC sp_RENAME 'Contratacion.Calificado', 'FlagCalificado', 'COLUMN'
