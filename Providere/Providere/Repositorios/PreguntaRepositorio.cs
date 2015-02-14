@@ -17,6 +17,7 @@ namespace Providere.Repositorios
             miPregunta.IdPublicacion = Convert.ToInt16(id);
             miPregunta.IdUsuario = Convert.ToInt16(idUser);
             miPregunta.Pregunta = preguntar;
+            miPregunta.Estado = 1; //No oculta
             context.PreguntaRespuesta.AddObject(miPregunta);
             context.SaveChanges();
         }
@@ -41,8 +42,9 @@ namespace Providere.Repositorios
         public object TraerPreguntasQueHice(int idUsuario)
         {
             var resultado = (from preg in context.PreguntaRespuesta
-                          where preg.IdUsuario == idUsuario
-                          select preg).ToList();
+                             where preg.IdUsuario == idUsuario && preg.Estado == 1
+                             orderby preg.FechaRespuesta descending
+                             select preg ).ToList();
             return resultado;
         }
 
@@ -52,6 +54,33 @@ namespace Providere.Repositorios
             miRespuesta.Respuesta = responder;
             miRespuesta.FechaRespuesta = DateTime.Now;
             context.SaveChanges();
+        }
+
+        public void CambiarDeEstado(int id)
+        {
+            PreguntaRespuesta pregunta = context.PreguntaRespuesta.Where(e => e.Id == id).FirstOrDefault();
+            if (pregunta.Estado == 1) //No oculta
+            {
+                pregunta.Estado = 0; //Pasa a estado oculto
+            }
+            context.SaveChanges();
+        }
+
+        public PreguntaRespuesta NoExistenPreguntas(int id)
+        {
+            var pregunta = (from pr in context.PreguntaRespuesta
+                            where (pr.IdPublicacion == id)
+                            select pr).First();
+            return pregunta;
+        }
+
+        public object TraerPreguntasPublicacion(int id)
+        {
+            var preguntas = (from pr in context.PreguntaRespuesta
+                             where pr.IdPublicacion == id
+                             orderby pr.FechaRespuesta descending
+                             select pr).ToList();
+            return preguntas;
         }
     }
 }

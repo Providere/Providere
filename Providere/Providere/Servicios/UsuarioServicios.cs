@@ -189,5 +189,18 @@ namespace Providere.Servicios
         {
             return ur.traerPorId(id);
         }
+
+        public IEnumerable<Usuario> traerTodosConDenuncias()
+        {
+            DenunciaRepositorio dr = new DenunciaRepositorio();
+
+            var listaUsuariosConDenuncias = ur.traerTodosConDenuncias(dr.traerDenunciasDelMes()); 
+            return listaUsuariosConDenuncias;
+        }
+
+        public bool UsuarioBloqueado(Usuario model)
+        {
+            return ur.UsuarioBloqueado(model);
+        }
     }
 }

@@ -24,7 +24,7 @@
         @ViewBag.Error
     </div>
 }
-<div class="container well">
+<div class="col-md-12 well">
     <div class="content">
         @using (Html.BeginForm("NuevaPublicacion", "Publicacion", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
         {           
@@ -63,7 +63,7 @@
             <div class="row">
                 @Html.LabelFor(model => model.Descripcion, new { @class = "col-sm-5 control-label" })
                 <div class="col-xs-3">
-                    @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control" })
+                    @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", rows=5 })
                     @Html.ValidationMessageFor(model => model.Descripcion)
                 </div>
             </div>
@@ -108,7 +108,7 @@
                 <div class="col-md-offset-5">
                     <button type="submit" id="btnGuardar" class="btn btn-info btn-sm">
                         Guardar cambios</button>
-                    @Html.ActionLink("Cancelar", "home", "home", null, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("Cancelar", "Home", "Home", null, new { @class = "btn btn-warning btn-sm" })
                 </div>
             </div>
         }

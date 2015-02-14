@@ -19,7 +19,7 @@
         @ViewBag.Exito
     </div>
 }
-<div class="container well">
+<div class="col-md-12 well">
     <h2>
         Publicaciones</h2>
     <hr />
@@ -30,152 +30,148 @@
     <br />
     <br />
     <br />
-    <div class="col-md-12">
-        <table class="tabla-publicaciones table table-bordered table-hover">
-            <thead>
-                <tr class="default">
-                    <th>
-                        @Html.DisplayName("Fecha creación")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Fecha de edición")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Rubro")
-                    </th>
-                    <th>
-                        @Html.DisplayName("SubRubro")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Título de la publicación")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Precio")
-                    </th>
-                    <th>
-                        Edición
-                    </th>
-                    <th>
-                        Acción
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @if (item.Estado == 0)
-                            {
-                                <span class="help-block">
-                                    @Html.DisplayFor(modelItem => item.FechaCreacion)
-                                </span>
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => item.FechaCreacion)
-                            }
-                        </td>
-                        <td>
-                            @if (item.Estado == 0)
-                            {
-                                <span class="help-block">
-                                    @Html.DisplayFor(modelItem => item.FechaEdicion)
-                                </span>
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => item.FechaEdicion)
-                            }
-                        </td>
-                        <td>
-                            @if (item.Estado == 0)
-                            {
-                                <span class="help-block">
-                                    @Html.DisplayFor(modelItem => item.Rubro.Nombre)
-                                </span>
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => item.Rubro.Nombre)
-                            }
-                        </td>
-                        <td>
-                            @if (item.Estado == 0)
-                            {
-                                <span class="help-block">
-                                    @Html.DisplayFor(modelItem => item.SubRubro.Nombre)
-                                </span>
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(modelItem => item.SubRubro.Nombre)
-                            }
-                        </td>
-                        <td>
-                            <a href="@Url.Action("VisualizarMiPublicacion", "Publicacion", new { Id = item.Id })">@Html.DisplayFor(modelItem => item.Titulo)</a>
-                        </td>
-                        <td>
-                            @if (item.Estado == 0)
-                            {
-                                if (item.PrecioOpcion == 1)
+    @if (ViewBag.Listado.Count > 0)
+    {
+        <div class="col-md-12">
+            <table class="tabla-publicaciones table table-bordered table-hover">
+                <thead>
+                    <tr class="default">
+                        <th>
+                            @Html.DisplayName("Fecha creación")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Fecha de edición")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Rubro")
+                        </th>
+                        <th>
+                            @Html.DisplayName("SubRubro")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Título de la publicación")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Precio")
+                        </th>
+                        <th>
+                            Acción
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @if (item.Estado == 0)
                                 {
-                              
-                                <span class="help-block">
-                                    @Html.Label("A Convenir")
-                                </span>
+                                    <span class="help-block">
+                                        @Html.DisplayFor(modelItem => item.FechaCreacion)
+                                    </span>
                                 }
                                 else
                                 {
-                                 
-                                <span class="help-block">
-                                    @Html.DisplayFor(modelItem => item.Precio)
-                                </span>
+                                    @Html.DisplayFor(modelItem => item.FechaCreacion)
                                 }
-                            }
-                            else
-                            {
-                                if (item.PrecioOpcion == 1)
+                            </td>
+                            <td>
+                                @if (item.Estado == 0)
                                 {
+                                    <span class="help-block">
+                                        @Html.DisplayFor(modelItem => item.FechaEdicion)
+                                    </span>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.FechaEdicion)
+                                }
+                            </td>
+                            <td>
+                                @if (item.Estado == 0)
+                                {
+                                    <span class="help-block">
+                                        @Html.DisplayFor(modelItem => item.Rubro.Nombre)
+                                    </span>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.Rubro.Nombre)
+                                }
+                            </td>
+                            <td>
+                                @if (item.Estado == 0)
+                                {
+                                    <span class="help-block">
+                                        @Html.DisplayFor(modelItem => item.SubRubro.Nombre)
+                                    </span>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.SubRubro.Nombre)
+                                }
+                            </td>
+                            <td>
+                                <a href="@Url.Action("VisualizarMiPublicacion", "Publicacion", new { Id = item.Id })">@Html.DisplayFor(modelItem => item.Titulo)</a>
+                            </td>
+                            <td>
+                                @if (item.Estado == 0)
+                                {
+                                    if (item.PrecioOpcion == 1)
+                                    {
+                              
+                                    <span class="help-block">
+                                        @Html.Label("A Convenir")
+                                    </span>
+                                    }
+                                    else
+                                    {
+                                 
+                                    <span class="help-block">
+                                        @Html.DisplayFor(modelItem => item.Precio)
+                                    </span>
+                                    }
+                                }
+                                else
+                                {
+                                    if (item.PrecioOpcion == 1)
+                                    {
                               
                                     @Html.Label("A Convenir")
                                 
+                                    }
+                                    else
+                                    {
+                                    @Html.DisplayFor(modelItem => item.Precio)
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @if (item.Estado == 1)
+                                {
+                                    using (Html.BeginForm("DeshabilitarPublicacion", "Publicacion", new { Id = item.Id }, FormMethod.Post, new { @class = "form-horizontal" }))
+                                    { 
+            
+                                    @Html.CheckBox("ckbDeshabilitar")
+                    
+                                    <input type="submit" id="btnConfirmar" value="Deshabilitar" class="btn btn-warning btn-xs" />                    
+                                    }
                                 }
                                 else
                                 {
-                                @Html.DisplayFor(modelItem => item.Precio)
-                                }
-                            }
-                            
-                        </td>
-                        <td class="text-center">
-                            @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })
-                        </td>
-                        <td>
-                            @if (item.Estado == 1)
-                            {
-                                using (Html.BeginForm("DeshabilitarPublicacion", "Publicacion", new { Id = item.Id }, FormMethod.Post, new { @class = "form-horizontal" }))
-                                { 
+                                    using (Html.BeginForm("HabilitarPublicacion", "Publicacion", new { Id = item.Id }, FormMethod.Post, new { @class = "form-horizontal" }))
+                                    { 
             
-                                @Html.CheckBox("ckbDeshabilitar")
+                                    @Html.CheckBox("ckbHabilitar")
                     
-                                <input type="submit" id="btnConfirmar" value="Deshabilitar" class="btn btn-warning btn-xs" />                    
+                                    <input type="submit" id="btnConfirmar2" value="Habilitar" class="btn btn-primary btn-xs" />                    
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                using (Html.BeginForm("HabilitarPublicacion", "Publicacion", new { Id = item.Id }, FormMethod.Post, new { @class = "form-horizontal" }))
-                                { 
-            
-                                @Html.CheckBox("ckbHabilitar")
-                    
-                                <input type="submit" id="btnConfirmar2" value="Habilitar" class="btn btn-primary btn-xs" />                    
-                                }
-                            }
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
 </div>

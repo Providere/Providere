@@ -135,9 +135,11 @@
     <Compile Include="Controllers\CalificacionController.cs" />
     <Compile Include="Controllers\ContratacionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagenController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\PreguntaController.cs" />
     <Compile Include="Controllers\PublicacionController.cs" />
+    <Compile Include="Controllers\SancionController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\SubRubroController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -145,6 +147,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Buscador.cs" />
+    <Compile Include="Models\CalificacionModel.cs" />
     <Compile Include="Models\ListaPublicacionesModel.cs" />
     <Compile Include="Models\Providere.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -158,11 +161,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\CalificacionRepositorio.cs" />
     <Compile Include="Repositorios\ContratacionRepositorio.cs" />
+    <Compile Include="Repositorios\DenunciaRepositorio.cs" />
     <Compile Include="Repositorios\ImagenRepositorio.cs" />
     <Compile Include="Repositorios\PreguntaRepositorio.cs" />
     <Compile Include="Repositorios\PublicacionRepositorio.cs" />
     <Compile Include="Repositorios\PuntajeRepositorio.cs" />
+    <Compile Include="Repositorios\ReplicaRepositorio.cs" />
     <Compile Include="Repositorios\RubroRepositorio.cs" />
+    <Compile Include="Repositorios\SancionRepositorio.cs" />
     <Compile Include="Repositorios\SubRubroRepositorio.cs" />
     <Compile Include="Repositorios\UsuarioRepositorio.cs" />
     <Compile Include="Repositorios\TipoEvaluacionRepositorio.cs" />
@@ -170,13 +176,18 @@
     <Compile Include="Servicios\BuscarServicios.cs" />
     <Compile Include="Servicios\CalificacionServicios.cs" />
     <Compile Include="Servicios\ContratacionServicios.cs" />
+    <Compile Include="Servicios\DenunciaServicios.cs" />
     <Compile Include="Servicios\Encryptor.cs" />
+    <Compile Include="Servicios\FileHelper.cs" />
     <Compile Include="Servicios\IEnumerableExtension.cs" />
+    <Compile Include="Servicios\ImageHelper.cs" />
     <Compile Include="Servicios\MailServicios.cs" />
     <Compile Include="Servicios\PreguntaServicios.cs" />
     <Compile Include="Servicios\PublicacionServicios.cs" />
+    <Compile Include="Servicios\ReplicaServicios.cs" />
     <Compile Include="Servicios\RubroServicios.cs" />
     <Compile Include="Servicios\RubrosParaSelect.cs" />
+    <Compile Include="Servicios\SancionServicios.cs" />
     <Compile Include="Servicios\SubRubroServicios.cs" />
     <Compile Include="Servicios\UsuarioServicios.cs" />
   </ItemGroup>
@@ -342,6 +353,7 @@
     <Content Include="Views\Usuario\OlvideContrasenia.cshtml" />
     <Content Include="Views\Usuario\NuevaContrasenia.cshtml" />
     <Content Include="Views\Pregunta\Index.cshtml" />
+    <Content Include="Views\Calificacion\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

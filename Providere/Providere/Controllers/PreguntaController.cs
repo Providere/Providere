@@ -16,6 +16,9 @@ namespace Providere.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Error = TempData["Error"];
+            ViewBag.Error = TempData["Exito"];
+
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
 
             var preguntasSinResponder = prs.TraerPreguntasSinResponder(idUsuario);
@@ -27,7 +30,7 @@ namespace Providere.Controllers
             return View();
         }
 
-
+        [HttpPost]
         public ActionResult Preguntar(int idUsuario, int id, string preguntar)
         {
             int idUser = Convert.ToInt16(this.Session["IdUsuario"]);
@@ -40,23 +43,20 @@ namespace Providere.Controllers
             {
                 if (!string.IsNullOrWhiteSpace(preguntar))
                 {
-                    prs.PreguntarEnPublicacion(idUser, id, preguntar);
                     try
                     {
-                        //Traer todo de la publicacion, para tener el mail del prestador:
-                        Publicacion publicacion = ps.TraerPublicacionPorId(id);
-                        mailing.EnviarMailPregunta(publicacion);
-                    }
-                    catch (System.Net.Mail.SmtpException ex)
-                    {
-                        ClientException.LogException(ex, "Error al enviar el mail"); //No puede enviar el mail pero igual publica la pregunta
-                        TempData["Exito"] = "Su pregunta fue publicada correctamente";
-                        return RedirectToAction("Home", "Home");
-                    }
+                        prs.PreguntarEnPublicacion(idUser, id, preguntar);
 
-                    TempData["Exito"] = "Pregunta publicada correctamente";
-                    return RedirectToAction("Home", "Home");
+                        TempData["Exito"] = "Pregunta publicada correctamente";
+                        return RedirectToAction("VisualizarPublicacion", "Publicacion", new { idPublicacion = id });
+                    }
+                    catch (Exception ex)
+                    {
+                        ClientException.LogException(ex, "Error al guardar la pregunta");
+                        return RedirectToAction("Error", "Shared");
+                    }
                 }
+
                 TempData["Error"] = "La pregunta no puede ser vacia";
                 return RedirectToAction("VisualizarPublicacion", "Publicacion", new { idPublicacion = id });
             }
@@ -67,14 +67,30 @@ namespace Providere.Controllers
         {
             if (!string.IsNullOrWhiteSpace(responder))
             {
-                prs.TraerPreguntasSinResponder(id, responder);
-                TempData["Exito"] = "Respuesta cargada con exito";
+                prs.Responder(id, responder);
+                TempData["Exito"] = "Respuesta publicada con exito";
                 return RedirectToAction("Home", "Home");
             }
             else
             {
                 TempData["Error"] = "La respuesta no puede ser vacía";
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("Index", "Pregunta");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EliminarPregunta(int id)
+        {
+            try
+            {
+                prs.CambiarDeEstado(id);//No se elimina cambia de estado
+                TempData["Exito"] = "Pregunta eliminada correctamente"; 
+                return RedirectToAction("Index", "Pregunta");
+            }
+            catch(Exception ex)
+            {
+                ClientException.LogException(ex, "Error al eliminar la pregunta");
+                return RedirectToAction("Error", "Shared");
             }
         }
     }

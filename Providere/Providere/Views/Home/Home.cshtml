@@ -18,61 +18,78 @@
         @ViewBag.Error
     </div>
 }
-<div>
-    @if (ViewBag.PublicacionesMasRecientes.listadoDePublicaciones.Count > 0)
-    {<div class="listado-publicaciones" id="ultimas-publicaciones">
-        <h2>
-            Ultimas publicaciones</h2>
-        <br />
-        <div class="row">
-            @foreach (var item in ViewBag.PublicacionesMasRecientes.listadoDePublicaciones)
-            {               
-                <div class="col-xs-3">
-                    <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >
-                        <div class="thumbnail">
-                            <div class="contenedor-img">
-                                <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
-                                 width="110%" alt="" height= "200px" />
-                            </div>
-                            <div class="caption text-center">
-                                <h4>
-                                    <a href="#">
-                                        @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
-                                <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
-                                <br />
-                                <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span>
-                                <br />
-                                <p>
-                                    @if (@item.publicacion.PrecioOpcion == 1)
-                                    {
-                                       
-                                        @Html.Label("A Convenir") 
-                                    }
-                                    else
-                                    {
-                                        @Html.Label("$") 
-                                        @String.Format("{0:0.00}", @item.publicacion.Precio)                     
-                   
-                                    }
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            }
-        </div>
-        <center>
-            <a href="/Publicacion/Lista">
-                <button type="button" class="btn btn-primary">
-                    Ver mas publicaciones</button></a>
-        </center>
+@if (ViewBag.Sancion != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        Usted ha sido sancionado por las múltiples denuncias realizadas a sus mensajes.
+        La penalización finalizará el @ViewBag.Sancion.FechaFin.ToString("f")
     </div>
+}
+@if (ViewBag.PreguntaSinResponder.Count > 0)
+{  
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        <center> <span class="glyphicon glyphicon-bell"></span>Tienes preguntas sin responder. Para responderlas hace click en la sección Preguntas de tu menú de usuario</center>
+    </div>   
+}
+<div>
+    <h2>
+        Ultimas publicaciones</h2>
+    @if (ViewBag.PublicacionesMasRecientes.listadoDePublicaciones.Count > 0)
+    {
+        <div class="listado-publicaciones" id="ultimas-publicaciones">
+            <br />
+            <div class="row">
+                @foreach (var item in ViewBag.PublicacionesMasRecientes.listadoDePublicaciones)
+                {               
+                    <div class="col-xs-3">
+                        <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >
+                            <div class="thumbnail">
+                                <div class="contenedor-img">
+                                    <img src="../../Imagenes/Publicacion/@item.imagen.Nombre"
+                                 width="110%" alt="" height= "200px" />
+                                </div>
+                                <div class="caption text-center">
+                                    <h4>
+                                        <a href="#">
+                                            @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                    <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                    <br />
+                                    <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span>
+                                    <br />
+                                    <p>
+                                        @if (@item.publicacion.PrecioOpcion == 1)
+                                        {
+                                       
+                                            @Html.Label("A Convenir") 
+                                        }
+                                        else
+                                        {
+                                            @Html.Label("$") 
+                                            @String.Format("{0:0.00}", @item.publicacion.Precio)                     
+                   
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+            <center>
+                <a href="@Url.Action("VerMasPublicaciones", "Publicacion")" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-chevron-right"></span>Ver mas publicaciones</a>
+            </center>
+        </div>
     }
     else
     {
         <div class="mensaje-sin-registros text-center">
             <div class="text-muted">
-                Hoy no hay publicaciones recientes.</div>
+                Hoy no hay publicaciones recientes</div>
         </div>
     }
     <hr />
@@ -102,16 +119,15 @@
                 }
             </div>
             <center>
-                <a href="/Publicacion/Lista">
-                    <button type="button" class="btn btn-primary">
-                        Ver mas prestadores</button></a>
+                <a href="@Url.Action("VerMasPrestadores", "Publicacion")" class="btn btn-primary"><span
+                    class="glyphicon glyphicon-chevron-right"></span>Ver mas prestadores</a>
             </center>
         }
         else
         {
             <div class="text-center mensaje-sin-registros">
                 <div class="text-muted">
-                    Aún no hay publicaciones calificadas.</div>
+                    Aún no hay prestadores mejor calificados</div>
             </div>
         }
     </div>
@@ -141,17 +157,17 @@
                 }
             </div>
             <center>
-                <a href="/Publicacion/Lista">
-                    <button type="button" class="btn btn-primary">
-                        Ver mas prestadores en mi zona</button>
-                </a>
+                <a href="@Url.Action("VerMasPrestadoresZona", "Publicacion")" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-chevron-right"></span>Ver mas prestadores de mi
+                    zona</a>
             </center>
+            <br />
         }
         else
         {
             <div class="mensaje-sin-registros text-center">
                 <div class="text-muted">
-                    Hoy no hay publicaciones de tu zona.</div>
+                    Hoy no hay prestadores de tu zona</div>
             </div>
         }
     </div>

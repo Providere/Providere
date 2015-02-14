@@ -29,5 +29,10 @@ namespace Providere.Servicios
         {
             return cor.traerDatosPorId(idContratacion);
         }
+
+        public object TraerContratada(int idPublicacion, int idUsuario)
+        {
+            return cor.TraerContratada(idPublicacion, idUsuario);
+        }
     }
 }

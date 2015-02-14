@@ -1,6 +1,130 @@
-﻿@{
-    ViewBag.Title = "Listar";
+﻿@model Providere.Models.Publicacion
+@{
+    ViewBag.Title = "Ver mas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@if (ViewBag.Principal == "VerMasPublicaciones")
+{
+    <div class="col-md-12 well">
+        <h2>
+            Ver mas publicaciones recientes</h2>
+        <br />
+        <div class="listado-publicaciones" id="ultimas-publicaciones">
+            @if (ViewBag.VerMasPublicacionesMasRecientes.listadoDePublicaciones.Count > 0)
+            {
+                <div class="row">
+                    @foreach (var item in ViewBag.VerMasPublicacionesMasRecientes.listadoDePublicaciones)
+                    {
+                        <div class="col-xs-3">
+                            <a href="/publicacion/VisualizarPublicacion/@item.publicacion.Id" >
+                                <div class="thumbnail">
+                                    <div class="contenedor-img">
+                                        <img src="../../Imagenes/Publicacion/@item.imagen.Nombre" width="100%"  width="100%" alt="" height= "200px" />
+                                    </div>
+                                    <div class="caption text-center">
+                                        <h4>
+                                            <a href="#">
+                                                @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                        <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                        <br />
+                                        <span><a href="/publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span>
+                                        <br />
+                                        @if (@item.publicacion.PrecioOpcion == 1)
+                                        {
+                   
+                                            @Html.Label("A Convenir") 
+                                        }
+                                        else
+                                        {
+                                            @Html.Label("$") 
+                                            @String.Format("{0:0.00}", @item.publicacion.Precio)                     
+                   
+                                        }
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            }
+            <center>
+                <a href="@Url.Action("Home", "Home")" class="btn btn-warning"><span class="glyphicon glyphicon-chevron-left">
+                </span>Volver al Home</a>
+            </center>
+        </div>
+    </div>
+}
 
-<h2>Listar</h2>
+@if (ViewBag.Principal == "VerMasPrestadores")
+{
+    <div class="col-md-12 well">
+        <h2>
+            Ver mas prestadores mejor calificados</h2>
+        <br />
+        <div id="prestadores-mejores">
+            @if (ViewBag.VerMasPrestadoresMejorCalificadas.listadoDePublicaciones.Count > 0)
+            {      
+                <div class="row">
+                    @foreach (var item in ViewBag.VerMasPrestadoresMejorCalificadas.listadoDePublicaciones)
+                    {
+                        <div class="col-xs-3">
+                            <div class="thumbnail" style="height: 330px">
+                                <div class="contenedor-img">
+                                    <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
+                                </div>
+                                <div class="caption text-center">
+                                    <h4>
+                                        <a href="#">
+                                            @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                    <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            <center>
+                <a href="@Url.Action("Home", "Home")" class="btn btn-warning"><span class="glyphicon glyphicon-chevron-left">
+                </span>Volver al Home</a>
+            </center>
+        </div>
+    </div>
+}
+
+@if (ViewBag.Principal == "VerMasPrestadoresZona")
+{  
+    <div class="col-md-12 well">
+        <h2>
+            Ver mas prestadores de mi zona
+        </h2>
+        <br />
+        <div id="prestadores-zona">
+            @if (ViewBag.VerMasUsuariosMasCercanos.Count > 0)
+            {
+        
+                <div class="row">
+                    @foreach (var item in ViewBag.VerMasUsuariosMasCercanos)
+                    {
+                
+                        <div class="col-xs-3">
+                            <div class="thumbnail" style="height: 360px">
+                                <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Id })" alt="plomero" width="100%"/>
+                                <div class="caption text-center">
+                                    <h4>
+                                        <a href="#">
+                                            @item.Nombre @item.Apellido</a></h4>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            <center>
+                <a href="@Url.Action("Home", "Home")" class="btn btn-warning"><span class="glyphicon glyphicon-chevron-left">
+                </span>Volver al Home</a>
+            </center>
+        </div>
+    </div>
+}

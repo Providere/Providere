@@ -25,9 +25,32 @@ namespace Providere.Servicios
             return prr.TraerPreguntasQueHice(idUsuario);
         }
 
-        public void TraerPreguntasSinResponder(int id, string responder)
+        public void Responder(int id, string responder)
         {
            prr.Responder(id, responder);
+        }
+
+        public void CambiarDeEstado(int id)
+        {
+            prr.CambiarDeEstado(id);
+        }
+
+        public bool NoExistenPreguntas(int id)
+        {
+            try
+            {
+                PreguntaRespuesta pregunta = prr.NoExistenPreguntas(id);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public object TraerPreguntasPublicacion(int id)
+        {
+            return prr.TraerPreguntasPublicacion(id);
         }
     }
 }

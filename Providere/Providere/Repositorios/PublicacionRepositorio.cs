@@ -35,7 +35,7 @@ namespace Providere.Repositorios
                                              join puntaje in context.Puntaje on publicacion.Id equals puntaje.IdPublicacion
                                              where publicacion.Estado == 1 //Habilitada
                                              orderby puntaje.Total descending
-                                             select publicacion).Distinct().Take(limite).ToList();
+                                             select publicacion).Take(limite).ToList();
 
             return publicacionesMasPopulares;
         }
@@ -56,7 +56,7 @@ namespace Providere.Repositorios
             {
                 publicaciones = publicaciones.Where(b => b.Usuario.Ubicacion.Equals(Ubicacion)).Select(x => x);
             }
-            return publicaciones.ToList();
+            return publicaciones.Where(x => x.Estado.Equals(1)).ToList();
 
         }
 
@@ -232,64 +232,5 @@ namespace Providere.Repositorios
             return publicacion;
         }
 
-        public PreguntaRespuesta NoExistenPreguntas(int id)
-        {
-            var pregunta = (from pr in context.PreguntaRespuesta
-                          where (pr.IdPublicacion == id)
-                          select pr).First();
-            return pregunta;
-        }
-
-        public object TraerPuntaje(int p)
-        {
-            var puntaje = (from punt in context.Puntaje
-                           where punt.IdPublicacion == p
-                           orderby punt.FechaTotal descending
-                           select punt.Total).FirstOrDefault();
-            return puntaje;
-        }
-
-        public object TraerContratada(int idPublicacion, int idUsuario)
-        {
-            var contratacion = (from contrata in context.Contratacion
-                                where (contrata.IdUsuario == idUsuario && contrata.IdPublicacion == idPublicacion)
-                                select contrata).FirstOrDefault();
-            return contratacion;
-        }
-
-        public List<Calificacion> TraerCalificaciones(int idPublicacion)
-        {
-            var contratacion = (from contrata in context.Contratacion
-                                  where contrata.IdPublicacion == idPublicacion
-                                  select new { contrata.Id});
-            List<int> listaDeContrataciones = new List<int>();
-            foreach (var item in contratacion)
-            {
-                listaDeContrataciones.Add(item.Id);
-            }
-            var resultado = (from calificacion in context.Calificacion
-                              where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdTipoCalificacion == 1) 
-                              orderby calificacion.FechaCalificacion descending
-                              select calificacion).ToList();
-            return resultado;
-        }
-
-        //Trae las primeras 5 calificaciones para mostrar en la publicacion
-        public object TraerPrimerasCalificaciones(int limite, int idPublicacion)
-        {
-            var contratacion = (from contrata in context.Contratacion
-                                where contrata.IdPublicacion == idPublicacion
-                                select new { contrata.Id });
-            List<int> listaDeContrataciones = new List<int>();
-            foreach (var item in contratacion)
-            {
-                listaDeContrataciones.Add(item.Id);
-            }
-            var resultado = (from calificacion in context.Calificacion
-                             where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdTipoCalificacion == 1) //para el prestador
-                             orderby calificacion.FechaCalificacion descending
-                             select calificacion).Take(limite).ToList();
-            return resultado;
-        }
     }
 }

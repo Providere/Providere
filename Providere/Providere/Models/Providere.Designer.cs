@@ -19,13 +19,6 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region Metadatos de relaciones en EDM
 
-[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Calificacion_Contratacion", "Contratacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Contratacion), "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Calificacion), true)]
-[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Calificacion_TipoCalificacion", "TipoCalificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.TipoCalificacion), "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Calificacion), true)]
-[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Calificacion_TipoEvaluacion", "TipoEvaluacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.TipoEvaluacion), "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Calificacion), true)]
-[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Calificado_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Usuario), "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Calificacion), true)]
-[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Calificador_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Usuario), "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Calificacion), true)]
-[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Denuncia_Calificacion", "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Calificacion), "Denuncia", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Denuncia), true)]
-[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Replica_Calificacion", "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Calificacion), "Replica", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Replica), true)]
 [assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Contratacion_Publicacion", "Publicacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Publicacion), "Contratacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Contratacion), true)]
 [assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Contratacion_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Usuario), "Contratacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Contratacion), true)]
 [assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Usuario_Estado", "Estado", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Estado), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Usuario), true)]
@@ -38,6 +31,13 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Puntaje_Publicacion", "Publicacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Publicacion), "Puntaje", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Puntaje), true)]
 [assembly: EdmRelationshipAttribute("ProvidereModel", "FK_SubRubro_Rubro", "Rubro", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Rubro), "SubRubro", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.SubRubro), true)]
 [assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Sancion_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Usuario), "Sancion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Sancion), true)]
+[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Calificacion_Contratacion", "Contratacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Contratacion), "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Calificacion), true)]
+[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Calificacion_TipoCalificacion", "TipoCalificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.TipoCalificacion), "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Calificacion), true)]
+[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Calificacion_TipoEvaluacion", "TipoEvaluacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.TipoEvaluacion), "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Calificacion), true)]
+[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Calificado_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Usuario), "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Calificacion), true)]
+[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Calificador_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Usuario), "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Calificacion), true)]
+[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Denuncia_Calificacion", "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Calificacion), "Denuncia", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Denuncia), true)]
+[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Replica_Calificacion", "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Calificacion), "Replica", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Replica), true)]
 
 #endregion
 
@@ -88,22 +88,6 @@ namespace Providere.Models
         #endregion
     
         #region Propiedades de ObjectSet
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        public ObjectSet<Calificacion> Calificacion
-        {
-            get
-            {
-                if ((_Calificacion == null))
-                {
-                    _Calificacion = base.CreateObjectSet<Calificacion>("Calificacion");
-                }
-                return _Calificacion;
-            }
-        }
-        private ObjectSet<Calificacion> _Calificacion;
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -328,18 +312,26 @@ namespace Providere.Models
             }
         }
         private ObjectSet<Usuario> _Usuario;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<Calificacion> Calificacion
+        {
+            get
+            {
+                if ((_Calificacion == null))
+                {
+                    _Calificacion = base.CreateObjectSet<Calificacion>("Calificacion");
+                }
+                return _Calificacion;
+            }
+        }
+        private ObjectSet<Calificacion> _Calificacion;
 
         #endregion
 
         #region Métodos AddTo
-    
-        /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet Calificacion. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToCalificacion(Calificacion calificacion)
-        {
-            base.AddObject("Calificacion", calificacion);
-        }
     
         /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet Contratacion. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
@@ -452,6 +444,14 @@ namespace Providere.Models
         {
             base.AddObject("Usuario", usuario);
         }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet Calificacion. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToCalificacion(Calificacion calificacion)
+        {
+            base.AddObject("Calificacion", calificacion);
+        }
 
         #endregion
 
@@ -482,7 +482,9 @@ namespace Providere.Models
         /// <param name="idTipoEvaluacion">Valor inicial de la propiedad IdTipoEvaluacion.</param>
         /// <param name="idTipoCalificacion">Valor inicial de la propiedad IdTipoCalificacion.</param>
         /// <param name="fechaCalificacion">Valor inicial de la propiedad FechaCalificacion.</param>
-        public static Calificacion CreateCalificacion(global::System.Int16 id, global::System.String descripcion, global::System.Int16 idCalificador, global::System.Int16 idCalificado, global::System.Int16 idContratacion, global::System.Int16 idTipoEvaluacion, global::System.Int16 idTipoCalificacion, global::System.DateTime fechaCalificacion)
+        /// <param name="denunciado">Valor inicial de la propiedad Denunciado.</param>
+        /// <param name="replicado">Valor inicial de la propiedad Replicado.</param>
+        public static Calificacion CreateCalificacion(global::System.Int16 id, global::System.String descripcion, global::System.Int16 idCalificador, global::System.Int16 idCalificado, global::System.Int16 idContratacion, global::System.Int16 idTipoEvaluacion, global::System.Int16 idTipoCalificacion, global::System.DateTime fechaCalificacion, global::System.Byte denunciado, global::System.Byte replicado)
         {
             Calificacion calificacion = new Calificacion();
             calificacion.Id = id;
@@ -493,6 +495,8 @@ namespace Providere.Models
             calificacion.IdTipoEvaluacion = idTipoEvaluacion;
             calificacion.IdTipoCalificacion = idTipoCalificacion;
             calificacion.FechaCalificacion = fechaCalificacion;
+            calificacion.Denunciado = denunciado;
+            calificacion.Replicado = replicado;
             return calificacion;
         }
 
@@ -694,6 +698,54 @@ namespace Providere.Models
         private global::System.DateTime _FechaCalificacion;
         partial void OnFechaCalificacionChanging(global::System.DateTime value);
         partial void OnFechaCalificacionChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte Denunciado
+        {
+            get
+            {
+                return _Denunciado;
+            }
+            set
+            {
+                OnDenunciadoChanging(value);
+                ReportPropertyChanging("Denunciado");
+                _Denunciado = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Denunciado");
+                OnDenunciadoChanged();
+            }
+        }
+        private global::System.Byte _Denunciado;
+        partial void OnDenunciadoChanging(global::System.Byte value);
+        partial void OnDenunciadoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte Replicado
+        {
+            get
+            {
+                return _Replicado;
+            }
+            set
+            {
+                OnReplicadoChanging(value);
+                ReportPropertyChanging("Replicado");
+                _Replicado = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Replicado");
+                OnReplicadoChanged();
+            }
+        }
+        private global::System.Byte _Replicado;
+        partial void OnReplicadoChanging(global::System.Byte value);
+        partial void OnReplicadoChanged();
 
         #endregion
 
@@ -1053,28 +1105,6 @@ namespace Providere.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ProvidereModel", "FK_Calificacion_Contratacion", "Calificacion")]
-        public EntityCollection<Calificacion> Calificacion
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Calificacion>("ProvidereModel.FK_Calificacion_Contratacion", "Calificacion");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Calificacion>("ProvidereModel.FK_Calificacion_Contratacion", "Calificacion", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ProvidereModel", "FK_Contratacion_Publicacion", "Publicacion")]
         public Publicacion Publicacion
         {
@@ -1141,6 +1171,28 @@ namespace Providere.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Usuario>("ProvidereModel.FK_Contratacion_Usuario", "Usuario", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ProvidereModel", "FK_Calificacion_Contratacion", "Calificacion")]
+        public EntityCollection<Calificacion> Calificacion
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Calificacion>("ProvidereModel.FK_Calificacion_Contratacion", "Calificacion");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Calificacion>("ProvidereModel.FK_Calificacion_Contratacion", "Calificacion", value);
                 }
             }
         }
@@ -1577,13 +1629,15 @@ namespace Providere.Models
         /// <param name="pregunta">Valor inicial de la propiedad Pregunta.</param>
         /// <param name="idUsuario">Valor inicial de la propiedad IdUsuario.</param>
         /// <param name="idPublicacion">Valor inicial de la propiedad IdPublicacion.</param>
-        public static PreguntaRespuesta CreatePreguntaRespuesta(global::System.Int16 id, global::System.String pregunta, global::System.Int16 idUsuario, global::System.Int16 idPublicacion)
+        /// <param name="estado">Valor inicial de la propiedad Estado.</param>
+        public static PreguntaRespuesta CreatePreguntaRespuesta(global::System.Int16 id, global::System.String pregunta, global::System.Int16 idUsuario, global::System.Int16 idPublicacion, global::System.Byte estado)
         {
             PreguntaRespuesta preguntaRespuesta = new PreguntaRespuesta();
             preguntaRespuesta.Id = id;
             preguntaRespuesta.Pregunta = pregunta;
             preguntaRespuesta.IdUsuario = idUsuario;
             preguntaRespuesta.IdPublicacion = idPublicacion;
+            preguntaRespuesta.Estado = estado;
             return preguntaRespuesta;
         }
 
@@ -1737,6 +1791,30 @@ namespace Providere.Models
         private Nullable<global::System.DateTime> _FechaRespuesta;
         partial void OnFechaRespuestaChanging(Nullable<global::System.DateTime> value);
         partial void OnFechaRespuestaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte Estado
+        {
+            get
+            {
+                return _Estado;
+            }
+            set
+            {
+                OnEstadoChanging(value);
+                ReportPropertyChanging("Estado");
+                _Estado = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Estado");
+                OnEstadoChanged();
+            }
+        }
+        private global::System.Byte _Estado;
+        partial void OnEstadoChanging(global::System.Byte value);
+        partial void OnEstadoChanged();
 
         #endregion
 
@@ -3820,50 +3898,6 @@ namespace Providere.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ProvidereModel", "FK_Calificado_Usuario", "Calificacion")]
-        public EntityCollection<Calificacion> Calificacion
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Calificacion>("ProvidereModel.FK_Calificado_Usuario", "Calificacion");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Calificacion>("ProvidereModel.FK_Calificado_Usuario", "Calificacion", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ProvidereModel", "FK_Calificador_Usuario", "Calificacion")]
-        public EntityCollection<Calificacion> Calificacion1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Calificacion>("ProvidereModel.FK_Calificador_Usuario", "Calificacion");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Calificacion>("ProvidereModel.FK_Calificador_Usuario", "Calificacion", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("ProvidereModel", "FK_Contratacion_Usuario", "Contratacion")]
         public EntityCollection<Contratacion> Contratacion
         {
@@ -3980,6 +4014,50 @@ namespace Providere.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Sancion>("ProvidereModel.FK_Sancion_Usuario", "Sancion", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ProvidereModel", "FK_Calificado_Usuario", "Calificacion")]
+        public EntityCollection<Calificacion> Calificacion
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Calificacion>("ProvidereModel.FK_Calificado_Usuario", "Calificacion");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Calificacion>("ProvidereModel.FK_Calificado_Usuario", "Calificacion", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ProvidereModel", "FK_Calificador_Usuario", "Calificacion")]
+        public EntityCollection<Calificacion> Calificacion1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Calificacion>("ProvidereModel.FK_Calificador_Usuario", "Calificacion");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Calificacion>("ProvidereModel.FK_Calificador_Usuario", "Calificacion", value);
                 }
             }
         }

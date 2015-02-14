@@ -13,6 +13,8 @@ namespace Providere.Controllers
     {
         PublicacionServicios ps = new PublicacionServicios();
         UsuarioServicios us = new UsuarioServicios();
+        SancionServicios ss = new SancionServicios();
+        PreguntaServicios prs = new PreguntaServicios();
 
         public ActionResult Home()
         {
@@ -20,13 +22,18 @@ namespace Providere.Controllers
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
 
-            ViewBag.PublicacionesMasRecientes = ps.traerPublicacionesMasRecientes(4);
+            ViewBag.PreguntaSinResponder = prs.TraerPreguntasSinResponder(Convert.ToInt16(this.Session["IdUsuario"]));
 
-            ViewBag.PublicacionesMejorCalificadas = ps.traerPublicacionesMejorCalificadas(4);
+            int limite = 4;
 
-            ViewBag.UsuariosMasCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), 4);
+            ViewBag.PublicacionesMasRecientes = ps.traerPublicacionesMasRecientes(limite);
 
+            ViewBag.PublicacionesMejorCalificadas = ps.traerPublicacionesMejorCalificadas(limite);
 
+            ViewBag.UsuariosMasCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), limite);
+
+            ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
+            
             return View();
         }
 

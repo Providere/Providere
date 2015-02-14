@@ -176,5 +176,25 @@ namespace Providere.Repositorios
         {
             return context.Usuario.Where(x => x.Id == id).FirstOrDefault();
         }
+        
+        internal List<Usuario> traerTodos()
+        {
+            return context.Usuario.Select(x => x).ToList();
+        }
+
+
+        internal IEnumerable<Usuario> traerTodosConDenuncias(List<Denuncia> denuncias)
+        {
+            // No se si el calificador es Usuario o Usuario1
+            IEnumerable<Usuario> usuarios = denuncias.Select(r => r.Calificacion.Usuario);
+
+            return usuarios;
+        }
+
+        public bool UsuarioBloqueado(Usuario model)
+        {
+            bool usuarioBloqueado = context.Usuario.Any(user => user.Mail == model.Mail && user.IdEstado == 2); //Estado bloqueado
+            return usuarioBloqueado;
+        }
     }
 }

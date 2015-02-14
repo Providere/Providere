@@ -129,7 +129,7 @@ namespace Providere.Controllers
 
                 if (us.UsuarioExistente(model))
                 {
-                    if (us.UsuarioActivo(model))
+                    if (us.UsuarioActivo(model) || us.UsuarioBloqueado(model))
                     {
                         us.CrearCookie(model);
                         Session["IdUsuario"] = us.traerIdUsuario(model);
@@ -163,8 +163,9 @@ namespace Providere.Controllers
             return RedirectToAction("Index", "Index");
         }
 
-        public ActionResult EditarPerfil()
+        public ActionResult EditarPerfil(int? ActivePanel)
         {
+            ImageHelper ih = new ImageHelper();
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
             Usuario usuario = us.ObtenerUsuarioEditar(idUsuario);
             ViewBag.geocomplete2 = usuario.Ubicacion;
@@ -173,6 +174,16 @@ namespace Providere.Controllers
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
 
+            if (ActivePanel == null)
+            {
+                ViewBag.ActivePanel = 1;
+            }
+            else
+            {
+                ViewBag.ActivePanel = ActivePanel;
+            }
+
+            ViewBag.ProfileImageExists = ih.ProfileImageExists(usuario);
             return View(usuario);
         }
 
@@ -258,7 +269,6 @@ namespace Providere.Controllers
             }
         }
 
-        [HttpPost]
         public ActionResult EliminarCuenta()
         {
             bool estado = bool.Parse(Request.Form.GetValues("ckbEliminar")[0]);

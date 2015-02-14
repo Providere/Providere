@@ -1,0 +1,743 @@
+﻿@model IEnumerable<Providere.Models.Calificacion>
+@{
+    ViewBag.Title = "Calificaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.Exito != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Exito
+    </div>
+}
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">
+            &times;</button>
+        @ViewBag.Error
+    </div>
+}
+<div class="col-md-12 well">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#obtenidas" role="tab" data-toggle="tab">
+            Obtenidas</a></li>
+        <li role="presentation"><a href="#otorgadas" role="tab" data-toggle="tab">Otorgadas</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="obtenidas">
+            <h2>
+                Calificaciones obtenidas</h2>
+            <div class="row">
+                @if (ViewBag.ObtenidasLimite.Count > 0)
+                {
+                    foreach (var item in ViewBag.ObtenidasLimite)
+                    {
+                        if (item.IdTipoCalificacion == 1)
+                        {
+                    <div class="col-md-12">
+                        <div>
+                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                            <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                        </div>
+                        <div>
+                            @if (item.IdTipoEvaluacion == 1) //Positiva
+                            {
+                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                <em>@item.Descripcion </em>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
+                            {                                
+                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                <em>@item.Descripcion</em>
+                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                {
+                                <input type="submit" id="btnDenunciarNeutro1" value="Denunciar" class="btn btn-link" />
+                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">Replicar</a>
+                                }
+                                <div class="collapse" id="collapseExample1">
+                                    <div class="well">
+                                        <div class="row">
+                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                            {
+                                                <div class="form-group col-md-10">
+                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                </div>
+                                            
+                                                <div class="form-group col-md-2">
+                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                        Enviar</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div> 
+                                <span class="help-block">@item.FechaCalificacion</span>                                
+                            }
+                            else
+                            {
+                                if (item.IdTipoEvaluacion == 2)
+                                {
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                    </div>
+                                </div>
+                                }
+                            }
+                            @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
+                            {
+                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                <em>@item.Descripcion</em>   
+                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                {
+                                                          
+                                <input type="submit" id="btnDenunciarNegativo1" value="Denunciar" class="btn btn-link" />  
+                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample2" aria-expanded="false"
+                                    aria-controls="collapseExample">Replicar</a>
+                                }
+                                <div class="collapse" id="collapseExample2">
+                                    <div class="well">
+                                        <div class="row">
+                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                            {
+                                                <div class="form-group col-md-10">
+                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                </div>
+                                            
+                                                <div class="form-group col-md-2">
+                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                        Enviar</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>  
+                                <span class="help-block">@item.FechaCalificacion</span>  
+                            }
+                            else
+                            {
+                                if (item.IdTipoEvaluacion == 3)
+                                {
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                    </div>
+                                </div>
+                                }
+                            }
+                            <br />
+                        </div>
+                    </div> 
+                        }
+                        else
+                        {
+                    <div class="col-md-12">
+                        <div>
+                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                            <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                        </div>
+                        <div>
+                            @if (item.IdTipoEvaluacion == 1) //Positiva
+                            {
+                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                <em>@item.Descripcion </em>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
+                            {
+                                                            
+                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                <em>@item.Descripcion</em> 
+                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                {                                 
+                                <input type="submit" id="btnDenunciarNeutro2" value="Denunciar" class="btn btn-link" />   
+                                   <a class="btn btn-link" data-toggle="collapse" href="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">Replicar</a>   
+                                }                           
+                                <div class="collapse" id="collapseExample3">
+                                    <div class="well">
+                                        <div class="row">
+                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                            {
+                                                <div class="form-group col-md-10">
+                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                        Enviar</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>                                                           
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            else
+                            {
+                                if (item.IdTipoEvaluacion == 2)
+                                {
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                    </div>
+                                </div>
+                                }
+                            }
+                            @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
+                            {                              
+                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                <em>@item.Descripcion</em> 
+                                using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                {                              
+                                <input type="submit" id="btnDenunciarNegativo2" value="Denunciar" class="btn btn-link" /> 
+                                <a class="btn btn-link" data-toggle="collapse" href="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">Replicar</a>
+                                }
+                                <div class="collapse" id="collapseExample4">
+                                    <div class="well">
+                                        <div class="row">
+                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                            {
+                                                <div class="form-group col-md-10">
+                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                </div>                                            
+                                                <div class="form-group col-md-2">
+                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                        Enviar</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div> 
+                                <span class="help-block">@item.FechaCalificacion</span>   
+                            }
+                            else
+                            {
+                                if (item.IdTipoEvaluacion == 3)
+                                {
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                    </div>
+                                </div>
+                                }
+                            }
+                            <br />
+                        </div>
+                    </div> 
+                        }
+                    }
+                }
+                else
+                {
+                    <div class="col-md-12">
+                        No hay calificaciones para mostrar</div>
+                }
+                @if (ViewBag.ObtenidasTodas.Count > 4)
+                {
+                    <!-- Button trigger modal -->
+                    <center>
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">
+                            Ver mas calificaciones
+                        </button>
+                    </center>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">
+                                        Calificaciones obtenidas</h4>
+                                </div>
+                                <div class="modal-body">
+                                    @if (ViewBag.ObtenidasTodas.Count > 0)
+                                    {
+                                        foreach (var item in ViewBag.ObtenidasTodas)
+                                        {
+                                            if (item.IdTipoCalificacion == 1)
+                                            {
+                                        <div class="row">
+                                            <div>
+                                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                            </div>
+                                            <div>
+                                                @if (item.IdTipoEvaluacion == 1) //Positiva
+                                                {
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                    <em>@item.Descripcion </em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
+                                                {
+                                                  
+                                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                    {
+                                                    <input type="submit" id="btnDenunciarNeutro3" value="Denunciar" class="btn btn-link" />  
+                                                     <a class="btn btn-link" data-toggle="collapse" href="#collapseExample5" aria-expanded="false" aria-controls="collapseExample">Replicar</a>
+                                                    }      
+                                                   
+                                                    <div class="collapse" id="collapseExample5">
+                                                        <div class="well">
+                                                            <div class="row">
+                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                                {
+                                                                    <div class="form-group col-md-10">
+                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                                    </div>                                            
+                                                                    <div class="form-group col-md-2">
+                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                                            Enviar</button>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>                                          
+                                                    <span class="help-block">@item.FechaCalificacion</span> 
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 2)
+                                                    {
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                                        </div>
+                                                    </div>
+                                                    }
+                                                }
+                                                @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
+                                                {
+                                                    
+                                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                    {
+                                                    <input type="submit" id="btnDenunciarNegativo3" value="Denunciar" class="btn btn-link" />
+                                                     <a class="btn btn-link" data-toggle="collapse" href="#collapseExample6" aria-expanded="false" aria-controls="collapseExample">Replicar</a> 
+                                                    }  
+                                                            
+                                                    <div class="collapse" id="collapseExample6">
+                                                        <div class="well">
+                                                            <div class="row">
+                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                                {
+                                                                    <div class="form-group col-md-10">
+                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                                    </div>                                            
+                                                                    <div class="form-group col-md-2">
+                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                                            Enviar</button>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <span class="help-block">@item.FechaCalificacion</span>   
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 3)
+                                                    {
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                                        </div>
+                                                    </div>
+                                                    }
+                                                }
+                                            </div>
+                                        </div> 
+                                            }
+                                            else
+                                            {
+                                        <div class="row">
+                                            <div>
+                                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                                            </div>
+                                            <div>
+                                                @if (item.IdTipoEvaluacion == 1) //Positiva
+                                                {
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                    <em>@item.Descripcion </em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
+                                                {
+                                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                    {
+                                                    <input type="submit" id="btnDenunciarNeutro4" value="Denunciar" class="btn btn-link" /> 
+                                                     <a class="btn btn-link" data-toggle="collapse" href="#collapseExample7" aria-expanded="false" aria-controls="collapseExample">Replicar</a>
+                                                    }  
+                                                   
+                                                    <div class="collapse" id="collapseExample7">
+                                                        <div class="well">
+                                                            <div class="row">
+                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                                {
+                                                                    <div class="form-group col-md-10">
+                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                                    </div>                                            
+                                                                    <div class="form-group col-md-2">
+                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                                            Enviar</button>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <span class="help-block">@item.FechaCalificacion</span>  
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 2)
+                                                    {
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                                        </div>
+                                                    </div>
+                                                    }
+                                                }
+                                                @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
+                                                {                                                  
+                                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    using (Html.BeginForm("DenunciarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                    {
+                                                    <input type="submit" id="btnDenunciarNegativo4" value="Denunciar" class="btn btn-link" />
+                                                    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample8" aria-expanded="false" aria-controls="collapseExample">Replicar</a>
+                                                    }  
+                                                    
+                                                    <div class="collapse" id="collapseExample8">
+                                                        <div class="well">
+                                                            <div class="row">
+                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
+                                                                {
+                                                                    <div class="form-group col-md-10">
+                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
+                                                                    </div>                                            
+                                                                    <div class="form-group col-md-2">
+                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
+                                                                            Enviar</button>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <span class="help-block">@item.FechaCalificacion</span>   
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 3)
+                                                    {
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                                        </div>
+                                                    </div>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>                       
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="otorgadas">
+            <h2>
+                Calificaciones otorgadas</h2>
+            <div class="row">
+                @if (ViewBag.OtorgadasLimite.Count > 0)
+                {
+                    foreach (var item in ViewBag.OtorgadasLimite)
+                    {
+
+                        if (item.IdTipoCalificacion == 1)
+                        {
+                    <div class="col-md-12">
+                        <div>
+                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                            <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                        </div>
+                        <div>
+                            @if (item.IdTipoEvaluacion == 1) //Positiva
+                            {
+                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
+                            {
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                if (item.IdTipoEvaluacion == 2)
+                                {
+                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                                }
+                            }
+                            @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 1) //Negativo
+                            {
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                if (item.IdTipoEvaluacion == 3)
+                                {
+                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                                }
+                            }
+                            <br />
+                        </div>
+                    </div>
+                        }
+                        else
+                        {
+                    <div class="col-md-12">
+                        <div>
+                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                            <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                        </div>
+                        <div>
+                            @if (item.IdTipoEvaluacion == 1) //Positiva
+                            {
+                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                            }
+                            @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
+                            {
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                    </div>
+                                </div>                             
+                            }
+                            else
+                            {
+                                if (item.IdTipoEvaluacion == 2)
+                                {
+                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                                }
+                            }
+                            @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 1) //Negativo
+                            {
+                                <div class="col-md-5">
+                                    <br />
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                if (item.IdTipoEvaluacion == 3)
+                                {
+                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                <em>@item.Descripcion</em>
+                                <span class="help-block">@item.FechaCalificacion</span>
+                                }
+                            }
+                            <br />
+                        </div>
+                    </div>     
+                        }
+                    }
+                }
+                else
+                {
+                    <div class="col-md-12">
+                        No hay calificaciones para mostrar</div>
+                }
+                @if (ViewBag.OtorgadasTodas.Count > 4)
+                {
+                    <!-- Button trigger modal -->
+                    <center>
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal2">
+                            Ver mas calificaciones
+                        </button>
+                    </center>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel2">
+                                        Calificaciones Otorgadas</h4>
+                                </div>
+                                <div class="modal-body">
+                                    @if (ViewBag.OtorgadasTodas.Count > 0)
+                                    {
+                                        foreach (var item in ViewBag.OtorgadasTodas)
+                                        {
+                                            if (item.IdTipoCalificacion == 1)
+                                            {
+                                        <div class="row">
+                                            <div>
+                                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                            </div>
+                                            <div>
+                                                @if (item.IdTipoEvaluacion == 1) //Positiva
+                                                {
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                    <em>@item.Descripcion </em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
+                                                {
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 2)
+                                                    {
+                                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    }
+                                                }
+                                                @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 1) //Negativo
+                                                {
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 3)
+                                                    {
+                                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    }
+                                                }
+                                            </div>
+                                        </div> 
+                                            }
+                                            else
+                                            {
+                                        <div class="row">
+                                            <div>
+                                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                                            </div>
+                                            <div>
+                                                @if (item.IdTipoEvaluacion == 1) //Positiva
+                                                {
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                    <em>@item.Descripcion </em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                }
+                                                @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 1) //Neutro
+                                                {
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 2)
+                                                    {
+                                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    }
+                                                }
+                                                @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 1) //Negativo
+                                                {
+                                                    <div class="col-md-10">
+                                                        <br />
+                                                        <div class="alert alert-danger alert-dismissable">
+                                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    if (item.IdTipoEvaluacion == 3)
+                                                    {
+                                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <span class="help-block">@item.FechaCalificacion</span>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>                       
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -38,6 +38,8 @@ namespace Providere.Servicios
             calificacion.IdTipoCalificacion = tipoCalificacion.Id;
             calificacion.IdTipoEvaluacion = tipoEvaluacion.Id;
             calificacion.FechaCalificacion = DateTime.Now;
+            calificacion.Denunciado = 0; //no fue denunciada ese calificacion todavia
+
             
             cr.calificarUsuario(calificacion);
         }
@@ -49,5 +51,39 @@ namespace Providere.Servicios
             return tieneCalificacion;
         }
 
+        internal List<Calificacion> obtenerNegativasDeUsuario(Usuario usuario)
+        {
+            return cr.obtenerNegativasDeUsuario(usuario);
+        }
+
+        public object TraerCalificaciones(int idPublicacion)
+        {
+            return cr.TraerCalificaciones(idPublicacion);
+        }
+
+        public object TraerPrimerasCalificaciones(int limite, int idPublicacion)
+        {
+            return cr.TraerPrimerasCalificaciones(limite, idPublicacion);
+        }
+
+        public object TraerCalificacionesObtenidas(int idUsuario,int limite)
+        {
+            return cr.TraerCalificacionesObtenidas(idUsuario, limite);
+        }
+
+        public object TraerCalificacionesOtorgadas(int idUsuario, int limite)
+        {
+            return cr.TraerCalificacionesOtorgadas(idUsuario, limite);
+        }
+
+        public object TraerCalificacionesObtenidasTodas(int idUsuario)
+        {
+            return cr.TraerCalificacionObtenidasTodas(idUsuario);
+        }
+
+        public object TraerCalificacionesOtorgadasTodas(int idUsuario)
+        {
+            return cr.TraerCalificacionesOtorgadasTodas(idUsuario);
+        }
     }
 }
