@@ -14,9 +14,9 @@ namespace Providere.Servicios
             rer.ReplicarComentario(id, replicar);
         }
 
-        public object TraerComentarioReplica(int id)
+        public object TraerTodasLasReplicas()
         {
-            return rer.TraerComentarioReplica(id);
+            return rer.TraerTodasLasReplicas();
         }
     }
 }

@@ -16,15 +16,17 @@ namespace Providere.Repositorios
             replica.IdCalificacion = Convert.ToInt16(id);
             replica.Comentario = replicar;
             context.Replica.AddObject(replica);
+
+            Calificacion calificacion = context.Calificacion.Where(e => e.Id == id).FirstOrDefault();
+            calificacion.Replicado = 1; //comentario de la calificacion fue replicado
             context.SaveChanges();
             
         }
 
-        public object TraerComentarioReplica(int id)
+        public object TraerTodasLasReplicas()
         {
             var resultado = (from replica in context.Replica
-                             where replica.IdCalificacion == id
-                             select replica.Comentario).First();
+                             select replica).ToList();
             return resultado;
         }
     }
