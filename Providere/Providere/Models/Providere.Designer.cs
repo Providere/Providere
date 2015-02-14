@@ -1006,16 +1006,14 @@ namespace Providere.Models
         /// <param name="id">Valor inicial de la propiedad Id.</param>
         /// <param name="idUsuario">Valor inicial de la propiedad IdUsuario.</param>
         /// <param name="idPublicacion">Valor inicial de la propiedad IdPublicacion.</param>
-        /// <param name="flagCalificado">Valor inicial de la propiedad FlagCalificado.</param>
         /// <param name="flagCalificoProveedor">Valor inicial de la propiedad FlagCalificoProveedor.</param>
         /// <param name="flagCalificoCliente">Valor inicial de la propiedad FlagCalificoCliente.</param>
-        public static Contratacion CreateContratacion(global::System.Int16 id, global::System.Int16 idUsuario, global::System.Int16 idPublicacion, global::System.Byte flagCalificado, global::System.Byte flagCalificoProveedor, global::System.Byte flagCalificoCliente)
+        public static Contratacion CreateContratacion(global::System.Int16 id, global::System.Int16 idUsuario, global::System.Int16 idPublicacion, global::System.Byte flagCalificoProveedor, global::System.Byte flagCalificoCliente)
         {
             Contratacion contratacion = new Contratacion();
             contratacion.Id = id;
             contratacion.IdUsuario = idUsuario;
             contratacion.IdPublicacion = idPublicacion;
-            contratacion.FlagCalificado = flagCalificado;
             contratacion.FlagCalificoProveedor = flagCalificoProveedor;
             contratacion.FlagCalificoCliente = flagCalificoCliente;
             return contratacion;
@@ -1099,30 +1097,6 @@ namespace Providere.Models
         private global::System.Int16 _IdPublicacion;
         partial void OnIdPublicacionChanging(global::System.Int16 value);
         partial void OnIdPublicacionChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Byte FlagCalificado
-        {
-            get
-            {
-                return _FlagCalificado;
-            }
-            set
-            {
-                OnFlagCalificadoChanging(value);
-                ReportPropertyChanging("FlagCalificado");
-                _FlagCalificado = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("FlagCalificado");
-                OnFlagCalificadoChanged();
-            }
-        }
-        private global::System.Byte _FlagCalificado;
-        partial void OnFlagCalificadoChanging(global::System.Byte value);
-        partial void OnFlagCalificadoChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.

@@ -585,7 +585,6 @@
           <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Contratacion_Publicacion" FromRole="Contratacion" ToRole="Publicacion" />
           <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_Contratacion_Usuario" FromRole="Contratacion" ToRole="Usuario" />
           <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Calificacion_Contratacion" FromRole="Contratacion" ToRole="Calificacion" />
-          <Property Type="Byte" Name="FlagCalificado" Nullable="false" />
           <Property Type="Byte" Name="FlagCalificoProveedor" Nullable="false" />
           <Property Type="Byte" Name="FlagCalificoCliente" Nullable="false" />
         </EntityType>
@@ -1003,14 +1002,11 @@
           <EntitySetMapping Name="Contratacion">
             <EntityTypeMapping TypeName="ProvidereModel.Contratacion">
               <MappingFragment StoreEntitySet="Contratacion">
-<<<<<<< HEAD
                 <ScalarProperty Name="FlagCalificoCliente" ColumnName="FlagCalificoCliente" />
                 <ScalarProperty Name="FlagCalificoProveedor" ColumnName="FlagCalificoProveedor" />
-=======
->>>>>>> 35c9b3cd72395f3de5d679a866d72d94f88a1488
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="IdPublicacion" ColumnName="IdPublicacion" />
+                <ScalarProperty Name="IdPublicacion" ColumnName="IdPublicacion" />               
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1191,7 +1187,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Providere" ZoomLevel="82">
-        <EntityTypeShape EntityType="ProvidereModel.Contratacion" Width="1.5" PointX="8.25" PointY="10" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Contratacion" Width="1.5" PointX="8.25" PointY="10" Height="2.5571907552083335" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Denuncia" Width="1.5" PointX="7.5" PointY="4" Height="1.787985026041667" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Estado" Width="1.5" PointX="0.75" PointY="10.375" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Imagen" Width="1.5" PointX="10.5" PointY="12.625" Height="1.7879850260416674" IsExpanded="true" />
@@ -1207,15 +1203,15 @@
         <EntityTypeShape EntityType="ProvidereModel.Usuario" Width="1.5" PointX="3" PointY="8.75" Height="4.6725065104166674" IsExpanded="true" />
         <AssociationConnector Association="ProvidereModel.FK_Contratacion_Publicacion" ManuallyRouted="false">
           <ConnectorPoint PointX="9" PointY="13" />
-          <ConnectorPoint PointX="9" PointY="12.364889322916666" />
+          <ConnectorPoint PointX="9" PointY="12.557190755208334" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Contratacion_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="11.04045051691099" />
-          <ConnectorPoint PointX="4.666666666666667" PointY="11.04045051691099" />
-          <ConnectorPoint PointX="4.833333333333333" PointY="11.04045051691099" />
-          <ConnectorPoint PointX="7.635416666666667" PointY="11.040450516910989" />
-          <ConnectorPoint PointX="7.958333333333333" PointY="11.04045051691099" />
-          <ConnectorPoint PointX="8.25" PointY="11.04045051691099" />
+          <ConnectorPoint PointX="4.5" PointY="11.040632588604115" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="11.040632588604115" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="11.040632588604115" />
+          <ConnectorPoint PointX="7.635416666666667" PointY="11.040632588604114" />
+          <ConnectorPoint PointX="7.958333333333333" PointY="11.040632588604115" />
+          <ConnectorPoint PointX="8.25" PointY="11.040632588604115" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Usuario_Estado" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="11.172841796875" />
@@ -1267,10 +1263,10 @@
           <ConnectorPoint PointX="6.71875" PointY="21.375" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Sancion_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="12.205901033821981" />
-          <ConnectorPoint PointX="4.666666666666667" PointY="12.205901033821981" />
-          <ConnectorPoint PointX="4.833333333333333" PointY="12.205901033821981" />
-          <ConnectorPoint PointX="5.59375" PointY="12.205901033821981" />
+          <ConnectorPoint PointX="4.5" PointY="12.206265177208231" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="12.206265177208231" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="12.206265177208231" />
+          <ConnectorPoint PointX="5.59375" PointY="12.206265177208231" />
           <ConnectorPoint PointX="5.59375" PointY="26.875" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProvidereModel.Calificacion" Width="1.5" PointX="10.5" PointY="7.125" Height="4.2879036458333317" />
