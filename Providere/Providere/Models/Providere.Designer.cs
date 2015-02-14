@@ -482,11 +482,9 @@ namespace Providere.Models
         /// <param name="idTipoEvaluacion">Valor inicial de la propiedad IdTipoEvaluacion.</param>
         /// <param name="idTipoCalificacion">Valor inicial de la propiedad IdTipoCalificacion.</param>
         /// <param name="fechaCalificacion">Valor inicial de la propiedad FechaCalificacion.</param>
-        /// <param name="denunciado">Valor inicial de la propiedad Denunciado.</param>
-        /// <param name="replicado">Valor inicial de la propiedad Replicado.</param>
         /// <param name="flagDenunciado">Valor inicial de la propiedad FlagDenunciado.</param>
         /// <param name="flagReplicado">Valor inicial de la propiedad FlagReplicado.</param>
-        public static Calificacion CreateCalificacion(global::System.Int16 id, global::System.String descripcion, global::System.Int16 idCalificador, global::System.Int16 idCalificado, global::System.Int16 idContratacion, global::System.Int16 idTipoEvaluacion, global::System.Int16 idTipoCalificacion, global::System.DateTime fechaCalificacion, global::System.Byte denunciado, global::System.Byte replicado, global::System.Byte flagDenunciado, global::System.Byte flagReplicado)
+        public static Calificacion CreateCalificacion(global::System.Int16 id, global::System.String descripcion, global::System.Int16 idCalificador, global::System.Int16 idCalificado, global::System.Int16 idContratacion, global::System.Int16 idTipoEvaluacion, global::System.Int16 idTipoCalificacion, global::System.DateTime fechaCalificacion, global::System.Byte flagDenunciado, global::System.Byte flagReplicado)
         {
             Calificacion calificacion = new Calificacion();
             calificacion.Id = id;
@@ -497,8 +495,6 @@ namespace Providere.Models
             calificacion.IdTipoEvaluacion = idTipoEvaluacion;
             calificacion.IdTipoCalificacion = idTipoCalificacion;
             calificacion.FechaCalificacion = fechaCalificacion;
-            calificacion.Denunciado = denunciado;
-            calificacion.Replicado = replicado;
             calificacion.FlagDenunciado = flagDenunciado;
             calificacion.FlagReplicado = flagReplicado;
             return calificacion;
@@ -702,54 +698,6 @@ namespace Providere.Models
         private global::System.DateTime _FechaCalificacion;
         partial void OnFechaCalificacionChanging(global::System.DateTime value);
         partial void OnFechaCalificacionChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Byte Denunciado
-        {
-            get
-            {
-                return _Denunciado;
-            }
-            set
-            {
-                OnDenunciadoChanging(value);
-                ReportPropertyChanging("Denunciado");
-                _Denunciado = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Denunciado");
-                OnDenunciadoChanged();
-            }
-        }
-        private global::System.Byte _Denunciado;
-        partial void OnDenunciadoChanging(global::System.Byte value);
-        partial void OnDenunciadoChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Byte Replicado
-        {
-            get
-            {
-                return _Replicado;
-            }
-            set
-            {
-                OnReplicadoChanging(value);
-                ReportPropertyChanging("Replicado");
-                _Replicado = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Replicado");
-                OnReplicadoChanged();
-            }
-        }
-        private global::System.Byte _Replicado;
-        partial void OnReplicadoChanging(global::System.Byte value);
-        partial void OnReplicadoChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -1059,13 +1007,15 @@ namespace Providere.Models
         /// <param name="idUsuario">Valor inicial de la propiedad IdUsuario.</param>
         /// <param name="idPublicacion">Valor inicial de la propiedad IdPublicacion.</param>
         /// <param name="flagCalificado">Valor inicial de la propiedad FlagCalificado.</param>
-        public static Contratacion CreateContratacion(global::System.Int16 id, global::System.Int16 idUsuario, global::System.Int16 idPublicacion, global::System.Byte flagCalificado)
+        /// <param name="flagCalificado_1">Valor inicial de la propiedad FlagCalificado_1.</param>
+        public static Contratacion CreateContratacion(global::System.Int16 id, global::System.Int16 idUsuario, global::System.Int16 idPublicacion, global::System.Byte flagCalificado, global::System.Byte flagCalificado_1)
         {
             Contratacion contratacion = new Contratacion();
             contratacion.Id = id;
             contratacion.IdUsuario = idUsuario;
             contratacion.IdPublicacion = idPublicacion;
             contratacion.FlagCalificado = flagCalificado;
+            contratacion.FlagCalificado_1 = flagCalificado_1;
             return contratacion;
         }
 
@@ -1171,6 +1121,30 @@ namespace Providere.Models
         private global::System.Byte _FlagCalificado;
         partial void OnFlagCalificadoChanging(global::System.Byte value);
         partial void OnFlagCalificadoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte FlagCalificado_1
+        {
+            get
+            {
+                return _FlagCalificado_1;
+            }
+            set
+            {
+                OnFlagCalificado_1Changing(value);
+                ReportPropertyChanging("FlagCalificado_1");
+                _FlagCalificado_1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FlagCalificado_1");
+                OnFlagCalificado_1Changed();
+            }
+        }
+        private global::System.Byte _FlagCalificado_1;
+        partial void OnFlagCalificado_1Changing(global::System.Byte value);
+        partial void OnFlagCalificado_1Changed();
 
         #endregion
 

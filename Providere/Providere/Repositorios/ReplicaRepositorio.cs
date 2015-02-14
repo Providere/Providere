@@ -18,7 +18,7 @@ namespace Providere.Repositorios
             context.Replica.AddObject(replica);
 
             Calificacion calificacion = context.Calificacion.Where(e => e.Id == id).FirstOrDefault();
-            calificacion.Replicado = 1; //comentario de la calificacion fue replicado
+            calificacion.FlagReplicado = 1; //comentario de la calificacion fue replicado
             context.SaveChanges();
             
         }
