@@ -1007,15 +1007,13 @@ namespace Providere.Models
         /// <param name="idUsuario">Valor inicial de la propiedad IdUsuario.</param>
         /// <param name="idPublicacion">Valor inicial de la propiedad IdPublicacion.</param>
         /// <param name="flagCalificado">Valor inicial de la propiedad FlagCalificado.</param>
-        /// <param name="flagCalificado_1">Valor inicial de la propiedad FlagCalificado_1.</param>
-        public static Contratacion CreateContratacion(global::System.Int16 id, global::System.Int16 idUsuario, global::System.Int16 idPublicacion, global::System.Byte flagCalificado, global::System.Byte flagCalificado_1)
+        public static Contratacion CreateContratacion(global::System.Int16 id, global::System.Int16 idUsuario, global::System.Int16 idPublicacion, global::System.Byte flagCalificado)
         {
             Contratacion contratacion = new Contratacion();
             contratacion.Id = id;
             contratacion.IdUsuario = idUsuario;
             contratacion.IdPublicacion = idPublicacion;
             contratacion.FlagCalificado = flagCalificado;
-            contratacion.FlagCalificado_1 = flagCalificado_1;
             return contratacion;
         }
 
@@ -1121,30 +1119,6 @@ namespace Providere.Models
         private global::System.Byte _FlagCalificado;
         partial void OnFlagCalificadoChanging(global::System.Byte value);
         partial void OnFlagCalificadoChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Byte FlagCalificado_1
-        {
-            get
-            {
-                return _FlagCalificado_1;
-            }
-            set
-            {
-                OnFlagCalificado_1Changing(value);
-                ReportPropertyChanging("FlagCalificado_1");
-                _FlagCalificado_1 = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("FlagCalificado_1");
-                OnFlagCalificado_1Changed();
-            }
-        }
-        private global::System.Byte _FlagCalificado_1;
-        partial void OnFlagCalificado_1Changing(global::System.Byte value);
-        partial void OnFlagCalificado_1Changed();
 
         #endregion
 
