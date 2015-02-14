@@ -122,5 +122,13 @@ namespace Providere.Controllers
                 return RedirectToAction("Index", "Calificacion");
             }
         }
+
+        [HttpPost]
+        public ActionResult VerReplica(int id)
+        {
+           var replicaComentario = rs.TraerComentarioReplica(id);
+           ViewBag.VerReplica = replicaComentario;
+           return RedirectToAction("VisualizarMiPublicacion", "Publicacion");
+        }
     }
 }

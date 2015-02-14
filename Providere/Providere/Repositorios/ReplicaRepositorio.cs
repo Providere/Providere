@@ -19,5 +19,13 @@ namespace Providere.Repositorios
             context.SaveChanges();
             
         }
+
+        public object TraerComentarioReplica(int id)
+        {
+            var resultado = (from replica in context.Replica
+                             where replica.IdCalificacion == id
+                             select replica.Comentario).First();
+            return resultado;
+        }
     }
 }

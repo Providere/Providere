@@ -13,5 +13,10 @@ namespace Providere.Servicios
         {
             rer.ReplicarComentario(id, replicar);
         }
+
+        public object TraerComentarioReplica(int id)
+        {
+            return rer.TraerComentarioReplica(id);
+        }
     }
 }

@@ -28,318 +28,232 @@
     </div>
 }
 <div class="col-md-12 well">
-    @using (Html.BeginForm("VisualizarMiPublicacion", "Publicacion", FormMethod.Post))
-    {
-        <h1 class="text-right">
-            @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
-            {
+    <h1 class="text-right">
+        @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+        {
                 
-                @Html.ActionLink(" Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "btn btn-primary btn-xs glyphicon glyphicon-pencil" })
-            }
-        </h1>
-        
-        <div>
-            @Html.HiddenFor(model => model.IdUsuario)
+            @Html.ActionLink(" Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "btn btn-primary btn-xs glyphicon glyphicon-pencil" })
+        }
+    </h1>
+    <div>
+        @Html.HiddenFor(model => model.IdUsuario)
+    </div>
+    <div>
+        @Html.HiddenFor(model => model.Id)
+    </div>
+    <h1 class="text-center">
+        @Html.DisplayFor(model => model.Titulo)
+    </h1>
+    <hr />
+    <div class="col-md-9">
+        <div class="col-md-8">
+            <h3>
+                Descripción</h3>
+            <p>
+                @Html.DisplayFor(model => model.Descripcion)</p>
         </div>
-        <div>
-            @Html.HiddenFor(model => model.Id)
-        </div>
- 
-        <h1 class="text-center">
-            @Html.DisplayFor(model => model.Titulo)
-        </h1>
-        <hr />
-        
-        <div class="col-md-9">
-            <div class="col-md-8">
-                <h3>
-                    Descripción</h3>
-                <p>
-                    @Html.DisplayFor(model => model.Descripcion)</p>
-            </div>
-            <div class="col-md-8">
-                <h3>
-                    Precio
-                </h3>
-                @if (Model.PrecioOpcion != null)
-                {
+        <div class="col-md-8">
+            <h3>
+                Precio
+            </h3>
+            @if (Model.PrecioOpcion != null)
+            {
 
-                    if (Model.PrecioOpcion == 1)
-                    {
-                    @Html.Label("A Convenir") 
-                    }
-                    else
-                    {
-                    @Html.Label("$") 
-                    @Html.DisplayFor(model => model.Precio)
-                    }
-                }
-            </div>
-            <div class="col-md-3">
-                @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
+                if (Model.PrecioOpcion == 1)
                 {
-                    <button name="btnTel" class="btn btn-primary btn-lg disabled" type="button">
-                        Telefono:
-                        <br />
-                        @Model.Usuario.Telefono</button>
+                @Html.Label("A Convenir") 
                 }
                 else
                 {
-                    if (ViewBag.Sancion == null)
+                @Html.Label("$") 
+                @Html.DisplayFor(model => model.Precio)
+                }
+            }
+        </div>
+        <div class="col-md-3">
+            @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
+            {
+                <button name="btnTel" class="btn btn-primary btn-lg disabled" type="button">
+                    Telefono:
+                    <br />
+                    @Model.Usuario.Telefono</button>
+            }
+            else
+            {
+                if (ViewBag.Sancion == null)
+                {
+                    if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
                     {
-                        if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
-                        {
 
-                    @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block glyphicon glyphicon-ok" })
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block glyphicon glyphicon-ok" })
                
-                        }
-                        else
-                        {
-                            if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
-                            {
-                    @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block glyphicon glyphicon-ok" })
-                            }
-
-                            else
-                            {
-                                if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
-                                {
-                
-                    @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block disabled glyphicon glyphicon-ok" })
-                                }
-                            }
-                        }
                     }
                     else
-                    {  
-                    @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block disabled glyphicon glyphicon-ok" })
+                    {
+                        if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
+                        {
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block glyphicon glyphicon-ok" })
+                        }
+
+                        else
+                        {
+                            if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
+                            {
+                
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block disabled glyphicon glyphicon-ok" })
+                            }
+                        }
                     }
                 }
-            </div>
-            <div class="col-md-12">
-                <h3>
-                    Calificaciones</h3>
-                <div class="row">
-                    @if (ViewBag.PrimerasCalificaciones.Count > 0)
-                    {
-                        foreach (var item in ViewBag.PrimerasCalificaciones)
-                        {
-                        <div class="col-md-12">
-                            <div>
-                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
-                            </div>
-                            <div>
-                                @if (item.IdTipoEvaluacion == 1) //Positiva
-                                {
-                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                                    <em>@item.Descripcion</em>
-                                    <span class="help-block">@item.FechaCalificacion</span>
-                                }
-                                @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
-                                {
-                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                                    <em>@item.Descripcion</em>
-                                    <span class="help-block">@item.FechaCalificacion</span>
-                                }
-                                else
-                                {
-                                    if (item.IdTipoEvaluacion == 2)
-                                    {
-                                    <div class="col-md-8">
-                                        <br />
-                                        <div class="alert alert-danger alert-dismissable">
-                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
-                                        </div>
-                                    </div>
-                                    }
-                                }
-                                @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
-                                {
-                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                    <em>@item.Descripcion</em>
-                                    <span class="help-block">@item.FechaCalificacion</span>  
-                                }
-                                else
-                                {
-                                    if (item.IdTipoEvaluacion == 3)
-                                    {
-                                    <div class="col-md-8">
-                                        <br />
-                                        <div class="alert alert-danger alert-dismissable">
-                                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
-                                        </div>
-                                    </div>
-                                    }
-                                }
-                                <br />
-                            </div>
-                        </div>                      
-                        }
-                        if (ViewBag.Calificaciones.Count > 5)
-                        {
-                        <!-- Button trigger modal -->
-                        <center>
-                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">
-                                Ver mas calificaciones
-                            </button>
-                        </center>
+                else
+                {  
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block disabled glyphicon glyphicon-ok" })
+                }
+            }
+        </div>
+        <div class="col-md-12">
+            <h3>
+                Calificaciones</h3>
+            <div class="row">
+                @if (ViewBag.PrimerasCalificaciones.Count > 0)
+                {
+                    foreach (var item in ViewBag.PrimerasCalificaciones)
+                    {        
+                    <div class="col-md-12">
+                        <div>
+                            <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                        </div>
+                        <div>
+                            <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item.Descripcion</em>
+                            <span class="help-block">@item.FechaCalificacion</span>
+                            <br />
+                        </div>
+                    </div>                             
+                    }
+                }
+                else
+                {
+                    <div class="col-md-12">
+                        No existen calificaciones para mostrar
+                    </div>
+                }
+                @if (ViewBag.Calificaciones.Count > 5)
+                {
+                    <!-- Button trigger modal -->
+                    <center>
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">
+                            Ver mas calificaciones
+                        </button>
+                    </center>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">
-                                            Calificaciones otorgadas por los clientes para esta publicación</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        @if (ViewBag.Calificaciones.Count > 0)
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">
+                                        Calificaciones positivas para esta publicación</h4>
+                                </div>
+                                <div class="modal-body">
+                                    @if (ViewBag.Calificaciones.Count > 0)
+                                    {
+                                        foreach (var item in ViewBag.Calificaciones)
                                         {
-                                            foreach (var item in ViewBag.Calificaciones)
-                                            {
-                                            <div class="row">
-                                                <div>
-                                                    <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                    <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
-                                                </div>
-                                                <div>
-                                                    @if (item.IdTipoEvaluacion == 1) //Positiva
-                                                    {
-                                                        <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                                                        <em>@item.Descripcion</em>
-                                                        <span class="help-block">@item.FechaCalificacion</span>
-                                                    }
-                                                    @if (item.IdTipoEvaluacion == 2 && item.Denunciado == 0) //Neutro
-                                                    {
-                                                        <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                                                        <em>@item.Descripcion</em>
-                                                        <span class="help-block">@item.FechaCalificacion</span>
-                                                    }
-                                                    else
-                                                    {
-                                                        if (item.IdTipoEvaluacion == 2)
-                                                        {
-                                                        <div class="col-md-10">
-                                                            <br />
-                                                            <div class="alert alert-danger alert-dismissable">
-                                                                <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
-                                                            </div>
-                                                        </div>
-                                                        }
-                                                    }
-                                                    @if (item.IdTipoEvaluacion == 3 && item.Denunciado == 0) //Negativo
-                                                    {
-                                                        <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                                        <em>@item.Descripcion</em>
-                                                        <span class="help-block">@item.FechaCalificacion</span>
-                                                    }
-                                                    else
-                                                    {
-                                                        if (item.IdTipoEvaluacion == 3)
-                                                        {
-                                                        <div class="col-md-10">
-                                                            <br />
-                                                            <div class="alert alert-danger alert-dismissable">
-                                                                <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
-                                                            </div>
-                                                        </div>
-                                                        }
-                                                    }
-                                                </div>
+                                        <div class="row">
+                                            <div>
+                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
                                             </div>
-                                            }
+                                            <div>
+                                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item.Descripcion</em>
+                                                <span class="help-block">@item.FechaCalificacion</span>
+                                            </div>
+                                        </div>
                                         }
-                                    </div>
+                                    }
                                 </div>
                             </div>
                         </div>
-                        }
-                    }
-                    else
-                    {
-                        <div class="col-md-12">
-                            No existen calificaciones para mostrar
-                        </div>
-                    }
-                </div>
-            </div>
-            <div class="col-md-12">
-                <h3>
-                    Últimos trabajos realizados</h3>
-                @if (ViewBag.NoExistenImagenes == "No existen imagenes para mostrar")
-                {
-                    @ViewBag.NoExistenImagenes
-                }
-                else
-                {
-                    <div class="row">
-                        @foreach (var item in Model.Imagen)
-                        {
-                            <div class="col-md-3">
-                                <a class="example-image-link" href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="example-set">
-                                    <img class="thumbnail" src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "150px" />
-                                </a>
-                            </div>
-                        }
                     </div>
                 }
             </div>
         </div>
-        <div id="ficha-publicante" class="ficha-publicante col-md-3">
-            <div class="contenedor-imagen-publicacion">
-                @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
-                {               
-                    <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />             
-                }
-                else
-                {
-                    <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = Model.IdUsuario })" alt="avatar" width="100%"/>
-                }
-            </div>
-            <div class="contenedor-info-publicante">
-                <h2>
-                    @Html.DisplayFor(model => model.Usuario.Nombre)
-                    @Html.DisplayFor(model => model.Usuario.Apellido)
-                </h2>
-                <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
-                    class="badge">@ViewBag.MostrarPuntaje</span>
-                <br />
-                <span class="text-muted">@Html.DisplayFor(model => model.SubRubro.Nombre) </span>
-            </div>
-            <div class="ubicacion">
-                <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)
-                </span>
-            </div>
+        <div class="col-md-12">
+            <h3>
+                Últimos trabajos realizados</h3>
+            @if (ViewBag.NoExistenImagenes == "No existen imagenes para mostrar")
+            {
+                @ViewBag.NoExistenImagenes
+            }
+            else
+            {
+                <div class="row">
+                    @foreach (var item in Model.Imagen)
+                    {
+                        <div class="col-md-3">
+                            <a class="example-image-link" href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="example-set">
+                                <img class="thumbnail" src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "150px" />
+                            </a>
+                        </div>
+                    }
+                </div>
+            }
         </div>
-        <div class="col-md-9">
-            <div class="col-md-12">
-                <h3>
-                    Preguntas al prestador</h3>
-                @ViewBag.NoExistenPreguntas
-                @foreach (var item in ViewBag.MostrarPreguntas)
-                {
-                    <dl class="question" id="pregunta">
-                        <dd class="txt">
-                            <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
+    </div>
+    <div id="ficha-publicante" class="ficha-publicante col-md-3">
+        <div class="contenedor-imagen-publicacion">
+            @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+            {               
+                <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />             
+            }
+            else
+            {
+                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = Model.IdUsuario })" alt="avatar" width="100%"/>
+            }
+        </div>
+        <div class="contenedor-info-publicante">
+            <h2>
+                @Html.DisplayFor(model => model.Usuario.Nombre)
+                @Html.DisplayFor(model => model.Usuario.Apellido)
+            </h2>
+            <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
+                class="badge">@ViewBag.MostrarPuntaje</span>
+            <br />
+            <span class="text-muted">@Html.DisplayFor(model => model.SubRubro.Nombre) </span>
+        </div>
+        <div class="ubicacion">
+            <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)
+            </span>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="col-md-12">
+            <h3>
+                Preguntas al prestador</h3>
+            @ViewBag.NoExistenPreguntas
+            @foreach (var item in ViewBag.MostrarPreguntas)
+            {
+                <dl class="question" id="pregunta">
+                    <dd class="txt">
+                        <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
+                    </dd>
+                    <br />
+                    @if (item.Respuesta != null)
+                    {
+                        <dd class="col-md-offset-1">
+                            <span class="text-info"><i class="glyphicon glyphicon-user"></i></span><span>@item.Respuesta</span>
+                            <br />
+                            <span class="help-block">@item.FechaRespuesta</span>
                         </dd>
-                        <br />
-                        @if (item.Respuesta != null)
-                        {
-                            <dd class="col-md-offset-1">
-                                <span class="text-info"><i class="glyphicon glyphicon-user"></i></span><span>@item.Respuesta</span>
-                                <br />
-                                <span class="help-block">@item.FechaRespuesta</span>
-                            </dd>
-                        }
-                    </dl>
-                }
-            </div>
+                    }
+                </dl>
+            }
         </div>
-    }
+    </div>
     <div class="col-md-12">
         @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
         {
