@@ -14,8 +14,6 @@ namespace Providere.Repositorios
 
         internal void calificarUsuario(string comentario, Contratacion contratacion, TipoEvaluacion tipoEvaluacion, TipoCalificacion tipoCalificacion, int idTipoCalificacion)
         {
-
-            
             Calificacion calificacion = new Calificacion();
 
             if (idTipoCalificacion == 1)
@@ -34,8 +32,8 @@ namespace Providere.Repositorios
             calificacion.IdTipoCalificacion = tipoCalificacion.Id;
             calificacion.IdTipoEvaluacion = tipoEvaluacion.Id;
             calificacion.FechaCalificacion = DateTime.Now;
-            calificacion.Denunciado = 0; //no fue denunciada esa calificacion todavia
-            calificacion.Replicado = 0; //no fue replicado esa calificacion todavia
+            calificacion.FlagDenunciado = 0; //no fue denunciada esa calificacion todavia
+            calificacion.FlagReplicado = 0; //no fue replicado esa calificacion todavia
 
             context.Calificacion.AddObject(calificacion);
 

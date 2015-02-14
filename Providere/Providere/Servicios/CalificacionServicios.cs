@@ -21,6 +21,7 @@ namespace Providere.Servicios
             TipoCalificacion tipoCalificacion = tcr.traerDatosPorId(idTipoCalificacion);
 
             cr.calificarUsuario(comentario, contratacion, tipoEvaluacion, tipoCalificacion, idTipoCalificacion);
+
         }
 
         public List<Calificacion> tieneCalificacionContrataciones(List<Contratacion> listaContratacion)

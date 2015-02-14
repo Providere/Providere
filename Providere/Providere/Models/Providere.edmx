@@ -907,8 +907,6 @@
           <NavigationProperty Name="Usuario1" Relationship="ProvidereModel.FK_Calificador_Usuario" FromRole="Calificacion" ToRole="Usuario" />
           <NavigationProperty Name="Denuncia" Relationship="ProvidereModel.FK_Denuncia_Calificacion" FromRole="Calificacion" ToRole="Denuncia" />
           <NavigationProperty Name="Replica" Relationship="ProvidereModel.FK_Replica_Calificacion" FromRole="Calificacion" ToRole="Replica" />
-          <Property Type="Byte" Name="Denunciado" Nullable="false" />
-          <Property Type="Byte" Name="Replicado" Nullable="false" />
           <Property Type="Byte" Name="FlagDenunciado" Nullable="false" />
           <Property Type="Byte" Name="FlagReplicado" Nullable="false" />
         </EntityType>
@@ -1005,8 +1003,11 @@
           <EntitySetMapping Name="Contratacion">
             <EntityTypeMapping TypeName="ProvidereModel.Contratacion">
               <MappingFragment StoreEntitySet="Contratacion">
+<<<<<<< HEAD
                 <ScalarProperty Name="FlagCalificoCliente" ColumnName="FlagCalificoCliente" />
                 <ScalarProperty Name="FlagCalificoProveedor" ColumnName="FlagCalificoProveedor" />
+=======
+>>>>>>> 35c9b3cd72395f3de5d679a866d72d94f88a1488
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="IdPublicacion" ColumnName="IdPublicacion" />
@@ -1190,7 +1191,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Providere" ZoomLevel="82">
-        <EntityTypeShape EntityType="ProvidereModel.Contratacion" Width="1.5" PointX="8.25" PointY="10" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Contratacion" Width="1.5" PointX="8.25" PointY="10" Height="2.3648893229166656" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Denuncia" Width="1.5" PointX="7.5" PointY="4" Height="1.787985026041667" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Estado" Width="1.5" PointX="0.75" PointY="10.375" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Imagen" Width="1.5" PointX="10.5" PointY="12.625" Height="1.7879850260416674" IsExpanded="true" />
@@ -1205,14 +1206,16 @@
         <EntityTypeShape EntityType="ProvidereModel.TipoEvaluacion" Width="1.5" PointX="3" PointY="14.5" Height="1.5956835937500014" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Usuario" Width="1.5" PointX="3" PointY="8.75" Height="4.6725065104166674" IsExpanded="true" />
         <AssociationConnector Association="ProvidereModel.FK_Contratacion_Publicacion" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.043944307692307" PointY="13" />
-          <ConnectorPoint PointX="9.043944307692307" PointY="12.172587890625" />
+          <ConnectorPoint PointX="9" PointY="13" />
+          <ConnectorPoint PointX="9" PointY="12.364889322916666" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Contratacion_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="11.176915472005208" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="11.176915472005206" />
-          <ConnectorPoint PointX="8.1145833333333339" PointY="11.176915472005208" />
-          <ConnectorPoint PointX="8.25" PointY="11.176915472005208" />
+          <ConnectorPoint PointX="4.5" PointY="11.04045051691099" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="11.04045051691099" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="11.04045051691099" />
+          <ConnectorPoint PointX="7.635416666666667" PointY="11.040450516910989" />
+          <ConnectorPoint PointX="7.958333333333333" PointY="11.04045051691099" />
+          <ConnectorPoint PointX="8.25" PointY="11.04045051691099" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Usuario_Estado" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="11.172841796875" />
@@ -1223,23 +1226,21 @@
           <ConnectorPoint PointX="10.5" PointY="13.706492513020834" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_PreguntaRespuesta_Publicacion" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.2753836153846159" PointY="13" />
-          <ConnectorPoint PointX="8.09017556509888" PointY="12.814791949714262" />
-          <ConnectorPoint PointX="7.9723244349011209" PointY="12.696940819516506" />
-          <ConnectorPoint PointX="7.875" PointY="12.599616384615384" />
-          <ConnectorPoint PointX="7.875" PointY="9.9321907552083317" />
-          <ConnectorPoint PointX="7.9723244349011209" PointY="9.83486632030721" />
-          <ConnectorPoint PointX="8.0901755650988783" PointY="9.7170151901094535" />
-          <ConnectorPoint PointX="8.2499999999999982" PointY="9.5571907552083335" />
+          <ConnectorPoint PointX="8.25" PointY="13" />
+          <ConnectorPoint PointX="7.875" PointY="12.625" />
+          <ConnectorPoint PointX="7.875" PointY="10.1244921875" />
+          <ConnectorPoint PointX="8.25" PointY="9.7494921875" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_PreguntaRespuesta_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="9.1223428776041651" />
-          <ConnectorPoint PointX="8.25" PointY="9.1223428776041651" />
+          <ConnectorPoint PointX="4.5" PointY="9.218493593749999" />
+          <ConnectorPoint PointX="7.916666666666667" PointY="9.218493593749999" />
+          <ConnectorPoint PointX="8.0833333333333339" PointY="9.218493593749999" />
+          <ConnectorPoint PointX="8.25" PointY="9.218493593749999" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Publicacion_Rubro" ManuallyRouted="false">
           <ConnectorPoint PointX="7.5" PointY="14.768992513020834" />
-          <ConnectorPoint PointX="7.947916666666667" PointY="14.768992513020834" />
-          <ConnectorPoint PointX="8.1145833333333339" PointY="14.768992513020834" />
+          <ConnectorPoint PointX="7.635416666666667" PointY="14.768992513020834" />
+          <ConnectorPoint PointX="7.802083333333333" PointY="14.768992513020834" />
           <ConnectorPoint PointX="8.25" PointY="14.768992513020834" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Publicacion_SubRubro" ManuallyRouted="false">
@@ -1248,12 +1249,14 @@
           <ConnectorPoint PointX="9.40625" PointY="17.287903645833332" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Publicacion_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="13.307403971354166" />
-          <ConnectorPoint PointX="5.510416666666667" PointY="13.307403971354164" />
-          <ConnectorPoint PointX="5.833333333333333" PointY="13.307403971354166" />
-          <ConnectorPoint PointX="7.947916666666667" PointY="13.307403971354166" />
-          <ConnectorPoint PointX="8.1145833333333339" PointY="13.307403971354166" />
-          <ConnectorPoint PointX="8.25" PointY="13.307403971354166" />
+          <ConnectorPoint PointX="4.5" PointY="13.338656471354167" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="13.338656471354167" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="13.338656471354167" />
+          <ConnectorPoint PointX="5.510416666666667" PointY="13.338656471354167" />
+          <ConnectorPoint PointX="5.677083333333333" PointY="13.338656471354167" />
+          <ConnectorPoint PointX="7.635416666666667" PointY="13.338656471354167" />
+          <ConnectorPoint PointX="7.802083333333333" PointY="13.338656471354167" />
+          <ConnectorPoint PointX="8.25" PointY="13.338656471354167" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Puntaje_Publicacion" ManuallyRouted="false">
           <ConnectorPoint PointX="9.75" PointY="16.268951822916666" />
@@ -1264,58 +1267,61 @@
           <ConnectorPoint PointX="6.71875" PointY="21.375" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Sancion_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="12.242159721679688" />
-          <ConnectorPoint PointX="5.59375" PointY="12.242159721679688" />
+          <ConnectorPoint PointX="4.5" PointY="12.205901033821981" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="12.205901033821981" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="12.205901033821981" />
+          <ConnectorPoint PointX="5.59375" PointY="12.205901033821981" />
           <ConnectorPoint PointX="5.59375" PointY="26.875" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ProvidereModel.Calificacion" Width="1.5" PointX="10.5" PointY="7.125" Height="3.9033007812500031" />
+        <EntityTypeShape EntityType="ProvidereModel.Calificacion" Width="1.5" PointX="10.5" PointY="7.125" Height="4.2879036458333317" />
         <AssociationConnector Association="ProvidereModel.FK_Calificacion_Contratacion" >
-          <ConnectorPoint PointX="9.75" PointY="10.514150390625002" />
-          <ConnectorPoint PointX="10.5" PointY="10.514150390625002" />
+          <ConnectorPoint PointX="9.75" PointY="10.706451822916666" />
+          <ConnectorPoint PointX="10.5" PointY="10.706451822916666" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Calificacion_TipoCalificacion" >
           <ConnectorPoint PointX="4.5" PointY="6.53125" />
-          <ConnectorPoint PointX="10.760414166666665" PointY="6.5312499999999991" />
-          <ConnectorPoint PointX="10.927080833333333" PointY="6.53125" />
-          <ConnectorPoint PointX="11.25" PointY="6.53125" />
-          <ConnectorPoint PointX="11.25" PointY="7.125" />
+          <ConnectorPoint PointX="10.874182955729166" PointY="6.5312499999999991" />
+          <ConnectorPoint PointX="11.040849622395834" PointY="6.53125" />
+          <ConnectorPoint PointX="11.477537578125" PointY="6.53125" />
+          <ConnectorPoint PointX="11.477537578125" PointY="7.125" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Calificacion_TipoEvaluacion" >
-          <ConnectorPoint PointX="4.5" PointY="15.297841796874998" />
-          <ConnectorPoint PointX="5.510416666666667" PointY="15.297841796874998" />
-          <ConnectorPoint PointX="5.677083333333333" PointY="15.297841796874998" />
-          <ConnectorPoint PointX="5.75" PointY="15.297841796874998" />
-          <ConnectorPoint PointX="5.75" PointY="12.375" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="12.374999999999998" />
-          <ConnectorPoint PointX="8.1145833333333339" PointY="12.375" />
-          <ConnectorPoint PointX="8.960610974358973" PointY="12.375" />
-          <ConnectorPoint PointX="9.12727764102564" PointY="12.375" />
-          <ConnectorPoint PointX="11.25" PointY="12.375" />
-          <ConnectorPoint PointX="11.25" PointY="11.028300781250003" />
+          <ConnectorPoint PointX="3.75" PointY="14.5" />
+          <ConnectorPoint PointX="3.75" PointY="13.864807942708332" />
+          <ConnectorPoint PointX="4.75" PointY="13.864807942708332" />
+          <ConnectorPoint PointX="4.75" PointY="9.75" />
+          <ConnectorPoint PointX="10.125" PointY="9.75" />
+          <ConnectorPoint PointX="10.125" PointY="8.88447391145834" />
+          <ConnectorPoint PointX="10.5" PointY="8.88447391145834" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Calificado_Usuario" >
-          <ConnectorPoint PointX="4.5" PointY="9.7785953776041659" />
-          <ConnectorPoint PointX="7.9452620442708328" PointY="9.7785953776041659" />
-          <ConnectorPoint PointX="8.1145833333333339" PointY="9.7785953776041659" />
-          <ConnectorPoint PointX="10.5" PointY="9.7785953776041659" />
+          <ConnectorPoint PointX="4.5" PointY="9.90625" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="9.90625" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="9.90625" />
+          <ConnectorPoint PointX="8.0099088541666656" PointY="9.90625" />
+          <ConnectorPoint PointX="8.1765755208333335" PointY="9.90625" />
+          <ConnectorPoint PointX="10.5" PointY="9.90625" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Calificador_Usuario" >
-          <ConnectorPoint PointX="4.5" PointY="9.9205476888020829" />
-          <ConnectorPoint PointX="7.947916666666667" PointY="9.9205476888020829" />
-          <ConnectorPoint PointX="8.1145833333333339" PointY="9.9205476888020829" />
-          <ConnectorPoint PointX="10.5" PointY="9.9205476888020829" />
+          <ConnectorPoint PointX="3.75" PointY="8.75" />
+          <ConnectorPoint PointX="3.75" PointY="8.5" />
+          <ConnectorPoint PointX="8" PointY="8.5" />
+          <ConnectorPoint PointX="8" PointY="9.75" />
+          <ConnectorPoint PointX="10" PointY="9.75" />
+          <ConnectorPoint PointX="10" PointY="7.9734849557291767" />
+          <ConnectorPoint PointX="10.5" PointY="7.9734849557291767" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Denuncia_Calificacion" >
-          <ConnectorPoint PointX="10.8437475" PointY="7.125" />
-          <ConnectorPoint PointX="10.8437475" PointY="4.8939925130208337" />
+          <ConnectorPoint PointX="10.9575162890625" PointY="7.125" />
+          <ConnectorPoint PointX="10.9575162890625" PointY="4.8939925130208337" />
           <ConnectorPoint PointX="9" PointY="4.8939925130208337" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Replica_Calificacion" >
-          <ConnectorPoint PointX="10.5" PointY="9.6678905664062551" />
-          <ConnectorPoint PointX="8.22263352213541" PointY="9.6678905664062551" />
-          <ConnectorPoint PointX="8.0559668554687427" PointY="9.6678905664062551" />
-          <ConnectorPoint PointX="8.03125" PointY="9.6678905664062551" />
-          <ConnectorPoint PointX="8.03125" PointY="18.5" />
+          <ConnectorPoint PointX="10.5" PointY="9.8749975000000063" />
+          <ConnectorPoint PointX="8.2078280208333272" PointY="9.8749975000000063" />
+          <ConnectorPoint PointX="8.04116135416666" PointY="9.8749975000000063" />
+          <ConnectorPoint PointX="7.71875" PointY="9.8749975000000063" />
+          <ConnectorPoint PointX="7.71875" PointY="18.5" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -33,7 +33,7 @@ namespace Providere.Repositorios
             context.Denuncia.AddObject(denuncia);
 
             Calificacion calificacion = context.Calificacion.Where(e => e.Id == id).FirstOrDefault();
-            calificacion.Denunciado = 1; //comentario de la calificacion fue denunciado
+            calificacion.FlagDenunciado = 1; //comentario de la calificacion fue denunciado
 
             context.SaveChanges();
         }

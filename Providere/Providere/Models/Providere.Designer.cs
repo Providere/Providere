@@ -482,11 +482,9 @@ namespace Providere.Models
         /// <param name="idTipoEvaluacion">Valor inicial de la propiedad IdTipoEvaluacion.</param>
         /// <param name="idTipoCalificacion">Valor inicial de la propiedad IdTipoCalificacion.</param>
         /// <param name="fechaCalificacion">Valor inicial de la propiedad FechaCalificacion.</param>
-        /// <param name="denunciado">Valor inicial de la propiedad Denunciado.</param>
-        /// <param name="replicado">Valor inicial de la propiedad Replicado.</param>
         /// <param name="flagDenunciado">Valor inicial de la propiedad FlagDenunciado.</param>
         /// <param name="flagReplicado">Valor inicial de la propiedad FlagReplicado.</param>
-        public static Calificacion CreateCalificacion(global::System.Int16 id, global::System.String descripcion, global::System.Int16 idCalificador, global::System.Int16 idCalificado, global::System.Int16 idContratacion, global::System.Int16 idTipoEvaluacion, global::System.Int16 idTipoCalificacion, global::System.DateTime fechaCalificacion, global::System.Byte denunciado, global::System.Byte replicado, global::System.Byte flagDenunciado, global::System.Byte flagReplicado)
+        public static Calificacion CreateCalificacion(global::System.Int16 id, global::System.String descripcion, global::System.Int16 idCalificador, global::System.Int16 idCalificado, global::System.Int16 idContratacion, global::System.Int16 idTipoEvaluacion, global::System.Int16 idTipoCalificacion, global::System.DateTime fechaCalificacion, global::System.Byte flagDenunciado, global::System.Byte flagReplicado)
         {
             Calificacion calificacion = new Calificacion();
             calificacion.Id = id;
@@ -497,8 +495,6 @@ namespace Providere.Models
             calificacion.IdTipoEvaluacion = idTipoEvaluacion;
             calificacion.IdTipoCalificacion = idTipoCalificacion;
             calificacion.FechaCalificacion = fechaCalificacion;
-            calificacion.Denunciado = denunciado;
-            calificacion.Replicado = replicado;
             calificacion.FlagDenunciado = flagDenunciado;
             calificacion.FlagReplicado = flagReplicado;
             return calificacion;
@@ -702,54 +698,6 @@ namespace Providere.Models
         private global::System.DateTime _FechaCalificacion;
         partial void OnFechaCalificacionChanging(global::System.DateTime value);
         partial void OnFechaCalificacionChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Byte Denunciado
-        {
-            get
-            {
-                return _Denunciado;
-            }
-            set
-            {
-                OnDenunciadoChanging(value);
-                ReportPropertyChanging("Denunciado");
-                _Denunciado = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Denunciado");
-                OnDenunciadoChanged();
-            }
-        }
-        private global::System.Byte _Denunciado;
-        partial void OnDenunciadoChanging(global::System.Byte value);
-        partial void OnDenunciadoChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Byte Replicado
-        {
-            get
-            {
-                return _Replicado;
-            }
-            set
-            {
-                OnReplicadoChanging(value);
-                ReportPropertyChanging("Replicado");
-                _Replicado = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Replicado");
-                OnReplicadoChanged();
-            }
-        }
-        private global::System.Byte _Replicado;
-        partial void OnReplicadoChanging(global::System.Byte value);
-        partial void OnReplicadoChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
