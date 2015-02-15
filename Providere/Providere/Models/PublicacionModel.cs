@@ -17,6 +17,7 @@ namespace Providere.Models
              [DisplayName("Título")]
              [Required(ErrorMessage = "Campo Obligatorio")]
              [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
+             [RegularExpression("^[A-Z a-z]*$")]
              [DisplayFormat(ConvertEmptyStringToNull = false)]
              public object Titulo { get; set; }
 

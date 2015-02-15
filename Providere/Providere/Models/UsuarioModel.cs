@@ -14,12 +14,14 @@ namespace Providere.Models
         public class UsuarioModel
         {
             [Required(ErrorMessage = "Campo Obligatorio")]
-            [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
+            [StringLength(25, ErrorMessage = "Maximo 25 caracteres")]
+            [RegularExpression("^[A-Z a-z]*$")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Nombre { get; set; }
 
             [Required(ErrorMessage = "Campo Obligatorio")]
-            [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
+            [StringLength(25, ErrorMessage = "Maximo 25 caracteres")]
+            [RegularExpression("^[A-Z a-z]*$")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Apellido { get; set; }
 
