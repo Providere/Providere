@@ -41,14 +41,67 @@ namespace Providere.Repositorios
             {
                 Contratacion cambioEstado = context.Contratacion.Where(e => e.Id == contratacion.Id).FirstOrDefault();
                 cambioEstado.FlagCalificoCliente = 1; //en este caso se marca que el cliente califico al prestador
+
+                Puntaje puntaje = context.Puntaje.Where(e => e.IdPublicacion == contratacion.IdPublicacion).FirstOrDefault();
+                // Cuando califica el cliente hace el cambio en el puntaje de la publicacion
+
+                if (puntaje == null)
+                {
+                    Puntaje puntajeNuevo = new Puntaje();
+
+                    puntajeNuevo.IdPublicacion = contratacion.IdPublicacion;
+
+                    if (tipoEvaluacion.Id == 1)
+                    {
+                        puntajeNuevo.Positivo = 1;
+                    }
+                    else
+                    {
+                        if (tipoEvaluacion.Id == 2)
+                        {
+                            puntajeNuevo.Neutro = 1;
+                        }
+                        else
+                        {
+                            puntajeNuevo.Negativo = 1;
+                        }
+                    }
+
+                    var total = puntajeNuevo.Positivo + puntajeNuevo.Neutro + puntajeNuevo.Negativo;
+
+                    puntajeNuevo.Total = Convert.ToInt16(total);
+
+                    context.Puntaje.AddObject(puntajeNuevo);
+
+                }
+                else
+                {
+                    if (tipoEvaluacion.Id == 1)
+                    {
+                        puntaje.Positivo = Convert.ToInt16(puntaje.Positivo + 1);
+                        puntaje.Total = Convert.ToInt16(puntaje.Total + 1);
+                    }
+                    else
+                    {
+                        if (tipoEvaluacion.Id == 2)
+                        {
+                            puntaje.Neutro = Convert.ToInt16(puntaje.Neutro + 1);
+                            // Puntaje Total no tiene cambios.
+                        }
+                        else
+                        {
+                            puntaje.Negativo = Convert.ToInt16(puntaje.Negativo + 1);
+                            puntaje.Total = Convert.ToInt16(puntaje.Total - 1);
+                        }
+                    } 
+                }
+
             }
             else
             {
                 Contratacion cambioEstado = context.Contratacion.Where(e => e.Id == contratacion.Id).FirstOrDefault();
                 cambioEstado.FlagCalificoProveedor = 1; //en este caso se marca que el prestador califico al cliente
             }
-
-            
 
             context.SaveChanges();
         }
