@@ -162,6 +162,11 @@ footer.transparente .container
     height: 400px
 }
 
+.listado-publicaciones strong 
+{
+    font-size: 1.2em;
+}
+
 .mensaje-sin-registros 
 {
     min-height:300px
