@@ -45,7 +45,7 @@ namespace Providere.Repositorios
                 Puntaje puntaje = context.Puntaje.Where(e => e.IdPublicacion == contratacion.IdPublicacion).FirstOrDefault();
                 // Cuando califica el cliente hace el cambio en el puntaje de la publicacion
 
-                if (puntaje == null)
+                if (puntaje == null) // Este bloque de código es para llenar la tabla Puntaje perteneciente al prestador por ser dueño de la publicación
                 {
                     Puntaje puntajeNuevo = new Puntaje();
 
@@ -101,6 +101,61 @@ namespace Providere.Repositorios
             {
                 Contratacion cambioEstado = context.Contratacion.Where(e => e.Id == contratacion.Id).FirstOrDefault();
                 cambioEstado.FlagCalificoProveedor = 1; //en este caso se marca que el prestador califico al cliente
+
+                PuntajeCliente puntajeCliente = context.PuntajeCliente.Where(e => e.IdUsuario == contratacion.IdUsuario).FirstOrDefault();
+                // Cuando califica el prestador hace el cambio en el puntaje del cliente
+
+                if (puntajeCliente == null) // Este bloque de código es para llenar la tabla Puntaje Cliente
+                {
+                    PuntajeCliente puntajeClienteNuevo = new PuntajeCliente();
+
+                    puntajeClienteNuevo.IdUsuario = contratacion.IdUsuario;
+
+                    if (tipoEvaluacion.Id == 1)
+                    {
+                        puntajeClienteNuevo.Positivo = 1;
+                    }
+                    else
+                    {
+                        if (tipoEvaluacion.Id == 2)
+                        {
+                            puntajeClienteNuevo.Neutro = 1;
+                        }
+                        else
+                        {
+                            puntajeClienteNuevo.Negativo = 1;
+                        }
+                    }
+
+                    var total = puntajeClienteNuevo.Positivo + puntajeClienteNuevo.Neutro + puntajeClienteNuevo.Negativo;
+
+                    puntajeClienteNuevo.Total = Convert.ToInt16(total);
+
+                    context.PuntajeCliente.AddObject(puntajeClienteNuevo);
+
+                }
+                else
+                {
+                    if (tipoEvaluacion.Id == 1)
+                    {
+                        puntajeCliente.Positivo = Convert.ToInt16(puntajeCliente.Positivo + 1);
+                        puntajeCliente.Total = Convert.ToInt16(puntajeCliente.Total + 1);
+                    }
+                    else
+                    {
+                        if (tipoEvaluacion.Id == 2)
+                        {
+                            puntajeCliente.Neutro = Convert.ToInt16(puntajeCliente.Neutro + 1);
+                            // Puntaje Total no tiene cambios.
+                        }
+                        else
+                        {
+                            puntajeCliente.Negativo = Convert.ToInt16(puntajeCliente.Negativo + 1);
+                            puntajeCliente.Total = Convert.ToInt16(puntajeCliente.Total - 1);
+                        }
+                    }
+                }
+
             }
 
             context.SaveChanges();

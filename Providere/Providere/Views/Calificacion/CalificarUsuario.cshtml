@@ -10,10 +10,19 @@
     {
         @Html.ValidationSummary(true)
        
-
-        <legend>Califique al usuario @ViewBag.Contratacion.Usuario.Nombre @ViewBag.Contratacion.Usuario.Apellido
-            @ViewBag.Texto <a href="/Publicacion/VisualizarPublicacion/@ViewBag.Contratacion.Publicacion.Id">@ViewBag.Contratacion.Publicacion.Titulo</a>
-        </legend>
+        if (ViewBag.IdTipoCalificacion == 1)
+        { 
+            <legend>Califique al usuario @ViewBag.Contratacion.Publicacion.Usuario.Nombre @ViewBag.Contratacion.Publicacion.Usuario.Apellido
+                @ViewBag.Texto <a href="/Publicacion/VisualizarPublicacion/@ViewBag.Contratacion.Publicacion.Id">@ViewBag.Contratacion.Publicacion.Titulo</a>
+            </legend>
+        }
+        else
+        { 
+            <legend>Califique al usuario @ViewBag.Contratacion.Usuario.Nombre @ViewBag.Contratacion.Usuario.Apellido
+                @ViewBag.Texto <a href="/Publicacion/VisualizarPublicacion/@ViewBag.Contratacion.Publicacion.Id">@ViewBag.Contratacion.Publicacion.Titulo</a>
+            </legend>
+        }
+        
         <div id="page-wrapper">
             @Html.Hidden("idContratacion", "ViewBag.IdContratacion.Id")
             @Html.Hidden("idTipoCalificacion", "ViewBag.IdTipoCalificacion")

@@ -38,6 +38,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Calificador_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Usuario), "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Calificacion), true)]
 [assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Denuncia_Calificacion", "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Calificacion), "Denuncia", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Denuncia), true)]
 [assembly: EdmRelationshipAttribute("ProvidereModel", "FK_Replica_Calificacion", "Calificacion", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Calificacion), "Replica", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.Replica), true)]
+[assembly: EdmRelationshipAttribute("ProvidereModel", "FK_PuntajeCliente_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Providere.Models.Usuario), "PuntajeCliente", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Providere.Models.PuntajeCliente), true)]
 
 #endregion
 
@@ -328,6 +329,22 @@ namespace Providere.Models
             }
         }
         private ObjectSet<Calificacion> _Calificacion;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<PuntajeCliente> PuntajeCliente
+        {
+            get
+            {
+                if ((_PuntajeCliente == null))
+                {
+                    _PuntajeCliente = base.CreateObjectSet<PuntajeCliente>("PuntajeCliente");
+                }
+                return _PuntajeCliente;
+            }
+        }
+        private ObjectSet<PuntajeCliente> _PuntajeCliente;
 
         #endregion
 
@@ -451,6 +468,14 @@ namespace Providere.Models
         public void AddToCalificacion(Calificacion calificacion)
         {
             base.AddObject("Calificacion", calificacion);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet PuntajeCliente. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToPuntajeCliente(PuntajeCliente puntajeCliente)
+        {
+            base.AddObject("PuntajeCliente", puntajeCliente);
         }
 
         #endregion
@@ -2653,30 +2678,6 @@ namespace Providere.Models
         private global::System.Int16 _IdPublicacion;
         partial void OnIdPublicacionChanging(global::System.Int16 value);
         partial void OnIdPublicacionChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> FechaTotal
-        {
-            get
-            {
-                return _FechaTotal;
-            }
-            set
-            {
-                OnFechaTotalChanging(value);
-                ReportPropertyChanging("FechaTotal");
-                _FechaTotal = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("FechaTotal");
-                OnFechaTotalChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _FechaTotal;
-        partial void OnFechaTotalChanging(Nullable<global::System.DateTime> value);
-        partial void OnFechaTotalChanged();
 
         #endregion
 
@@ -2717,6 +2718,235 @@ namespace Providere.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Publicacion>("ProvidereModel.FK_Puntaje_Publicacion", "Publicacion", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="ProvidereModel", Name="PuntajeCliente")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PuntajeCliente : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto PuntajeCliente.
+        /// </summary>
+        /// <param name="id">Valor inicial de la propiedad Id.</param>
+        /// <param name="positivo">Valor inicial de la propiedad Positivo.</param>
+        /// <param name="neutro">Valor inicial de la propiedad Neutro.</param>
+        /// <param name="negativo">Valor inicial de la propiedad Negativo.</param>
+        /// <param name="total">Valor inicial de la propiedad Total.</param>
+        /// <param name="idUsuario">Valor inicial de la propiedad IdUsuario.</param>
+        public static PuntajeCliente CreatePuntajeCliente(global::System.Int16 id, global::System.Int16 positivo, global::System.Int16 neutro, global::System.Int16 negativo, global::System.Int16 total, global::System.Int16 idUsuario)
+        {
+            PuntajeCliente puntajeCliente = new PuntajeCliente();
+            puntajeCliente.Id = id;
+            puntajeCliente.Positivo = positivo;
+            puntajeCliente.Neutro = neutro;
+            puntajeCliente.Negativo = negativo;
+            puntajeCliente.Total = total;
+            puntajeCliente.IdUsuario = idUsuario;
+            return puntajeCliente;
+        }
+
+        #endregion
+
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int16 _Id;
+        partial void OnIdChanging(global::System.Int16 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 Positivo
+        {
+            get
+            {
+                return _Positivo;
+            }
+            set
+            {
+                OnPositivoChanging(value);
+                ReportPropertyChanging("Positivo");
+                _Positivo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Positivo");
+                OnPositivoChanged();
+            }
+        }
+        private global::System.Int16 _Positivo;
+        partial void OnPositivoChanging(global::System.Int16 value);
+        partial void OnPositivoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 Neutro
+        {
+            get
+            {
+                return _Neutro;
+            }
+            set
+            {
+                OnNeutroChanging(value);
+                ReportPropertyChanging("Neutro");
+                _Neutro = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Neutro");
+                OnNeutroChanged();
+            }
+        }
+        private global::System.Int16 _Neutro;
+        partial void OnNeutroChanging(global::System.Int16 value);
+        partial void OnNeutroChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 Negativo
+        {
+            get
+            {
+                return _Negativo;
+            }
+            set
+            {
+                OnNegativoChanging(value);
+                ReportPropertyChanging("Negativo");
+                _Negativo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Negativo");
+                OnNegativoChanged();
+            }
+        }
+        private global::System.Int16 _Negativo;
+        partial void OnNegativoChanging(global::System.Int16 value);
+        partial void OnNegativoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 Total
+        {
+            get
+            {
+                return _Total;
+            }
+            set
+            {
+                OnTotalChanging(value);
+                ReportPropertyChanging("Total");
+                _Total = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Total");
+                OnTotalChanged();
+            }
+        }
+        private global::System.Int16 _Total;
+        partial void OnTotalChanging(global::System.Int16 value);
+        partial void OnTotalChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 IdUsuario
+        {
+            get
+            {
+                return _IdUsuario;
+            }
+            set
+            {
+                OnIdUsuarioChanging(value);
+                ReportPropertyChanging("IdUsuario");
+                _IdUsuario = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IdUsuario");
+                OnIdUsuarioChanged();
+            }
+        }
+        private global::System.Int16 _IdUsuario;
+        partial void OnIdUsuarioChanging(global::System.Int16 value);
+        partial void OnIdUsuarioChanged();
+
+        #endregion
+
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ProvidereModel", "FK_PuntajeCliente_Usuario", "Usuario")]
+        public Usuario Usuario
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("ProvidereModel.FK_PuntajeCliente_Usuario", "Usuario").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("ProvidereModel.FK_PuntajeCliente_Usuario", "Usuario").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Usuario> UsuarioReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("ProvidereModel.FK_PuntajeCliente_Usuario", "Usuario");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Usuario>("ProvidereModel.FK_PuntajeCliente_Usuario", "Usuario", value);
                 }
             }
         }
@@ -4110,6 +4340,28 @@ namespace Providere.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Calificacion>("ProvidereModel.FK_Calificador_Usuario", "Calificacion", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ProvidereModel", "FK_PuntajeCliente_Usuario", "PuntajeCliente")]
+        public EntityCollection<PuntajeCliente> PuntajeCliente
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PuntajeCliente>("ProvidereModel.FK_PuntajeCliente_Usuario", "PuntajeCliente");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PuntajeCliente>("ProvidereModel.FK_PuntajeCliente_Usuario", "PuntajeCliente", value);
                 }
             }
         }

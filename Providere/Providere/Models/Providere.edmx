@@ -14,6 +14,7 @@
           <EntitySet Name="PreguntaRespuesta" EntityType="ProvidereModel.Store.PreguntaRespuesta" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Publicacion" EntityType="ProvidereModel.Store.Publicacion" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Puntaje" EntityType="ProvidereModel.Store.Puntaje" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PuntajeCliente" EntityType="ProvidereModel.Store.PuntajeCliente" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Replica" EntityType="ProvidereModel.Store.Replica" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Rubro" EntityType="ProvidereModel.Store.Rubro" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sancion" EntityType="ProvidereModel.Store.Sancion" store:Type="Tables" Schema="dbo" />
@@ -80,6 +81,10 @@
           <AssociationSet Name="FK_Puntaje_Publicacion" Association="ProvidereModel.Store.FK_Puntaje_Publicacion">
             <End Role="Publicacion" EntitySet="Publicacion" />
             <End Role="Puntaje" EntitySet="Puntaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PuntajeCliente_Usuario" Association="ProvidereModel.Store.FK_PuntajeCliente_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PuntajeCliente" EntitySet="PuntajeCliente" />
           </AssociationSet>
           <AssociationSet Name="FK_Replica_Calificacion" Association="ProvidereModel.Store.FK_Replica_Calificacion">
             <End Role="Calificacion" EntitySet="Calificacion" />
@@ -184,7 +189,17 @@
           <Property Name="Negativo" Type="smallint" Nullable="false" />
           <Property Name="Total" Type="smallint" Nullable="false" />
           <Property Name="IdPublicacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaTotal" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PuntajeCliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Positivo" Type="smallint" Nullable="false" />
+          <Property Name="Neutro" Type="smallint" Nullable="false" />
+          <Property Name="Negativo" Type="smallint" Nullable="false" />
+          <Property Name="Total" Type="smallint" Nullable="false" />
+          <Property Name="IdUsuario" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="Replica">
           <Key>
@@ -430,6 +445,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PuntajeCliente_Usuario">
+          <End Role="Usuario" Type="ProvidereModel.Store.Usuario" Multiplicity="1" />
+          <End Role="PuntajeCliente" Type="ProvidereModel.Store.PuntajeCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PuntajeCliente">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Replica_Calificacion">
           <End Role="Calificacion" Type="ProvidereModel.Store.Calificacion" Multiplicity="1" />
           <End Role="Replica" Type="ProvidereModel.Store.Replica" Multiplicity="*" />
@@ -574,6 +601,11 @@
             <End Role="Calificacion" EntitySet="Calificacion" />
             <End Role="Replica" EntitySet="Replica" />
           </AssociationSet>
+          <EntitySet Name="PuntajeCliente" EntityType="ProvidereModel.PuntajeCliente" />
+          <AssociationSet Name="FK_PuntajeCliente_Usuario" Association="ProvidereModel.FK_PuntajeCliente_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PuntajeCliente" EntitySet="PuntajeCliente" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contratacion">
           <Key>
@@ -662,7 +694,6 @@
           <Property Name="Total" Type="Int16" Nullable="false" />
           <Property Name="IdPublicacion" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Publicacion" Relationship="ProvidereModel.FK_Puntaje_Publicacion" FromRole="Puntaje" ToRole="Publicacion" />
-          <Property Type="DateTime" Name="FechaTotal" />
         </EntityType>
         <EntityType Name="Replica">
           <Key>
@@ -742,6 +773,7 @@
           <Property Type="String" Name="Dni" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Calificacion" Relationship="ProvidereModel.FK_Calificado_Usuario" FromRole="Usuario" ToRole="Calificacion" />
           <NavigationProperty Name="Calificacion1" Relationship="ProvidereModel.FK_Calificador_Usuario" FromRole="Usuario" ToRole="Calificacion" />
+          <NavigationProperty Name="PuntajeCliente" Relationship="ProvidereModel.FK_PuntajeCliente_Usuario" FromRole="Usuario" ToRole="PuntajeCliente" />
         </EntityType>
         <Association Name="FK_Contratacion_Publicacion">
           <End Role="Publicacion" Type="ProvidereModel.Publicacion" Multiplicity="1" />
@@ -993,6 +1025,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PuntajeCliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int16" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="Positivo" Nullable="false" />
+          <Property Type="Int16" Name="Neutro" Nullable="false" />
+          <Property Type="Int16" Name="Negativo" Nullable="false" />
+          <Property Type="Int16" Name="Total" Nullable="false" />
+          <Property Type="Int16" Name="IdUsuario" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="ProvidereModel.FK_PuntajeCliente_Usuario" FromRole="PuntajeCliente" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_PuntajeCliente_Usuario">
+          <End Type="ProvidereModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="ProvidereModel.PuntajeCliente" Role="PuntajeCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PuntajeCliente">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1069,7 +1125,6 @@
           <EntitySetMapping Name="Puntaje">
             <EntityTypeMapping TypeName="ProvidereModel.Puntaje">
               <MappingFragment StoreEntitySet="Puntaje">
-                <ScalarProperty Name="FechaTotal" ColumnName="FechaTotal" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Positivo" ColumnName="Positivo" />
                 <ScalarProperty Name="Neutro" ColumnName="Neutro" />
@@ -1166,6 +1221,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PuntajeCliente">
+            <EntityTypeMapping TypeName="ProvidereModel.PuntajeCliente">
+              <MappingFragment StoreEntitySet="PuntajeCliente">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Negativo" ColumnName="Negativo" />
+                <ScalarProperty Name="Neutro" ColumnName="Neutro" />
+                <ScalarProperty Name="Positivo" ColumnName="Positivo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1193,7 +1260,7 @@
         <EntityTypeShape EntityType="ProvidereModel.Imagen" Width="1.5" PointX="10.5" PointY="12.625" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.PreguntaRespuesta" Width="1.5" PointX="8.25" PointY="7" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Publicacion" Width="1.5" PointX="8.25" PointY="13" Height="4.2879036458333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProvidereModel.Puntaje" Width="1.5" PointX="10.5" PointY="15.25" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProvidereModel.Puntaje" Width="1.5" PointX="10.5" PointY="15.25" Height="2.364889322916671" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Replica" Width="1.5" PointX="7.5" PointY="18.5" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Rubro" Width="1.5" PointX="6" PointY="13.875" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="ProvidereModel.Sancion" Width="1.5" PointX="5.25" PointY="26.875" Height="1.9802864583333388" IsExpanded="true" />
@@ -1206,12 +1273,14 @@
           <ConnectorPoint PointX="9" PointY="12.557190755208334" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Contratacion_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="11.040632588604115" />
-          <ConnectorPoint PointX="4.666666666666667" PointY="11.040632588604115" />
-          <ConnectorPoint PointX="4.833333333333333" PointY="11.040632588604115" />
-          <ConnectorPoint PointX="7.635416666666667" PointY="11.040632588604114" />
-          <ConnectorPoint PointX="7.958333333333333" PointY="11.040632588604115" />
-          <ConnectorPoint PointX="8.25" PointY="11.040632588604115" />
+          <ConnectorPoint PointX="4.5" PointY="10.03125" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="10.03125" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="10.03125" />
+          <ConnectorPoint PointX="7.635416666666667" PointY="10.03125" />
+          <ConnectorPoint PointX="7.802083333333333" PointY="10.03125" />
+          <ConnectorPoint PointX="7.8849088541666665" PointY="10.03125" />
+          <ConnectorPoint PointX="8.0515755208333335" PointY="10.03125" />
+          <ConnectorPoint PointX="8.25" PointY="10.03125" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Usuario_Estado" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="11.172841796875" />
@@ -1229,7 +1298,7 @@
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_PreguntaRespuesta_Usuario" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="9.218493593749999" />
-          <ConnectorPoint PointX="7.916666666666667" PointY="9.218493593749999" />
+          <ConnectorPoint PointX="7.854166666666667" PointY="9.218493593749999" />
           <ConnectorPoint PointX="8.0833333333333339" PointY="9.218493593749999" />
           <ConnectorPoint PointX="8.25" PointY="9.218493593749999" />
         </AssociationConnector>
@@ -1245,29 +1314,26 @@
           <ConnectorPoint PointX="9.40625" PointY="17.287903645833332" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Publicacion_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="13.338656471354167" />
-          <ConnectorPoint PointX="4.666666666666667" PointY="13.338656471354167" />
-          <ConnectorPoint PointX="4.833333333333333" PointY="13.338656471354167" />
-          <ConnectorPoint PointX="5.510416666666667" PointY="13.338656471354167" />
-          <ConnectorPoint PointX="5.677083333333333" PointY="13.338656471354167" />
-          <ConnectorPoint PointX="7.635416666666667" PointY="13.338656471354167" />
-          <ConnectorPoint PointX="7.802083333333333" PointY="13.338656471354167" />
-          <ConnectorPoint PointX="8.25" PointY="13.338656471354167" />
+          <ConnectorPoint PointX="4.5" PointY="13.4348071875" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="13.4348071875" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="13.4348071875" />
+          <ConnectorPoint PointX="7.635416666666667" PointY="13.4348071875" />
+          <ConnectorPoint PointX="7.802083333333333" PointY="13.4348071875" />
+          <ConnectorPoint PointX="8.25" PointY="13.4348071875" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Puntaje_Publicacion" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.75" PointY="16.268951822916666" />
-          <ConnectorPoint PointX="10.5" PointY="16.268951822916666" />
+          <ConnectorPoint PointX="9.75" PointY="16.3651025390625" />
+          <ConnectorPoint PointX="10.5" PointY="16.3651025390625" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_SubRubro_Rubro" ManuallyRouted="false">
           <ConnectorPoint PointX="6.71875" PointY="15.662985026041667" />
           <ConnectorPoint PointX="6.71875" PointY="21.375" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Sancion_Usuario" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="12.206265177208231" />
-          <ConnectorPoint PointX="4.666666666666667" PointY="12.206265177208231" />
-          <ConnectorPoint PointX="4.833333333333333" PointY="12.206265177208231" />
-          <ConnectorPoint PointX="5.59375" PointY="12.206265177208231" />
-          <ConnectorPoint PointX="5.59375" PointY="26.875" />
+          <ConnectorPoint PointX="4.5" PointY="13.807109375" />
+          <ConnectorPoint PointX="4.875" PointY="14.182109375" />
+          <ConnectorPoint PointX="4.875" PointY="27.865143229166669" />
+          <ConnectorPoint PointX="5.25" PointY="27.865143229166669" />
         </AssociationConnector>
         <EntityTypeShape EntityType="ProvidereModel.Calificacion" Width="1.5" PointX="10.5" PointY="7.125" Height="4.2879036458333317" />
         <AssociationConnector Association="ProvidereModel.FK_Calificacion_Contratacion" >
@@ -1283,29 +1349,30 @@
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Calificacion_TipoEvaluacion" >
           <ConnectorPoint PointX="3.75" PointY="14.5" />
-          <ConnectorPoint PointX="3.75" PointY="13.864807942708332" />
-          <ConnectorPoint PointX="4.75" PointY="13.864807942708332" />
+          <ConnectorPoint PointX="3.75" PointY="14.057109375" />
+          <ConnectorPoint PointX="4.75" PointY="14.057109375" />
           <ConnectorPoint PointX="4.75" PointY="9.75" />
           <ConnectorPoint PointX="10.125" PointY="9.75" />
-          <ConnectorPoint PointX="10.125" PointY="8.88447391145834" />
-          <ConnectorPoint PointX="10.5" PointY="8.88447391145834" />
+          <ConnectorPoint PointX="10.125" PointY="9.020360705729173" />
+          <ConnectorPoint PointX="10.5" PointY="9.020360705729173" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Calificado_Usuario" >
-          <ConnectorPoint PointX="4.5" PointY="9.90625" />
-          <ConnectorPoint PointX="4.666666666666667" PointY="9.90625" />
-          <ConnectorPoint PointX="4.833333333333333" PointY="9.90625" />
-          <ConnectorPoint PointX="8.0099088541666656" PointY="9.90625" />
-          <ConnectorPoint PointX="8.1765755208333335" PointY="9.90625" />
-          <ConnectorPoint PointX="10.5" PointY="9.90625" />
+          <ConnectorPoint PointX="4.156252" PointY="8.75" />
+          <ConnectorPoint PointX="4.156252" PointY="8.484375" />
+          <ConnectorPoint PointX="7.9375" PointY="8.484375" />
+          <ConnectorPoint PointX="7.9375" PointY="9.75" />
+          <ConnectorPoint PointX="10.1875" PointY="9.75" />
+          <ConnectorPoint PointX="10.1875" PointY="10.675202572916664" />
+          <ConnectorPoint PointX="10.5" PointY="10.675202572916664" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Calificador_Usuario" >
-          <ConnectorPoint PointX="3.75" PointY="8.75" />
-          <ConnectorPoint PointX="3.75" PointY="8.5" />
+          <ConnectorPoint PointX="3.5468740000000003" PointY="8.75" />
+          <ConnectorPoint PointX="3.5468740000000003" PointY="8.5" />
           <ConnectorPoint PointX="8" PointY="8.5" />
           <ConnectorPoint PointX="8" PointY="9.75" />
           <ConnectorPoint PointX="10" PointY="9.75" />
-          <ConnectorPoint PointX="10" PointY="7.9734849557291767" />
-          <ConnectorPoint PointX="10.5" PointY="7.9734849557291767" />
+          <ConnectorPoint PointX="10" PointY="8.0414283528645925" />
+          <ConnectorPoint PointX="10.5" PointY="8.0414283528645925" />
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Denuncia_Calificacion" >
           <ConnectorPoint PointX="10.9575162890625" PointY="7.125" />
@@ -1314,10 +1381,19 @@
         </AssociationConnector>
         <AssociationConnector Association="ProvidereModel.FK_Replica_Calificacion" >
           <ConnectorPoint PointX="10.5" PointY="9.8749975000000063" />
+          <ConnectorPoint PointX="10.270833333333334" PointY="9.8749975000000063" />
+          <ConnectorPoint PointX="10.104166666666666" PointY="9.8749975000000063" />
           <ConnectorPoint PointX="8.2078280208333272" PointY="9.8749975000000063" />
           <ConnectorPoint PointX="8.04116135416666" PointY="9.8749975000000063" />
           <ConnectorPoint PointX="7.71875" PointY="9.8749975000000063" />
           <ConnectorPoint PointX="7.71875" PointY="18.5" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="ProvidereModel.PuntajeCliente" Width="1.5" PointX="5.25" PointY="10.125" Height="2.3648893229166674" />
+        <AssociationConnector Association="ProvidereModel.FK_PuntajeCliente_Usuario" >
+          <ConnectorPoint PointX="4.5" PointY="11.307444661458334" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="11.307444661458334" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="11.307444661458334" />
+          <ConnectorPoint PointX="5.25" PointY="11.307444661458334" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
