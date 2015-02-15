@@ -70,7 +70,6 @@
                                     @item.Publicacion.Usuario.Telefono
                                 </td>
                                 <td>
-
                                     @if (item.FlagCalificoCliente == 0)
                                     { 
                                         @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 1 }, null)
@@ -79,24 +78,6 @@
                                     { 
                                         @Html.DisplayName("Ver CALIFICACION")
                                     }
-
-                                   @* @foreach (var item2 in ViewBag.tieneCalificacionContrataciones)
-                                    {
-                                        if (item.Id == item2.IdContratacion)
-                                        {
-                                            @Html.DisplayName("Ver CALIFICACION")
-                                        }
-                                        else
-                                        {   
-                                            @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 1 }, null)
-                                        }
-                                    }
-
-                                    @if (ViewBag.tieneCalificacionContrataciones.Count == 0)
-                                    {
-                                         @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 1 }, null)
-                                    } *@
-
                                 </td>
                             </tr>
                         }
@@ -106,7 +87,7 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="meContrataron">
             <h2>
-                Servicios por lo que me contrataron</h2>
+                Servicios por los que me contrataron</h2>
            <br />
             <div class="col-md-12">
                 <table class="tabla-contrataciones table table-bordered table-hover">
@@ -146,7 +127,14 @@
                                     @item.Usuario.Telefono
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 2 }, null)
+                                    @if (item.FlagCalificoProveedor == 0)
+                                    { 
+                                        @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 2 }, null)
+                                    }
+                                    else
+                                    { 
+                                        @Html.DisplayName("Ver CALIFICACION")
+                                    }
                                 </td>
                             </tr>
                         }

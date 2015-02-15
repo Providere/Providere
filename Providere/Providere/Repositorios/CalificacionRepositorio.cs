@@ -37,30 +37,21 @@ namespace Providere.Repositorios
 
             context.Calificacion.AddObject(calificacion);
 
-            Contratacion cambioEstado = context.Contratacion.Where(e => e.Id == contratacion.Id).FirstOrDefault();
-            cambioEstado.FlagCalificoCliente = 1; //en este caso se marca que el cliente califico al prestador
+            if (idTipoCalificacion == 1)
+            {
+                Contratacion cambioEstado = context.Contratacion.Where(e => e.Id == contratacion.Id).FirstOrDefault();
+                cambioEstado.FlagCalificoCliente = 1; //en este caso se marca que el cliente califico al prestador
+            }
+            else
+            {
+                Contratacion cambioEstado = context.Contratacion.Where(e => e.Id == contratacion.Id).FirstOrDefault();
+                cambioEstado.FlagCalificoProveedor = 1; //en este caso se marca que el prestador califico al cliente
+            }
+
+            
 
             context.SaveChanges();
         }
-
-      /*  internal List<Calificacion> tieneCalificacionContrataciones(List<Contratacion> listaContratacion)
-        {
-
-            List<int> listaContratacionesPorId = new List<int>();
-
-
-            foreach (var item in listaContratacion)
-            {
-                listaContratacionesPorId.Add(item.Id);
-            }
-
-            var resultado = from calificaciones in context.Calificacion
-                            where listaContratacionesPorId.Contains(calificaciones.IdContratacion)
-                            select calificaciones;
-
-            return resultado.ToList();
-
-        } */
 
         internal List<Calificacion> obtenerNegativasDeUsuario(Usuario usuario)
         {
