@@ -13,8 +13,14 @@ namespace Providere.Repositorios
 
         internal Sancion ObtenerSancionDeUsuario(Usuario usuario)
         {
-            var sancion = context.Sancion.Where(s => s.Usuario.Id == usuario.Id).Where(s => s.FechaFin > DateTime.Now ).FirstOrDefault();
-            return sancion;
+            Sancion sancion = new Sancion();
+            try
+            {
+                sancion = context.Sancion.Where(s => s.Usuario.Id == usuario.Id).Where(s => s.FechaFin > DateTime.Now).FirstOrDefault();
+            } catch(NullReferenceException nre){
+                return null;
+            }
+                return sancion;
         }
 
 

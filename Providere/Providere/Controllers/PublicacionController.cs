@@ -231,6 +231,9 @@ namespace Providere.Controllers
             {
                 try
                 {
+                    if (idRubro != 21) {
+                        idSubRubro = null;
+                    }
                     ps.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio, oculto);
                     int verificar = ps.VerificarCantidadImagenes(id); // Verifico para no pasar la cant de 4 imagenes.Devuelve la cantidad real o sino 0
                     int cant = files.Count();
