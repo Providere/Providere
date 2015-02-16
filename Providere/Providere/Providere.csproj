@@ -347,7 +347,6 @@
     </Content>
     <Content Include="Views\Shared\buscador.cshtml" />
     <Content Include="Views\Publicacion\Listar.cshtml" />
-    <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Contratacion\Index.cshtml" />
     <Content Include="Views\Calificacion\CalificarUsuario.cshtml" />
     <Content Include="Views\Publicacion\EditarPublicacion.cshtml" />
