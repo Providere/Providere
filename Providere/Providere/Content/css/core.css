@@ -98,6 +98,25 @@ margin-right: 7px;
 font-style: italic;
 color: #0995B2;
 }
+
+.contratar-btn, .btnTel
+{
+    font-size: 1.1em;
+}
+
+.contratar-btn:before {
+content: "\e013";
+margin-right: 7px;
+position: relative;
+top: 1px;
+display: inline-block;
+font-family: 'Glyphicons Halflings';
+font-style: normal;
+font-weight: normal;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
     
 .avatar img{
 

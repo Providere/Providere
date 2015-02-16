@@ -75,7 +75,7 @@
         <div class="col-md-3">
             @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
             {
-                <button name="btnTel" class="btn btn-primary btn-lg disabled" type="button">
+                <button name="btnTel" class="btnTel btn btn-primary btn-lg btn-block disabled" type="button">
                     Telefono:
                     <br />
                     @Model.Usuario.Telefono</button>
@@ -87,7 +87,7 @@
                     if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
                     {
 
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block glyphicon glyphicon-ok" })
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-block btn-lg btn-block" })
                
                     }
                     else
