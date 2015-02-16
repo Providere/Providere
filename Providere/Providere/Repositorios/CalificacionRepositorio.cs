@@ -67,7 +67,7 @@ namespace Providere.Repositorios
                         }
                     }
 
-                    var total = puntajeNuevo.Positivo + puntajeNuevo.Neutro + puntajeNuevo.Negativo;
+                    var total = puntajeNuevo.Positivo - puntajeNuevo.Negativo;
 
                     puntajeNuevo.Total = Convert.ToInt16(total);
 
@@ -127,7 +127,7 @@ namespace Providere.Repositorios
                         }
                     }
 
-                    var total = puntajeClienteNuevo.Positivo + puntajeClienteNuevo.Neutro + puntajeClienteNuevo.Negativo;
+                    var total = puntajeClienteNuevo.Positivo - puntajeClienteNuevo.Negativo;
 
                     puntajeClienteNuevo.Total = Convert.ToInt16(total);
 
