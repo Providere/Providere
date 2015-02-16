@@ -37,10 +37,9 @@
                 <thead>
                     <tr class="default">
                         <th>
-                            @Html.DisplayName("Fecha creación")
-                        </th>
-                        <th>
-                            @Html.DisplayName("Fecha de edición")
+                            <center>
+                                @Html.DisplayName("Título de la publicación")
+                            </center>
                         </th>
                         <th>
                             @Html.DisplayName("Rubro")
@@ -49,13 +48,22 @@
                             @Html.DisplayName("SubRubro")
                         </th>
                         <th>
-                            @Html.DisplayName("Título de la publicación")
-                        </th>
-                        <th>
                             @Html.DisplayName("Precio")
                         </th>
                         <th>
-                            Acción
+                            <center>
+                                @Html.DisplayName("Fecha de creación")
+                            </center>
+                        </th>
+                        <th>
+                            <center>
+                                @Html.DisplayName("Fecha de edición")
+                            </center>
+                        </th>
+                        <th>
+                            <center>
+                                Acción
+                            </center>
                         </th>
                     </tr>
                 </thead>
@@ -64,28 +72,7 @@
                     {
                         <tr>
                             <td>
-                                @if (item.Estado == 0)
-                                {
-                                    <span class="help-block">
-                                        @Html.DisplayFor(modelItem => item.FechaCreacion)
-                                    </span>
-                                }
-                                else
-                                {
-                                    @Html.DisplayFor(modelItem => item.FechaCreacion)
-                                }
-                            </td>
-                            <td>
-                                @if (item.Estado == 0)
-                                {
-                                    <span class="help-block">
-                                        @Html.DisplayFor(modelItem => item.FechaEdicion)
-                                    </span>
-                                }
-                                else
-                                {
-                                    @Html.DisplayFor(modelItem => item.FechaEdicion)
-                                }
+                                <a href="@Url.Action("VisualizarMiPublicacion", "Publicacion", new { Id = item.Id })">@Html.DisplayFor(modelItem => item.Titulo)</a>
                             </td>
                             <td>
                                 @if (item.Estado == 0)
@@ -110,9 +97,6 @@
                                 {
                                     @Html.DisplayFor(modelItem => item.SubRubro.Nombre)
                                 }
-                            </td>
-                            <td>
-                                <a href="@Url.Action("VisualizarMiPublicacion", "Publicacion", new { Id = item.Id })">@Html.DisplayFor(modelItem => item.Titulo)</a>
                             </td>
                             <td>
                                 @if (item.Estado == 0)
@@ -144,6 +128,38 @@
                                     {
                                     @Html.DisplayFor(modelItem => item.Precio)
                                     }
+                                }
+                            </td>
+                            <td>
+                                @if (item.Estado == 0)
+                                {
+                                    <span class="help-block">
+                                        <center>
+                                            @Html.DisplayFor(modelItem => item.FechaCreacion)
+                                        </center>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <center>
+                                        @Html.DisplayFor(modelItem => item.FechaCreacion)
+                                    </center>
+                                }
+                            </td>
+                            <td>
+                                @if (item.Estado == 0)
+                                {
+                                    <span class="help-block">
+                                        <center>
+                                            @Html.DisplayFor(modelItem => item.FechaEdicion)
+                                        </center>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <center>
+                                        @Html.DisplayFor(modelItem => item.FechaEdicion)
+                                    </center>
                                 }
                             </td>
                             <td>
