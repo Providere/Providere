@@ -48,102 +48,100 @@
             <h3>
                 @Html.DisplayName("Como cliente")
             </h3>
-            <p>
-                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                @Html.DisplayName("Positivo")
-                @ViewBag.PuntajeCliente.Positivo
-            </p>
-            <p>
-                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                @Html.DisplayName("Neutro")
-                @ViewBag.PuntajeCliente.Neutro
-            </p>
-            <p>
-                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                @Html.DisplayName("Negativo")
-                @ViewBag.PuntajeCliente.Negativo
-            </p>
-            <p>
-                @Html.DisplayName("Total")
-                @ViewBag.PuntajeCliente.Total
-            </p>
-         
-            
+
+
+            <div class="row">
+                    <div class="col-sm-4 editor-field">
+                        <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                        @Html.DisplayName("Positivo")
+                        @ViewBag.PuntajeCliente.Positivo
+                    </div>
+                    <div class="col-sm-4 editor-field">
+                        <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                        @Html.DisplayName("Neutro")
+                        @ViewBag.PuntajeCliente.Neutro
+                    </div>
+                    <div class="col-sm-4 editor-field">
+                        <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                        @Html.DisplayName("Negativo")
+                        @ViewBag.PuntajeCliente.Negativo
+                    </div>
+                    <div class="col-sm-4 editor-field">
+                        @Html.DisplayName("Total")
+                        @ViewBag.PuntajeCliente.Total
+                    </div>
+            </div>
         </div>
-    </div>
-    
-    
-    
-    
- @*   
+    </div> 
     
     <div class="col-md-9">
         <div class="col-md-8">
-            <h3>
-                Descripción</h3>
-            <p>
-                @Html.DisplayFor(model => model.Descripcion)</p>
-        </div>
-        <div class="col-md-8">
-            <h3>
-                Precio
-            </h3>
-            <span class="precio-detalle">
-            @if (Model.PrecioOpcion != null)
-            {
 
-                if (Model.PrecioOpcion == 1)
-                {
-                @Html.Label("A Convenir") 
-                }
-                else
-                {
-                @Html.Label("$") 
-                @Html.DisplayFor(model => model.Precio)
-                }
-            }
-            </span>
-        </div>
-        <div class="col-md-3">
-            @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
+            @foreach (var item in ViewBag.ListaPublicaciones)
             {
-                <button name="btnTel" class="btnTel btn btn-primary btn-lg btn-block disabled" type="button">
-                    Telefono:
-                    <br />
-                    @Model.Usuario.Telefono</button>
-            }
-            else
-            {
-                if (ViewBag.Sancion == null)
-                {
-                    if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
-                    {
-
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-block btn-lg btn-block" })
-               
-                    }
-                    else
-                    {
-                        if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
-                        {
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block glyphicon glyphicon-ok" })
-                        }
-
-                        else
-                        {
-                            if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
-                            {
                 
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block disabled glyphicon glyphicon-ok" })
-                            }
-                        }
-                    }
-                }
-                else
-                {  
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block disabled glyphicon glyphicon-ok" })
-                }
+                <h3>@item.Rubro.Nombre   
+                
+               @* @if(item.SubRubro.Nombre != null)
+                {
+                    @item.SubRubro.Nombre
+                }  *@                         
+                                               
+                @item.Titulo</h3>
+                
+               @* <div class="row">
+                    <div class="col-sm-4 editor-field">
+                        <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                        @Html.DisplayName("Positivo")
+                        @
+                    </div>
+                    <div class="col-sm-4 editor-field">
+                        <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                        @Html.DisplayName("Neutro")
+                        @ViewBag.PuntajeCliente.Neutro
+                    </div>
+                    <div class="col-sm-4 editor-field">
+                        <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                        @Html.DisplayName("Negativo")
+                        @ViewBag.PuntajeCliente.Negativo
+                    </div>
+                    <div class="col-sm-4 editor-field">
+                        @Html.DisplayName("Total")
+                        @ViewBag.PuntajeCliente.Total
+                    </div>
+            </div>*@
+                
+                
+                
+                        @*    <tr>
+                                <td>
+                                  <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a>
+                                </td>
+                                <td>
+                                   @item.Publicacion.Usuario.Nombre
+                                </td>
+                                <td>
+                                    @item.Publicacion.Usuario.Apellido
+                                </td>
+                                <td>
+                                    @item.Publicacion.Usuario.Telefono
+                                </td>
+                                <td>
+                                    @if (item.FlagCalificoCliente == 0)
+                                    { 
+                                        @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 1 }, null)
+                                    }
+                                    else
+                                    { 
+                                        @Html.DisplayName("Ver CALIFICACION")
+                                    }
+                                </td>
+                            </tr>*@
             }
+
+
+            
         </div>
-    </div>*@
+        
+    </div>
 </div>

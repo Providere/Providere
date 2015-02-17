@@ -18,6 +18,7 @@ namespace Providere.Controllers
         RubroServicios rs = new RubroServicios();
         PuntajeClienteServicio pcs = new PuntajeClienteServicio();
         PublicacionServicios ps = new PublicacionServicios();
+        PuntajeServicios pus = new PuntajeServicios();
 
         public ActionResult RegistrarUsuario()
         {
@@ -385,6 +386,7 @@ namespace Providere.Controllers
             ViewBag.ListaPublicaciones = publicaciones;
 
             // Busco los puntajes
+          //  var puntajes = pus.traerPuntajesDePublicacionesDeUnUsuario(publicaciones);
 
             
             return View(usuario);

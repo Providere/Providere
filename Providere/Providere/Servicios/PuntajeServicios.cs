@@ -15,5 +15,14 @@ namespace Providere.Servicios
         {
             return pur.TraerPuntaje(id);
         }
+
+
+        public List<Puntaje> traerPuntajesDePublicacionesDeUnUsuario(List<Publicacion> publicaciones)
+        {
+            return pur.traerPuntajesDePublicacionesDeUnUsuario(publicaciones);
+        }
+
+
+
     }
 }

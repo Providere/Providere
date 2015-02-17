@@ -38,5 +38,23 @@ namespace Providere.Repositorios
                            select punt.Total).FirstOrDefault();
             return puntaje;
         }
+
+        //Es para traer los puntajes de las publicaciones de un usuario, lo utilizo en Ver Perfil
+        internal List<Puntaje> traerPuntajesDePublicacionesDeUnUsuario(List<Publicacion> publicaciones)
+        { 
+            List<int> listaPublicaciones = new List<int>();
+
+            foreach (var item in publicaciones)
+            {
+                listaPublicaciones.Add(item.Id);
+            }
+
+            var resultado = from punt in context.Puntaje
+                            where listaPublicaciones.Contains(punt.IdPublicacion)
+                            select punt;
+
+            return resultado.ToList();
+        }
+
     }
 }
