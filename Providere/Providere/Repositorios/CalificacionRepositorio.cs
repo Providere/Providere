@@ -186,7 +186,7 @@ namespace Providere.Repositorios
                 listaDeContrataciones.Add(item.Id);
             }
             var resultado = (from calificacion in context.Calificacion
-                             where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdTipoCalificacion == 1 && calificacion.IdTipoEvaluacion == 1)
+                             where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdTipoCalificacion == 1)
                              orderby calificacion.FechaCalificacion descending
                              select calificacion).ToList();
             return resultado;
@@ -204,7 +204,7 @@ namespace Providere.Repositorios
                 listaDeContrataciones.Add(item.Id);
             }
             var resultado = (from calificacion in context.Calificacion
-                             where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdTipoCalificacion == 1 && calificacion.IdTipoEvaluacion == 1) //para el prestador
+                             where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdTipoCalificacion == 1) //para el prestador
                              orderby calificacion.FechaCalificacion descending
                              select calificacion).Take(limite).ToList();
             return resultado;

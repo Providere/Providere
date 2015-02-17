@@ -37,7 +37,7 @@ namespace Providere.Controllers
             if (idUsuario == idUser)
             {
                 TempData["Error"] = "No podes preguntar en tu publicación.";
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("VisualizarPublicacion", "Publicacion", new { idPublicacion = id });
             }
             else
             {
