@@ -382,6 +382,7 @@ namespace Providere.Controllers
 
             // Busco las publicaciones
             var publicaciones = ps.ListarMisPublicaciones(idUsuario);
+            ViewBag.ListaPublicaciones = publicaciones;
 
             // Busco los puntajes
 

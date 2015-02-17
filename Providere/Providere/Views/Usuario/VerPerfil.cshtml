@@ -48,51 +48,26 @@
             <h3>
                 @Html.DisplayName("Como cliente")
             </h3>
-
-           @* @if (ViewBag.PuntajeCliente == null)
-            {
-                <p>
-                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                    @Html.DisplayName("Positivo")
-                    @Html.DisplayName("0")
-                </p>
-                <p>
-                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                    @Html.DisplayName("Neutro")
-                    @Html.DisplayName("0")
-                </p>
-                <p>
-                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                    @Html.DisplayName("Negativo")
-                    @Html.DisplayName("0")
-                </p>
-                <p>
-                    @Html.DisplayName("Total")
-                    @Html.DisplayName("0")
-                </p>
-            }
-            else
-            {*@
-                <p>
-                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                    @Html.DisplayName("Positivo")
-                    @ViewBag.PuntajeCliente.Positivo
-                </p>
-                <p>
-                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                    @Html.DisplayName("Neutro")
-                    @ViewBag.PuntajeCliente.Neutro
-                </p>
-                <p>
-                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                    @Html.DisplayName("Negativo")
-                    @ViewBag.PuntajeCliente.Negativo
-                </p>
-                <p>
-                    @Html.DisplayName("Total")
-                    @ViewBag.PuntajeCliente.Total
-                </p>
-           @* }*@
+            <p>
+                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                @Html.DisplayName("Positivo")
+                @ViewBag.PuntajeCliente.Positivo
+            </p>
+            <p>
+                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                @Html.DisplayName("Neutro")
+                @ViewBag.PuntajeCliente.Neutro
+            </p>
+            <p>
+                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                @Html.DisplayName("Negativo")
+                @ViewBag.PuntajeCliente.Negativo
+            </p>
+            <p>
+                @Html.DisplayName("Total")
+                @ViewBag.PuntajeCliente.Total
+            </p>
+         
             
         </div>
     </div>
