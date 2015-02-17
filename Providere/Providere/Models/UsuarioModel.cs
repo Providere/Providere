@@ -15,13 +15,13 @@ namespace Providere.Models
         {
             [Required(ErrorMessage = "Campo Obligatorio.")]
             [StringLength(25, ErrorMessage = "Máximo 25 caracteres.")]
-            [RegularExpression("^[A-Z a-z]*$")]
+            [RegularExpression("^[A-Z a-z]*$", ErrorMessage = "Ingresa solo letras.")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Nombre { get; set; }
 
             [Required(ErrorMessage = "Campo Obligatorio.")]
             [StringLength(25, ErrorMessage = "Máximo 25 caracteres.")]
-            [RegularExpression("^[A-Z a-z]*$")]
+            [RegularExpression("^[A-Z a-z]*$",ErrorMessage = "Ingresa solo letras.")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Apellido { get; set; }
 
@@ -33,13 +33,13 @@ namespace Providere.Models
             public object Mail { get; set; }
 
             [Required(ErrorMessage = "Campo Obligatorio.")]
-            [StringLength(10, ErrorMessage = "Mínimo 5 y máximo 10 caracteres.")]
+            //[StringLength(10, ErrorMessage = "Mínimo 5 y máximo 10 caracteres.")]
             [DataType(DataType.Password)]
-            [RegularExpression(@"^(?=(.*\d){1})(?=(.*[A-Z]){1}).{5,10}$", ErrorMessage = "Formato inválido.")]
+            [RegularExpression(@"^(?=(.*\d){1})(?=(.*[A-Z]){1}).{5,10}$", ErrorMessage = "Formato de contraseña inválido.")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Contrasenia { get; set; }
 
-            //[Required(ErrorMessage = "Campo Obligatorio")]
+           
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Ubicacion { get; set; }
 

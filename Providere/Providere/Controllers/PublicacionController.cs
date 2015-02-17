@@ -19,6 +19,7 @@ namespace Providere.Controllers
         CalificacionServicios cas = new CalificacionServicios();
         PreguntaServicios ppr = new PreguntaServicios();
         DenunciaServicios ds = new DenunciaServicios();
+        PuntajeServicios pus = new PuntajeServicios();
 
         SancionServicios ss = new SancionServicios();
 
@@ -128,7 +129,7 @@ namespace Providere.Controllers
             ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
 
             ViewBag.accionPadre = "VisualizarMiPublicacion";
-            var traerPuntaje = ps.TraerPuntaje(id);
+            var traerPuntaje = pus.TraerPuntaje(id);
             if (traerPuntaje == null)
             {
                 ViewBag.MostrarPuntaje = 0;
@@ -172,7 +173,7 @@ namespace Providere.Controllers
 
             ViewBag.accionPadre = "VisualizarPublicacion";
 
-            var traerPuntaje = ps.TraerPuntaje(idPublicacion);
+            var traerPuntaje = pus.TraerPuntaje(idPublicacion);
             if (traerPuntaje == null)
             {
                 ViewBag.MostrarPuntaje = 0;
