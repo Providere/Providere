@@ -32,7 +32,7 @@
         @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
         {
                 
-            @Html.ActionLink(" Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "btn btn-primary btn-xs glyphicon glyphicon-pencil" })
+            @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "btn btn-primary btn-xs glyphicon glyphicon-pencil" })
         }
     </h1>
     <div>
@@ -57,19 +57,19 @@
                 Precio
             </h3>
             <span class="precio-detalle">
-            @if (Model.PrecioOpcion != null)
-            {
+                @if (Model.PrecioOpcion != null)
+                {
 
-                if (Model.PrecioOpcion == 1)
-                {
-                @Html.Label("A Convenir") 
+                    if (Model.PrecioOpcion == 1)
+                    {
+                    @Html.Label("A Convenir") 
+                    }
+                    else
+                    {
+                    @Html.Label("$") 
+                    @Html.DisplayFor(model => model.Precio)
+                    }
                 }
-                else
-                {
-                @Html.Label("$") 
-                @Html.DisplayFor(model => model.Precio)
-                }
-            }
             </span>
         </div>
         <div class="col-md-3">
@@ -128,7 +128,9 @@
                         </div>
                         <div>
                             <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item.Descripcion</em>
-                            <span class="help-block">@item.FechaCalificacion</span>
+                            <dd class="col-sm-offset-3">
+                                <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy")</span></small>
+                            </dd>
                             <br />
                         </div>
                     </div>                             
@@ -158,7 +160,7 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span></button>
                                     <h4 class="modal-title" id="myModalLabel">
-                                        Calificaciones positivas para esta publicación</h4>
+                                        Todas las calificaciones obtenidas</h4>
                                 </div>
                                 <div class="modal-body">
                                     @if (ViewBag.Calificaciones.Count > 0)
@@ -172,7 +174,9 @@
                                             </div>
                                             <div>
                                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item.Descripcion</em>
-                                                <span class="help-block">@item.FechaCalificacion</span>
+                                                <dd class="col-sm-offset-4">
+                                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy")</span></small>
+                                                </dd>
                                             </div>
                                         </div>
                                         }
@@ -247,9 +251,11 @@
                     @if (item.Respuesta != null)
                     {
                         <dd class="col-md-offset-1">
-                            <span class="text-info"><i class="glyphicon glyphicon-user"></i></span><span>@item.Respuesta</span>
+                            <span class="text-info"><i class="glyphicon glyphicon-user"></i></span>@item.Respuesta
                             <br />
-                            <span class="help-block">@item.FechaRespuesta</span>
+                        </dd>
+                        <dd class="col-sm-offset-2">
+                            <small><span class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy")</span></small>
                         </dd>
                     }
                 </dl>

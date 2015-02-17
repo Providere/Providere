@@ -54,7 +54,6 @@
                             </div>
                         </div>
                     }
-                    @* <hr />*@
                 </div> 
                 }
             }
@@ -73,23 +72,29 @@
                     using (Html.BeginForm("EliminarPregunta", "Pregunta", new { id = item.Id }, FormMethod.Post))
                     {
                 <br />
+                   <div class="col-md-9">
                 <div class="col-md-12">
                     <legend><a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
-                    <dl class="question" id="6">
+                   <dl class="question" id="pregunta">
                         <dd class="txt">
                             <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
                         </dd>
                         <br />
                         @if (item.Respuesta != null)
                         {
-                            <dd class="col-md-offset-1">
-                                <span class="text-info"><i class="glyphicon glyphicon-user"></i></span><span>@item.Respuesta</span><span
-                                    class="help-block">@item.FechaRespuesta</span></dd>      
+                           <dd class="col-md-offset-1">
+                            <span class="text-info"><i class="glyphicon glyphicon-user"></i></span>@item.Respuesta
+                            <br />
+                        </dd>
+                        <dd class="col-sm-offset-2">
+                            <small><span class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy")</span></small>
+                        </dd>      
                         }
                         <button name="btnBorrar" class="btn btn-primary btn-sm" type="submit">
                             <span class="glyphicon glyphicon-trash"></span>Borrar pregunta</button>
                     </dl>
                     <br />
+                </div>
                 </div>
                     }
                 }

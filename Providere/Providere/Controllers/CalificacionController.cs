@@ -35,7 +35,7 @@ namespace Providere.Controllers
             var replicasTodas = rs.TraerTodasLasReplicas();
             ViewBag.Replicas = replicasTodas;
 
-            ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sanciado";
+            ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sancionado.";
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
 
