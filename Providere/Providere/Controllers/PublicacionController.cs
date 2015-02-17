@@ -361,7 +361,7 @@ namespace Providere.Controllers
         {
             ViewBag.Principal = "VerMasPrestadores";
             int limite = 15;
-            ViewBag.VerMasPrestadoresMejorCalificadas = ps.traerPublicacionesMejorCalificadas(limite); //Los 15 mejor calificados
+            ViewBag.VerMasPrestadoresMejorCalificados = ps.traerPublicacionesMejorCalificadas(limite); //Los 15 mejor calificados
             return View("Listar");
         }
 
