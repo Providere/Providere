@@ -45,7 +45,7 @@
                     @using (Html.BeginForm("Responder", "Pregunta", new { id = item.Id }, FormMethod.Post))
                     {  
                         <div class="row">
-                            <div class="form-group col-md-10">
+                            <div class="form-group col-md-7">
                                 @Html.TextArea("responder", null, new { @class = "form-control", placeholder = "Escribe tu respuesta..." })
                             </div>
                             <div class="form-group col-md-2">
