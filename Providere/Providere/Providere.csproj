@@ -186,7 +186,6 @@
     <Compile Include="Servicios\PreguntaServicios.cs" />
     <Compile Include="Servicios\PublicacionServicios.cs" />
     <Compile Include="Servicios\PuntajeClienteServicio.cs" />
-    <Compile Include="Servicios\PuntajeServicios.cs" />
     <Compile Include="Servicios\ReplicaServicios.cs" />
     <Compile Include="Servicios\RubroServicios.cs" />
     <Compile Include="Servicios\RubrosParaSelect.cs" />
