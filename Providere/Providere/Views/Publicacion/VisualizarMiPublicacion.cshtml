@@ -87,14 +87,14 @@
                     if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
                     {
 
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-block btn-lg btn-block" })
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block" })
                
                     }
                     else
                     {
                         if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
                         {
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block glyphicon glyphicon-ok" })
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block" })
                         }
 
                         else
@@ -102,14 +102,14 @@
                             if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
                             {
                 
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block disabled glyphicon glyphicon-ok" })
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
                             }
                         }
                     }
                 }
                 else
                 {  
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "btn btn-primary btn-lg btn-block disabled glyphicon glyphicon-ok" })
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
                 }
             }
         </div>
@@ -139,9 +139,9 @@
                                 {
                                     if (rep.IdCalificacion == item.Id)
                                     {
-                                
+                                <dd class="col-sm-offset-3">
                                     <span class="label label-default">Réplica: <em>@rep.Comentario</em> </span>
-                               
+                                </dd>
                                     }
                                 }
                             }
