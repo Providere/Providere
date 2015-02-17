@@ -172,6 +172,11 @@ namespace Providere.Repositorios
             return context.Usuario.Where(e => e.Ubicacion.Equals(user.Ubicacion)).Where(e => !e.Id.Equals(user.Id)).Shuffle().Take(limite).ToList();
         }
 
+        internal List<Usuario> traerPorZonaTodos(Usuario user)
+        {
+            return context.Usuario.Where(e => e.Ubicacion.Equals(user.Ubicacion)).Where(e => !e.Id.Equals(user.Id)).Shuffle().ToList();
+        }
+
         internal Usuario traerPorId(int id)
         {
             return context.Usuario.Where(x => x.Id == id).FirstOrDefault();

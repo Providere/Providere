@@ -32,7 +32,9 @@
     <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert">
             &times;</button>
-        <center> <span class="glyphicon glyphicon-bell"></span>Tienes preguntas sin responder. Para responderlas hace click en la sección Preguntas de tu menú de usuario</center>
+        <center>
+            <span class="glyphicon glyphicon-bell"></span>Tienes preguntas sin responder. Para
+            responderlas hace click en la sección Preguntas de tu menú de usuario</center>
     </div>   
 }
 <div>
@@ -79,10 +81,13 @@
                     </div>
                 }
             </div>
-            <center>
-                <a href="@Url.Action("VerMasPublicaciones", "Publicacion")" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-chevron-right"></span>Ver mas publicaciones</a>
-            </center>
+            @if (ViewBag.PublicacionesMasRecientesVarias.listadoDePublicaciones.Count > 4)
+            {
+                <center>
+                    <a href="@Url.Action("VerMasPublicaciones", "Publicacion")" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-chevron-right"></span>Ver mas publicaciones</a>
+                </center>
+            }
         </div>
     }
     else
@@ -97,7 +102,7 @@
         <h2>
             Prestadores mejor calificados</h2>
         <br />
-        @if (ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones.Count > 0)
+        @if (ViewBag.PrestadoresMejorCalificados.listadoDePublicaciones.Count > 0)
         {        
             <div class="row">
                 @foreach (var item in ViewBag.PublicacionesMejorCalificadas.listadoDePublicaciones)
@@ -118,10 +123,13 @@
                     </div>
                 }
             </div>
+            if (ViewBag.PrestadoresMejorCalificadosVarios.listadoDePublicaciones.Count > 4)
+                {
             <center>
                 <a href="@Url.Action("VerMasPrestadores", "Publicacion")" class="btn btn-primary"><span
                     class="glyphicon glyphicon-chevron-right"></span>Ver mas prestadores</a>
             </center>
+                }
         }
         else
         {
@@ -138,14 +146,14 @@
         <br />
         @if (ViewBag.UsuariosMasCercanos.Count > 0)
         {
-        
             <div class="row">
                 @foreach (var item in ViewBag.UsuariosMasCercanos)
                 {
-                
                     <div class="col-xs-3">
                         <div class="thumbnail" style="height: 360px">
-                            <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Id })" alt="plomero" width="100%"/>
+                            <div class="contenedor-img">
+                                <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Id })" alt="plomero" width="100%"/>
+                            </div>
                             <div class="caption text-center">
                                 <h4>
                                     <a href="#">
@@ -156,11 +164,14 @@
                     </div>
                 }
             </div>
+                if (ViewBag.UsuariosMasCercanosVarios.Count > 4)
+                {
             <center>
                 <a href="@Url.Action("VerMasPrestadoresZona", "Publicacion")" class="btn btn-primary">
                     <span class="glyphicon glyphicon-chevron-right"></span>Ver mas prestadores de mi
                     zona</a>
             </center>
+                }
             <br />
         }
         else

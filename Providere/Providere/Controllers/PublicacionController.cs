@@ -19,6 +19,7 @@ namespace Providere.Controllers
         CalificacionServicios cas = new CalificacionServicios();
         PreguntaServicios ppr = new PreguntaServicios();
         DenunciaServicios ds = new DenunciaServicios();
+        PuntajeServicios pus = new PuntajeServicios();
 
         SancionServicios ss = new SancionServicios();
 
@@ -47,7 +48,7 @@ namespace Providere.Controllers
         {
             if (ps.VerificarRubro(idUsuario, idRubro) || ps.VerificarSubrubro(idUsuario, idSubRubro))
             {
-                TempData["Error"] = "Ya tenes una publicacion creada en ese rubro o subrubro";
+                TempData["Error"] = "Ya tenés una publicación creada en ese rubro o subrubro.";
                 return RedirectToAction("NuevaPublicacion");
             }
             else
@@ -84,13 +85,13 @@ namespace Providere.Controllers
                     }
                     catch (Exception ex)
                     {
-                        ClientException.LogException(ex, "Error al crear la publicación");
+                        ClientException.LogException(ex, "Error al crear la publicación.");
                         return RedirectToAction("Error", "Shared");
                     }
                 }
                 else
                 {
-                    TempData["Error"] = "No se pudo crear la publicación, intentalo nuevamente";
+                    TempData["Error"] = "No se pudo crear la publicación, intentalo nuevamente.";
                     return RedirectToAction("ListarPublicaciones");
                 }
             }
@@ -102,18 +103,18 @@ namespace Providere.Controllers
         {
             ViewBag.Error = TempData["Error"];
             ViewBag.Exito = TempData["Exito"];
-            ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sanciado";
+            ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sancionado.";
 
             Publicacion miPublicacion = ps.TraerPublicacionPorId(id);
 
             if (ps.NoExistenImagenes(id) == false)
             {
-                ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+                ViewBag.NoExistenImagenes = "No existen imágenes para mostrar.";
             }
 
             if (prs.NoExistenPreguntas(id) == false)
             {
-                ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
+                ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar.";
             }
 
             var mostrarPreguntas = ppr.TraerPreguntasPublicacion(id);
@@ -128,7 +129,7 @@ namespace Providere.Controllers
             ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
 
             ViewBag.accionPadre = "VisualizarMiPublicacion";
-            var traerPuntaje = ps.TraerPuntaje(id);
+            var traerPuntaje = pus.TraerPuntaje(id);
             if (traerPuntaje == null)
             {
                 ViewBag.MostrarPuntaje = 0;
@@ -147,18 +148,18 @@ namespace Providere.Controllers
         {
             ViewBag.Error = TempData["Error"];
             ViewBag.Exito = TempData["Exito"];
-            ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sanciado";
+            ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sancionado.";
 
             Publicacion miPublicacion = ps.TraerPublicacionPorId(idPublicacion);
 
             if (ps.NoExistenImagenes(idPublicacion) == false)
             {
-                ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+                ViewBag.NoExistenImagenes = "No existen imágenes para mostrar.";
             }
 
             if (prs.NoExistenPreguntas(idPublicacion) == false)
             {
-                ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar";
+                ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar.";
             }
 
             var mostrarPreguntas = ppr.TraerPreguntasPublicacion(idPublicacion);
@@ -172,7 +173,7 @@ namespace Providere.Controllers
 
             ViewBag.accionPadre = "VisualizarPublicacion";
 
-            var traerPuntaje = ps.TraerPuntaje(idPublicacion);
+            var traerPuntaje = pus.TraerPuntaje(idPublicacion);
             if (traerPuntaje == null)
             {
                 ViewBag.MostrarPuntaje = 0;
@@ -215,7 +216,7 @@ namespace Providere.Controllers
             ViewBag.Error = TempData["Error"];
             if (ps.NoExistenImagenes(id) == false) //Si devuelve false es porque no existen imagenes para esa publicacion
             {
-                ViewBag.NoExistenImagenes = "No existen imagenes para mostrar";
+                ViewBag.NoExistenImagenes = "No existen imágenes para mostrar.";
             }
 
             ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre", publicacion.IdRubro);
@@ -255,24 +256,24 @@ namespace Providere.Controllers
                                 ps.CargarImagenesEdicion(pathImagen, idUsuario, id);
                             }
                         }
-                        TempData["Exito"] = "Publicación editada correctamente";
+                        TempData["Exito"] = "Publicación editada correctamente.";
                         return RedirectToAction("ListarPublicaciones");
                     }
                     else
                     {
-                        TempData["Exito"] = "Publicación editada correctamente";
+                        TempData["Exito"] = "Publicación editada correctamente.";
                         return RedirectToAction("ListarPublicaciones");
                     }
                 }
                 catch (Exception ex)
                 {
-                    ClientException.LogException(ex, "Error al editar la publicación");
+                    ClientException.LogException(ex, "Error al editar la publicación.");
                     return RedirectToAction("Error", "Shared");
                 }
             }
             else
             {
-                TempData["Error"] = "No se pudo editar la publicación, intentalo nuevamente";
+                TempData["Error"] = "No se pudo editar la publicación, intentalo nuevamente.";
                 return RedirectToAction("EditarPublicacion", new { id = id });
             }
         }
@@ -283,12 +284,12 @@ namespace Providere.Controllers
             try
             {
                 ps.EliminarImagen(id);
-                TempData["Exito"] = "Imagen eliminada correctamente";
+                TempData["Exito"] = "Imágen eliminada correctamente.";
                 return RedirectToAction("EditarPublicacion", new { id = idPublicacion });
             }
             catch (Exception ex)
             {
-                ClientException.LogException(ex, "Error al eliminar la imagen");
+                ClientException.LogException(ex, "Error al eliminar la imágen.");
                 return RedirectToAction("Error", "Shared");
             }
         }
@@ -302,18 +303,18 @@ namespace Providere.Controllers
                 if (estado == true)
                 {
                     ps.CambioEstadoPublicacion(id);
-                    TempData["Exito"] = "Publicación deshabilitada correctamente";
+                    TempData["Exito"] = "Publicación deshabilitada correctamente.";
                     return RedirectToAction("ListarPublicaciones");
                 }
                 else
                 {
-                    TempData["Error"] = "No se pudo deshabilitar la publicación, intentalo nuevamente";
+                    TempData["Error"] = "No se pudo deshabilitar la publicación, intentalo nuevamente.";
                     return RedirectToAction("ListarPublicaciones");
                 }
             }
             catch (Exception ex)
             {
-                ClientException.LogException(ex, "Error al deshabilitar la publicación");
+                ClientException.LogException(ex, "Error al deshabilitar la publicación.");
                 return RedirectToAction("Error", "Shared");
             }
 
@@ -333,13 +334,13 @@ namespace Providere.Controllers
                 }
                 else
                 {
-                    TempData["Error"] = "No se pudo habilitar la publicación, intentalo nuevamente";
+                    TempData["Error"] = "No se pudo habilitar la publicación, intentalo nuevamente.";
                     return RedirectToAction("ListarPublicaciones");
                 }
             }
             catch (Exception ex)
             {
-                ClientException.LogException(ex, "Error al habilitar la publicación");
+                ClientException.LogException(ex, "Error al habilitar la publicación.");
                 return RedirectToAction("Error", "Shared");
             }
         }
@@ -349,31 +350,28 @@ namespace Providere.Controllers
             return RedirectToAction("Contratar", "Contratacion", publicacion);
         }
 
-
         public ActionResult VerMasPublicaciones()
         {
             ViewBag.Principal = "VerMasPublicaciones";
-            int limite = 10;
-            ViewBag.VerMasPublicacionesMasRecientes = ps.traerPublicacionesMasRecientes(limite); //Las 10 mas recientes
+            int limite = 15;
+            ViewBag.VerMasPublicacionesMasRecientes = ps.traerPublicacionesMasRecientes(limite); //Las 15 mas recientes
             return View("Listar");
         }
 
         public ActionResult VerMasPrestadores()
         {
             ViewBag.Principal = "VerMasPrestadores";
-            int limite = 10;
-            ViewBag.VerMasPrestadoresMejorCalificadas = ps.traerPublicacionesMejorCalificadas(limite); //Los 10 mejor calificados
+            int limite = 15;
+            ViewBag.VerMasPrestadoresMejorCalificados = ps.traerPublicacionesMejorCalificadas(limite); //Los 15 mejor calificados
             return View("Listar");
         }
 
         public ActionResult VerMasPrestadoresZona()
         {
             ViewBag.Principal = "VerMasPrestadoresZona";
-            int limite = 10;
-            ViewBag.VerMasUsuariosMasCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), limite);
+            ViewBag.VerMasUsuariosMasCercanos = us.traerPorZonaTodos(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"]))); //Traer todos
             return View("Listar");
         }
-
     }
 }
 

@@ -28,11 +28,16 @@ namespace Providere.Controllers
 
             ViewBag.PublicacionesMasRecientes = ps.traerPublicacionesMasRecientes(limite);
 
-            ViewBag.PublicacionesMejorCalificadas = ps.traerPublicacionesMejorCalificadas(limite);
+            ViewBag.PrestadoresMejorCalificados = ps.traerPublicacionesMejorCalificadas(limite);
 
             ViewBag.UsuariosMasCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), limite);
 
             ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
+
+            //Para verificar si hay mas de 4 y mostrar boton "ver mas"
+            ViewBag.PublicacionesMasRecientesVarias = ps.traerPublicacionesMasRecientes(5);
+            ViewBag.PrestadoresMejorCalificadosVarios = ps.traerPublicacionesMejorCalificadas(5);
+            ViewBag.UsuariosMasCercanosVarios = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), 5);
             
             return View();
         }

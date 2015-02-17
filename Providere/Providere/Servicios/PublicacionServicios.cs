@@ -140,11 +140,6 @@ namespace Providere.Servicios
                 return false;
             }
             return true;
-        }
-
-        public object TraerPuntaje(int id)
-        {
-            return pur.TraerPuntaje(id);
-        }
+        }       
     }
 }

@@ -81,20 +81,20 @@ namespace Providere.Controllers
                     }
                     catch (Exception ex)
                     {
-                        ClientException.LogException(ex, "Error al cargar la imágen");
+                        ClientException.LogException(ex, "Error al cargar la imágen.");
                         return RedirectToAction("Error", "Shared");
                     }
                 }
                 else
                 {
-                    TempData["Error"] = "No se pudo cargar la imágen, intentalo nuevamente";
+                    TempData["Error"] = "No se pudo cargar la imágen, intentalo nuevamente.";
                     return RedirectToAction("EditarPerfil", new { id = id });
                 }
 
             }
             else
             {
-                TempData["Error"] = "No se pudo cargar la imágen, intentalo nuevamente";
+                TempData["Error"] = "No se pudo cargar la imágen, intentalo nuevamente.";
                 return RedirectToAction("EditarPerfil");
             };
         }
