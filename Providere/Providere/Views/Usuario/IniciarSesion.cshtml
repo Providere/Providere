@@ -27,11 +27,11 @@
                 <h2>
                     Iniciar Sesi&oacute;n</h2>
                 <div>
-                    ¿A&uacute;n no est&aacute;s reg&iacute;strado? @Html.ActionLink("Registrate gratis", "RegistrarUsuario", "Usuario")</div>
+                    ¿A&uacute;n no est&aacute;s reg&iacute;strado? @Html.ActionLink("Regístrate gratis", "RegistrarUsuario", "Usuario")</div>
                 @Html.ValidationSummary(true)
                 <hr />
                 <div class="row">
-                    @Html.Label("Correo electronico", new { @class = "col-sm-5 control-label" })
+                    @Html.Label("Correo electrónico", new { @class = "col-sm-5 control-label" })
                     <div class="col-xs-3">
                         @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Mail)
@@ -44,7 +44,7 @@
                         @Html.PasswordFor(m => m.Contrasenia, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Contrasenia)
                         <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Entre
-                            5 y 10 caracteres. Debe contener, al menos, 1 numero y 1 mayuscula</small>
+                            5 y 10 caracteres. Debe contener, al menos, 1 n&uacute;mero y 1 may&uacute;scula.</small>
                     </div>
                 </div>
                 <div class="form-group">

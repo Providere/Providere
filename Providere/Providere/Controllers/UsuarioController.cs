@@ -357,6 +357,26 @@ namespace Providere.Controllers
             {
                 return View("Index", "Index");
             }
-        } 
+        }
+
+
+        // EN ETAPA DE DESARROLLO POR PAU!!!
+
+        public ActionResult VerPerfil()
+        {
+
+            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+
+            Usuario usuario = us.traerUsuario(idUsuario);
+            
+            return View(usuario);
+        }
+
+
+
+
+
+
+
     }
 }

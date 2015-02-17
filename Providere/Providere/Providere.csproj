@@ -165,6 +165,7 @@
     <Compile Include="Repositorios\ImagenRepositorio.cs" />
     <Compile Include="Repositorios\PreguntaRepositorio.cs" />
     <Compile Include="Repositorios\PublicacionRepositorio.cs" />
+    <Compile Include="Repositorios\PuntajeClienteRepositorio.cs" />
     <Compile Include="Repositorios\PuntajeRepositorio.cs" />
     <Compile Include="Repositorios\ReplicaRepositorio.cs" />
     <Compile Include="Repositorios\RubroRepositorio.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Servicios\MailServicios.cs" />
     <Compile Include="Servicios\PreguntaServicios.cs" />
     <Compile Include="Servicios\PublicacionServicios.cs" />
+    <Compile Include="Servicios\PuntajeClienteServicio.cs" />
     <Compile Include="Servicios\ReplicaServicios.cs" />
     <Compile Include="Servicios\RubroServicios.cs" />
     <Compile Include="Servicios\RubrosParaSelect.cs" />
@@ -354,6 +356,7 @@
     <Content Include="Views\Usuario\NuevaContrasenia.cshtml" />
     <Content Include="Views\Pregunta\Index.cshtml" />
     <Content Include="Views\Calificacion\Index.cshtml" />
+    <Content Include="Views\Usuario\VerPerfil.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
