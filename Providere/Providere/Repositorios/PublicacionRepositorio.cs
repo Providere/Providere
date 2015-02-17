@@ -33,7 +33,7 @@ namespace Providere.Repositorios
 
             var publicacionesMasPopulares = (from publicacion in context.Publicacion
                                              join puntaje in context.Puntaje on publicacion.Id equals puntaje.IdPublicacion
-                                             where publicacion.Estado == 1 //Habilitada
+                                             where publicacion.Estado == 1 && puntaje.Total >= 1
                                              orderby puntaje.Total descending
                                              select publicacion).Take(limite).ToList();
 

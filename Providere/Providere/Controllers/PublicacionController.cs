@@ -349,31 +349,28 @@ namespace Providere.Controllers
             return RedirectToAction("Contratar", "Contratacion", publicacion);
         }
 
-
         public ActionResult VerMasPublicaciones()
         {
             ViewBag.Principal = "VerMasPublicaciones";
-            int limite = 10;
-            ViewBag.VerMasPublicacionesMasRecientes = ps.traerPublicacionesMasRecientes(limite); //Las 10 mas recientes
+            int limite = 15;
+            ViewBag.VerMasPublicacionesMasRecientes = ps.traerPublicacionesMasRecientes(limite); //Las 15 mas recientes
             return View("Listar");
         }
 
         public ActionResult VerMasPrestadores()
         {
             ViewBag.Principal = "VerMasPrestadores";
-            int limite = 10;
-            ViewBag.VerMasPrestadoresMejorCalificadas = ps.traerPublicacionesMejorCalificadas(limite); //Los 10 mejor calificados
+            int limite = 15;
+            ViewBag.VerMasPrestadoresMejorCalificadas = ps.traerPublicacionesMejorCalificadas(limite); //Los 15 mejor calificados
             return View("Listar");
         }
 
         public ActionResult VerMasPrestadoresZona()
         {
             ViewBag.Principal = "VerMasPrestadoresZona";
-            int limite = 10;
-            ViewBag.VerMasUsuariosMasCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), limite);
+            ViewBag.VerMasUsuariosMasCercanos = us.traerPorZonaTodos(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"]))); //Traer todos
             return View("Listar");
         }
-
     }
 }
 

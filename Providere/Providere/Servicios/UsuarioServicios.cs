@@ -110,6 +110,10 @@ namespace Providere.Servicios
             return ur.traerPorZona(user,limite);
         }
 
+        public List<Usuario> traerPorZonaTodos(Usuario user)
+        {
+            return ur.traerPorZonaTodos(user);
+        }
 
         public void CrearCookie(Usuario model)
         {
