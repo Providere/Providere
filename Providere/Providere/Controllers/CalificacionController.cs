@@ -74,13 +74,13 @@ namespace Providere.Controllers
             {
                 cs.calificarUsuario(idContratacion, idTipoEvaluacion, idTipoCalificacion, comentario);
 
-                TempData["Exito"] = "El usuario se ha calificado con éxito";
+                TempData["Exito"] = "El usuario se ha calificado con éxito.";
 
                 return RedirectToAction("Index", "Contratacion");
             }
             else
             {
-                TempData["Error"] = "No se pudo guardar la calificación, intentalo nuevamente";
+                TempData["Error"] = "No se pudo guardar la calificación, intentalo nuevamente.";
                 return RedirectToAction("Index", "Contratacion");
             }
         }
@@ -91,12 +91,12 @@ namespace Providere.Controllers
             try
             {
                 ds.DenunciaComentario(id);
-                TempData["Exito"] = "Comentario denunciado con éxito";
+                TempData["Exito"] = "Comentario denunciado con éxito.";
                 return RedirectToAction("Index", "Calificacion");
             }
             catch (Exception ex)
             {
-                ClientException.LogException(ex, "Error al denunciar comentario");
+                ClientException.LogException(ex, "Error al denunciar el comentario.");
                 return RedirectToAction("Error", "Shared");
             }
         }
@@ -109,18 +109,18 @@ namespace Providere.Controllers
                 try
                 {
                     rs.ReplicarComentario(id, replicar);
-                    TempData["Exito"] = "Comentario replicado con éxito";
+                    TempData["Exito"] = "Comentario replicado con éxito.";
                     return RedirectToAction("Index", "Calificacion");
                 }
                 catch (Exception ex)
                 {
-                    ClientException.LogException(ex, "Error al replicar comentario");
+                    ClientException.LogException(ex, "Error al replicar el comentario.");
                     return RedirectToAction("Error", "Shared");
                 }
             }
             else
             {
-                TempData["Error"] = "La réplica no puede ser vacía";
+                TempData["Error"] = "La réplica no puede ser vacía.";
                 return RedirectToAction("Index", "Calificacion");
             }
         }

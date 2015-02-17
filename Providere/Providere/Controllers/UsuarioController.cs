@@ -31,7 +31,7 @@ namespace Providere.Controllers
             {
                 if (us.UsuarioDadoDeBaja(mail))
                 {
-                    ModelState.AddModelError("", "El usuario registrado con esa direccion de correo electronico fue dado de baja");
+                    ModelState.AddModelError("", "El usuario registrado con esa direccion de correo electronico fue dado de baja.");
                     return View();
                 }
                 else
@@ -39,7 +39,7 @@ namespace Providere.Controllers
 
                     if (us.UsuarioExisteActivado(mail,dni))
                     {
-                        ModelState.AddModelError("", "La direccion de correo electrónico o el DNI ingresado ya posee una cuenta asociada");
+                        ModelState.AddModelError("", "La direccion de correo electrónico o el DNI ingresado ya posee una cuenta asociada.");
                         return View();
                     }
                     else
@@ -52,7 +52,7 @@ namespace Providere.Controllers
                             }
                             catch (System.Net.Mail.SmtpException ex)
                             {
-                                ClientException.LogException(ex, "Error al enviar el mail de activacion");
+                                ClientException.LogException(ex, "Error al enviar el mail de activación.");
                                 return RedirectToAction("Error", "Shared");
                             }
                         }
@@ -64,12 +64,12 @@ namespace Providere.Controllers
                             }
                             catch (System.Net.Mail.SmtpException ex)
                             {
-                                ClientException.LogException(ex, "Error al enviar el mail de activacion");
+                                ClientException.LogException(ex, "Error al enviar el mail de activación.");
                                 return RedirectToAction("Error", "Shared");
                             }
                         }
 
-                        TempData["Exito"] = "La registración fue exitosa. Revisa tu correo electrónico para activar la cuenta";
+                        TempData["Exito"] = "La registración fue exitosa. Revisa tu correo electrónico para activar la cuenta.";
                         return RedirectToAction("IniciarSesion");
 
                     }
@@ -77,7 +77,7 @@ namespace Providere.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "No te olvides de ingresar ubicación, y aceptar los términos y condiciones para continuar con la registración");
+                ModelState.AddModelError("", "No te olvides de ingresar ubicación, y aceptar los términos y condiciones para continuar con la registración.");
                 return View();
             }
 
@@ -88,11 +88,11 @@ namespace Providere.Controllers
             string msj;
             if (us.ActivarUsuario(codAct))
             {
-                msj = "Tu cuenta ha sido activada satisfactoriamente. Ya podes comenzar a utilizar Providere";
+                msj = "Tu cuenta ha sido activada satisfactoriamente. Ya podes comenzar a utilizar Providere.";
             }
             else
             {
-                msj = "El tiempo para la activación de su cuenta ha expirado, volve a registrarte para recibir un nuevo mail de activación";
+                msj = "El tiempo para la activación de su cuenta ha expirado, volvé a registrarte para recibir un nuevo mail de activación.";
             }
             ViewBag.msj = msj;
 
@@ -113,13 +113,13 @@ namespace Providere.Controllers
 
             if (model.Mail.Length > 50)
             {
-                ModelState.AddModelError("", "Direccion de correo electrónico demasiado largo");
+                ModelState.AddModelError("", "Dirección de correo electrónico demasiada larga.");
                 cantidadDeErrores++;
             }
 
             if (model.Contrasenia.Length > 10)
             {
-                ModelState.AddModelError("", "Contraseña demasiada larga");
+                ModelState.AddModelError("", "Contraseña demasiada larga.");
                 cantidadDeErrores++;
             }
 
@@ -144,12 +144,12 @@ namespace Providere.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Usuario inactivo o dado de baja");
+                        ModelState.AddModelError("", "Usuario inactivo o dado de baja.");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Verifica tu dirección de correo electrónico y/o contraseña");
+                    ModelState.AddModelError("", "Verifica tu dirección de correo electrónico y/o contraseña.");
                 }
             }
             return View(model);
@@ -202,13 +202,13 @@ namespace Providere.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ClientException.LogException(ex, "Error al modificar sus datos");
+                    ClientException.LogException(ex, "Error al modificar tus datos.");
                     return RedirectToAction("Error", "Shared");
                 }
             }
             else
             {
-                TempData["Error"] = "No se pudo modificar tus datos, intentalo nuevamente";
+                TempData["Error"] = "No se pudo modificar tus datos, intentalo nuevamente.";
                 return RedirectToAction("EditarPerfil", new { id = id });
             }
 
@@ -228,18 +228,18 @@ namespace Providere.Controllers
                                        Path.GetFileName(uniqueFileName + extension));
                     file.SaveAs(path);
 
-                    TempData["Exito"] = "Tu foto de perfil se ha cargado con exito";
+                    TempData["Exito"] = "Tu foto de perfil se ha cargado con éxito";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
                 {
-                    ClientException.LogException(ex, "Error al cargar la imágen");
+                    ClientException.LogException(ex, "Error al cargar la imágen.");
                     return RedirectToAction("Error", "Shared");
                 }
             }
             else
             {
-                TempData["Error"] = "No se pudo cargar la imágen, intentalo nuevamente";
+                TempData["Error"] = "No se pudo cargar la imágen, intentalo nuevamente.";
                 return RedirectToAction("EditarPerfil", new { id = id });
             }
         }
@@ -253,18 +253,18 @@ namespace Providere.Controllers
                 try
                 {
                     us.GuardarContraseniaNueva(id, contrasenia);
-                    TempData["Exito"] = "Tu contraseña ha sido modificada con éxito";
+                    TempData["Exito"] = "Tu contraseña ha sido modificada con éxito.";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
                 {
-                    ClientException.LogException(ex, "Error al modificar su contraseña");
+                    ClientException.LogException(ex, "Error al modificar tu contraseña.");
                     return RedirectToAction("Error", "Shared");
                 }
             }
             else
             {
-                TempData["Error"] = "Tu contraseña no pudo ser modificada, intentalo nuevamente";
+                TempData["Error"] = "Tu contraseña no pudo ser modificada, intentalo nuevamente.";
                 return RedirectToAction("EditarPerfil", new { id = id });
             }
         }
@@ -282,7 +282,7 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "No se pudo eliminar tu cuenta, intentalo nuevamente";
+                TempData["Error"] = "No se pudo eliminar tu cuenta, intentalo nuevamente.";
                 return RedirectToAction("Home", "Home");
             }
         }
@@ -324,16 +324,16 @@ namespace Providere.Controllers
                 }
                 catch (System.Net.Mail.SmtpException ex)
                 {
-                    ClientException.LogException(ex, "Error al enviar el mail");
+                    ClientException.LogException(ex, "Error al enviar el mail.");
                     return RedirectToAction("Error", "Shared");
                 }
             }
             else
             {
-                TempData["Error"] = "Correo electronico inexistente";
+                TempData["Error"] = "Correo electrónico inexistente.";
                 return RedirectToAction("OlvideContrasenia");
             }
-            TempData["Exito"] = "Correo electronico enviado exitosamente";
+            TempData["Exito"] = "Correo electrónico enviado exitosamente.";
             return RedirectToAction("IniciarSesion");
         }
 
@@ -350,7 +350,7 @@ namespace Providere.Controllers
             if (ModelState.IsValid)
             {
                 us.RestablecerContrasenia(id, contrasenia);
-                TempData["Exito"] = "Contraseña cambiada exitosamente!";
+                TempData["Exito"] = "Contraseña cambiada exitosamente.";
                 return RedirectToAction("IniciarSesion");
             }
             else
