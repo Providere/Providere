@@ -16,8 +16,20 @@ namespace Providere.Repositorios
         {
             var puntaje = (from punt in context.PuntajeCliente
                            where punt.IdUsuario == p
-                           select punt.Total).FirstOrDefault();
-            return puntaje;
+                           select punt).FirstOrDefault();
+
+            if (puntaje == null)
+            {
+                Puntaje puntajeArmado = new Puntaje();
+                puntajeArmado.Total = 0;
+                return puntajeArmado;
+            
+            }
+            else
+            {
+                return puntaje;
+            }
+            
         }
 
     }

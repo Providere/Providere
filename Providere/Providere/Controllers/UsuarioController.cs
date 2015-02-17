@@ -16,6 +16,8 @@ namespace Providere.Controllers
 
         UsuarioServicios us = new UsuarioServicios();
         RubroServicios rs = new RubroServicios();
+        PuntajeClienteServicio pcs = new PuntajeClienteServicio();
+        PublicacionServicios ps = new PublicacionServicios();
 
         public ActionResult RegistrarUsuario()
         {
@@ -113,13 +115,13 @@ namespace Providere.Controllers
 
             if (model.Mail.Length > 50)
             {
-                ModelState.AddModelError("", "Direccion de correo electrónico demasiado largo");
+                ModelState.AddModelError("", "Dirección de correo electrónico demasiado largo.");
                 cantidadDeErrores++;
             }
 
             if (model.Contrasenia.Length > 10)
             {
-                ModelState.AddModelError("", "Contraseña demasiada larga");
+                ModelState.AddModelError("", "Contraseña demasiada larga.");
                 cantidadDeErrores++;
             }
 
@@ -144,12 +146,12 @@ namespace Providere.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Usuario inactivo o dado de baja");
+                        ModelState.AddModelError("", "Usuario inactivo o dado de baja.");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Verifica tu dirección de correo electrónico y/o contraseña");
+                    ModelState.AddModelError("", "Verifica tu dirección de correo electrónico y/o contraseña.");
                 }
             }
             return View(model);
@@ -197,18 +199,18 @@ namespace Providere.Controllers
                 {
                  
                     us.ModificarDatosUsuario(id, nombre, apellido,dni, telefono, geocomplete2);
-                    TempData["Exito"] = "Tus datos personales se actualizaron correctamente";
+                    TempData["Exito"] = "Tus datos personales se actualizaron correctamente.";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
                 {
-                    ClientException.LogException(ex, "Error al modificar sus datos");
+                    ClientException.LogException(ex, "Error al modificar tus datos.");
                     return RedirectToAction("Error", "Shared");
                 }
             }
             else
             {
-                TempData["Error"] = "No se pudo modificar tus datos, intentalo nuevamente";
+                TempData["Error"] = "No se pudo modificar tus datos, intentalo nuevamente.";
                 return RedirectToAction("EditarPerfil", new { id = id });
             }
 
@@ -228,18 +230,18 @@ namespace Providere.Controllers
                                        Path.GetFileName(uniqueFileName + extension));
                     file.SaveAs(path);
 
-                    TempData["Exito"] = "Tu foto de perfil se ha cargado con exito";
+                    TempData["Exito"] = "Tu foto de perfil se ha cargado con éxito.";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
                 {
-                    ClientException.LogException(ex, "Error al cargar la imágen");
+                    ClientException.LogException(ex, "Error al cargar la imágen.");
                     return RedirectToAction("Error", "Shared");
                 }
             }
             else
             {
-                TempData["Error"] = "No se pudo cargar la imágen, intentalo nuevamente";
+                TempData["Error"] = "No se pudo cargar la imagen, intentalo nuevamente.";
                 return RedirectToAction("EditarPerfil", new { id = id });
             }
         }
@@ -253,12 +255,12 @@ namespace Providere.Controllers
                 try
                 {
                     us.GuardarContraseniaNueva(id, contrasenia);
-                    TempData["Exito"] = "Tu contraseña ha sido modificada con éxito";
+                    TempData["Exito"] = "Tu contraseña ha sido modificada con éxito.";
                     return RedirectToAction("Home", "Home");
                 }
                 catch (Exception ex)
                 {
-                    ClientException.LogException(ex, "Error al modificar su contraseña");
+                    ClientException.LogException(ex, "Error al modificar tu contraseña.");
                     return RedirectToAction("Error", "Shared");
                 }
             }
@@ -282,7 +284,7 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "No se pudo eliminar tu cuenta, intentalo nuevamente";
+                TempData["Error"] = "No se pudo eliminar tu cuenta, intentalo nuevamente.";
                 return RedirectToAction("Home", "Home");
             }
         }
@@ -324,7 +326,7 @@ namespace Providere.Controllers
                 }
                 catch (System.Net.Mail.SmtpException ex)
                 {
-                    ClientException.LogException(ex, "Error al enviar el mail");
+                    ClientException.LogException(ex, "Error al enviar el mail.");
                     return RedirectToAction("Error", "Shared");
                 }
             }
@@ -350,7 +352,7 @@ namespace Providere.Controllers
             if (ModelState.IsValid)
             {
                 us.RestablecerContrasenia(id, contrasenia);
-                TempData["Exito"] = "Contraseña cambiada exitosamente!";
+                TempData["Exito"] = "Contraseña modificada exitosamente!";
                 return RedirectToAction("IniciarSesion");
             }
             else
@@ -368,6 +370,17 @@ namespace Providere.Controllers
             int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
 
             Usuario usuario = us.traerUsuario(idUsuario);
+
+            var puntaje = pcs.TraerPuntajeCliente(idUsuario);
+
+            ViewBag.PuntajeCliente = puntaje;
+
+
+            // Busco las publicaciones
+            var publicaciones = ps.ListarMisPublicaciones(idUsuario);
+
+            // Busco los puntajes
+
             
             return View(usuario);
         }

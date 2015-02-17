@@ -10,7 +10,6 @@ namespace Providere.Servicios
     public class PublicacionServicios
     {
         PublicacionRepositorio pr = new PublicacionRepositorio();
-
         PuntajeRepositorio pur = new PuntajeRepositorio();
         ImagenRepositorio ir = new ImagenRepositorio();
 

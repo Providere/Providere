@@ -16,36 +16,19 @@ namespace Providere.Repositorios
         {
             Calificacion calificacion = new Calificacion();
 
-            if (idTipoCalificacion == 1)
+            if (idTipoCalificacion == 1) // Si cliente puntua al prestador.
             {
                 calificacion.IdCalificador = contratacion.IdUsuario;
                 calificacion.IdCalificado = contratacion.Publicacion.IdUsuario;
-            }
-            else
-            {
-                calificacion.IdCalificador = contratacion.Publicacion.IdUsuario;
-                calificacion.IdCalificado = contratacion.IdUsuario;
-            }
 
-            calificacion.Descripcion = comentario;
-            calificacion.IdContratacion = contratacion.Id;
-            calificacion.IdTipoCalificacion = tipoCalificacion.Id;
-            calificacion.IdTipoEvaluacion = tipoEvaluacion.Id;
-            calificacion.FechaCalificacion = DateTime.Now;
-            calificacion.FlagDenunciado = 0; //no fue denunciada esa calificacion todavia
-            calificacion.FlagReplicado = 0; //no fue replicado esa calificacion todavia
-
-            context.Calificacion.AddObject(calificacion);
-
-            if (idTipoCalificacion == 1)
-            {
                 Contratacion cambioEstado = context.Contratacion.Where(e => e.Id == contratacion.Id).FirstOrDefault();
-                cambioEstado.FlagCalificoCliente = 1; //en este caso se marca que el cliente califico al prestador
+                cambioEstado.FlagCalificoCliente = 1; // En este caso se marca que el cliente califico al prestador.
 
                 Puntaje puntaje = context.Puntaje.Where(e => e.IdPublicacion == contratacion.IdPublicacion).FirstOrDefault();
-                // Cuando califica el cliente hace el cambio en el puntaje de la publicacion
+                // Cuando califica el cliente hace el cambio en el puntaje de la publicación.
 
-                if (puntaje == null) // Este bloque de código es para llenar la tabla Puntaje perteneciente al prestador por ser dueño de la publicación
+                // Este bloque de código es para llenar la TABLA PUNTAJE perteneciente al prestador por ser dueño de la publicación.
+                if (puntaje == null) // Al no existir el puntaje lo crea.
                 {
                     Puntaje puntajeNuevo = new Puntaje();
 
@@ -74,7 +57,7 @@ namespace Providere.Repositorios
                     context.Puntaje.AddObject(puntajeNuevo);
 
                 }
-                else
+                else // Al existir el puntaje lo modifica.
                 {
                     if (tipoEvaluacion.Id == 1)
                     {
@@ -93,19 +76,23 @@ namespace Providere.Repositorios
                             puntaje.Negativo = Convert.ToInt16(puntaje.Negativo + 1);
                             puntaje.Total = Convert.ToInt16(puntaje.Total - 1);
                         }
-                    } 
+                    }
                 }
 
             }
-            else
+            else // Si prestador puntua al cliente.
             {
+                calificacion.IdCalificador = contratacion.Publicacion.IdUsuario;
+                calificacion.IdCalificado = contratacion.IdUsuario;
+
                 Contratacion cambioEstado = context.Contratacion.Where(e => e.Id == contratacion.Id).FirstOrDefault();
-                cambioEstado.FlagCalificoProveedor = 1; //en este caso se marca que el prestador califico al cliente
+                cambioEstado.FlagCalificoProveedor = 1; // En este caso se marca que el prestador califico al cliente.
 
                 PuntajeCliente puntajeCliente = context.PuntajeCliente.Where(e => e.IdUsuario == contratacion.IdUsuario).FirstOrDefault();
-                // Cuando califica el prestador hace el cambio en el puntaje del cliente
+                // Cuando califica el prestador hace el cambio en el puntaje del cliente.
 
-                if (puntajeCliente == null) // Este bloque de código es para llenar la tabla Puntaje Cliente
+                // Este bloque de código es para llenar la TABLA PUNTAJE CLIENTE.
+                if (puntajeCliente == null) // Al no existir el puntaje lo crea.
                 {
                     PuntajeCliente puntajeClienteNuevo = new PuntajeCliente();
 
@@ -134,7 +121,7 @@ namespace Providere.Repositorios
                     context.PuntajeCliente.AddObject(puntajeClienteNuevo);
 
                 }
-                else
+                else // Al existir el puntaje lo modifica.
                 {
                     if (tipoEvaluacion.Id == 1)
                     {
@@ -157,6 +144,28 @@ namespace Providere.Repositorios
                 }
 
             }
+
+            // Termino de armar la calificación
+            calificacion.Descripcion = comentario;
+            calificacion.IdContratacion = contratacion.Id;
+            calificacion.IdTipoCalificacion = tipoCalificacion.Id;
+            calificacion.IdTipoEvaluacion = tipoEvaluacion.Id;
+            calificacion.FechaCalificacion = DateTime.Now;
+            calificacion.FlagDenunciado = 0; //no fue denunciada esa calificacion todavia
+            calificacion.FlagReplicado = 0; //no fue replicado esa calificacion todavia
+
+            context.Calificacion.AddObject(calificacion);
+
+        /*    if (idTipoCalificacion == 1)
+            {
+                
+
+            }
+            else
+            {
+                
+
+            } */
 
             context.SaveChanges();
         }
