@@ -67,8 +67,10 @@ namespace Providere.Repositorios
         public object TraerContratada(int idPublicacion, int idUsuario)
         {
             var contratacion = (from contrata in context.Contratacion
-                                where (contrata.IdUsuario == idUsuario && contrata.IdPublicacion == idPublicacion)
-                                select contrata).FirstOrDefault();
+                                where (contrata.IdUsuario == idUsuario && contrata.IdPublicacion == idPublicacion && contrata.FlagCalificoCliente == 0 && contrata.FlagCalificoProveedor == 0)
+                                || (contrata.IdUsuario == idUsuario && contrata.IdPublicacion == idPublicacion &&  contrata.FlagCalificoProveedor == 1 && contrata.FlagCalificoCliente == 0) 
+                                || (contrata.IdUsuario == idUsuario && contrata.IdPublicacion == idPublicacion && contrata.FlagCalificoProveedor == 0 && contrata.FlagCalificoCliente == 1)
+                                select contrata).FirstOrDefault(); //Traer la que ya fue contratada y no calificada por ambas partes(esa sera la ultima)
             return contratacion;
         }
     }
