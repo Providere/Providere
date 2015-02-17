@@ -44,13 +44,13 @@
                     <div class="col-xs-3">
                         @Html.TextBoxFor(m => m.Dni, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Dni)
-                         <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Ingresá el Número de tu Documento
-                         Nacional de Identidad</small>
+                         <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Ingres&aacute; el n&uacute;mero de tu Documento
+                         Nacional de Identidad.</small>
                     </div>
                 </div>
                 <br />
                 <div class="row">
-                    @Html.Label("Correo electronico", new { @class = "col-sm-5 control-label" })
+                    @Html.Label("Correo electrónico", new { @class = "col-sm-5 control-label" })
                     <div class="col-xs-3">
                         @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Mail)
@@ -58,14 +58,14 @@
                 </div>
                 <br />
                 <div class="row">
-                    @Html.Label("Numero telefonico", new { @class = "col-sm-5 control-label" })
+                    @Html.Label("Número telefónico", new { @class = "col-sm-5 control-label" })
                     <div class="col-xs-3">
                         @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Telefono)
                         <small class="text-info">Cód. de área + Nº. Ej.: 11 44852680</small>
                         <br />
                         <small class="text-info"><span class="glyphicon glyphicon-lock"></span>Solo ser&aacute;
-                            visible por tu contraparte cuando contrates un servicio</small>
+                            visible por tu contraparte cuando contrates un servicio.</small>
                     </div>
                 </div>
                 <br />
@@ -75,7 +75,7 @@
                         @Html.PasswordFor(m => m.Contrasenia, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Contrasenia)
                         <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Entre
-                            5 y 10 caracteres. Debe contener, al menos, 1 numero y 1 mayuscula</small>
+                            5 y 10 caracteres. Debe contener, al menos, 1 n&uacute;mero y 1 may&uacute;scula.</small>
                     </div>
                 </div>
                 <br />
