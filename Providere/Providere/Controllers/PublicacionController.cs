@@ -20,6 +20,7 @@ namespace Providere.Controllers
         PreguntaServicios ppr = new PreguntaServicios();
         DenunciaServicios ds = new DenunciaServicios();
         PuntajeServicios pus = new PuntajeServicios();
+        ReplicaServicios rs = new ReplicaServicios();
 
         SancionServicios ss = new SancionServicios();
 
@@ -170,6 +171,9 @@ namespace Providere.Controllers
 
             var traerCalificaciones = cas.TraerCalificaciones(idPublicacion);
             ViewBag.Calificaciones = traerCalificaciones;
+
+            var replicasTodas = rs.TraerTodasLasReplicas();
+            ViewBag.FueReplicado = replicasTodas;
 
             ViewBag.accionPadre = "VisualizarPublicacion";
 
