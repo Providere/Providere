@@ -236,3 +236,7 @@ footer.transparente .container
     padding: 10px 0 0;
 }
 
+.IdRubro.form-control 
+{
+    margin-bottom: 8px;
+    }
