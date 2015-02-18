@@ -37,7 +37,7 @@
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#editar1" role="tab" data-toggle="tab">
             Editar publicación</a></li>
-        <li role="presentation"><a href="#editar2" role="tab" data-toggle="tab">Borrar imagenes</a></li>
+        <li role="presentation"><a href="#editar2" role="tab" data-toggle="tab">Borrar imágenes</a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -85,7 +85,7 @@
                         <div class="row">
                             @Html.LabelFor(model => model.Descripcion, new { @class = "col-sm-5 control-label" })
                             <div class="col-xs-5">
-                                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", row = 5})
+                                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", row = 5 })
                                 @Html.ValidationMessageFor(model => model.Descripcion)
                             </div>
                         </div>
@@ -117,12 +117,12 @@
                         </div>
                         <br />
                         <div class="row">
-                            @Html.Label("Cargar imagenes de trabajos anteriores", new { @class = "col-sm-5 control-label" })
+                            @Html.Label("Cargar imágenes de trabajos anteriores", new { @class = "col-sm-5 control-label" })
                             <div class="col-xs-3">
                                 @Html.TextBox("files", "", new { type = "file", multiple = "multiple" })
                                 <p class="text-info">
-                                    <span class="glyphicon glyphicon-exclamation-sign"></span>Como maximo 4 imagenes,en
-                                    formato .jpg</p>
+                                    <span class="glyphicon glyphicon-exclamation-sign"></span>Como máximo 4 imágenes,
+                                    en formato .jpg</p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -138,7 +138,7 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="editar2">
             <h3>
-                Borrar imagenes de trabajos realizados</h3>
+                Borrar imágenes de trabajos realizados</h3>
             <br />
             <div class="content">
                 <div class="col-md-12">
@@ -152,11 +152,10 @@
                                 <a href="../../Imagenes/Publicacion/@item.Nombre" data-lightbox="roadtrip">
                                     <img src="../../Imagenes/Publicacion/@item.Nombre"  width="100%" alt="" height= "200px" />
                                 </a>
-                                <div class="col-md-offset-1">
-                                    <br />
-                                    <button type="submit" id="btnBorrar" class="btn btn-warning btn-xs glyphicon glyphicon-remove">
-                                        Borrar</button>
-                                </div>
+                                <br />
+                                <br />
+                                <button type="submit" id="btnBorrar" class="btn btn-warning btn-xs">
+                                    Borrar</button>
                             </div>                      
                             }
                         }
