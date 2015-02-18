@@ -1,55 +1,71 @@
 /** CLASES GLOBALES **/
 
-.float-left { float:left }
-.margin-top { margin-top: 15px }
+.float-left
+{
+    float: left;
+}
+.margin-top
+{
+    margin-top: 15px;
+}
 
 
 
 /** BASE **/
 
-html { /* para el footer fijo en la base */
-  position: relative;
-  min-height: 100%;
+html
+{
+    /* para el footer fijo en la base */
+    position: relative;
+    min-height: 100%;
 }
 
-body {
-    background: url(http://subtlepatterns.com/patterns/light_grey.png);
-
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+body
+{
+    background: url(http://subtlepatterns.com/patterns/light_grey.png); /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 
-hr 
-{    
+hr
+{
     border-top: 1px solid #D2D2D2;
 }
 
-.header {
-
- background: url('../img/index.jpg') no-repeat scroll center center transparent;
- margin-bottom: 50px;
-
+.header
+{
+    background: url('../img/index.jpg') no-repeat scroll center center transparent;
+    margin-bottom: 50px;
 }
-.margin-top { margin-top: 10px }
+.margin-top
+{
+    margin-top: 10px;
+}
 
-#contenedor-logo {    padding-top: 18px;
+#contenedor-logo
+{
+    padding-top: 18px;
     padding-bottom: 18px;
 }
 
-#buscador {
-margin-top: -25px;
-margin-bottom: 5px;
+#buscador
+{
+    margin-top: -25px;
+    margin-bottom: 5px;
 }
 
-#contenedor-botones-index li{
-	margin-left: 10px;margin-top: 37px;
+#contenedor-botones-index li
+{
+    margin-left: 10px;
+    margin-top: 37px;
 }
-#contenedor-botones-index span{
-	margin-right: 6px
+#contenedor-botones-index span
+{
+    margin-right: 6px;
 }
 
-.portada {
-	background: url('../img/index.jpg') no-repeat center center;
+.portada
+{
+    background: url('../img/index.jpg') no-repeat center center;
     padding-bottom: 20px;
     color: #FFF;
     text-align: center;
@@ -57,46 +73,53 @@ margin-bottom: 5px;
     text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-.portada .container {
+.portada .container
+{
     /* padding: 25px; */
 }
 
-.portada h2{
+.portada h2
+{
     font-size: 3.2em;
     color: #FFF;
 }
-.portada p {
+.portada p
+{
     font-size: 1.6em;
-    font-family: 'PT Sans', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'PT Sans' , 'Source Sans Pro' , 'Helvetica Neue' , Helvetica, Arial, sans-serif;
 }
-.portada .glyphicon-chevron-down{
+.portada .glyphicon-chevron-down
+{
     font-size: 1.8em;
 }
-.glyphicon {
-margin-right: 7px;
-
-}
-.contenedor-img 
+.glyphicon
 {
-    max-height:200px;
-    overflow:hidden;
+    margin-right: 7px;
 }
-.contenedor-img >img
+.contenedor-img
 {
-    min-height: 200px
+    max-height: 200px;
+    overflow: hidden;
 }
-.user-menu {
-	margin-top: 1em
+.contenedor-img > img
+{
+    min-height: 200px;
 }
-.iconos-sociales img{
-	float:right;margin-left: 10px;
+.user-menu
+{
+    margin-top: 1em;
+}
+.iconos-sociales img
+{
+    float: right;
+    margin-left: 10px;
 }
 
 .precio-detalle
 {
     font-size: 2em;
-font-style: italic;
-color: #0995B2;
+    font-style: italic;
+    color: #0995B2;
 }
 
 .contratar-btn, .btnTel
@@ -104,44 +127,39 @@ color: #0995B2;
     font-size: 1.1em;
 }
 
-.contratar-btn:before {
-content: "\e013";
-margin-right: 7px;
-position: relative;
-top: 1px;
-display: inline-block;
-font-family: 'Glyphicons Halflings';
-font-style: normal;
-font-weight: normal;
-line-height: 1;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
+.contratar-btn:before
+{
+    content: "\e013";
+    margin-right: 7px;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
-    
-.avatar img{
 
+.avatar img
+{
     height: auto;
     float: left;
-    
     width: 50px;
     height: 50px;
-
     margin-top: 0.8em;
-    
-
     margin-right: 1em;
     position: relative;
-
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    border-radius: 50%;
-
-    /* -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2); */
+    border-radius: 50%; /* -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2); */
     -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
-    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999,
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999,;
 }
 
-footer {
+footer
+{
     border: 0;
     line-height: 46px;
     border-style: solid;
@@ -154,62 +172,58 @@ footer {
     height: 57px;
 }
 
-footer .text-info {
+footer .text-info
+{
     margin-left: 10px;
 }
 
 
-footer.transparente 
+footer.transparente
 {
     background-color: transparent;
-}   
+}
 
-footer.transparente, .footer.transparente .a 
+footer.transparente, .footer.transparente .a
 {
-    
     color: #2CA6BF;
-
 }
 
- .footer.transparente .a:hover,
- .footer.transparente .a:focus
+.footer.transparente .a:hover, .footer.transparente .a:focus
 {
-    
     color: #155E6D;
-
 }
 
-footer.transparente .container 
+footer.transparente .container
 {
     border-top: 1px dotted rgb(188, 188, 188);
     padding-top: 20px;
-
 }
 
-.listado-publicaciones .thumbnail {
-    height: 400px
+.listado-publicaciones .thumbnail
+{
+    height: 400px;
 }
 
-.listado-publicaciones strong 
+.listado-publicaciones strong
 {
     font-size: 1.2em;
 }
 
-.mensaje-sin-registros 
+.mensaje-sin-registros
 {
-    min-height:300px
+    min-height: 300px;
 }
 
-.mensaje-sin-registros .text-muted 
+.mensaje-sin-registros .text-muted
 {
-    padding-top:130px
+    padding-top: 130px;
 }
 
 /*PARA GOOGLE MAPS*/
 .map_canvas
 {
-    width:410px;
-    height:281px;
+    width: 410px;
+    height: 281px;
     margin: auto;
 }
 
@@ -217,26 +231,30 @@ footer.transparente .container
 {
     border: 1px solid rgb(214, 214, 214);
     border-radius: 5px;
-    padding:  20px;
+    padding: 20px;
     background-color: #0995B2;
     color: white;
     text-align: center;
 }
 
-.ficha-publicante>div>*
+.ficha-publicante > div > *
 {
-    color:#FFF;
+    color: #FFF;
 }
 
 .ficha-publicante .ubicacion
 {
-    
-    border-top: 1px solid white;  
+    border-top: 1px solid white;
     margin: 10px auto 0;
     padding: 10px 0 0;
 }
 
-.IdRubro.form-control 
+.IdRubro.form-control
 {
     margin-bottom: 8px;
-    }
+}
+
+#publicacion .titulo
+{
+    margin-top: 0;
+}

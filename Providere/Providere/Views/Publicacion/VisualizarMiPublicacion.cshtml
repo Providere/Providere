@@ -27,7 +27,7 @@
         @ViewBag.Exito
     </div>
 }
-<div class="col-md-12 well">
+<div id="publicacion" class="col-md-12 well">
     <h1 class="text-right">
         @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
         {
@@ -41,38 +41,14 @@
     <div>
         @Html.HiddenFor(model => model.Id)
     </div>
-    <h1 class="text-center">
+
+    <div>
+    <h1 class="titulo text-center col-md-9">
         @Html.DisplayFor(model => model.Titulo)
     </h1>
-    <hr />
-    <div class="col-md-9">
-        <div class="col-md-8">
-            <h3>
-                Descripción</h3>
-            <p>
-                @Html.DisplayFor(model => model.Descripcion)</p>
-        </div>
-        <div class="col-md-4">
-            <h3>
-                Precio
-            </h3>
-            <span class="precio-detalle">
-                @if (Model.PrecioOpcion != null)
-                {
 
-                    if (Model.PrecioOpcion == 1)
-                    {
-                    @Html.Label("A Convenir") 
-                    }
-                    else
-                    {
-                    @Html.Label("$") 
-                    @Html.DisplayFor(model => model.Precio)
-                    }
-                }
-            </span>
-        
-        <div class="">
+    
+        <div class="col-md-3">
             @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
             {
                 <button name="btnTel" class="btnTel btn btn-primary btn-lg btn-block disabled" type="button">
@@ -113,7 +89,39 @@
                 }
             }
         </div>
+      
+      
+    </div>
+    <div  class="col-md-12" >
+        <hr/>
+    </div>
+    <div class="col-md-9">
+        <div class="col-md-8">
+            <h3>
+                Descripción</h3>
+            <p>
+                @Html.DisplayFor(model => model.Descripcion)</p>
         </div>
+        <div class="col-md-4">
+            <h3>
+                Precio
+            </h3>
+            <span class="precio-detalle">
+                @if (Model.PrecioOpcion != null)
+                {
+
+                    if (Model.PrecioOpcion == 1)
+                    {
+                    @Html.Label("A Convenir") 
+                    }
+                    else
+                    {
+                    @Html.Label("$") 
+                    @Html.DisplayFor(model => model.Precio)
+                    }
+                }
+            </span>
+          </div>
         <div class="col-md-12">
             <h3>
                 Calificaciones</h3>
@@ -529,7 +537,9 @@
             }
         </div>
     </div>
-    <div id="ficha-publicante" class="ficha-publicante col-md-3">
+    <div class="col-md-3">
+    
+    <div id="ficha-publicante" class="ficha-publicante ">
         <div class="contenedor-imagen-publicacion">
             @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
             {               
@@ -554,6 +564,7 @@
             <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)
             </span>
         </div>
+    </div>
     </div>
     <div class="col-md-12">
         <div class="col-md-12">
