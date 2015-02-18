@@ -86,10 +86,10 @@
                 {
                     <h3>@item.Rubro.Nombre   
                 
-                         @* @if(item.SubRubro.Nombre != null)
+                          @if(item.SubRubro != null)
                              {
                               @item.SubRubro.Nombre
-                             }   *@                      
+                             }                      
                                                
                 @item.Titulo</h3>
                     
@@ -114,33 +114,6 @@
                         @item2.Total
                     </div>
                 </div>
-                
-                
-                
-                        @*    <tr>
-                                <td>
-                                  <a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a>
-                                </td>
-                                <td>
-                                   @item.Publicacion.Usuario.Nombre
-                                </td>
-                                <td>
-                                    @item.Publicacion.Usuario.Apellido
-                                </td>
-                                <td>
-                                    @item.Publicacion.Usuario.Telefono
-                                </td>
-                                <td>
-                                    @if (item.FlagCalificoCliente == 0)
-                                    { 
-                                        @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 1 }, null)
-                                    }
-                                    else
-                                    { 
-                                        @Html.DisplayName("Ver CALIFICACION")
-                                    }
-                                </td>
-                            </tr>*@
                     
                 }
                    
