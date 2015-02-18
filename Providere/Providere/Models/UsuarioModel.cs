@@ -62,7 +62,7 @@ namespace Providere.Models
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object FechaCreacion { get; set; }
 
-            [DisplayFormat(ConvertEmptyStringToNull = false)]
+            [DisplayFormat(ConvertEmptyStringToNull = false, DataFormatString = "{0:dd/MM/yyyy}")]
             public object FechaActivacion { get; set; }
 
             [DisplayFormat(ConvertEmptyStringToNull = false)]
