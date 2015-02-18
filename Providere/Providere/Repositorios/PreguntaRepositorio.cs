@@ -74,12 +74,21 @@ namespace Providere.Repositorios
             return pregunta;
         }
 
-        public object TraerPreguntasPublicacion(int id)
+        public object TraerPreguntasPublicacion(int id, int desde)
         {
             var preguntas = (from pr in context.PreguntaRespuesta
                              where pr.IdPublicacion == id
                              orderby pr.FechaRespuesta descending
-                             select pr).ToList();
+                             select pr).Skip(desde).ToList();
+            return preguntas;
+        }
+
+        public object TraerPreguntasPublicacionPrimeras(int id, int limite)
+        {
+            var preguntas = (from pr in context.PreguntaRespuesta
+                             where pr.IdPublicacion == id
+                             orderby pr.FechaRespuesta descending
+                             select pr).Take(limite).ToList();
             return preguntas;
         }
     }
