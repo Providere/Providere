@@ -78,38 +78,42 @@
         <div class="col-md-8">
 
             @foreach (var item in ViewBag.ListaPublicaciones)
-            {
+            {                
+               foreach (var item2 in ViewBag.ListaPuntajes)
+               {
                 
-                <h3>@item.Rubro.Nombre   
-                
-               @* @if(item.SubRubro.Nombre != null)
+                if (item2.IdPublicacion == item.Id)
                 {
-                    @item.SubRubro.Nombre
-                }  *@                         
+                    <h3>@item.Rubro.Nombre   
+                
+                         @* @if(item.SubRubro.Nombre != null)
+                             {
+                              @item.SubRubro.Nombre
+                             }   *@                      
                                                
                 @item.Titulo</h3>
-                
-               @* <div class="row">
+                    
+                <div class="row">
                     <div class="col-sm-4 editor-field">
                         <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                         @Html.DisplayName("Positivo")
-                        @
+                        @item2.Positivo
                     </div>
                     <div class="col-sm-4 editor-field">
                         <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                         @Html.DisplayName("Neutro")
-                        @ViewBag.PuntajeCliente.Neutro
+                        @item2.Neutro
                     </div>
                     <div class="col-sm-4 editor-field">
                         <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                         @Html.DisplayName("Negativo")
-                        @ViewBag.PuntajeCliente.Negativo
+                        @item2.Negativo
                     </div>
                     <div class="col-sm-4 editor-field">
                         @Html.DisplayName("Total")
-                        @ViewBag.PuntajeCliente.Total
+                        @item2.Total
                     </div>
-            </div>*@
+                </div>
                 
                 
                 
@@ -137,6 +141,10 @@
                                     }
                                 </td>
                             </tr>*@
+                    
+                }
+                   
+               }
             }
 
 

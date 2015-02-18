@@ -67,7 +67,7 @@ namespace Providere.Servicios
             pr.CargarImagenes(pathImagen, idUsuario);
         }
 
-        public object ListarMisPublicaciones(int idUsuario)
+        public List<Publicacion> ListarMisPublicaciones(int idUsuario) //Le saco el object
         {
             var misPublicaciones = pr.ListarMisPublicaciones(idUsuario);
             return misPublicaciones;

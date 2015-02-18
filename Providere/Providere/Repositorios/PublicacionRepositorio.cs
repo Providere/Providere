@@ -107,7 +107,7 @@ namespace Providere.Repositorios
             context.SaveChanges();
         }
 
-        public object ListarMisPublicaciones(int idUsuario)
+        public List<Publicacion> ListarMisPublicaciones(int idUsuario)
         {
             var resultado = (from publicaciones in context.Publicacion
                              where (publicaciones.IdUsuario == idUsuario)  //Listar todas mis publicaciones

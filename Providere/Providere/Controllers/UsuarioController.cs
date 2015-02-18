@@ -383,12 +383,14 @@ namespace Providere.Controllers
 
             // Busco las publicaciones
             var publicaciones = ps.ListarMisPublicaciones(idUsuario);
+
             ViewBag.ListaPublicaciones = publicaciones;
 
             // Busco los puntajes
-          //  var puntajes = pus.traerPuntajesDePublicacionesDeUnUsuario(publicaciones);
+            var puntajes = pus.traerPuntajesDePublicacionesDeUnUsuario(publicaciones);
 
-            
+            ViewBag.ListaPuntajes = puntajes;
+
             return View(usuario);
         }
 
