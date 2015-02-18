@@ -35,9 +35,9 @@ namespace Providere.Controllers
             ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
 
             //Para verificar si hay mas de 4 y mostrar boton "ver mas"
-            ViewBag.PublicacionesMasRecientesVarias = ps.traerPublicacionesMasRecientes(5);
-            ViewBag.PrestadoresMejorCalificadosVarios = ps.traerPublicacionesMejorCalificadas(5);
-            ViewBag.UsuariosMasCercanosVarios = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), 5);
+            ViewBag.PublicacionesMasRecientesMas = ps.traerPublicacionesMasRecientes(5);
+            ViewBag.PrestadoresMejorCalificadosMas = ps.traerPublicacionesMejorCalificadas(5);
+            ViewBag.UsuariosMasCercanosMas = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), 5);
             
             return View();
         }

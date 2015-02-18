@@ -23,7 +23,7 @@ namespace Providere.Repositorios
             
         }
 
-        public object TraerTodasLasReplicas()
+        public List<Replica> TraerTodasLasReplicas()
         {
             var resultado = (from replica in context.Replica
                              select replica).ToList();

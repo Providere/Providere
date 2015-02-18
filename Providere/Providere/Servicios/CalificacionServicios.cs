@@ -29,34 +29,49 @@ namespace Providere.Servicios
             return cr.obtenerNegativasDeUsuario(usuario);
         }
 
-        public object TraerCalificaciones(int idPublicacion)
+        public List<Calificacion> TraerCalificaciones(int idPublicacion)
         {
             return cr.TraerCalificaciones(idPublicacion);
         }
 
-        public object TraerPrimerasCalificaciones(int limite, int idPublicacion)
+        public List<Calificacion> TraerPrimerasCalificaciones(int limite, int idPublicacion)
         {
             return cr.TraerPrimerasCalificaciones(limite, idPublicacion);
         }
 
-        public object TraerCalificacionesObtenidas(int idUsuario,int limite)
+        public List<Calificacion> TraerCalificacionesObtenidas(int idUsuario,int limite)
         {
             return cr.TraerCalificacionesObtenidas(idUsuario, limite);
         }
 
-        public object TraerCalificacionesOtorgadas(int idUsuario, int limite)
+        public List<Calificacion> TraerCalificacionesOtorgadas(int idUsuario, int limite)
         {
             return cr.TraerCalificacionesOtorgadas(idUsuario, limite);
         }
 
-        public object TraerCalificacionesObtenidasTodas(int idUsuario)
+        public List<Calificacion> TraerCalificacionesObtenidasTodas(int idUsuario)
         {
             return cr.TraerCalificacionObtenidasTodas(idUsuario);
         }
 
-        public object TraerCalificacionesOtorgadasTodas(int idUsuario)
+        public List<Calificacion> TraerCalificacionesOtorgadasTodas(int idUsuario)
         {
             return cr.TraerCalificacionesOtorgadasTodas(idUsuario);
+        }
+
+        public List<Calificacion> TraerCalificacionesPositivas(int idPublicacion)
+        {
+            return cr.TraerCalificacionesPositivas(idPublicacion);
+        }
+
+        public List<Calificacion> TraerCalificacionesNeutras(int idPublicacion)
+        {
+            return cr.TraerCalificacionesNeutras(idPublicacion);
+        }
+
+        public List<Calificacion> TraerCalificacionesNegativas(int idPublicacion)
+        {
+            return cr.TraerCalificacionesNegativas(idPublicacion);
         }
     }
 }

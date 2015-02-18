@@ -72,7 +72,7 @@
                     using (Html.BeginForm("EliminarPregunta", "Pregunta", new { id = item.Id }, FormMethod.Post))
                     {
                 <br />
-                   <div class="col-md-9">
+
                 <div class="col-md-12">
                     <legend><a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
                    <dl class="question" id="pregunta">
@@ -94,7 +94,6 @@
                             <span class="glyphicon glyphicon-trash"></span>Borrar pregunta</button>
                     </dl>
                     <br />
-                </div>
                 </div>
                     }
                 }

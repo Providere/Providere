@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Providere.Repositorios;
+using Providere.Models;
 
 namespace Providere.Servicios
 {
@@ -15,7 +16,7 @@ namespace Providere.Servicios
             rer.ReplicarComentario(id, replicar);
         }
 
-        public object TraerTodasLasReplicas()
+        public List<Replica> TraerTodasLasReplicas()
         {
             return rer.TraerTodasLasReplicas();
         }

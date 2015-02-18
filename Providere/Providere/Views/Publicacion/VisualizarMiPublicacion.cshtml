@@ -246,114 +246,259 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span></button>
                                     <h4 class="modal-title" id="myModalLabel">
-                                        Todas las calificaciones obtenidas</h4>
+                                        Calificaciones recibidas por la contratación de este servicio</h4>
                                 </div>
                                 <div class="modal-body">
-                                    @if (ViewBag.Calificaciones.Count > 0)
-                                    {
-                                        foreach (var item in ViewBag.Calificaciones)
+                                    <select id="status" name="status" onchange="mostrar(this.value);">
+                                        <option value="seleccionar">Selecciona una opción</option>
+                                        <option value="todas">Todas</option>
+                                        <option value="positivas">Positivas</option>
+                                        <option value="neutras">Neutras</option>
+                                        <option value="negativas">Negativas</option>
+                                    </select>
+                                    <div id="todas" style="display: none;">
+                                        @if (ViewBag.Calificaciones.Count > 0)
                                         {
-                                            if (item.IdTipoEvaluacion == 1)
-                                            {   
-                                        <div class="row">
-                                            <div>
-                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
-                                            </div>
-                                            <div>
-                                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item.Descripcion</em>
-                                                <dd class="col-sm-offset-4">
-                                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                </dd>
-                                                @if (item.FlagReplicado == 1)
-                                                {
-                                                    foreach (var rep in ViewBag.FueReplicado)
-                                                    {
-                                                        if (rep.IdCalificacion == item.Id)
-                                                        {
-                                                    <dd class="col-sm-offset-4">
-                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
-                                                            <em>@rep.Comentario</em> </span>
-                                                    </dd>
-                                                        }
-                                                    }
-                                                }
-                                            </div>
-                                        </div>
-                                            }
-
-                                            if (item.IdTipoEvaluacion == 2)
-                                            {   
-                                        <div class="row">
-                                            <div>
-                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
-                                            </div>
-                                            <div>
-                                                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span><em>@item.Descripcion</em>
-                                                <dd class="col-sm-offset-4">
-                                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                </dd>
-                                                @if (item.FlagReplicado == 1)
-                                                {
-                                                    foreach (var rep in ViewBag.FueReplicado)
-                                                    {
-                                                        if (rep.IdCalificacion == item.Id)
-                                                        {
-                                                    <dd class="col-sm-offset-4">
-                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
-                                                            <em>@rep.Comentario</em> </span>
-                                                    </dd>
-                                                        }
-                                                    }
-                                                }
-                                            </div>
-                                        </div>
-                                            }
-
-                                            if (item.IdTipoEvaluacion == 3 && item.FlagDenunciado == 0)
-                                            {   
-                                        <div class="row">
-                                            <div>
-                                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
-                                            </div>
-                                            <div>
-                                                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                                <em>@item.Descripcion</em>
-                                                <dd class="col-sm-offset-4">
-                                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                </dd>
-                                                @if (item.FlagReplicado == 1)
-                                                {
-                                                    foreach (var rep in ViewBag.FueReplicado)
-                                                    {
-                                                        if (rep.IdCalificacion == item.Id)
-                                                        {
-                                                    <dd class="col-sm-offset-4">
-                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
-                                                            <em>@rep.Comentario</em> </span>
-                                                    </dd>
-                                                        }
-                                                    }
-                                                }
-                                            </div>
-                                        </div>
-                                            }
-                                            else
+                                            foreach (var item in ViewBag.Calificaciones)
                                             {
-                                                if (item.FlagDenunciado == 1)
-                                                {
-                                        <div class="col-md-5">
-                                            <br />
-                                            <div class="alert alert-danger alert-dismissable">
-                                                <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                                <br />
+                                                if (item.IdTipoEvaluacion == 1)
+                                                {   
+                                            <div>
+                                                <div>
+                                                    <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                    <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                                </div>
+                                                <div>
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item.Descripcion</em>
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    @if (item.FlagReplicado == 1)
+                                                    {
+                                                        foreach (var rep in ViewBag.FueReplicado)
+                                                        {
+                                                            if (rep.IdCalificacion == item.Id)
+                                                            {
+                                                        <dd class="col-sm-offset-4">
+                                                            <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                                <em>@rep.Comentario</em> </span>
+                                                        </dd>
+                                                            }
+                                                        }
+                                                    }
+                                                </div>
                                             </div>
-                                        </div> 
+                                                }
+
+                                                if (item.IdTipoEvaluacion == 2)
+                                                {   
+                                            <div>
+                                                <div>
+                                                    <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                    <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                                </div>
+                                                <div>
+                                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span><em>@item.Descripcion</em>
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    @if (item.FlagReplicado == 1)
+                                                    {
+                                                        foreach (var rep in ViewBag.FueReplicado)
+                                                        {
+                                                            if (rep.IdCalificacion == item.Id)
+                                                            {
+                                                        <dd class="col-sm-offset-4">
+                                                            <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                                <em>@rep.Comentario</em> </span>
+                                                        </dd>
+                                                            }
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                                }
+
+                                                if (item.IdTipoEvaluacion == 3 && item.FlagDenunciado == 0)
+                                                {   
+                                            <div>
+                                                <div>
+                                                    <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                    <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                                </div>
+                                                <div>
+                                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                    <em>@item.Descripcion</em>
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    @if (item.FlagReplicado == 1)
+                                                    {
+                                                        foreach (var rep in ViewBag.FueReplicado)
+                                                        {
+                                                            if (rep.IdCalificacion == item.Id)
+                                                            {
+                                                        <dd class="col-sm-offset-4">
+                                                            <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                                <em>@rep.Comentario</em> </span>
+                                                        </dd>
+                                                            }
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                                }
+                                                else
+                                                {
+                                                    if (item.FlagDenunciado == 1)
+                                                    {
+                                            <div class="col-md-5">
+                                                <br />
+                                                <div class="alert alert-danger alert-dismissable">
+                                                    <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                                </div>
+                                            </div> 
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                    </div>
+                                    @* Solo positivas*@
+                                    <div id="positivas" style="display: none;">
+                                        @if (ViewBag.CalificacionesPositivas.Count > 0)
+                                        {
+                                            foreach (var item1 in ViewBag.CalificacionesPositivas)
+                                            {
+                                            <br />
+                                            <div>
+                                                <div>
+                                                    <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item1.IdCalificador })" alt="avatar" width="40px"/>
+                                                    <a href="#">@item1.Contratacion.Usuario.Nombre @item1.Contratacion.Usuario.Apellido</a>
+                                                </div>
+                                                <div>
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item1.Descripcion</em>
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item1.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    @if (item1.FlagReplicado == 1)
+                                                    {
+                                                        foreach (var rep1 in ViewBag.FueReplicado)
+                                                        {
+                                                            if (rep1.IdCalificacion == item1.Id)
+                                                            {
+                                                        <dd class="col-sm-offset-4">
+                                                            <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                                <em>@rep1.Comentario</em> </span>
+                                                        </dd>
+                                                            }
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <center>
+                                                No hay calificaciones positivas para mostrar.</center>
+                                        }
+                                    </div>
+                                    @* Solo neutras*@
+                                    <div id="neutras" style="display: none;">
+                                        @if (ViewBag.CalificacionesNeutras.Count > 0)
+                                        {
+                                            foreach (var item2 in ViewBag.CalificacionesNeutras)
+                                            {
+                                            <br />
+                                            <div>
+                                                <div>
+                                                    <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item2.IdCalificador })" alt="avatar" width="40px"/>
+                                                    <a href="#">@item2.Contratacion.Usuario.Nombre @item2.Contratacion.Usuario.Apellido</a>
+                                                </div>
+                                                <div>
+                                                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span><em>@item2.Descripcion</em>
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item2.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    @if (item2.FlagReplicado == 1)
+                                                    {
+                                                        foreach (var rep2 in ViewBag.FueReplicado)
+                                                        {
+                                                            if (rep2.IdCalificacion == item2.Id)
+                                                            {
+                                                        <dd class="col-sm-offset-4">
+                                                            <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                                <em>@rep2.Comentario</em> </span>
+                                                        </dd>
+                                                            }
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <center>
+                                                No hay calificaciones neutras para mostrar.</center>
+                                        }
+                                    </div>
+                                    @* Solo negativas*@
+                                    <div id="negativas" style="display: none;">
+                                        @if (ViewBag.CalificacionesNegativas.Count > 0)
+                                        {
+                                            foreach (var item3 in ViewBag.CalificacionesNegativas)
+                                            {
+                                                if (item3.FlagDenunciado == 0)
+                                                {   
+                                            <br />
+                                            <div>
+                                                <div>
+                                                    <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item3.IdCalificador })" alt="avatar" width="40px"/>
+                                                    <a href="#">@item3.Contratacion.Usuario.Nombre @item3.Contratacion.Usuario.Apellido</a>
+                                                </div>
+                                                <div>
+                                                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                    <em>@item3.Descripcion</em>
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item3.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    @if (item3.FlagReplicado == 1)
+                                                    {
+                                                        foreach (var rep3 in ViewBag.FueReplicado)
+                                                        {
+                                                            if (rep3.IdCalificacion == item3.Id)
+                                                            {
+                                                        <dd class="col-sm-offset-4">
+                                                            <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                                <em>@rep3.Comentario</em> </span>
+                                                        </dd>
+                                                            }
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                                }
+                                                else
+                                                {
+                                            <div class="col-md-5">
+                                                <br />
+                                                <div class="alert alert-danger alert-dismissable">
+                                                    <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                                </div>
+                                            </div> 
                                                 }
                                             }
                                         }
-                                    }
+                                        else
+                                        {
+                                            <br />
+                                            <center>
+                                                No hay calificaciones negativas para mostrar.</center>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -435,30 +580,30 @@
             }
             @if (ViewBag.MostrarPreguntas.Count > 0)
             {
-                <a data-toggle="collapse" href="#collapseExample" aria-expanded="false"  aria-controls="collapseExample">
-                    (+) preguntas</a>
+                <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>preguntas</a>
             }
             <div class="collapse" id="collapseExample">
-                    @foreach (var item in ViewBag.MostrarPreguntas)
-                    {
+                @foreach (var item in ViewBag.MostrarPreguntas)
+                {
+                    <br />
+                    <dl class="question" id="pregunta2">
+                        <dd class="txt">
+                            <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
+                        </dd>
                         <br />
-                        <dl class="question" id="pregunta2">
-                            <dd class="txt">
-                                <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
+                        @if (item.Respuesta != null)
+                        {
+                            <dd class="col-md-offset-1">
+                                <span class="text-info"><i class="glyphicon glyphicon-user"></i></span>@item.Respuesta
                             </dd>
-                            <br />
-                            @if (item.Respuesta != null)
-                            {
-                                <dd class="col-md-offset-1">
-                                    <span class="text-info"><i class="glyphicon glyphicon-user"></i></span>@item.Respuesta
-                                </dd>
-                                <dd class="col-sm-offset-2">
-                                    <small><span class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                </dd>
-                            }
-                        </dl>
-                        <hr />
-                    }
+                            <dd class="col-sm-offset-2">
+                                <small><span class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                            </dd>
+                        }
+                    </dl>
+                    <hr />
+                }
             </div>
         </div>
         <div class="col-md-12">
@@ -525,3 +670,4 @@
             }
         </div>
     </div>
+</div>

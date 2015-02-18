@@ -74,7 +74,7 @@ namespace Providere.Repositorios
             return pregunta;
         }
 
-        public object TraerPreguntasPublicacion(int id, int desde)
+        public List<PreguntaRespuesta> TraerPreguntasPublicacion(int id, int desde)
         {
             var preguntas = (from pr in context.PreguntaRespuesta
                              where pr.IdPublicacion == id
@@ -83,7 +83,7 @@ namespace Providere.Repositorios
             return preguntas;
         }
 
-        public object TraerPreguntasPublicacionPrimeras(int id, int limite)
+        public List<PreguntaRespuesta> TraerPrimerasPreguntas(int id, int limite)
         {
             var preguntas = (from pr in context.PreguntaRespuesta
                              where pr.IdPublicacion == id
