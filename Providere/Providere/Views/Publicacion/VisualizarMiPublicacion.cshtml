@@ -140,7 +140,8 @@
                                     if (rep.IdCalificacion == item.Id)
                                     {
                                 <dd class="col-sm-offset-3">
-                                    <span class="label label-default">Réplica: <em>@rep.Comentario</em> </span>
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
                                 </dd>
                                     }
                                 }
@@ -168,7 +169,8 @@
                                     if (rep.IdCalificacion == item.Id)
                                     {
                                 <dd class="col-sm-offset-3">
-                                    <span class="label label-default">Réplica: <em>@rep.Comentario</em> </span>
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
                                 </dd>
                                     }
                                 }
@@ -197,7 +199,8 @@
                                     if (rep.IdCalificacion == item.Id)
                                     {
                                 <dd class="col-sm-offset-3">
-                                    <span class="label label-default">Réplica: <em>@rep.Comentario</em> </span>
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
                                 </dd>
                                     }
                                 }
@@ -222,7 +225,7 @@
                 else
                 {
                     <div class="col-md-12">
-                        No existen calificaciones para mostrar
+                        No existen calificaciones para mostrar.
                     </div>
                 }
                 @if (ViewBag.Calificaciones.Count > 5)
@@ -269,7 +272,8 @@
                                                         if (rep.IdCalificacion == item.Id)
                                                         {
                                                     <dd class="col-sm-offset-4">
-                                                        <span class="label label-default">Réplica: <em>@rep.Comentario</em> </span>
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
                                                     </dd>
                                                         }
                                                     }
@@ -297,7 +301,8 @@
                                                         if (rep.IdCalificacion == item.Id)
                                                         {
                                                     <dd class="col-sm-offset-4">
-                                                        <span class="label label-default">Réplica: <em>@rep.Comentario</em> </span>
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
                                                     </dd>
                                                         }
                                                     }
@@ -326,7 +331,8 @@
                                                         if (rep.IdCalificacion == item.Id)
                                                         {
                                                     <dd class="col-sm-offset-4">
-                                                        <span class="label label-default">Réplica: <em>@rep.Comentario</em> </span>
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
                                                     </dd>
                                                         }
                                                     }
@@ -358,7 +364,7 @@
         <div class="col-md-12">
             <h3>
                 Últimos trabajos realizados</h3>
-            @if (ViewBag.NoExistenImagenes == "No existen imagenes para mostrar")
+            @if (ViewBag.NoExistenImagenes == "No existen imágenes para mostrar.")
             {
                 @ViewBag.NoExistenImagenes
             }
@@ -403,29 +409,58 @@
             </span>
         </div>
     </div>
-    <div class="col-md-9">
-        <div class="col-md-12">
-            <h3>
-                Preguntas al prestador</h3>
-            @ViewBag.NoExistenPreguntas
-            @foreach (var item in ViewBag.MostrarPreguntas)
-            {
-                <dl class="question" id="pregunta">
-                    <dd class="txt">
-                        <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
+    <div class="col-md-12">
+        <h3>
+            Preguntas al prestador</h3>
+        @ViewBag.NoExistenPreguntas
+        @foreach (var item in ViewBag.MostrarPrimerasPreguntas)
+        {
+            <dl class="question" id="pregunta">
+                <dd class="txt">
+                    <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
+                </dd>
+                <br />
+                @if (item.Respuesta != null)
+                {
+                    <dd class="col-md-offset-1">
+                        <span class="text-info"><i class="glyphicon glyphicon-user"></i></span>@item.Respuesta
                     </dd>
+                    <dd class="col-sm-offset-2">
+                        <small><span class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                    </dd>
+                }
+            </dl>
+            <hr />
+        }
+        @if (ViewBag.MostrarPreguntas.Count > 0)
+        {
+            <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                ver mas preguntas</a>
+            
+        }
+        <div class="collapse" id="collapseExample">
+            <div class="row">
+                @foreach (var item in ViewBag.MostrarPreguntas)
+                {
                     <br />
-                    @if (item.Respuesta != null)
-                    {
-                        <dd class="col-md-offset-1">
-                            <span class="text-info"><i class="glyphicon glyphicon-user"></i></span>@item.Respuesta
+                    <dl class="question" id="pregunta2">
+                        <dd class="txt">
+                            <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
                         </dd>
-                        <dd class="col-sm-offset-2">
-                            <small><span class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                        </dd>
-                    }
-                </dl>
-            }
+                        <br />
+                        @if (item.Respuesta != null)
+                        {
+                            <dd class="col-md-offset-1">
+                                <span class="text-info"><i class="glyphicon glyphicon-user"></i></span>@item.Respuesta
+                            </dd>
+                            <dd class="col-sm-offset-2">
+                                <small><span class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                            </dd>
+                        }
+                    </dl>
+                    <hr />
+                }
+            </div>
         </div>
     </div>
     <div class="col-md-12">
@@ -441,7 +476,7 @@
             </div>
            
            
-            <div class="form-group col-md-8">
+            <div class="form-group col-md-10">
                 <br />
                 @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta..." })
                 <span class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>No
@@ -459,7 +494,7 @@
         {
             if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
             {
-            <div class="form-group col-md-8">
+            <div class="form-group col-md-10">
                 <br />
                 @Html.TextArea("preguntar", new { @class = "form-control", placeholder = "Escribe tu pregunta..." })
                 <p class="text-info">
@@ -476,7 +511,7 @@
             {
                 if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
                 {               
-            <div class="form-group col-md-8">
+            <div class="form-group col-md-10">
                 <br />
                 @Html.TextArea("preguntar", new { @class = "form-control", placeholder = "Escribe tu pregunta..." })
                 <p class="text-info">

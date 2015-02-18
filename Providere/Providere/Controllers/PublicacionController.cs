@@ -118,7 +118,7 @@ namespace Providere.Controllers
                 ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar.";
             }
 
-            var mostrarPreguntas = ppr.TraerPreguntasPublicacion(id);
+            var mostrarPreguntas = ppr.TraerPreguntasPublicacion(id,5);
             ViewBag.MostrarPreguntas = mostrarPreguntas;
 
             //Para mostrar todas las calificaciones de la publicacion:
@@ -163,8 +163,12 @@ namespace Providere.Controllers
                 ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar.";
             }
 
-            var mostrarPreguntas = ppr.TraerPreguntasPublicacion(idPublicacion);
+            var mostrarPrimerasPreguntas = ppr.TraerPreguntasPublicacionPrimeras(idPublicacion, 5);
+            ViewBag.MostrarPrimerasPreguntas = mostrarPrimerasPreguntas;
+
+            var mostrarPreguntas = ppr.TraerPreguntasPublicacion(idPublicacion,5);
             ViewBag.MostrarPreguntas = mostrarPreguntas;
+           
 
             var traerPrimerasCalificaciones = cas.TraerPrimerasCalificaciones(5, idPublicacion);
             ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
