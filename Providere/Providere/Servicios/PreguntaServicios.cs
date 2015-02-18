@@ -48,12 +48,12 @@ namespace Providere.Servicios
             return true;
         }
 
-        public object TraerPreguntasPublicacion(int id, int desde)
+        public List<PreguntaRespuesta> TraerPreguntasPublicacion(int id, int desde)
         {
             return prr.TraerPreguntasPublicacion(id, desde);
         }
 
-        public object TraerPrimerasPreguntas(int id, int limite)
+        public List<PreguntaRespuesta> TraerPrimerasPreguntas(int id, int limite)
         {
             return prr.TraerPrimerasPreguntas(id, limite);
         }

@@ -132,6 +132,15 @@ namespace Providere.Controllers
             var traerPrimerasCalificaciones = cas.TraerPrimerasCalificaciones(5, id);
             ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
 
+            var traerPositivas = cas.TraerCalificacionesPositivas(id);
+            ViewBag.CalificacionesPositivas = traerPositivas;
+
+            var traerNeutras = cas.TraerCalificacionesNeutras(id);
+            ViewBag.CalificacionesNeutras = traerNeutras;
+
+            var traerNegativas = cas.TraerCalificacionesNegativas(id);
+            ViewBag.CalificacionesNegativas = traerNegativas;
+
             var replicasTodas = rs.TraerTodasLasReplicas();
             ViewBag.FueReplicado = replicasTodas;
             
@@ -180,6 +189,15 @@ namespace Providere.Controllers
             ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
             var traerCalificaciones = cas.TraerCalificaciones(idPublicacion);
             ViewBag.Calificaciones = traerCalificaciones;
+
+            var traerPositivas = cas.TraerCalificacionesPositivas(idPublicacion);
+            ViewBag.CalificacionesPositivas = traerPositivas;
+
+            var traerNeutras = cas.TraerCalificacionesNeutras(idPublicacion);
+            ViewBag.CalificacionesNeutras = traerNeutras;
+
+            var traerNegativas = cas.TraerCalificacionesNegativas(idPublicacion);
+            ViewBag.CalificacionesNegativas = traerNegativas;
 
             var replicasTodas = rs.TraerTodasLasReplicas();
             ViewBag.FueReplicado = replicasTodas;

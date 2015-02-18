@@ -25,6 +25,38 @@
 	    })();
 	</script>
 
+    <script type="text/javascript">
+        function mostrar(id) {
+            if (id == "todas") {
+                $("#todas").show();
+                $("#postivas").hide();
+                $("#neutras").hide();
+                $("#negativas").hide();
+            }
+
+            if (id == "positivas") {
+                $("#todas").hide();
+                $("#positivas").show();
+                $("#neutras").hide();
+                $("#negativas").hide();
+            }
+
+            if (id == "neutras") {
+                $("#todas").hide();
+                $("#positivas").hide();
+                $("#neutras").show();
+                $("#negativas").hide();
+            }
+
+            if (id == "negativas") {
+                $("#todas").hide();
+                $("#positivas").hide();
+                $("#neutras").hide();
+                $("#negativas").show();
+            }
+        }
+</script>
+
     <!-- Google Maps -->
     <script language="javascript" type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
     <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

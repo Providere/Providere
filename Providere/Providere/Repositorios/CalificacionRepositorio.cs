@@ -193,7 +193,7 @@ namespace Providere.Repositorios
         }
 
         //Trae las primeras 5 calificaciones para mostrar en la publicacion
-        public object TraerPrimerasCalificaciones(int limite, int idPublicacion)
+        public List<Calificacion> TraerPrimerasCalificaciones(int limite, int idPublicacion)
         {
             var contratacion = (from contrata in context.Contratacion
                                 where contrata.IdPublicacion == idPublicacion
@@ -211,7 +211,7 @@ namespace Providere.Repositorios
         }
 
 
-        public object TraerCalificacionesObtenidas(int idUsuario, int limite)
+        public List<Calificacion> TraerCalificacionesObtenidas(int idUsuario, int limite)
         {
             var resultados = (from califica in context.Calificacion
                               where califica.IdCalificado == idUsuario
@@ -219,7 +219,7 @@ namespace Providere.Repositorios
             return resultados;
         }
 
-        public object TraerCalificacionesOtorgadas(int idUsuario, int limite)
+        public List<Calificacion> TraerCalificacionesOtorgadas(int idUsuario, int limite)
         {
             var resultados = (from califica in context.Calificacion
                               where califica.IdCalificador == idUsuario
@@ -227,7 +227,7 @@ namespace Providere.Repositorios
             return resultados;
         }
 
-        public object TraerCalificacionObtenidasTodas(int idUsuario)
+        public List<Calificacion> TraerCalificacionObtenidasTodas(int idUsuario)
         {
             var resultados = (from califica in context.Calificacion
                               where califica.IdCalificado == idUsuario
@@ -235,12 +235,63 @@ namespace Providere.Repositorios
             return resultados;
         }
 
-        public object TraerCalificacionesOtorgadasTodas(int idUsuario)
+        public List<Calificacion> TraerCalificacionesOtorgadasTodas(int idUsuario)
         {
             var resultados = (from califica in context.Calificacion
                               where califica.IdCalificador == idUsuario
                               select califica).ToList();
             return resultados;
+        }
+
+        public List<Calificacion> TraerCalificacionesPositivas(int idPublicacion)
+        {
+            var contratacion = (from contrata in context.Contratacion
+                                where contrata.IdPublicacion == idPublicacion
+                                select new { contrata.Id });
+            List<int> listaDeContrataciones = new List<int>();
+            foreach (var item in contratacion)
+            {
+                listaDeContrataciones.Add(item.Id);
+            }
+            var resultado = (from calificacion in context.Calificacion
+                             where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdTipoCalificacion == 1 && calificacion.IdTipoEvaluacion == 1)
+                             orderby calificacion.FechaCalificacion descending
+                             select calificacion).ToList();
+            return resultado;
+        }
+
+        public List<Calificacion> TraerCalificacionesNeutras(int idPublicacion)
+        {
+            var contratacion = (from contrata in context.Contratacion
+                                where contrata.IdPublicacion == idPublicacion
+                                select new { contrata.Id });
+            List<int> listaDeContrataciones = new List<int>();
+            foreach (var item in contratacion)
+            {
+                listaDeContrataciones.Add(item.Id);
+            }
+            var resultado = (from calificacion in context.Calificacion
+                             where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdTipoCalificacion == 1 && calificacion.IdTipoEvaluacion == 2)
+                             orderby calificacion.FechaCalificacion descending
+                             select calificacion).ToList();
+            return resultado;
+        }
+
+        public List<Calificacion> TraerCalificacionesNegativas(int idPublicacion)
+        {
+            var contratacion = (from contrata in context.Contratacion
+                                where contrata.IdPublicacion == idPublicacion
+                                select new { contrata.Id });
+            List<int> listaDeContrataciones = new List<int>();
+            foreach (var item in contratacion)
+            {
+                listaDeContrataciones.Add(item.Id);
+            }
+            var resultado = (from calificacion in context.Calificacion
+                             where (listaDeContrataciones.Contains(calificacion.IdContratacion) && calificacion.IdTipoCalificacion == 1 && calificacion.IdTipoEvaluacion == 3)
+                             orderby calificacion.FechaCalificacion descending
+                             select calificacion).ToList();
+            return resultado;
         }
     }
 }
