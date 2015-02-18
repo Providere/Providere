@@ -102,6 +102,8 @@ namespace Providere.Controllers
         // Publicacion/VisualizarMiPublicacion
         public ActionResult VisualizarMiPublicacion(int id)
         {
+            ViewBag.accionPadre = "VisualizarMiPublicacion";
+
             ViewBag.Error = TempData["Error"];
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sancionado.";
@@ -118,21 +120,21 @@ namespace Providere.Controllers
                 ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar.";
             }
 
-            var mostrarPrimerasPreguntas = ppr.TraerPreguntasPublicacionPrimeras(id, 5);
+            var mostrarPrimerasPreguntas = ppr.TraerPrimerasPreguntas(id,5);
             ViewBag.MostrarPrimerasPreguntas = mostrarPrimerasPreguntas;
-
             var mostrarPreguntas = ppr.TraerPreguntasPublicacion(id, 5);
             ViewBag.MostrarPreguntas = mostrarPreguntas;
 
             //Para mostrar todas las calificaciones de la publicacion:
             var traerCalificaciones = cas.TraerCalificaciones(id);
             ViewBag.Calificaciones = traerCalificaciones;
-
             //Para mostrar las primeras 5:
             var traerPrimerasCalificaciones = cas.TraerPrimerasCalificaciones(5, id);
             ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
 
-            ViewBag.accionPadre = "VisualizarMiPublicacion";
+            var replicasTodas = rs.TraerTodasLasReplicas();
+            ViewBag.FueReplicado = replicasTodas;
+            
             var traerPuntaje = pus.TraerPuntaje(id);
             if (traerPuntaje == null)
             {
@@ -144,16 +146,19 @@ namespace Providere.Controllers
             }
 
             ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
+
             return View(miPublicacion);
         }
 
         // Publicacion/VisualizarPublicacion
         public ActionResult VisualizarPublicacion(int idPublicacion)
         {
+            ViewBag.accionPadre = "VisualizarPublicacion";
+
             ViewBag.Error = TempData["Error"];
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Texto = "Comentario denunciado por ser ofensivo hacia terceros. Si sigue infringuiendo las normas de buena conducta, puede ser sancionado.";
-
+           
             Publicacion miPublicacion = ps.TraerPublicacionPorId(idPublicacion);
 
             if (ps.NoExistenImagenes(idPublicacion) == false)
@@ -166,23 +171,18 @@ namespace Providere.Controllers
                 ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar.";
             }
 
-            var mostrarPrimerasPreguntas = ppr.TraerPreguntasPublicacionPrimeras(idPublicacion, 5);
+            var mostrarPrimerasPreguntas = ppr.TraerPrimerasPreguntas(idPublicacion, 5);
             ViewBag.MostrarPrimerasPreguntas = mostrarPrimerasPreguntas;
-
             var mostrarPreguntas = ppr.TraerPreguntasPublicacion(idPublicacion,5);
             ViewBag.MostrarPreguntas = mostrarPreguntas;
            
-
             var traerPrimerasCalificaciones = cas.TraerPrimerasCalificaciones(5, idPublicacion);
             ViewBag.PrimerasCalificaciones = traerPrimerasCalificaciones;
-
             var traerCalificaciones = cas.TraerCalificaciones(idPublicacion);
             ViewBag.Calificaciones = traerCalificaciones;
 
             var replicasTodas = rs.TraerTodasLasReplicas();
             ViewBag.FueReplicado = replicasTodas;
-
-            ViewBag.accionPadre = "VisualizarPublicacion";
 
             var traerPuntaje = pus.TraerPuntaje(idPublicacion);
             if (traerPuntaje == null)
@@ -200,6 +200,7 @@ namespace Providere.Controllers
             ViewBag.Contratada = contratada;
 
             ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
+
             return View("VisualizarMiPublicacion", miPublicacion);
         }
 

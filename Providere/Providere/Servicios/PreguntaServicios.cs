@@ -53,9 +53,9 @@ namespace Providere.Servicios
             return prr.TraerPreguntasPublicacion(id, desde);
         }
 
-        public object TraerPreguntasPublicacionPrimeras(int id, int limite)
+        public object TraerPrimerasPreguntas(int id, int limite)
         {
-            return prr.TraerPreguntasPublicacionPrimeras(id, limite);
+            return prr.TraerPrimerasPreguntas(id, limite);
         }
     }
 }

@@ -83,7 +83,7 @@ namespace Providere.Repositorios
             return preguntas;
         }
 
-        public object TraerPreguntasPublicacionPrimeras(int id, int limite)
+        public object TraerPrimerasPreguntas(int id, int limite)
         {
             var preguntas = (from pr in context.PreguntaRespuesta
                              where pr.IdPublicacion == id

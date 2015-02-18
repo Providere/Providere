@@ -81,7 +81,7 @@
                     </div>
                 }
             </div>
-            @if (ViewBag.PublicacionesMasRecientesVarias.listadoDePublicaciones.Count > 4)
+            @if (ViewBag.PublicacionesMasRecientesMas.listadoDePublicaciones.Count > 4)
             {
                 <center>
                     <a href="@Url.Action("VerMasPublicaciones", "Publicacion")" class="btn btn-primary">
@@ -123,7 +123,7 @@
                     </div>
                 }
             </div>
-            if (ViewBag.PrestadoresMejorCalificadosVarios.listadoDePublicaciones.Count > 4)
+            if (ViewBag.PrestadoresMejorCalificadosMas.listadoDePublicaciones.Count > 4)
                 {
             <center>
                 <a href="@Url.Action("VerMasPrestadores", "Publicacion")" class="btn btn-primary"><span
@@ -164,7 +164,7 @@
                     </div>
                 }
             </div>
-                if (ViewBag.UsuariosMasCercanosVarios.Count > 4)
+                if (ViewBag.UsuariosMasCercanosMas.Count > 4)
                 {
             <center>
                 <a href="@Url.Action("VerMasPrestadoresZona", "Publicacion")" class="btn btn-primary">
