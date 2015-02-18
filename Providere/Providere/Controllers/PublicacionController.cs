@@ -118,7 +118,10 @@ namespace Providere.Controllers
                 ViewBag.NoExistenPreguntas = "No existen preguntas para mostrar.";
             }
 
-            var mostrarPreguntas = ppr.TraerPreguntasPublicacion(id,5);
+            var mostrarPrimerasPreguntas = ppr.TraerPreguntasPublicacionPrimeras(id, 5);
+            ViewBag.MostrarPrimerasPreguntas = mostrarPrimerasPreguntas;
+
+            var mostrarPreguntas = ppr.TraerPreguntasPublicacion(id, 5);
             ViewBag.MostrarPreguntas = mostrarPreguntas;
 
             //Para mostrar todas las calificaciones de la publicacion:
