@@ -41,20 +41,16 @@
     <div>
         @Html.HiddenFor(model => model.Id)
     </div>
-
     <div>
-    <h1 class="titulo text-center col-md-9">
-        @Html.DisplayFor(model => model.Titulo)
-    </h1>
-
-    
+        <h1 class="titulo text-center col-md-9">
+            @Html.DisplayFor(model => model.Titulo)
+        </h1>
         <div class="col-md-3">
             @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
             {
                 <button name="btnTel" class="btnTel btn btn-primary btn-lg btn-block disabled" type="button">
-                    Telefono:
-                    <br />
-                    @Model.Usuario.Telefono</button>
+                    <span class="glyphicon glyphicon-earphone></span>
+                   <span class="numero">@Model.Usuario.Telefono</span></button>
             }
             else
             {
@@ -89,11 +85,9 @@
                 }
             }
         </div>
-      
-      
     </div>
-    <div  class="col-md-12" >
-        <hr/>
+    <div class="col-md-12">
+        <hr />
     </div>
     <div class="col-md-9">
         <div class="col-md-8">
@@ -121,7 +115,7 @@
                     }
                 }
             </span>
-          </div>
+        </div>
         <div class="col-md-12">
             <h3>
                 Calificaciones</h3>
@@ -270,7 +264,7 @@
                                         {
                                             foreach (var item in ViewBag.Calificaciones)
                                             {
-                                                <br />
+                                            <br />
                                                 if (item.IdTipoEvaluacion == 1)
                                                 {   
                                             <div>
@@ -538,33 +532,32 @@
         </div>
     </div>
     <div class="col-md-3">
-    
-    <div id="ficha-publicante" class="ficha-publicante ">
-        <div class="contenedor-imagen-publicacion">
-            @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
-            {               
-                <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />             
-            }
-            else
-            {
-                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = Model.IdUsuario })" alt="avatar" width="100%"/>
-            }
+        <div id="ficha-publicante" class="ficha-publicante ">
+            <div class="contenedor-imagen-publicacion">
+                @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+                {               
+                    <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />             
+                }
+                else
+                {
+                    <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = Model.IdUsuario })" alt="avatar" width="100%"/>
+                }
+            </div>
+            <div class="contenedor-info-publicante">
+                <h2>
+                    @Html.DisplayFor(model => model.Usuario.Nombre)
+                    @Html.DisplayFor(model => model.Usuario.Apellido)
+                </h2>
+                <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
+                    class="badge">@ViewBag.MostrarPuntaje</span>
+                <br />
+                <span class="text-muted">@Html.DisplayFor(model => model.SubRubro.Nombre) </span>
+            </div>
+            <div class="ubicacion">
+                <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)
+                </span>
+            </div>
         </div>
-        <div class="contenedor-info-publicante">
-            <h2>
-                @Html.DisplayFor(model => model.Usuario.Nombre)
-                @Html.DisplayFor(model => model.Usuario.Apellido)
-            </h2>
-            <span class="text-muted">@Html.DisplayFor(model => model.Rubro.Nombre) </span><span
-                class="badge">@ViewBag.MostrarPuntaje</span>
-            <br />
-            <span class="text-muted">@Html.DisplayFor(model => model.SubRubro.Nombre) </span>
-        </div>
-        <div class="ubicacion">
-            <span class="glyphicon glyphicon-globe"></span><span>@Html.DisplayFor(model => model.Usuario.Ubicacion)
-            </span>
-        </div>
-    </div>
     </div>
     <div class="col-md-12">
         <div class="col-md-12">

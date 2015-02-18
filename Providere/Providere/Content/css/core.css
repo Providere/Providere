@@ -258,3 +258,9 @@ footer.transparente .container
 {
     margin-top: 0;
 }
+
+.btnTel .numero
+{
+    font-size: 1.4em;
+    font-weight:bold
+}

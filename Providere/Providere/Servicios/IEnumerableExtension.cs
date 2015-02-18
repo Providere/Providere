@@ -25,14 +25,25 @@ namespace Providere.Servicios
         private static IEnumerable<T> ShuffleIterator<T>(
             this IEnumerable<T> source, Random rng)
         {
-            var buffer = source.ToList();
-
-            for (int i = 0; i < buffer.Count; i++)
+            List<T> buffer = null;
+            try
             {
-                int j = rng.Next(i, buffer.Count);
-                yield return buffer[j];
+                buffer = source.ToList();
+            }
+            catch (Exception t)
+            {
+                buffer = null;
+            }
 
-                buffer[j] = buffer[i];
+            if (buffer != null)
+            {
+                for (int i = 0; i < buffer.Count; i++)
+                {
+                    int j = rng.Next(i, buffer.Count);
+                    yield return buffer[j];
+
+                    buffer[j] = buffer[i];
+                }
             }
         }
 
