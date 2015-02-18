@@ -52,7 +52,7 @@
             <p>
                 @Html.DisplayFor(model => model.Descripcion)</p>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4">
             <h3>
                 Precio
             </h3>
@@ -71,8 +71,8 @@
                     }
                 }
             </span>
-        </div>
-        <div class="col-md-3">
+        
+        <div class="">
             @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
             {
                 <button name="btnTel" class="btnTel btn btn-primary btn-lg btn-block disabled" type="button">
@@ -112,6 +112,7 @@
                 @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
                 }
             }
+        </div>
         </div>
         <div class="col-md-12">
             <h3>
