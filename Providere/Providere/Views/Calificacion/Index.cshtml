@@ -37,7 +37,7 @@
                         if (item.IdTipoCalificacion == 1)
                         {
                     <div class="col-md-12">
-                    <br />
+                        <br />
                         <div>
                             <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
@@ -46,77 +46,63 @@
                         <div>
                             @if (item.IdTipoEvaluacion == 1) //Positiva
                             {
-                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                                <em>@item.Descripcion </em>
-                                <br />
+                                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span> <em>@item.Descripcion
+                                </em>                                
                                 if (item.FlagReplicado == 1)
                                 {
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
+                                <dd class="col-sm-offset-3">
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
+                                </dd>
                                         }
                                     }
                                 }
                                 else
                                 {   
-                                <a data-toggle="collapse" href="#collapseExamplePos1" aria-expanded="false"
-                                    aria-controls="collapseExample">Replicar</a>   
+                                @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                 }
-                                <div class="collapse" id="collapseExamplePos1">
-                                        <div class="row">
-                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                            {
-                                                <div class="form-group col-md-10">
-                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                                                        Enviar</button>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                            }                          
+                            }
                             @if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 0) //Neutro
                             {                                
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                                <em>@item.Descripcion</em>
-                                <br />
+                                <em>@item.Descripcion</em>                                                           
                                 if (item.FlagReplicado == 1)
                                 {
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (rep.IdCalificacion == item.Id)
-                                        { @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                <br />
-                                <br />
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                        {                                
+                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd> 
+                                <dd class="col-sm-offset-3">
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
+                                </dd>                              
                                         }
                                     }
                                 }
                                 else
                                 {   
                                 @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                 <span class="text-info">|</span>
-                                <a  data-toggle="collapse" href="#collapseExample1" aria-expanded="false"
-                                    aria-controls="collapseExample">Replicar</a>   
-                                }                              
-                                <div class="collapse" id="collapseExample1">
-                                        <div class="row">
-                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                            {
-                                                <div class="form-group col-md-10">
-                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                                                        Enviar</button>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
+                                <span class="text-info">|</span>
+                                @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
+                                }
                             }
                             else
                             {
@@ -133,8 +119,8 @@
                             @if (item.IdTipoEvaluacion == 3 && item.FlagDenunciado == 0) //Negativo
                             {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                                <em>@item.Descripcion</em>    
-                                <br />                   
+                                <em>@item.Descripcion</em>  
+                                                                               
                                 if (item.FlagReplicado == 1)
                                 {
                                     foreach (var rep in ViewBag.Replicas)
@@ -142,35 +128,26 @@
                                         if (rep.IdCalificacion == item.Id)
                                         {
                                 @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                <br />
-                                <br />
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd> 
+                                <dd class="col-sm-offset-3">
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
+                                </dd>
                                         }
                                     }
                                 }
                                 else
                                 {   
                                 @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                 <span class="text-info">|</span>
-                                <a  data-toggle="collapse" href="#collapseExample2" aria-expanded="false"
-                                    aria-controls="collapseExample">Replicar</a>   
+                                <span class="text-info">|</span>
+                                @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })  
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                 }
-                                 
-                                <div class="collapse" id="collapseExample2">
-                                        <div class="row">
-                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                            {
-                                                <div class="form-group col-md-10">
-                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
-                                                </div>
-                                            
-                                                <div class="form-group col-md-2">
-                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                                                        Enviar</button>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
                             }
                             else
                             {
@@ -192,7 +169,7 @@
                         {
                     <div class="col-md-12">
                         <div>
-                          <br />
+                            <br />
                             <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
                             <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
@@ -202,42 +179,35 @@
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion </em>
-                                <br />
                                 if (item.FlagReplicado == 1)
                                 {
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
+                                <dd class="col-sm-offset-3">
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
+                                </dd>
                                         }
                                     }
                                 }
                                 else
                                 {   
-                                <a  data-toggle="collapse" href="#collapseExamplePos2" aria-expanded="false"
-                                    aria-controls="collapseExample">Replicar</a>   
+                                @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" }) 
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd> 
                                 }
-                                <div class="collapse" id="collapseExamplePos2">
-                                        <div class="row">
-                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                            {
-                                                <div class="form-group col-md-10">
-                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                                                        Enviar</button>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
                             }
                             @if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 0) //Neutro
                             {                                                          
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em> 
-                                <br />
+                                                               
                                 if (item.FlagReplicado == 1)
                                 {
                                     foreach (var rep in ViewBag.Replicas)
@@ -245,34 +215,25 @@
                                         if (rep.IdCalificacion == item.Id)
                                         {
                                 @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                <br />
-                                <br />
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
+                                <dd class="col-sm-offset-3">
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
+                                </dd>
                                         }
                                     }
                                 }
                                 else
                                 {  
                                 @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" }) 
-                                 <span class="text-info">|</span>
-                                <a  data-toggle="collapse" href="#collapseExample3" aria-expanded="false"
-                                    aria-controls="collapseExample">Replicar</a>   
+                                <span class="text-info">|</span>
+                                @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                 }
-                                                        
-                                <div class="collapse" id="collapseExample3">
-                                        <div class="row">
-                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                            {
-                                                <div class="form-group col-md-10">
-                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                                                        Enviar</button>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>                                                        
                             }
                             else
                             {
@@ -290,7 +251,7 @@
                             {                              
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em> 
-                                <br />
+                                                               
                                 if (item.FlagReplicado == 1)
                                 {
                                     foreach (var rep in ViewBag.Replicas)
@@ -298,33 +259,25 @@
                                         if (rep.IdCalificacion == item.Id)
                                         {
                                 @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                <br />
-                                <br />
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd> 
+                                <dd class="col-sm-offset-3">
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
+                                </dd>
                                         }
                                     }
                                 }
                                 else
                                 {   
                                 @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                 <span class="text-info">|</span>
-                                <a  data-toggle="collapse" href="#collapseExample4" aria-expanded="false"
-                                    aria-controls="collapseExample">Replicar</a>   
+                                <span class="text-info">|</span>
+                                @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })   
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd> 
                                 }
-                                <div class="collapse" id="collapseExample4">
-                                        <div class="row">
-                                            @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                            {
-                                                <div class="form-group col-md-10">
-                                                    @Html.TextArea("replicar", null, new { @class = "form-control" })
-                                                </div>                                            
-                                                <div class="form-group col-md-2">
-                                                    <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                                                        Enviar</button>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>                              
                             }
                             else
                             {
@@ -387,43 +340,35 @@
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
-                                                    <br />
                                                     if (item.FlagReplicado == 1)
                                                     {
                                                         foreach (var rep in ViewBag.Replicas)
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
-                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    <dd class="col-sm-offset-3">
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
+                                                    </dd>
                                                             }
                                                         }
                                                     }
                                                     else
                                                     {   
-                                                    <a  data-toggle="collapse" href="#collapseExamplePos3" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>   
+                                                    @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
                                                     }
-                                                    <div class="collapse" id="collapseExamplePos3">
-                                                            <div class="row">
-                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                                {
-                                                                    <div class="form-group col-md-10">
-                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
-                                                                    </div>                                            
-                                                                    <div class="form-group col-md-2">
-                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                                                                            Enviar</button>
-                                                                    </div>
-                                                                }
-                                                            </div>
-                                                        </div>      
                                                 }
                                                 @if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 0) //Neutro
-                                                {
-                                                  
+                                                {                                                
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <br />
+                                                                                                    
                                                     if (item.FlagReplicado == 1)
                                                     {
                                                         foreach (var rep in ViewBag.Replicas)
@@ -431,33 +376,26 @@
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
                                                     @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                                    <br />
-                                                    <br />
-                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>  
+                                                    
+                                                    <dd class="col-sm-offset-3">
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
+                                                    </dd>
                                                             }
                                                         }
                                                     }
                                                     else
                                                     {   
                                                     @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                                     <span class="text-info">|</span>
-                                                    <a  data-toggle="collapse" href="#collapseExample5" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>   
+                                                    <span class="text-info">|</span>
+                                                    @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" }) 
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>    
                                                     }
-                                                    <div class="collapse" id="collapseExample5">
-                                                            <div class="row">
-                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                                {
-                                                                    <div class="form-group col-md-10">
-                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
-                                                                    </div>                                            
-                                                                    <div class="form-group col-md-2">
-                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                                                                            Enviar</button>
-                                                                    </div>
-                                                                }
-                                                            </div>
-                                                        </div>                                         
                                                 }
                                                 else
                                                 {
@@ -475,7 +413,7 @@
                                                 {                                                    
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <br />
+                                                                                                       
                                                     if (item.FlagReplicado == 1)
                                                     {
                                                         foreach (var rep in ViewBag.Replicas)
@@ -483,33 +421,26 @@
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
                                                     @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                                    <br />
-                                                    <br />
-                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    
+                                                    <dd class="col-sm-offset-3">
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
+                                                    </dd>
                                                             }
                                                         }
                                                     }
                                                     else
                                                     {  
                                                     @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" }) 
-                                                      <span class="text-info">|</span>
-                                                     <a  data-toggle="collapse" href="#collapseExample6" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>   
-                                                    }      
-                                                    <div class="collapse" id="collapseExample6">
-                                                            <div class="row">
-                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                                {
-                                                                    <div class="form-group col-md-10">
-                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
-                                                                    </div>                                            
-                                                                    <div class="form-group col-md-2">
-                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                                                                            Enviar</button>
-                                                                    </div>
-                                                                }
-                                                            </div>
-                                                        </div>
+                                                    <span class="text-info">|</span>
+                                                    @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })   
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    }
                                                 }
                                                 else
                                                 {
@@ -539,42 +470,34 @@
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
-                                                    <br />
                                                     if (item.FlagReplicado == 1)
                                                     {
                                                         foreach (var rep in ViewBag.Replicas)
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
-                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    <dd class="col-sm-offset-3">
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
+                                                    </dd>
                                                             }
                                                         }
                                                     }
                                                     else
                                                     {   
-                                                    <a  data-toggle="collapse" href="#collapseExamplePos4" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>   
+                                                    @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>  
                                                     }
-                                                    <div class="collapse" id="collapseExamplePos4">
-                                                            <div class="row">
-                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                                {
-                                                                    <div class="form-group col-md-10">
-                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
-                                                                    </div>                                            
-                                                                    <div class="form-group col-md-2">
-                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                                                                            Enviar</button>
-                                                                    </div>
-                                                                }
-                                                            </div>
-                                                        </div>
                                                 }
                                                 @if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 0) //Neutro
                                                 {
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <br />
                                                     if (item.FlagReplicado == 1)
                                                     {
                                                         foreach (var rep in ViewBag.Replicas)
@@ -582,33 +505,26 @@
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
                                                     @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                                    <br />
-                                                    <br />
-                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    
+                                                    <dd class="col-sm-offset-3">
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
+                                                    </dd>
                                                             }
                                                         }
                                                     }
                                                     else
                                                     {   
                                                     @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                                     <span class="text-info">|</span>
-                                                    <a  data-toggle="collapse" href="#collapseExample7" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>   
+                                                    <span class="text-info">|</span>
+                                                    @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })  
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd> 
                                                     }
-                                                    <div class="collapse" id="collapseExample7">
-                                                            <div class="row">
-                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                                {
-                                                                    <div class="form-group col-md-10">
-                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
-                                                                    </div>                                            
-                                                                    <div class="form-group col-md-2">
-                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                                                                            Enviar</button>
-                                                                    </div>
-                                                                }
-                                                            </div>
-                                                        </div>
                                                 }
                                                 else
                                                 {
@@ -626,7 +542,6 @@
                                                 {                                                  
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <br />
                                                     if (item.FlagReplicado == 1)
                                                     {
                                                         foreach (var rep in ViewBag.Replicas)
@@ -634,33 +549,26 @@
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
                                                     @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                                    <br />
-                                                    <br />
-                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                   
+                                                    <dd class="col-sm-offset-3">
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
+                                                    </dd>
                                                             }
                                                         }
                                                     }
                                                     else
                                                     {   
-                                                     @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
-                                                     <span class="text-info">|</span>
-                                                    <a  data-toggle="collapse" href="#collapseExample8" aria-expanded="false"
-                                                        aria-controls="collapseExample">Replicar</a>   
+                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <span class="text-info">|</span>
+                                                    @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" }) 
+                                                    <dd class="col-sm-offset-4">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd> 
                                                     }
-                                                    <div class="collapse" id="collapseExample8">
-                                                            <div class="row">
-                                                                @using (Html.BeginForm("ReplicarComentario", "Calificacion", new { Id = item.Id }, FormMethod.Post))
-                                                                {
-                                                                    <div class="form-group col-md-10">
-                                                                        @Html.TextArea("replicar", null, new { @class = "form-control" })
-                                                                    </div>                                            
-                                                                    <div class="form-group col-md-2">
-                                                                        <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
-                                                                            Enviar</button>
-                                                                    </div>
-                                                                }
-                                                            </div>
-                                                        </div>  
                                                 }
                                                 else
                                                 {
@@ -708,12 +616,17 @@
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion</em>
-                                <br />
+                                <dd class="col-sm-offset-2">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>                               
                                 foreach (var rep in ViewBag.Replicas)
                                 {
                                     if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                     {
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                <dd class="col-sm-offset-3">
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
+                                </dd>
                                     }
                                 }
                             }
@@ -732,12 +645,18 @@
                                 {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
-                                <br />
+                                <dd class="col-sm-offset-2">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
+                              
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                         {
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                <dd class="col-sm-offset-3">
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
+                                </dd>
                                         }
                                     }
                                 }
@@ -757,15 +676,20 @@
                                 {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em>
-                                <br />
+                                <dd class="col-sm-offset-2">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
+                                
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                         {
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                <dd class="col-sm-offset-3">
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
+                                </dd>
                                         }
                                     }
-
                                 }
                             }
                             <br />
@@ -786,12 +710,18 @@
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                 <em>@item.Descripcion</em>
-                                <br />
+                                <dd class="col-sm-offset-2">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
+                               
                                 foreach (var rep in ViewBag.Replicas)
                                 {
                                     if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                     {
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                <dd class="col-sm-offset-3">
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
+                                </dd>
                                     }
                                 }
                             }
@@ -810,12 +740,18 @@
                                 {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                 <em>@item.Descripcion</em>
-                                <br />
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
+                               
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                         {
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                <dd class="col-sm-offset-3">
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
+                                </dd>
                                         }
                                     }
 
@@ -836,12 +772,18 @@
                                 {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                 <em>@item.Descripcion</em>
-                                <br />
+                                <dd class="col-sm-offset-3">
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
+                               
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                         {
-                                <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                <dd class="col-sm-offset-3">
+                                    <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                        <em>@rep.Comentario</em> </span>
+                                </dd>
                                         }
                                     }
                                 }
@@ -894,12 +836,18 @@
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
-                                                    <br />                                               
+                                                    <dd class="col-sm-offset-3">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                                                                 
                                                     foreach (var rep in ViewBag.Replicas)
                                                     {
                                                         if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                                         {
-                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                    <dd class="col-sm-offset-3">
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
+                                                    </dd>
                                                         }
                                                     }
                                                 }
@@ -918,12 +866,18 @@
                                                     {
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <br />
+                                                    <dd class="col-sm-offset-3">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                   
                                                         foreach (var rep in ViewBag.Replicas)
                                                         {
                                                             if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                                             {
-                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                    <dd class="col-sm-offset-3">
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
+                                                    </dd>
                                                             }
                                                         }
                                                     }
@@ -943,12 +897,18 @@
                                                     {
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <br />                                                
+                                                    <dd class="col-sm-offset-3">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                                                                  
                                                         foreach (var rep in ViewBag.Replicas)
                                                         {
                                                             if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                                             {
-                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                    <dd class="col-sm-offset-3">
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
+                                                    </dd>
                                                             }
                                                         }
                                                     }
@@ -969,12 +929,18 @@
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
                                                     <em>@item.Descripcion </em>
-                                                    <br />
+                                                    <dd class="col-sm-offset-3">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    
                                                     foreach (var rep in ViewBag.Replicas)
                                                     {
                                                         if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                                         {
-                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                    <dd class="col-sm-offset-3">
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
+                                                    </dd>
                                                         }
                                                     }
                                                 }
@@ -993,12 +959,18 @@
                                                     {
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <br />
+                                                    <dd class="col-sm-offset-3">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                    
                                                         foreach (var rep in ViewBag.Replicas)
                                                         {
                                                             if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                                             {
-                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                    <dd class="col-sm-offset-3">
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
+                                                    </dd>
                                                             }
                                                         }
                                                     }
@@ -1018,12 +990,18 @@
                                                     {
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
-                                                    <br />
+                                                    <dd class="col-sm-offset-3">
+                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                    </dd>
+                                                   
                                                         foreach (var rep in ViewBag.Replicas)
                                                         {
                                                             if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                                             {
-                                                    <span class="glyphicon glyphicon-chevron-right"></span><span>Réplica:</span> <em>@rep.Comentario</em>
+                                                    <dd class="col-sm-offset-3">
+                                                        <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
+                                                            <em>@rep.Comentario</em> </span>
+                                                    </dd>
                                                             }
                                                         }
                                                     }
