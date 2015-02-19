@@ -23,6 +23,7 @@ namespace Providere.Controllers
         public ActionResult RegistrarUsuario()
         {
             ViewBag.Error = TempData["Error"];
+            ViewBag.Accion = "Registracion";
             return View();
         }
 
@@ -106,6 +107,9 @@ namespace Providere.Controllers
         {
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
+
+            ViewBag.Accion = "Identificacion";
+
             return View();
         }
 

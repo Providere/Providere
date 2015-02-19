@@ -53,17 +53,42 @@
 <body>
     <div class="header ">
         <div class="container">
-            <div class="row">
-                <div id="contenedor-logo" class="col-md-5">
-                    <a href="@Url.Action("Index", "Index")">
-                        <img src="../../Content/img/logotransparente.png" alt="providere" width="90%" />
-                    </a>
+                <div class="row">
+                    <div id="contenedor-logo" class="col-md-5 col-xs-12 col-sm-5">
+                        <img class="pull-left" src="../../Content/img/logotransparente.png" alt="Providere" width="90%" />
+                    </div>
+                    <div id="contenedor-botones-index" class="col-md-7 col-xs-12 col-sm-7">
+                        <ul class="nav navbar-nav pull-right">
+                        @if (ViewBag.Accion == "Identificacion")
+                        {
+                            <li>
+                                <div class="modalBox">
+                                    <a href="@Url.Action("RegistrarUsuario", "Usuario")" class="btn btn-primary btn-large">
+                                        <span class="glyphicon glyphicon-list"></span>Registrarme</a>
+                                    <br />
+                                    <br />
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <div class="modalBox2">
+                                    <a href="@Url.Action("IniciarSesion", "Usuario")" class="btn btn-primary btn-large">
+                                        <span class="glyphicon glyphicon-user"></span>Iniciar Sesion</a>
+                                    <br />
+                                </div>
+                            </li>
+                        }
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
-
+    <div class="cuerpo">
+    
         @RenderBody()
+    </div>
     <footer>
         <div class="container">
             <div class="col-md-4">
