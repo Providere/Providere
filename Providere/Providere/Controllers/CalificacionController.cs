@@ -101,8 +101,15 @@ namespace Providere.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult ReplicarComentario(int id, string replicar)
+        //Obtener calificacion que se va a replicar
+        public ActionResult ReplicarComentario(int id)
+        {
+            Calificacion calificacion = cs.TraerCalificacion(id);
+            return View(calificacion);
+        }
+
+        [HttpPost, ActionName("ReplicarComentario")]
+        public ActionResult Replicar(int id, string replicar)
         {
             if (!string.IsNullOrWhiteSpace(replicar))
             {

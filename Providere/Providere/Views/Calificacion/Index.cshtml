@@ -65,8 +65,8 @@
                                     }
                                 }
                                 else
-                                {   
-                                @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                { 
+                                <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
@@ -82,7 +82,7 @@
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {                                
-                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
 
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
@@ -96,9 +96,9 @@
                                 }
                                 else
                                 {   
-                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
                                 <span class="text-info">|</span>
-                                @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })
+                               <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
@@ -127,7 +127,7 @@
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
-                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
 
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
@@ -141,9 +141,9 @@
                                 }
                                 else
                                 {   
-                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
                                 <span class="text-info">|</span>
-                                @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })  
+                               <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a> 
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
@@ -197,7 +197,7 @@
                                 }
                                 else
                                 {   
-                                @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" }) 
+                               <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd> 
@@ -214,7 +214,7 @@
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
-                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
@@ -227,9 +227,9 @@
                                 }
                                 else
                                 {  
-                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" }) 
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a> 
                                 <span class="text-info">|</span>
-                                @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })
+                               <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
@@ -258,7 +258,7 @@
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
-                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                               <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd> 
@@ -271,9 +271,9 @@
                                 }
                                 else
                                 {   
-                                @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
                                 <span class="text-info">|</span>
-                                @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })   
+                               <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a> 
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd> 
@@ -358,7 +358,7 @@
                                                     }
                                                     else
                                                     {   
-                                                    @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>
@@ -375,7 +375,7 @@
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
-                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>  
@@ -389,9 +389,9 @@
                                                     }
                                                     else
                                                     {   
-                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
                                                     <span class="text-info">|</span>
-                                                    @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" }) 
+                                                   <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>    
@@ -420,7 +420,7 @@
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
-                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>
@@ -434,9 +434,9 @@
                                                     }
                                                     else
                                                     {  
-                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" }) 
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a> 
                                                     <span class="text-info">|</span>
-                                                    @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })   
+                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>
@@ -488,7 +488,7 @@
                                                     }
                                                     else
                                                     {   
-                                                    @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>  
@@ -504,7 +504,7 @@
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
-                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>
@@ -518,9 +518,9 @@
                                                     }
                                                     else
                                                     {   
-                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
                                                     <span class="text-info">|</span>
-                                                    @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" })  
+                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd> 
@@ -548,7 +548,7 @@
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
-                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>
@@ -562,9 +562,9 @@
                                                     }
                                                     else
                                                     {   
-                                                    @Html.ActionLink("Denunciar", "DenunciarComentario", new { id = item.Id, @class = "btn btn-link" })
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
                                                     <span class="text-info">|</span>
-                                                    @Html.ActionLink("Replicar", "ReplicarComentario", new { id = item.Id, @class = "btn btn-link" }) 
+                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd> 

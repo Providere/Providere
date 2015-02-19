@@ -73,5 +73,10 @@ namespace Providere.Servicios
         {
             return cr.TraerCalificacionesNegativas(idPublicacion);
         }
+
+        public Calificacion TraerCalificacion(int id)
+        {
+            return cr.TraerCalificacion(id);
+        }
     }
 }

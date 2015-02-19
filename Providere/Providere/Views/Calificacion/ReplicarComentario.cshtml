@@ -1,0 +1,35 @@
+﻿@model Providere.Models.Calificacion
+@{
+    ViewBag.Title = "ReplicarComentario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12 well">
+    <h2>
+        Replicar Comentario: @Html.DisplayFor(model => model.Descripcion) </h2>
+
+    @using (Html.BeginForm())
+    {
+       
+    
+        <div class="row">
+         <div class="col-md-8">
+            @Html.TextArea("replicar", new { @class = "form-control ", placeholder = "Escribe tu respuesta..." })
+            </div>
+            <br />
+            <br />
+            @*<p class="text-info">
+                <span class="glyphicon glyphicon-exclamation-sign"></span>Cuide su vocabulario, puede ser sancionado</p>*@
+            <div class="form-group">
+                <div class="col-md-offset-5">
+                    <button type="submit" id="btnReplicar" class="btn btn-info btn-sm">
+                        Replicar</button>
+                    @Html.ActionLink("Cancelar", "Index", "Calificacion", null, new { @class = "btn btn-warning btn-sm" })
+                </div>
+            </div>
+        </div>
+    
+       
+
+     
+    }
+</div>
