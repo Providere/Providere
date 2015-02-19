@@ -56,13 +56,11 @@
             <p>
                 @Html.DisplayFor(model => model.Descripcion)</p>
         </div>
-        
         <div class="col-md-4">
             @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && ViewBag.Contratada != null)
             {
                 <button name="btnTel" class="btnTel btn btn-primary btn-lg btn-block disabled" type="button">
-                    <span class="glyphicon glyphicon-earphone"></span>
-                   <span class="numero">@Model.Usuario.Telefono</span></button>
+                    <span class="glyphicon glyphicon-earphone"></span><span class="numero">@Model.Usuario.Telefono</span></button>
             }
             else
             {
@@ -623,16 +621,11 @@
                 <div>
                     @Html.HiddenFor(model => model.IdUsuario)
                 </div>
-           
-           
-                <div class="form-group col-md-10">
+                <div>
                     <br />
                     @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta..." })
-                    <span class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>No
-                        podes compartir datos personales por aquí</span>
-                </div>
-                <div class="form-group col-md-2">
-                    <br />
+                    <p class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>No
+                        podes compartir datos personales por aquí</p>
                     <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
                         Enviar</button>
                 </div>     
@@ -642,15 +635,12 @@
             {
                 if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
                 {
-                <div class="form-group col-md-10">
+                <div>
                     <br />
                     @Html.TextArea("preguntar", new { @class = "form-control", placeholder = "Escribe tu pregunta..." })
                     <p class="text-info">
                         <span class="glyphicon glyphicon-exclamation-sign"></span>No podes compartir datos
                         personales por aquí</p>
-                </div>
-                <div class="form-group col-md-2">
-                    <br />
                     <button name="btnEnviar" class="btn btn-primary btn-lg disabled" type="submit">
                         Enviar</button>
                 </div> 
@@ -659,15 +649,12 @@
                 {
                     if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
                     {               
-                <div class="form-group col-md-10">
+                <div>
                     <br />
                     @Html.TextArea("preguntar", new { @class = "form-control", placeholder = "Escribe tu pregunta..." })
                     <p class="text-info">
                         <span class="glyphicon glyphicon-exclamation-sign"></span>No podes compartir datos
                         personales por aquí</p>
-                </div>
-                <div class="form-group col-md-2">
-                    <br />
                     <button name="btnEnviar" class="btn btn-primary btn-lg disabled" type="submit">
                         Enviar</button>
                 </div>                         
