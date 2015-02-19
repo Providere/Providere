@@ -56,6 +56,7 @@ namespace Providere.Controllers
                 try
                 {
                     var contratacion = cs.nuevaContratacion(publicacion, usuario);
+                    TempData["Exito"] = "Contratación exitosa.";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)

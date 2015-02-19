@@ -294,7 +294,7 @@ namespace Providere.Repositorios
             return resultado;
         }
 
-        public Calificacion TraerCalificacion(int id)
+        public Calificacion TraerCalificacionReplicar(int id)
         {
             Calificacion calificacion = context.Calificacion.Single(e => e.Id == id);
             return calificacion;
