@@ -39,7 +39,7 @@
                     <div>
                         <dl class="question" id="1">
                             <dd class="txt">
-                                <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span></dd>
+                                <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span> @item.Pregunta</span></dd>
                         </dl>
                     </div>
                     @using (Html.BeginForm("Responder", "Pregunta", new { id = item.Id }, FormMethod.Post))
@@ -77,13 +77,13 @@
                     <legend><a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
                    <dl class="question" id="pregunta">
                         <dd class="txt">
-                            <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
+                            <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span> @item.Pregunta</span>
                         </dd>
                         <br />
                         @if (item.Respuesta != null)
                         {
                            <dd class="col-md-offset-1">
-                            <span class="text-info"><i class="glyphicon glyphicon-user"></i></span>@item.Respuesta
+                            <span class="text-info"><i class="glyphicon glyphicon-user"></i></span> @item.Respuesta
                             <br />
                         </dd>
                         <dd class="col-sm-offset-2">

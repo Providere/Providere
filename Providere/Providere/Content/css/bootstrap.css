@@ -270,7 +270,7 @@ th {
   font-family: 'Glyphicons Halflings';
   font-style: normal;
   font-weight: normal;
-  line-height: 1;
+  /* line-height: 1; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -1724,10 +1724,10 @@ pre code {
     margin-left: 3.2%;
   }
   .col-sm-offset-3 {
-    margin-left: 2.36%;
+    margin-left: 2.05%;
   }
   .col-sm-offset-2 {
-    margin-left: 3.75%;
+    margin-left: 3.30%;
   }
   .col-sm-offset-1 {
     margin-left: 8.33333333%;

@@ -152,7 +152,7 @@
                     </div> 
                         }
 
-                        if (item.IdTipoEvaluacion == 2)
+                        if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 0)
                         {     
                     <div class="col-md-12">
                         <div>
@@ -179,6 +179,18 @@
                             }
                         </div>
                     </div> 
+                        }
+                        else
+                        {
+                            if (item.FlagDenunciado == 1)
+                            {
+                    <div class="col-md-5">
+                        <br />
+                        <div class="alert alert-danger alert-dismissable">
+                            <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                        </div>
+                    </div> 
+                            }
                         }
 
                         if (item.IdTipoEvaluacion == 3 && item.FlagDenunciado == 0)
@@ -293,7 +305,7 @@
                                             </div>
                                                 }
 
-                                                if (item.IdTipoEvaluacion == 2)
+                                                if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 0)
                                                 {   
                                             <div>
                                                 <div>
@@ -320,6 +332,18 @@
                                                     }
                                                 </div>
                                             </div>
+                                                }
+                                                else
+                                                {
+                                                    if (item.FlagDenunciado == 1)
+                                                    {
+                                            <div class="col-md-5">
+                                                <br />
+                                                <div class="alert alert-danger alert-dismissable">
+                                                    <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
+                                                </div>
+                                            </div> 
+                                                    }
                                                 }
 
                                                 if (item.IdTipoEvaluacion == 3 && item.FlagDenunciado == 0)
@@ -624,8 +648,9 @@
                 <div>
                     <br />
                     @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta..." })
-                    <p class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>No
-                        podes compartir datos personales por aquí</p>
+                    <p class="text-info">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>No podes compartir datos
+                        personales por aquí</p>
                     <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
                         Enviar</button>
                 </div>     
