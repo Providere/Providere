@@ -39,9 +39,11 @@
                     <div class="col-md-12">
                         <br />
                         <div>
-                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                            <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                            <strong><a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
+                                </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                            </strong>
                         </div>
                         <div>
                             @if (item.IdTipoEvaluacion == 1) //Positiva
@@ -66,7 +68,8 @@
                                 }
                                 else
                                 { 
-                                <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
+                                <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
+                                </a>
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
@@ -82,7 +85,8 @@
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {                                
-                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                    Denunciar</a>
 
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
@@ -96,9 +100,11 @@
                                 }
                                 else
                                 {   
-                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                    Denunciar</a>
                                 <span class="text-info">|</span>
-                               <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
+                                <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
+                                </a>
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
@@ -127,7 +133,8 @@
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
-                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                    Denunciar</a>
 
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
@@ -141,9 +148,11 @@
                                 }
                                 else
                                 {   
-                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                    Denunciar</a>
                                 <span class="text-info">|</span>
-                               <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a> 
+                                <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
+                                </a> 
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
@@ -197,7 +206,8 @@
                                 }
                                 else
                                 {   
-                               <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
+                                <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
+                                </a>
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd> 
@@ -214,7 +224,8 @@
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
-                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                    Denunciar</a>
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
@@ -227,9 +238,11 @@
                                 }
                                 else
                                 {  
-                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a> 
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                    Denunciar</a> 
                                 <span class="text-info">|</span>
-                               <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
+                                <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
+                                </a>
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
@@ -258,7 +271,8 @@
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
-                               <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                    Denunciar</a>
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd> 
@@ -271,9 +285,11 @@
                                 }
                                 else
                                 {   
-                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                    Denunciar</a>
                                 <span class="text-info">|</span>
-                               <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a> 
+                                <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
+                                </a> 
                                 <dd class="col-sm-offset-3">
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd> 
@@ -331,9 +347,12 @@
                                             {
                                         <div class="row">
                                             <div>
-                                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
                                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <strong>
                                                 <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                                <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer">
+                                                </i></span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                                                </strong>
                                             </div>
                                             <div>
                                                 @if (item.IdTipoEvaluacion == 1) //Positiva
@@ -358,7 +377,8 @@
                                                     }
                                                     else
                                                     {   
-                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
+                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
+                                                    </a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>
@@ -375,7 +395,8 @@
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
-                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                                        Denunciar</a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>  
@@ -389,9 +410,11 @@
                                                     }
                                                     else
                                                     {   
-                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                                        Denunciar</a>
                                                     <span class="text-info">|</span>
-                                                   <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
+                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
+                                                    </a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>    
@@ -420,7 +443,8 @@
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
-                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                                        Denunciar</a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>
@@ -434,9 +458,11 @@
                                                     }
                                                     else
                                                     {  
-                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a> 
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                                        Denunciar</a> 
                                                     <span class="text-info">|</span>
-                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
+                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
+                                                    </a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>
@@ -488,7 +514,8 @@
                                                     }
                                                     else
                                                     {   
-                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
+                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
+                                                    </a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>  
@@ -504,7 +531,8 @@
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
-                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                                        Denunciar</a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>
@@ -518,9 +546,11 @@
                                                     }
                                                     else
                                                     {   
-                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                                        Denunciar</a>
                                                     <span class="text-info">|</span>
-                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
+                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
+                                                    </a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd> 
@@ -548,7 +578,8 @@
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
-                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                                        Denunciar</a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd>
@@ -562,9 +593,11 @@
                                                     }
                                                     else
                                                     {   
-                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">Denunciar</a>
+                                                    <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
+                                                        Denunciar</a>
                                                     <span class="text-info">|</span>
-                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar </a>
+                                                    <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
+                                                    </a>
                                                     <dd class="col-sm-offset-4">
                                                         <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                                     </dd> 
@@ -607,9 +640,13 @@
                     <div class="col-md-12">
                         <div>
                             <br />
-                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
+                            
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <strong>
                             <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                            <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i></span>
+                           <a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                           </strong>
                         </div>
                         <div>
                             @if (item.IdTipoEvaluacion == 1) //Positiva
@@ -701,9 +738,12 @@
                     <div class="col-md-12">
                         <div>
                             <br />
-                            <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                            <strong>
                             <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                             <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i></span>
+                            <a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                            </strong>
                         </div>
                         <div>
                             @if (item.IdTipoEvaluacion == 1) //Positiva
@@ -827,9 +867,12 @@
                                             {
                                         <div class="row">
                                             <div>
-                                                <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a></legend>
                                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
+                                                <strong>
                                                 <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                                <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i></span>
+                                                <a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                                                </strong>
                                             </div>
                                             <div>
                                                 @if (item.IdTipoEvaluacion == 1) //Positiva

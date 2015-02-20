@@ -13,13 +13,27 @@
 }
 <div class="col-md-12 well">
     <h2>
-        Replicar Comentario: @Html.DisplayFor(model => model.Descripcion) </h2>
-
+        Replicar Comentario
+    </h2>
+    @if (Model.IdTipoEvaluacion == 1)
+    {
+        <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span> <em>@Model.Descripcion</em>
+    }
+    @if (Model.IdTipoEvaluacion == 2)
+    {
+        <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span> <em>@Model.Descripcion</em>
+    }
+    @if (Model.IdTipoEvaluacion == 3)
+    {
+        <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span> <em>@Model.Descripcion</em>
+             
+    }
     @using (Html.BeginForm())
     {
         <div class="row">
-         <div class="col-md-8">
-            @Html.TextArea("replicar", new { @class = "form-control ", placeholder = "Escribe tu respuesta..." })
+            <div class="col-md-8">
+                <br />
+                @Html.TextArea("replicar", new { @class = "form-control ", placeholder = "Escribe tu respuesta..." })
             </div>
             <br />
             <br />
