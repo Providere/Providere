@@ -54,14 +54,15 @@
 <body>
     <div class="header ">
         <div class="container">
-                <div class="row">
-                    <div id="contenedor-logo" class="col-md-5 col-xs-12 col-sm-5">
+            <div class="row">
+                <div id="contenedor-logo" class="col-md-5 col-xs-12 col-sm-5">
                     <a href="@Url.Action("Home", "Home")">
-                        <img id="logogrande" class="pull-left" src="../../Content/img/logotransparente.png" alt="Providere" width="90%" />
+                        <img id="logogrande" class="pull-left" src="../../Content/img/logotransparente.png"
+                            alt="Providere" width="90%" />
                     </a>
-                    </div>
-                    <div id="contenedor-botones-index" class="col-md-7 col-xs-12 col-sm-7">
-                        <ul class="nav navbar-nav pull-right">
+                </div>
+                <div id="contenedor-botones-index" class="col-md-7 col-xs-12 col-sm-7">
+                    <ul class="nav navbar-nav pull-right">
                         @if (ViewBag.Accion == "Identificacion")
                         {
                             <li>
@@ -83,13 +84,12 @@
                                 </div>
                             </li>
                         }
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
             </div>
+        </div>
     </div>
     <div class="cuerpo">
-    
         @RenderBody()
     </div>
     <footer>
@@ -100,7 +100,7 @@
             </div>
             <div class="col-md-4 text-center">
                  <span class="text-info">
-                    <a data-toggle="modal" href="#myModalProvidere">Acerca de Providere</a> | <a href="#">FAQ</a> | <a href="mailto:providere_arg@gmail.com">
+                    <a data-toggle="modal" href="#myModalProvidere">Acerca de Providere</a> | <a href="@Url.Action("FAQ", "Shared")">FAQ</a> | <a href="mailto:providere_arg@gmail.com">
                         Contacto</a> 
                 </span>
             </div>
@@ -129,61 +129,49 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                        <h4>
-                                            ¿Qué es Providere?</h4>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">¿Qué es Providere?
                                     </a>
                                 </h4>
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <blockquote>
-                                        <p>
-                                            En Providere, de manera fácil y clara, podes encontrar al profesional autónomo para
-                                            resolver todas aquellas tareas que, de forma circunstancial o programada, necesitas
-                                            atender para el buen funcionamiento de tu hogar.
-                                            <br />
-                                            ¿Necesitas una empleada de hogar, una niñera?
-                                            <br />
-                                            ¿Buscas personal cualificado para atender las necesidades y el cuidado de tus mayores
-                                            o enfermos?
-                                            <br />
-                                            Querés realizar una reforma en tu hogar:¿Necesitas pintor,electricista,carpintero
-                                            o un albañil?
-                                            <br />
-                                            Si eres profesional autónomo o particular, y ofreces cualquier servicio a domicilio,
-                                            este es tu espacio web. Simplemente te registras y ya podes publicar una oferta
-                                            del servicio que prestas.
-                                        </p>
-                                    </blockquote>
+                                    En Providere, de manera fácil y clara, podes encontrar al profesional autónomo para
+                                    resolver todas aquellas tareas que, de forma circunstancial o programada, necesitas
+                                    atender para el buen funcionamiento de tu hogar.
+                                    <br />
+                                    ¿Necesitas una empleada de hogar, una niñera?
+                                    <br />
+                                    ¿Buscas personal cualificado para atender las necesidades y el cuidado de tus mayores
+                                    o enfermos?
+                                    <br />
+                                    Querés realizar una reforma en tu hogar:¿Necesitas pintor,electricista,carpintero
+                                    o un albañil?
+                                    <br />
+                                    Si eres profesional autónomo o particular, y ofreces cualquier servicio a domicilio,
+                                    este es tu espacio web. Simplemente te registras y ya podes publicar una oferta
+                                    del servicio que prestas.
                                 </div>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                        <h4>
-                                            ¿Cómo funciona Providere?</h4>
-                                    </a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">¿Cómo funciona
+                                        Providere? </a>
                                 </h4>
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <blockquote>
-                                        <p>
-                                            Providere contiene un motor de búsqueda centrado exclusivamente en los servicios
-                                            a domicilio.<br />
-                                            Te proporcionamos la posibilidad de encontrar al profesional que necesitas en el
-                                            ámbito de los servicios a domicilio de la siguiente manera:
-                                            <br />
-                                            Podes hacer una búsqueda entre los usuarios que hayan publicado el servicio que
-                                            prestan, ordenados por rubros y ubicación.
-                                            <br />
-                                            Tenes que estar registrado en el sistema para poder ponerte en contacto con quien
-                                            vos quieras sin que Providere intervenga en la contratación.
-                                        </p>
-                                    </blockquote>
+                                    Providere contiene un motor de búsqueda centrado exclusivamente en los servicios
+                                    a domicilio.<br />
+                                    Te proporcionamos la posibilidad de encontrar al profesional que necesitas en el
+                                    ámbito de los servicios a domicilio de la siguiente manera:
+                                    <br />
+                                    Podes hacer una búsqueda entre los usuarios que hayan publicado el servicio que
+                                    prestan, ordenados por rubros y ubicación.
+                                    <br />
+                                    Tenes que estar registrado en el sistema para poder ponerte en contacto con quien
+                                    vos quieras sin que Providere intervenga en la contratación.
                                 </div>
                             </div>
                         </div>

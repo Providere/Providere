@@ -202,6 +202,11 @@
     <Content Include="Content\img\close.png" />
     <Content Include="Content\img\Error.png" />
     <Content Include="Content\img\facebook.png" />
+    <Content Include="Content\img\ImagenesFAQ\buscador.png" />
+    <Content Include="Content\img\ImagenesFAQ\calificar.png" />
+    <Content Include="Content\img\ImagenesFAQ\ContratarPublicacion.jpg" />
+    <Content Include="Content\img\ImagenesFAQ\ListadoPublicaciones.jpg" />
+    <Content Include="Content\img\ImagenesFAQ\preguntar.png" />
     <Content Include="Content\img\index.jpg" />
     <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\logo.png" />
@@ -359,6 +364,7 @@
     <Content Include="Views\Calificacion\Index.cshtml" />
     <Content Include="Views\Usuario\VerPerfil.cshtml" />
     <Content Include="Views\Calificacion\ReplicarComentario.cshtml" />
+    <Content Include="Views\Shared\FAQ.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
