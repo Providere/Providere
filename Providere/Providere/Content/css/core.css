@@ -67,7 +67,7 @@ body
 }
 .header.shrink .log-reg-btn
 {
-    margin-top:-25px;
+    margin-top: -25px;
 }
 
 .portada, .header
@@ -153,7 +153,7 @@ hr
 }
 .glyphicon
 {
-    margin-right: 7px; 
+    margin-right: 7px;
 }
 .contenedor-img
 {
@@ -332,5 +332,5 @@ footer.transparente .container
 .tabla-publicaciones input[type="checkbox"]
 {
     top: 3px;
-
-position: relative;}
+    position: relative;
+}
