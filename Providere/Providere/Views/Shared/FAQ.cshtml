@@ -1,51 +1,142 @@
 ﻿@{
-    ViewBag.Title = "Preguntas Frecuentes";
+    ViewBag.Title = "Preguntas Frecuentes (FAQ)";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="col-md-12 well">
-<h2>Preguntas frecuentes</h2>
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </a>
-      </h4>
+    <h2>
+        Preguntas Frecuentes (FAQ)</h2>
+        <br />
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading1">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true"
+                        aria-controls="collapse1">Buscar </a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+                <div class="panel-body">
+                    <strong>¿C&oacute;mo encuentro el servicio que necesito?</strong>
+                    <br />
+                    Pod&eacute;s encontrar lo que necesitas desde el buscador del sitio el cual permite buscar diferentes servicios por zona.
+                    <br />
+                    [Captura de pantalla del buscador] 
+                    <br />
+                    <br />
+                   <strong>¿Puedo ver que servicios se ofrecen en mi zona?</strong>
+                   <br />
+                    Sí, pod&eacute;s hacerlo especificando una zona en el buscador, y sin necesidad de elegir un servicio,
+                    tocas el bot&oacute;n buscar el cual te llevar&aacute; a un listado de los servicios ofrecidos en la zona elegida.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading2">
+                <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse2"
+                        aria-expanded="false" aria-controls="collapse2">Registrarme </a>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                <div class="panel-body">
+                    <strong>¿C&oacute;mo creo una cuenta nueva?</strong>
+                    <br /> 
+                    Solo tenes que llenar este <a href="@Url.Action("RegistrarUsuario", "Usuario")"> formulario de registraci&oacute;n</a>. Luego recibir&aacute;s un correo electr&oacute;nico 
+                    para confirmar tu registro y listo, ya podes usar Providere. Record&aacute; usar tus datos reales.
+                    <br /> 
+                    [Captura de pantalla del boton de registracion en home] 
+                    <br />
+                    <br />
+                    <strong>¿Puedo tener mas de una cuenta?</strong>
+                    <br />
+                    No. La cuenta Providere es &uacute;nica e intransferible. 
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading3">
+                <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse3"
+                        aria-expanded="false" aria-controls="collapse3">Publicar </a>
+                </h4>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+                <div class="panel-body">
+                    <strong>¿Si me registr&eacute; como cliente puedo ofrecer mis servicios?</strong>
+                    <br />
+                    Claro que s&iacute;. Una vez registrado pod&eacute;s ir al men&uacute; de usuario y en la secci&oacute;n de “Publicaciones” ir a “Agregar Publicaci&oacute;n”.
+                    <br />
+                    <br />
+                    <strong>¿Qu&eacute; puede hacer si no quiero ofrecer mi servicio por un tiempo?</strong>
+                    <br />
+                    Pod&eacute;s deshabilitar tu publicaci&oacute;n cuando quieras y luego volver a habilitarla sin ning&uacute;n problema. 
+                    <br />
+                    [Captura de pantalla del listado de publicaciones enfocándose en el botón de deshabilitar]
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading4">
+                <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse4"
+                        aria-expanded="false" aria-controls="collapse4">Preguntar </a>
+                </h4>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+                <div class="panel-body">
+                    <strong>¿C&oacute;mo puedo sacarme las dudas respecto a una publicaci&oacute;n?</strong>
+                    <br />
+                    Pod&eacute;s hacerle preguntas  al prestador en la sección de preguntas de la publicaci&oacute;n.
+                    <br />
+                    [Captura de pantalla del input de pregunta]
+                    <br />
+                    <br />
+                    <strong>¿Puedo incluir mis datos personales en una pregunta?</strong>
+                    <br />
+                    Por su seguridad no est&aacute; permitido incluir datos personales en las preguntas.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading5">
+                <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse5"
+                        aria-expanded="false" aria-controls="collapse5">Contratar </a>
+                </h4>
+            </div>
+            <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+                <div class="panel-body">
+                    <strong>¿C&oacute;mo contrato un servicio?</strong>
+                    <br />
+                    Una vez registrado en el sistema pod&eacute;s contratar cualquier servicio habilitado desde el botón "Contratar" de la publicaci&oacute;n. 
+                    Una vez cliqueado se te facilitar&aacute; el tel&eacute;fono de contacto del prestador. 
+                    <br />
+                    [Captura de pantalla del boton]
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading6">
+                <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse6"
+                        aria-expanded="false" aria-controls="collapse6">Calificar </a>
+                </h4>
+            </div>
+            <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+                <div class="panel-body">
+                    <strong>¿C&oacute;mo califico un servicio?</strong>
+                    <br />
+                    Pod&eacute;s encontrar tu lista de servicios contratados en la secci&oacute;n contrataciones de tu men&uacute; de usuario. 
+                    Desde ella vas a poder  darle una calificación a cada servicio contratado en el link “Calificar usuario”.
+                    <br />
+                    [Captura de pantalla del formulario de calificacion]
+                    <br />
+                    <br />
+                    <strong>¿Puedo calificar un servicio que no contrat&eacute;?</strong>
+                    <br />
+                     No. Solo podr&aacute;s calificar a los servicios que hayas contratado.
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div>
 </div>
