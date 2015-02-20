@@ -28,13 +28,8 @@
     </div>
 }
 <div id="publicacion" class="col-md-12 well">
-    <h1 class="text-right">
-        @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
-        {
-                
-            @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "btn btn-primary btn-xs glyphicon glyphicon-pencil" })
-        }
-    </h1>
+      
+    
     <div>
         @Html.HiddenFor(model => model.IdUsuario)
     </div>
@@ -44,7 +39,13 @@
     <div>
         <h1 class="titulo text-center col-md-12">
             @Html.DisplayFor(model => model.Titulo)
-        </h1>
+      
+          @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+        {
+                
+            @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "editar-btn btn btn-primary btn-lg pull-right " })
+        }
+          </h1>
     </div>
     <div class="col-md-12">
         <hr />
