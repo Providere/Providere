@@ -9,22 +9,19 @@
     <script language="javascript" type="text/javascript" src="../../Scripts/js/jquery-1.10.2.js"></script>
     <script language="javascript" type="text/javascript" src="../../Scripts/js/bootstrap.min.js"></script>
     <script language="javascript" type="text/javascript" src="../../Content/js/script.js"></script>
+    <link href="../../Content/css/lightbox.css" type="text/css" media="all" rel="stylesheet" />
+    <script language="javascript" type="text/javascript" src="../../Scripts/js/lightbox.js"></script>
+    <script language="javascript" type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-2196019-1']);
+        _gaq.push(['_trackPageview']);
 
-	<link href="../../Content/css/lightbox.css" type="text/css" media="all" rel="stylesheet" />
-	<script language="javascript" type="text/javascript"  src="../../Scripts/js/lightbox.js"></script>
-
-	<script language="javascript" type="text/javascript" >
-	    var _gaq = _gaq || [];
-	    _gaq.push(['_setAccount', 'UA-2196019-1']);
-	    _gaq.push(['_trackPageview']);
-
-	    (function () {
-	        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	    })();
-	</script>
-
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
     <script type="text/javascript">
         function mostrar(id) {
             if (id == "todas") {
@@ -55,8 +52,7 @@
                 $("#negativas").show();
             }
         }
-</script>
-
+    </script>
     <!-- Google Maps -->
     <script language="javascript" type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
     <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -104,15 +100,16 @@
                     </a>
                 </div>
                 <div class="col-md-8">
-                 @if (@HttpContext.Current.Session["IdUsuario"] != null)
-                 {            <ul style="margin-top: 10px;" class="pull-right">
+                    @if (@HttpContext.Current.Session["IdUsuario"] != null)
+                    {            <ul style="margin-top: 10px;" class="pull-right">
                         <div>
                             <div class="btn-group user-menu pull-right">
                                 <button class="btn btn-default dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
                                     @User.Identity.Name <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="@Url.Action("VerPerfil", "Usuario")">Ver perfil</a></li> @*Puesto por Pau*@
+                                    <li><a href="@Url.Action("VerPerfil", "Usuario")">Ver perfil</a></li>
+                                    @*Puesto por Pau*@
                                     <li><a href="@Url.Action("EditarPerfil", "Usuario")">Editar perfil</a></li>
                                     <li><a href="@Url.Action("ListarPublicaciones", "Publicacion")">Publicaciones</a></li>
                                     <li><a href="@Url.Action("Index", "Calificacion")">Calificaciones</a></li>
@@ -127,10 +124,10 @@
                             </div>
                         </div>
                     </ul>
-                 }
+                    }
                 </div>
-            </div>         
-                @Html.Partial("~/Views/Shared/buscador.cshtml")
+            </div>
+            @Html.Partial("~/Views/Shared/buscador.cshtml")
         </div>
     </div>
     <div class="container cuerpo">
@@ -144,13 +141,13 @@
                 <img src="../../Content/img/logoSquare.png" alt="logo" width="12%" />
                 <span class="text-info">©2015 | Todos los derechos reservados</span>
             </div>
-<div class="col-md-4 text-center">
-   <span class="text-info">
-                @Html.ActionLink("Principal", "Home", "Home") |
-                    <a data-toggle="modal" href="#myModalProvidere">Acerca de Providere</a> | <a href="#">FAQ</a> | <a href="mailto:providere_arg@gmail.com">
+           <div class="col-md-4 text-center">
+               <span class="text-info">
+               @* @Html.ActionLink("Principal", "Home", "Home") |*@
+                    <a data-toggle="modal" href="#myModalProvidere">Acerca de Providere</a> | <a href="@Url.Action("FAQ", "Shared")">FAQ</a> | <a href="mailto:providere_arg@gmail.com">
                         Contacto</a> 
-                </span>
-            </div>
+               </span>
+           </div>
             <div class="iconos-sociales col-md-4">
                 <a href="#">
                     <img src="../../Content/img/facebook.png" alt="facebook" width="12%" />

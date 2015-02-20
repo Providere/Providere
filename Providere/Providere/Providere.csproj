@@ -359,6 +359,7 @@
     <Content Include="Views\Calificacion\Index.cshtml" />
     <Content Include="Views\Usuario\VerPerfil.cshtml" />
     <Content Include="Views\Calificacion\ReplicarComentario.cshtml" />
+    <Content Include="Views\Shared\FAQ.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
