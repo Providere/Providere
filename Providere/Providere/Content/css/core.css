@@ -34,11 +34,36 @@ body
     width: 100%;
     height: 150px;
     z-index: 1000;
+    transition: all 0.4s ease;
 }
 
 .header.shrink
 {
     height: 80px;
+    transition: all 0.4s ease;
+}
+.header.shrink #buscador
+{
+    width: 51%;
+    margin: 0 auto;
+    top: 22px;
+    position: absolute;
+    left: 29%;
+    transition: all 0.4s ease;
+}
+
+.header.shrink #buscador .col-md-5
+{
+    margin-right: -15px;
+}
+.header.shrink #contenedor-logo img
+{
+    width: 70%;
+}
+
+.header.shrink #btnBuscar
+{
+    width: auto;
 }
 
 .portada, .header

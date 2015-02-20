@@ -1,7 +1,7 @@
 ﻿<form action="/Buscar/Resultados" method="post">
-<div id="buscador" class="combo-rubro-subrubro row">
+<div id="buscador" class="combo-rubro-subrubro row ">
     <div class="rubros-container col-md-5">
-        <select id="selectRubro" name="selectRubro" class="IdRubro form-control">
+        <select id="selectRubro" name="selectRubro" class="IdRubro form-control hidden-sm hidden-xs">
             @if (ViewBag.Rubros != null)
             {
                 <option value="0">Todos los rubros</option>
@@ -12,19 +12,19 @@
             }
         </select>
     </div>
-    <div class="subrubros-container col-md-3" style="display: none">
+    <div class="subrubros-container col-md-3 " style="display: none">
         <div class="subrubros-select" data-estilo="horizontal">
         </div>
     </div>
-    <div class="col-md-5 ubicacion-container">
+    <div class="col-md-5 ubicacion-container col-xs-5 col-sm-5 col-xs-offset-3 col-sm-offset-0">
         <div class="form-group">
             <input id="geocomplete" name="geocomplete" type="text" class="form-control" placeholder="Ingrese ubicaci&oacute;n. Ej: San Justo"
                 autocomplete="off" />
         </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 col-xs-2 col-sm-2">
         <button type="submit" id="btnBuscar" class="btn btn-primary btn-block">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Buscar</button>
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="hidden-md hidden-sm hidden-xs">Buscar</span></button>
         <br />
     </div>
 </div>
