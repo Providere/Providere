@@ -78,5 +78,10 @@ namespace Providere.Servicios
         {
             return cr.TraerCalificacionReplicar(id);
         }
+
+        public List<Calificacion> TraerCalificacionPorContratacion(List<Contratacion> contrataciones, int tipoCalificacion)
+        {
+            return cr.TraerCalificacionPorContratacion(contrataciones, tipoCalificacion);
+        }
     }
 }

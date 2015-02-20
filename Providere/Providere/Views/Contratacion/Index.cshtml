@@ -75,8 +75,50 @@
                                         @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 1 }, null)
                                     }
                                     else
-                                    { 
-                                        @Html.DisplayName("Ver CALIFICACION")
+                                    {
+
+                                        foreach (var item2 in ViewBag.calificacionesAprestador)
+                                        {
+                                            if (item2.IdContratacion == item.Id)
+                                            {
+                                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                                 Ver Calificaci&oacute;n
+                                                </button>
+                                       
+                                        
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                      <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="myModalLabel">Calificaci&oacute;n otorgada</h4>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                
+                                                        idCalificado: @item2.IdCalificado , @item2.Contratacion.Publicacion.Usuario.Nombre , @item2.Contratacion.Publicacion.Usuario.Apellido
+                                                        <br/>
+                                                        idCalificador es el logueado: @item2.IdCalificador , @item2.Contratacion.Usuario.Nombre, @item2.Contratacion.Usuario.Apellido
+                                                        <br/>
+                                                        Comentario: @item2.Descripcion
+                                                        <br/>
+                                                        idContratacion: @item2.IdContratacion
+                                                        <br/>
+                                                        ID TIPO EVALUACION: @item2.IdTipoEvaluacion
+
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                            }
+                                            
+                                        }
+                                            
+                                            
                                     }
                                 </td>
                             </tr>
@@ -137,7 +179,7 @@
                                     }
                                 </td>
                             </tr>
-                        }
+                       }
                     </tbody>
                 </table>
             </div>

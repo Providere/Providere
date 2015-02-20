@@ -299,5 +299,24 @@ namespace Providere.Repositorios
             Calificacion calificacion = context.Calificacion.Single(e => e.Id == id);
             return calificacion;
         }
+
+        // Lo utilizo para armar los modals de calificaciones otorgadas en las contrataciones
+        public List<Calificacion> TraerCalificacionPorContratacion(List<Contratacion> contrataciones, int tipoCalificacion)
+        {
+            
+            List<int> listaDeContrataciones = new List<int>();
+
+            foreach (var item in contrataciones)
+            {
+                listaDeContrataciones.Add(item.Id);
+            }
+
+            var calificacion = (from calif in context.Calificacion
+                             where (listaDeContrataciones.Contains(calif.IdContratacion) && calif.IdTipoCalificacion == tipoCalificacion)
+                             select calif).ToList();
+
+            return calificacion;
+        
+        }
     }
 }

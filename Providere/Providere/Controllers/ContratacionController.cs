@@ -26,8 +26,14 @@ namespace Providere.Controllers
 
             var quienMeContrato = cs.traerQuienesMeContrataron(idUsuario);
 
+            var calificacionesAprestador = cas.TraerCalificacionPorContratacion(contrataciones, 1);
+            var calificacionesACliente = cas.TraerCalificacionPorContratacion(quienMeContrato, 2);
+
             ViewBag.ContratacionesRealizadas = contrataciones;
             ViewBag.QuienesMeContrataron = quienMeContrato;
+
+            ViewBag.calificacionesAprestador = calificacionesAprestador;
+            ViewBag.calificacionesACliente = calificacionesACliente;
 
             return View();
         }
