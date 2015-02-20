@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/core.css" />
     <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.js"></script>
     <script type="text/javascript" language="javascript" src="../../Scripts/js/bootstrap.js"></script>
+    <script language="javascript" type="text/javascript" src="../../Content/js/script.js"></script>
     <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" 
       rel="stylesheet" type="text/css" />
     <script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -53,17 +54,44 @@
 <body>
     <div class="header ">
         <div class="container">
-            <div class="row">
-                <div id="contenedor-logo" class="col-md-5">
-                    <a href="@Url.Action("Index", "Index")">
-                        <img src="../../Content/img/logotransparente.png" alt="providere" width="90%" />
+                <div class="row">
+                    <div id="contenedor-logo" class="col-md-5 col-xs-12 col-sm-5">
+                    <a href="@Url.Action("Home", "Home")">
+                        <img id="logogrande" class="pull-left" src="../../Content/img/logotransparente.png" alt="Providere" width="90%" />
                     </a>
+                    </div>
+                    <div id="contenedor-botones-index" class="col-md-7 col-xs-12 col-sm-7">
+                        <ul class="nav navbar-nav pull-right">
+                        @if (ViewBag.Accion == "Identificacion")
+                        {
+                            <li>
+                                <div class="modalBox">
+                                    <a href="@Url.Action("RegistrarUsuario", "Usuario")" id="registracion-btn" class="log-reg-btn btn btn-primary btn-large">
+                                        <span class="glyphicon glyphicon-list"></span>Registrarme</a>
+                                    <br />
+                                    <br />
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <div class="modalBox2">
+                                    <a href="@Url.Action("IniciarSesion", "Usuario")" class="log-reg-btn btn btn-primary btn-large" id="login-btn">
+                                        <span class="glyphicon glyphicon-user"></span>Iniciar Sesion</a>
+                                    <br />
+                                </div>
+                            </li>
+                        }
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
-
+    <div class="cuerpo">
+    
         @RenderBody()
+    </div>
     <footer>
         <div class="container">
             <div class="col-md-4">

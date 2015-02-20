@@ -3,7 +3,7 @@
     ViewBag.Title = "IniciarSesion";
     Layout = "~/Views/Shared/_Registracion.cshtml";
 }
-<div class="container well">
+<div class="container ">
     @if (ViewBag.Exito != null)
     {
         <div class="alert alert-success alert-dismissable">
@@ -20,7 +20,7 @@
             @ViewBag.Error
         </div>
     }
-    <div class="content">
+    <div class="content well">
         @using (Html.BeginForm("IniciarSesion", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
         {
             <div id="page-wrapper">

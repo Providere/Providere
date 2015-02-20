@@ -63,6 +63,18 @@ $(function() {
 
 
 
-	});
+	
+    });
+
+
+$(window).scroll(function () {
+    if ($(document).scrollTop() > 150) {
+        $('.header').addClass('shrink');
+        $('#logogrande').attr('src','/Content/img/logoslim.png');
+    } else {
+        $('.header').removeClass('shrink');
+        $('#logogrande').attr('src', '/Content/img/logotransparente.png');
+    }
+});
 
 });

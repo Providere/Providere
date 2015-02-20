@@ -22,8 +22,68 @@ html
 
 body
 {
-    background: url(http://subtlepatterns.com/patterns/light_grey.png); /* Margin bottom by footer height */
+    background: url('../img/gray_jean.png'); /* Margin bottom by footer height */
     margin-bottom: 60px;
+}
+
+.header
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    z-index: 1000;
+    transition: all 0.4s ease;
+}
+
+.header.shrink
+{
+    height: 80px;
+    transition: all 0.4s ease;
+}
+.header.shrink #buscador
+{
+    width: 51%;
+    margin: 0 auto;
+    top: 22px;
+    position: absolute;
+    left: 29%;
+    transition: all 0.4s ease;
+}
+
+.header.shrink #buscador .col-md-5
+{
+    margin-right: -15px;
+}
+.header.shrink #contenedor-logo img
+{
+    width: 70%;
+}
+
+.header.shrink #btnBuscar
+{
+    width: auto;
+}
+.header.shrink .log-reg-btn
+{
+    margin-top:-25px;
+}
+
+.portada, .header
+{
+    background: -webkit-linear-gradient(top,#f7f7f7,#f4f4f4);
+    background: -moz-linear-gradient(top,#f7f7f7,#f4f4f4);
+    background: -o-linear-gradient(top,#f7f7f7,#f4f4f4);
+    background: -ms-linear-gradient(top,#f7f7f7,#f4f4f4);
+    background: linear-gradient(to bottom,#f7f7f7,#f4f4f4);
+    -webkit-box-shadow: 0 1px 1px 0 #aaa;
+    box-shadow: 0 1px 1px 0 #aaa;
+}
+
+.cuerpo
+{
+    margin-top: 170px;
 }
 
 hr
@@ -48,6 +108,7 @@ hr
 
 #buscador
 {
+    margin-top: -10px;
     margin-bottom: 5px;
 }
 
@@ -92,7 +153,7 @@ hr
 }
 .glyphicon
 {
-    /* margin-right: 7px; */
+    margin-right: 7px; 
 }
 .contenedor-img
 {
@@ -144,8 +205,8 @@ hr
 {
     height: auto;
     float: left;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     margin-top: 0.8em;
     margin-right: 1em;
     position: relative;
@@ -257,8 +318,19 @@ footer.transparente .container
     margin-top: 0;
 }
 
-.btnTel 
+.btnTel
 {
     font-size: 1.4em;
-    font-weight:bold
+    font-weight: bold;
 }
+
+.tabla-publicaciones .btn-xs
+{
+    width: 80%;
+    font-size: 0.6em;
+}
+.tabla-publicaciones input[type="checkbox"]
+{
+    top: 3px;
+
+position: relative;}
