@@ -202,6 +202,10 @@
     <Content Include="Content\img\close.png" />
     <Content Include="Content\img\Error.png" />
     <Content Include="Content\img\facebook.png" />
+    <Content Include="Content\img\ImagenesFAQ\buscador.png" />
+    <Content Include="Content\img\ImagenesFAQ\calificar.png" />
+    <Content Include="Content\img\ImagenesFAQ\contratar.png" />
+    <Content Include="Content\img\ImagenesFAQ\preguntar.png" />
     <Content Include="Content\img\index.jpg" />
     <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\logo.png" />
