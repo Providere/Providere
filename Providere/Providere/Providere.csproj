@@ -205,6 +205,8 @@
     <Content Include="Content\img\ImagenesFAQ\buscador.png" />
     <Content Include="Content\img\ImagenesFAQ\calificar.png" />
     <Content Include="Content\img\ImagenesFAQ\contratar.png" />
+    <Content Include="Content\img\ImagenesFAQ\ContratarPublicacion.jpg" />
+    <Content Include="Content\img\ImagenesFAQ\ListadoPublicaciones.jpg" />
     <Content Include="Content\img\ImagenesFAQ\preguntar.png" />
     <Content Include="Content\img\index.jpg" />
     <Content Include="Content\img\loading.gif" />
