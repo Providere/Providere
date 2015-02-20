@@ -1251,7 +1251,7 @@ dt {
   font-weight: bold;
 }
 dd {
-  margin-left: 0;
+  margin-left: 2.7%;
 }
 @media (min-width: 768px) {
   .dl-horizontal dt {
@@ -1697,7 +1697,7 @@ pre code {
     left: auto;
   }
   .col-sm-offset-12 {
-    margin-left: 100%;
+    margin-left: 1.44%;
   }
   .col-sm-offset-11 {
     margin-left: 91.66666667%;
