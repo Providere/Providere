@@ -293,5 +293,11 @@ namespace Providere.Repositorios
                              select calificacion).ToList();
             return resultado;
         }
+
+        public Calificacion TraerCalificacionReplicar(int id)
+        {
+            Calificacion calificacion = context.Calificacion.Single(e => e.Id == id);
+            return calificacion;
+        }
     }
 }

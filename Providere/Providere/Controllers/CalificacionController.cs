@@ -101,9 +101,18 @@ namespace Providere.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult ReplicarComentario(int id, string replicar)
+        //Obtener calificacion que se va a replicar
+        public ActionResult ReplicarComentario(int id)
         {
+            ViewBag.Error = TempData["Error"];
+            Calificacion calificacion = cs.TraerCalificacionReplicar(id);
+            return View(calificacion);
+        }
+
+        [HttpPost, ActionName("ReplicarComentario")]
+        public ActionResult Replicar(int id, string replicar)
+        {
+           
             if (!string.IsNullOrWhiteSpace(replicar))
             {
                 try
@@ -121,7 +130,7 @@ namespace Providere.Controllers
             else
             {
                 TempData["Error"] = "La réplica no puede ser vacía.";
-                return RedirectToAction("Index", "Calificacion");
+                return RedirectToAction("ReplicarComentario", "Calificacion", new { id = id });
             }
         }
 
