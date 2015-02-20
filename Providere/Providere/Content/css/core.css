@@ -65,6 +65,10 @@ body
 {
     width: auto;
 }
+.header.shrink #registracion-btn
+{
+    margin-top:-25px;
+}
 
 .portada, .header
 {
