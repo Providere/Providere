@@ -2,208 +2,50 @@
     ViewBag.Title = "Preguntas Frecuentes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../../Content/css/core.css" />
-    <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.js"></script>
-    <script type="text/javascript" language="javascript" src="../../Scripts/js/bootstrap.js"></script>
-    <script language="javascript" type="text/javascript" src="../../Content/js/script.js"></script>
-    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" 
-      rel="stylesheet" type="text/css" />
-    <script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-    <script type="text/javascript" language="javascript" src="../../Scripts/js/jquery.geocomplete.js"></script>
-    <script language="javascript" type="text/javascript">
-        $(function () {
-            var options = {
-                map: ".map_canvas",
-                types: ['(cities)'],
-                location: new google.maps.LatLng(-34.6037232, -58.38159310000003),
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-
-            $("#geocomplete").geocomplete(options)
-          .bind("geocode:result", function (event, result) {
-              $.log("Result: " + result.formatted_address);
-          })
-          .bind("geocode:error", function (event, status) {
-              $.log("ERROR: " + status);
-          })
-          .bind("geocode:multiple", function (event, results) {
-              $.log("Multiple: " + results.length + " results found");
-          });
-
-            $("#find").click(function () {
-                $("#geocomplete").trigger("geocode");
-            });
-
-            $("#examples a").click(function () {
-                $("#geocomplete").val($(this).text()).trigger("geocode");
-                return false;
-            });
-
-        });
-        google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-    <link href="../../Content/img/logosquare.png" rel="shortcut icon" type="image/png" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/themes/base/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @*  @Scripts.Render("~/bundles/jquery")*@
-@*</head>
-<body>
-    <div class="header ">
-        <div class="container">
-                <div class="row">
-                    <div id="contenedor-logo" class="col-md-5 col-xs-12 col-sm-5">
-                    <a href="@Url.Action("Home", "Home")">
-                        <img id="logogrande" class="pull-left" src="../../Content/img/logotransparente.png" alt="Providere" width="90%" />
-                    </a>
-                    </div>
-                    <div id="contenedor-botones-index" class="col-md-7 col-xs-12 col-sm-7">
-                        <ul class="nav navbar-nav pull-right">
-                        @if (ViewBag.Accion == "Identificacion")
-                        {
-                            <li>
-                                <div class="modalBox">
-                                    <a href="@Url.Action("RegistrarUsuario", "Usuario")" id="registracion-btn" class="log-reg-btn btn btn-primary btn-large">
-                                        <span class="glyphicon glyphicon-list"></span>Registrarme</a>
-                                    <br />
-                                    <br />
-                                </div>
-                            </li>
-                        }
-                        else
-                        {
-                            <li>
-                                <div class="modalBox2">
-                                    <a href="@Url.Action("IniciarSesion", "Usuario")" class="log-reg-btn btn btn-primary btn-large" id="login-btn">
-                                        <span class="glyphicon glyphicon-user"></span>Iniciar Sesion</a>
-                                    <br />
-                                </div>
-                            </li>
-                        }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-    </div>*@
-    <div class="cuerpo">
-    
-      
+<div class="col-md-12 well">
+<h2>Preguntas frecuentes</h2>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </h4>
     </div>
-   @* <footer>
-        <div class="container">
-            <div class="col-md-4">
-                <img src="../../Content/img/logoSquare.png" alt="logo" width="12%" />
-                <span class="text-info">©2015 | Todos los derechos reservados</span>
-            </div>
-            <div class="col-md-4 text-center">
-                 <span class="text-info">
-                    <a data-toggle="modal" href="#myModalProvidere">Acerca de Providere</a> | <a href="@Url.Action("FAQ", "Shared")">FAQ</a> | <a href="mailto:providere_arg@gmail.com">
-                        Contacto</a> 
-                </span>
-            </div>
-            <div class="iconos-sociales col-md-4">
-                <a href="#">
-                    <img src="../../Content/img/facebook.png" alt="facebook" width="12%" />
-                </a><a href="#" class="margin-top">
-                    <img src="../../Content/img/twitter.png" alt="twitter" width="12%" />
-                </a>
-            </div>
-        </div>
-        <!--container del footer-->
-    </footer>
-    <!-- Modal Como Funciona-->
-    <div class="modal" id="myModalProvidere">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;</button>
-                    <h4 class="modal-title">
-                        Mas información sobre Providere</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="panel-group" id="accordion">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                        <h4>
-                                            ¿Qué es Providere?</h4>
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    <blockquote>
-                                        <p>
-                                            En Providere, de manera fácil y clara, podes encontrar al profesional autónomo para
-                                            resolver todas aquellas tareas que, de forma circunstancial o programada, necesitas
-                                            atender para el buen funcionamiento de tu hogar.
-                                            <br />
-                                            ¿Necesitas una empleada de hogar, una niñera?
-                                            <br />
-                                            ¿Buscas personal cualificado para atender las necesidades y el cuidado de tus mayores
-                                            o enfermos?
-                                            <br />
-                                            Querés realizar una reforma en tu hogar:¿Necesitas pintor,electricista,carpintero
-                                            o un albañil?
-                                            <br />
-                                            Si eres profesional autónomo o particular, y ofreces cualquier servicio a domicilio,
-                                            este es tu espacio web. Simplemente te registras y ya podes publicar una oferta
-                                            del servicio que prestas.
-                                        </p>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                        <h4>
-                                            ¿Cómo funciona Providere?</h4>
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <blockquote>
-                                        <p>
-                                            Providere contiene un motor de búsqueda centrado exclusivamente en los servicios
-                                            a domicilio.<br />
-                                            Te proporcionamos la posibilidad de encontrar al profesional que necesitas en el
-                                            ámbito de los servicios a domicilio de la siguiente manera:
-                                            <br />
-                                            Podes hacer una búsqueda entre los usuarios que hayan publicado el servicio que
-                                            prestan, ordenados por rubros y ubicación.
-                                            <br />
-                                            Tenes que estar registrado en el sistema para poder ponerte en contacto con quien
-                                            vos quieras sin que Providere intervenga en la contratación.
-                                        </p>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
     </div>
-    <!-- /.modal -->
-    <div class="pac-container hdpi" style="display: none; width: 447px; position: absolute;
-        left: 621px; top: 456px;">
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Collapsible Group Item #2
+        </a>
+      </h4>
     </div>
-   @* @Scripts.Render("~/bundles/jqueryui")
-    @RenderSection("Scripts", required: false)*@
-@*</body>
-</html>
-*@
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Collapsible Group Item #3
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+</div>
