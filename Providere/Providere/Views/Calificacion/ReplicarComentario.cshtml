@@ -15,6 +15,7 @@
     <h2>
         Replicar Comentario
     </h2>
+    <br />
     @if (Model.IdTipoEvaluacion == 1)
     {
         <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span> <em>@Model.Descripcion</em>
@@ -35,6 +36,7 @@
                 <br />
                 @Html.TextArea("replicar", new { @class = "form-control ", placeholder = "Escribe tu respuesta..." })
             </div>
+            <br />
             <br />
             <br />
             <div class="form-group">
