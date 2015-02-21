@@ -48,8 +48,7 @@
             <h3>
                 @Html.DisplayName("Como cliente")
             </h3>
-
-
+           
             <div class="row">
                     <div class="col-sm-4 editor-field">
                         <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
@@ -71,25 +70,26 @@
                         @ViewBag.PuntajeCliente.Total
                     </div>
             </div>
+           
         </div>
     </div> 
     
     <div class="col-md-9">
         <div class="col-md-8">
-
+       
             @foreach (var item in ViewBag.ListaPublicaciones)
-            {                
-               foreach (var item2 in ViewBag.ListaPuntajes)
-               {
-                
-                if (item2.IdPublicacion == item.Id)
+            {
+                foreach (var item2 in ViewBag.ListaPuntajes)
                 {
+
+                    if (item2.IdPublicacion == item.Id)
+                    {
                     <h3>@item.Rubro.Nombre   
                 
-                          @if(item.SubRubro != null)
-                             {
+                          @if (item.SubRubro != null)
+                          {
                               @item.SubRubro.Nombre
-                             }                      
+                          }                      
                               
                      <a href="/Publicacion/VisualizarPublicacion/@item.Id">@item.Titulo</a>                           
                 </h3>
@@ -116,10 +116,11 @@
                     </div>
                 </div>
                     
+                    }
+
                 }
-                   
-               }
             }
+       
 
 
             
