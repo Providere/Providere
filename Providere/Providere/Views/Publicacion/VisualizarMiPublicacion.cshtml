@@ -8,7 +8,16 @@
     <div class="alert alert-danger alert-dismissable container">
         <button type="button" class="close" data-dismiss="alert">
             &times;</button>
-        Su cuenta esta actualmente bloqueada por lo cual no puede realizar contrataciones
+        @if (Model.Usuario.Id != ViewBag.idUsuario)
+        {
+            <span>Su cuenta esta actualmente bloqueada por lo cual no puede realizar contrataciones.</span>
+        }
+        else
+        {
+            <span>Su cuenta esta actualmente bloqueada por lo cual su publicación no puede ser contratada.
+            </span>
+            
+        }
     </div>
 }
 @if (ViewBag.Error != null)
@@ -28,8 +37,6 @@
     </div>
 }
 <div id="publicacion" class="col-md-12 well">
-      
-    
     <div>
         @Html.HiddenFor(model => model.IdUsuario)
     </div>
@@ -39,13 +46,12 @@
     <div>
         <h1 class="titulo text-center col-md-12">
             @Html.DisplayFor(model => model.Titulo)
-      
-          @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
-        {
+            @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+            {
                 
-            @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "editar-btn btn btn-primary btn-lg pull-right " })
-        }
-          </h1>
+                @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "editar-btn btn btn-primary btn-lg pull-right " })
+            }
+        </h1>
     </div>
     <div class="col-md-12">
         <hr />
@@ -69,29 +75,68 @@
                 {
                     if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
                     {
+                     if (ViewBag.SancionPublicante != null)
+                        {
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })              
+                        
+                <div class="text-center">
+                    <small class="text-muted ">No es posible contratar esta publicación en este momento.</small>
+                </div> 
+                        
+                        }
+                        else
+                        {
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block" })
+                        }
 
-                        @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block" })
-               
                     }
                     else
                     {
                         if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
                         {
-                            @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
+
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
+                                 
+
                         }
 
                         else
                         {
                             if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
                             {
-                                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
+
+                
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
+                
+                         
                             }
                         }
+                <div class="text-center">
+                    @if (HttpContext.Current.Session["IdUsuario"] != null)
+                    {
+               
+                        <small class="text-muted ">No es posible contratar esta publicación en este momento.</small>
+              
+                    }
+                    else
+                    {
+                        
+                            
+                        <small class="text-muted ">Para contratar debe estar <a href="@Url.Action("RegistrarUsuario", "Usuario")">
+                            registrado</a>.</small>
+                    }
+                </div> 
                     }
                 }
                 else
                 {  
-                    @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
+
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
+                
+                <div class="text-center">
+                    <small class="text-muted ">No es posible contratar esta publicación en este momento.</small>
+                </div>  
+
                 }
             }
         </div>
@@ -135,7 +180,7 @@
                         <div>
                             <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item.Descripcion</em>
                             <dd class="col-sm-offset-3">
-                                <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <small class="text-muted">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</small>
                             </dd>
                             @if (item.FlagReplicado == 1)
                             {
@@ -166,7 +211,7 @@
                         <div>
                             <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span><em>@item.Descripcion</em>
                             <dd class="col-sm-offset-3">
-                                <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <small class="fecha text-muted">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</small>
                             </dd>
                             @if (item.FlagReplicado == 1)
                             {
@@ -210,7 +255,7 @@
                             <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                             <em>@item.Descripcion</em>
                             <dd class="col-sm-offset-3">
-                                <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <small class="fecha text-muted">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</small>
                             </dd>
                             @if (item.FlagReplicado == 1)
                             {
@@ -294,7 +339,7 @@
                                                 <div>
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item.Descripcion</em>
                                                     <dd class="col-sm-offset-4">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                        <small class="text-muted">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</small>
                                                     </dd>
                                                     @if (item.FlagReplicado == 1)
                                                     {
@@ -325,7 +370,7 @@
                                                 <div>
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span><em>@item.Descripcion</em>
                                                     <dd class="col-sm-offset-4">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                        <small class="text-muted">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</small>
                                                     </dd>
                                                     @if (item.FlagReplicado == 1)
                                                     {
@@ -369,7 +414,7 @@
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item.Descripcion</em>
                                                     <dd class="col-sm-offset-4">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                        <small class="text-muted">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</small>
                                                     </dd>
                                                     @if (item.FlagReplicado == 1)
                                                     {
@@ -420,7 +465,7 @@
                                                 <div>
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item1.Descripcion</em>
                                                     <dd class="col-sm-offset-4">
-                                                        <small><span class="help-block">@item1.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                        <small class="text-muted">@item1.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</small>
                                                     </dd>
                                                     @if (item1.FlagReplicado == 1)
                                                     {
@@ -462,7 +507,7 @@
                                                 <div>
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span><em>@item2.Descripcion</em>
                                                     <dd class="col-sm-offset-4">
-                                                        <small><span class="help-block">@item2.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                        <small class="text-muted">@item2.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</small>
                                                     </dd>
                                                     @if (item2.FlagReplicado == 1)
                                                     {
@@ -507,7 +552,7 @@
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
                                                     <em>@item3.Descripcion</em>
                                                     <dd class="col-sm-offset-4">
-                                                        <small><span class="help-block">@item3.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                                        <small class="text-muted">@item3.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</small>
                                                     </dd>
                                                     @if (item3.FlagReplicado == 1)
                                                     {
@@ -609,7 +654,7 @@
             @ViewBag.NoExistenPreguntas
             @foreach (var item in ViewBag.MostrarPrimerasPreguntas)
             {
-                <dl class="question" id="pregunta">
+                <dl class="question" >
                     <dd class="txt">
                         <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
                     </dd>
@@ -619,8 +664,9 @@
                         <dd class="col-md-offset-1">
                             <span class="text-info"><i class="glyphicon glyphicon-user"></i></span>@item.Respuesta
                         </dd>
-                        <dd class="col-sm-offset-2">
-                            <small><span class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                        <dd class="col-md-offset-1">
+                            <span class="invisible"><i class="glyphicon glyphicon-user"></i></span>
+                            <small class="text-muted">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</small>
                         </dd>
                     }
                 </dl>
@@ -635,7 +681,7 @@
                 @foreach (var item in ViewBag.MostrarPreguntas)
                 {
                     <br />
-                    <dl class="question" id="pregunta2">
+                    <dl class="question" >
                         <dd class="txt">
                             <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
                         </dd>
@@ -645,8 +691,9 @@
                             <dd class="col-md-offset-1">
                                 <span class="text-info"><i class="glyphicon glyphicon-user"></i></span>@item.Respuesta
                             </dd>
-                            <dd class="col-sm-offset-2">
-                                <small><span class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                        <dd class="col-md-offset-1">
+                            <span class="invisible"><i class="glyphicon glyphicon-user"></i></span>
+                                <small class="text-muted">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</small>
                             </dd>
                         }
                     </dl>
@@ -655,7 +702,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
+            @if (ViewBag.Sancion == null && ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
             {
                 using (Html.BeginForm("Preguntar", "Pregunta", FormMethod.Post))
                 {
@@ -678,7 +725,7 @@
             }
             else
             {
-                if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
+                if (ViewBag.Sancion == null && ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
                 {
                 <div>
                     <br />
@@ -692,7 +739,7 @@
                 }
                 else
                 {
-                    if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
+                    if (ViewBag.Sancion == null && ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
                     {               
                 <div>
                     <br />
@@ -703,6 +750,14 @@
                     <button name="btnEnviar" class="btn btn-primary btn-lg disabled" type="submit">
                         Enviar</button>
                 </div>                         
+                    }
+                    else
+                    {
+                        if (Model.Usuario.Id != ViewBag.idUsuario)
+                        {
+                <small class="text-muted">Lo sentimos. Los usuarios penalizados no pueden hacer preguntas
+                    hasta que su período de sanción termine.</small>  
+                        }
                     }
                 }
             }
