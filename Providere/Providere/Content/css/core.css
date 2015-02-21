@@ -9,6 +9,10 @@
     margin-top: 15px;
 }
 
+.invisible
+{
+    visibility:hidden;
+    }
 .alert-success a
 {
     color: cyan;
