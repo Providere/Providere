@@ -28,8 +28,6 @@
     </div>
 }
 <div id="publicacion" class="col-md-12 well">
-      
-    
     <div>
         @Html.HiddenFor(model => model.IdUsuario)
     </div>
@@ -39,13 +37,12 @@
     <div>
         <h1 class="titulo text-center col-md-12">
             @Html.DisplayFor(model => model.Titulo)
-      
-          @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
-        {
+            @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+            {
                 
-            @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "editar-btn btn btn-primary btn-lg pull-right " })
-        }
-          </h1>
+                @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "editar-btn btn btn-primary btn-lg pull-right " })
+            }
+        </h1>
     </div>
     <div class="col-md-12">
         <hr />
@@ -636,7 +633,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            @if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
+            @if (ViewBag.Sancion == null && ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
             {
                 using (Html.BeginForm("Preguntar", "Pregunta", FormMethod.Post))
                 {
@@ -659,7 +656,7 @@
             }
             else
             {
-                if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
+                if (ViewBag.Sancion == null && ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
                 {
                 <div>
                     <br />
@@ -673,7 +670,7 @@
                 }
                 else
                 {
-                    if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
+                    if (ViewBag.Sancion == null && ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
                     {               
                 <div>
                     <br />
@@ -684,6 +681,10 @@
                     <button name="btnEnviar" class="btn btn-primary btn-lg disabled" type="submit">
                         Enviar</button>
                 </div>                         
+                    }
+                    else
+                    { 
+                <small class="text-muted">Lo sentimos. Los usuarios penalizados no pueden hacer preguntas hasta que su período de sanción termine.</small>                
                     }
                 }
             }
