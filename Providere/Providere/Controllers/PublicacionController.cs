@@ -156,7 +156,8 @@ namespace Providere.Controllers
                 ViewBag.MostrarPuntaje = traerPuntaje;
             }
 
-            ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
+            ViewBag.idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+            ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(ViewBag.idUsuario));
 
             return View(miPublicacion);
         }
@@ -215,11 +216,14 @@ namespace Providere.Controllers
             }
 
             //Si el servicio fue contratado, se muestra el telefono del prestador:
-            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-            var contratada = cos.TraerContratada(idPublicacion, idUsuario);
+            ViewBag.idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
+            var contratada = cos.TraerContratada(idPublicacion, ViewBag.idUsuario);
             ViewBag.Contratada = contratada;
 
             ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
+
+
+            ViewBag.SancionPublicante = ss.ObtenerSancionDeUsuario(miPublicacion.Usuario);
 
             return View("VisualizarMiPublicacion", miPublicacion);
         }

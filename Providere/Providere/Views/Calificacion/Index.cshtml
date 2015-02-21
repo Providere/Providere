@@ -36,16 +36,19 @@
                     {
                         if (item.IdTipoCalificacion == 1)
                         {
-                    <div class="col-md-12">
+                    <div class="calificacion col-md-12">
                         <br />
-                        <div>
+                        <div class="encabezado">
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                            <strong><a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                            <strong>
+                                <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">
+                                    @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                                </a>
                                 <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
                                 </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                             </strong>
                         </div>
-                        <div>
+                        <div class="cuerpo-calificacion">
                             @if (item.IdTipoEvaluacion == 1) //Positiva
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span> <em>@item.Descripcion
@@ -56,10 +59,11 @@
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
-                                <dd class="col-sm-offset-12">
+                                <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
-                                <dd class="col-sm-offset-12">
+                                <dd class="col-sm-12 col-sm-offset-2">
                                     <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                         <em>@rep.Comentario</em></span>
                                 </dd>
@@ -70,7 +74,8 @@
                                 { 
                                 <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
                                 </a>
-                                <dd class="col-sm-offset-12">
+                                <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                                 }
@@ -86,10 +91,11 @@
                                         {                                
                                 <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
                                     Denunciar</a>
-                                <dd class="col-sm-offset-12">
+                                <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                </dd> 
-                                <dd class="col-sm-offset-12">
+                                </dd>
+                                <dd class="col-sm-12 col-sm-offset-2">
                                     <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                         <em>@rep.Comentario</em> </span>
                                 </dd>                              
@@ -103,7 +109,8 @@
                                 <span class="text-info">|</span>
                                 <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
                                 </a>
-                                <dd class="col-sm-offset-12">
+                                <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                                 }
@@ -112,8 +119,8 @@
                             {
                                 if (item.IdTipoEvaluacion == 2)
                                 {
-                                <div class="col-md-5">
-                                    <br />
+                                <div class="col-md-5 row">
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
@@ -132,10 +139,11 @@
                                 <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
                                     Denunciar</a>
 
-                                <dd class="col-sm-offset-12">
+                                <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                </dd> 
-                                <dd class="col-sm-offset-12">
+                                </dd>
+                                <dd class="col-sm-12 col-sm-offset-2">
                                     <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                         <em>@rep.Comentario</em> </span>
                                 </dd>
@@ -149,7 +157,8 @@
                                 <span class="text-info">|</span>
                                 <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
                                 </a> 
-                                <dd class="col-sm-offset-12">
+                                <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                                 }
@@ -158,15 +167,15 @@
                             {
                                 if (item.IdTipoEvaluacion == 3)
                                 {
-                                <div class="col-md-5">
-                                    <br />
+                                <div class="col-md-5 row">
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
                                 </div>
                                 }
                             }
-                            <br />
+                            
                         </div>
                     </div> 
                         }
@@ -176,12 +185,15 @@
                         <div>
                             <br />
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                            <strong><a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                            <strong>
+                                <a href="/Usuario/VerPerfil/@item.Contratacion.Publicacion.Usuario.Id">
+                                    @item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido
+                                </a>
                                 <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
                                 </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                             </strong>
                         </div>
-                        <div>
+                        <div class="cuerpo-calificacion">
                             @if (item.IdTipoEvaluacion == 1) //Positiva
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span> <em>@item.Descripcion
@@ -192,10 +204,11 @@
                                     {
                                         if (rep.IdCalificacion == item.Id)
                                         {
-                                <dd class="col-sm-offset-12">
+                                <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
-                                <dd class="col-sm-offset-12">
+                                <dd class="col-sm-12 col-sm-offset-2">
                                     <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                         <em>@rep.Comentario</em> </span>
                                 </dd>
@@ -206,9 +219,10 @@
                                 {   
                                 <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
                                 </a>
-                                <dd class="col-sm-offset-12">
+                               <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                </dd> 
+                                </dd>
                                 }
                             }
                             @if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 0) //Neutro
@@ -222,10 +236,11 @@
                                         {
                                 <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
                                     Denunciar</a>
-                                <dd class="col-sm-offset-12">
+                              <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
-                                <dd class="col-sm-offset-12">
+                                <dd class="col-sm-12 col-sm-offset-2">
                                     <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                         <em>@rep.Comentario</em> </span>
                                 </dd>
@@ -239,7 +254,8 @@
                                 <span class="text-info">|</span>
                                 <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
                                 </a>
-                                <dd class="col-sm-offset-12">
+                                <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                                 }
@@ -248,8 +264,8 @@
                             {
                                 if (item.IdTipoEvaluacion == 2)
                                 {
-                                <div class="col-md-5">
-                                    <br />
+                                <div class="col-md-5 row">
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
@@ -267,10 +283,11 @@
                                         {
                                 <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
                                     Denunciar</a>
-                                <dd class="col-sm-offset-12">
+                                <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                </dd> 
-                                <dd class="col-sm-offset-12">
+                                </dd>
+                                <dd class="col-sm-12 col-sm-offset-2">
                                     <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                         <em>@rep.Comentario</em> </span>
                                 </dd>
@@ -284,24 +301,25 @@
                                 <span class="text-info">|</span>
                                 <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
                                 </a> 
-                                <dd class="col-sm-offset-12">
+                               <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
                                     <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                </dd> 
+                                </dd>
                                 }
                             }
                             else
                             {
                                 if (item.IdTipoEvaluacion == 3)
                                 {
-                                <div class="col-md-5">
-                                    <br />
+                                <div class="col-md-5 row">
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
                                 </div>
                                 }
                             }
-                            <br />
+                            
                         </div>
                     </div> 
                         }
@@ -342,9 +360,12 @@
                                         <div class="row">
                                             <div>
                                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                <strong><a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
-                                                    <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
-                                                    </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                                                <strong>
+                                                <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">
+                                                    @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                                                </a>
+                                                <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
+                                                </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                                                 </strong>
                                             </div>
                                             <div>
@@ -358,9 +379,10 @@
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
-                                                    <dd class="col-sm-offset-14">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                    </dd>
+                                                    <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                                     <dd class="col-sm-offset-14">
                                                         <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                                             <em>@rep.Comentario</em> </span>
@@ -372,9 +394,10 @@
                                                     {   
                                                     <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
                                                     </a>
-                                                    <dd class="col-sm-offset-14">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                    </dd>
+                                                    <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                                     }
                                                 }
                                                 @if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 0) //Neutro
@@ -388,9 +411,10 @@
                                                             {
                                                     <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
                                                         Denunciar</a>
-                                                    <dd class="col-sm-offset-14">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                    </dd>  
+                                                    <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd> 
                                                     
                                                     <dd class="col-sm-offset-14">
                                                         <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
@@ -406,9 +430,10 @@
                                                     <span class="text-info">|</span>
                                                     <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
                                                     </a>
-                                                    <dd class="col-sm-offset-14">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                    </dd>    
+                                                    <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>  
                                                     }
                                                 }
                                                 else
@@ -434,10 +459,10 @@
                                                             {
                                                     <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
                                                         Denunciar</a>
-                                                    <dd class="col-sm-offset-14">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                    </dd>
-                                                    
+                                                    <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                                     <dd class="col-sm-offset-14">
                                                         <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                                             <em>@rep.Comentario</em> </span>
@@ -452,9 +477,10 @@
                                                     <span class="text-info">|</span>
                                                     <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
                                                     </a>
-                                                    <dd class="col-sm-offset-14">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                    </dd>
+                                                    <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                                     }
                                                 }
                                                 else
@@ -477,9 +503,12 @@
                                         <div class="row">
                                             <div>
                                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                <strong><a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
-                                                    <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
-                                                    </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                                                <strong>
+                                                <a href="/Usuario/VerPerfil/@item.Contratacion.Publicacion.Usuario.Id">
+                                                    @item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido
+                                                </a>
+                                                <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
+                                                </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                                                 </strong>
                                             </div>
                                             <div>
@@ -493,9 +522,10 @@
                                                         {
                                                             if (rep.IdCalificacion == item.Id)
                                                             {
-                                                    <dd class="col-sm-offset-14">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                    </dd>
+                                                   <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                                     <dd class="col-sm-offset-14">
                                                         <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                                             <em>@rep.Comentario</em> </span>
@@ -507,9 +537,10 @@
                                                     {   
                                                     <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
                                                     </a>
-                                                    <dd class="col-sm-offset-14">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                    </dd>  
+                                                  <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                                     }
                                                 }
                                                 @if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 0) //Neutro
@@ -523,9 +554,10 @@
                                                             {
                                                     <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
                                                         Denunciar</a>
-                                                    <dd class="col-sm-offset-14">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                    </dd>
+                                                    <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                                     
                                                     <dd class="col-sm-offset-14">
                                                         <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
@@ -541,9 +573,10 @@
                                                     <span class="text-info">|</span>
                                                     <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
                                                     </a>
-                                                    <dd class="col-sm-offset-14">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                    </dd> 
+                                                    <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                                     }
                                                 }
                                                 else
@@ -569,9 +602,10 @@
                                                             {
                                                     <a  href="@Url.Action("DenunciarComentario", "Calificacion", new { id = item.Id })">
                                                         Denunciar</a>
-                                                    <dd class="col-sm-offset-14">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                    </dd>
+                                                   <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                                    
                                                     <dd class="col-sm-offset-14">
                                                         <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
@@ -587,9 +621,10 @@
                                                     <span class="text-info">|</span>
                                                     <a  href="@Url.Action("ReplicarComentario", "Calificacion", new { id = item.Id })">Replicar
                                                     </a>
-                                                    <dd class="col-sm-offset-14">
-                                                        <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                                                    </dd> 
+                                                    <dd>
+                                    <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                </dd>
                                                     }
                                                 }
                                                 else
@@ -630,23 +665,26 @@
                         <div>
                             <br />
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                            <strong><a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
-                                <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
-                                </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                            <strong>
+                            <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">
+                                @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                            </a>
+                            <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
+                            </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                             </strong>
                         </div>
-                        <div>
+                        <div class="cuerpo-calificacion">
                             @if (item.IdTipoEvaluacion == 1) //Positiva
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span> <em>@item.Descripcion</em>
-                                <dd class="col-sm-offset-12">
-                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <dd>
+                                   <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span> <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>                               
                                 foreach (var rep in ViewBag.Replicas)
                                 {
                                     if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                     {
-                                <dd class="col-sm-offset-12">
+                                <dd class="col-sm-12 col-sm-offset-2">
                                     <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                         <em>@rep.Comentario</em> </span>
                                 </dd>
@@ -655,8 +693,8 @@
                             }
                             @if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 1) //Neutro
                             {
-                                <div class="col-md-5">
-                                    <br />
+                                <div class="col-md-5 row">
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
@@ -667,15 +705,15 @@
                                 if (item.IdTipoEvaluacion == 2)
                                 {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span> <em>@item.Descripcion</em>
-                                <dd class="col-sm-offset-2">
-                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <dd>
+                                   <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span> <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                               
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                         {
-                                <dd class="col-sm-offset-12">
+                                <dd class="col-sm-12 col-sm-offset-2">
                                     <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                         <em>@rep.Comentario</em> </span>
                                 </dd>
@@ -685,8 +723,8 @@
                             }
                             @if (item.IdTipoEvaluacion == 3 && item.FlagDenunciado == 1) //Negativo
                             {
-                                <div class="col-md-5">
-                                    <br />
+                                <div class="col-md-5 row">
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
@@ -697,15 +735,15 @@
                                 if (item.IdTipoEvaluacion == 3)
                                 {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span> <em>@item.Descripcion</em>
-                                <dd class="col-sm-offset-12">
-                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <dd>
+                                   <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span> <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                                 
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                         {
-                                <dd class="col-sm-offset-12">
+                                <dd class="col-sm-12 col-sm-offset-2">
                                     <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                         <em>@rep.Comentario</em> </span>
                                 </dd>
@@ -713,7 +751,7 @@
                                     }
                                 }
                             }
-                            <br />
+                            
                         </div>
                     </div>
                         }
@@ -723,24 +761,27 @@
                         <div>
                             <br />
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                            <strong><a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                            <strong>
+                                <a href="/Usuario/VerPerfil/@item.Contratacion.Publicacion.Usuario.Id">
+                                    @item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido
+                                </a>
                                 <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
                                 </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                             </strong>
                         </div>
-                        <div>
+                        <div class="cuerpo-calificacion">
                             @if (item.IdTipoEvaluacion == 1) //Positiva
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span> <em>@item.Descripcion</em>
-                                <dd class="col-sm-offset-2">
-                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <dd>
+                                   <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span> <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                                
                                 foreach (var rep in ViewBag.Replicas)
                                 {
                                     if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                     {
-                                <dd class="col-sm-offset-12">
+                                <dd class="col-sm-12 col-sm-offset-2">
                                     <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                         <em>@rep.Comentario</em> </span>
                                 </dd>
@@ -749,8 +790,8 @@
                             }
                             @if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 1) //Neutro
                             {
-                                <div class="col-md-5">
-                                    <br />
+                                <div class="col-md-5 row">
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
@@ -761,15 +802,15 @@
                                 if (item.IdTipoEvaluacion == 2)
                                 {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span> <em>@item.Descripcion</em>
-                                <dd class="col-sm-offset-12">
-                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <dd>
+                                   <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span> <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                                
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                         {
-                                <dd class="col-sm-offset-12">
+                                <dd class="col-sm-12 col-sm-offset-2">
                                     <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                         <em>@rep.Comentario</em> </span>
                                 </dd>
@@ -779,8 +820,8 @@
                             }
                             @if (item.IdTipoEvaluacion == 3 && item.FlagDenunciado == 1) //Negativo
                             {
-                                <div class="col-md-5">
-                                    <br />
+                                <div class="col-md-5 row">
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign">@ViewBag.Texto</span>
                                     </div>
@@ -791,15 +832,15 @@
                                 if (item.IdTipoEvaluacion == 3)
                                 {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span> <em>@item.Descripcion</em>
-                                <dd class="col-sm-offset-12">
-                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <dd>
+                                   <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span> <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                                
                                     foreach (var rep in ViewBag.Replicas)
                                     {
                                         if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                         {
-                                <dd class="col-sm-offset-12">
+                                <dd class="col-sm-12 col-sm-offset-2">
                                     <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                         <em>@rep.Comentario</em> </span>
                                 </dd>
@@ -807,7 +848,7 @@
                                     }
                                 }
                             }
-                            <br />
+                            
                         </div>
                     </div>     
                         }
@@ -847,7 +888,10 @@
                                         <div class="row">
                                             <div>
                                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                <strong><a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                                <strong>
+                                                    <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">
+                                                        @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                                                    </a>
                                                     <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
                                                     </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                                                 </strong>
@@ -941,9 +985,11 @@
                                             <div>
                                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
                                                 <strong>
-                                                <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
-                                                <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i></span>
-                                                 <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                                                    <a href="/Usuario/VerPerfil/@item.Contratacion.Publicacion.Usuario.Id">
+                                                        @item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido
+                                                    </a>
+                                                    <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i></span>
+                                                    <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                                                  </strong>
                                             </div>
                                             <div>
@@ -1017,7 +1063,7 @@
                                                         {
                                                             if (item.FlagReplicado == 1 && rep.IdCalificacion == item.Id)
                                                             {
-                                                    <dd class="col-sm-offset-12">
+                                                    <dd class="col-sm-12 col-sm-offset-2">
                                                         <span class="label label-default"><i class="glyphicon glyphicon-chevron-right"></i>Réplica:
                                                             <em>@rep.Comentario</em> </span>
                                                     </dd>

@@ -41,11 +41,11 @@ namespace Providere
                 new { controller = "Usuario", action = "EditarPerfil", ActivePanel = UrlParameter.Optional }
             );
 
-           /* routes.MapRoute(
-              "Calificar",
-              "Contratacion/CalificarUsuario/{idContratacion}/{idTipoCalificacion}",
-              new { controller = "Calificacion", action = "CalificarUsuario", idContratacion = UrlParameter.Optional, idTipoCalificacion = UrlParameter.Optional }
-          ); */
+            routes.MapRoute(
+              "VerPerfil",
+              "Usuario/VerPerfil/{idUsuario}",
+              new { controller = "Usuario", action = "VerPerfil", idUsuario = UrlParameter.Optional }
+          );
 
             routes.MapRoute(
                 name: "Default",

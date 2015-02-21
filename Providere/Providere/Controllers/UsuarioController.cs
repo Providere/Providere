@@ -370,20 +370,13 @@ namespace Providere.Controllers
             }
         }
 
-
-        // EN ETAPA DE DESARROLLO POR PAU!!!
-
-        public ActionResult VerPerfil()
+        public ActionResult VerPerfil(int idUsuario)
         {
-
-            int idUsuario = Convert.ToInt16(this.Session["IdUsuario"]);
-
             Usuario usuario = us.traerUsuario(idUsuario);
 
             var puntaje = pcs.TraerPuntajeCliente(idUsuario);
 
             ViewBag.PuntajeCliente = puntaje;
-
 
             // Busco las publicaciones
             var publicaciones = ps.ListarMisPublicaciones(idUsuario);
@@ -397,12 +390,5 @@ namespace Providere.Controllers
 
             return View(usuario);
         }
-
-
-
-
-
-
-
     }
 }
