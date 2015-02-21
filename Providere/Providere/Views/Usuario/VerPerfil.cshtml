@@ -3,9 +3,7 @@
     ViewBag.Title = "VerPerfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="col-md-12 well">
-    
     <div>
         @*@Html.HiddenFor(model => model.IdUsuario)*@
     </div>
@@ -17,8 +15,6 @@
         @Html.DisplayFor(model => model.Apellido)
     </h1>
     <hr />
-    
-    
     <div class="col-md-9">
         <div id="ficha-publicante" class="ficha-publicante col-md-3">
             <div class="contenedor-imagen-publicacion">
@@ -30,10 +26,11 @@
                 @Html.DisplayName("Usuario desde: ")
             </h3>
             <p>
-                
+                <span class="glyphicon glyphicon-user"></span>
                 @Html.DisplayFor(model => model.FechaActivacion)
             </p>
         </div>
+        <br />
         <div class="col-md-8">
             <h3>
                 @Html.DisplayName("Ubicación: ")
@@ -43,88 +40,85 @@
                 @Html.DisplayFor(model => model.Ubicacion)
             </p>
         </div>
-       <h3> @Html.DisplayName("Reputación") </h3>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <h3>
-                @Html.DisplayName("Como cliente")
+                @Html.DisplayName("Reputación:")
             </h3>
-           
-            <div class="row">
-                    <div class="col-sm-4 editor-field">
-                        <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                        @Html.DisplayName("Positivo")
-                        @ViewBag.PuntajeCliente.Positivo
-                    </div>
-                    <div class="col-sm-4 editor-field">
-                        <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                        @Html.DisplayName("Neutro")
-                        @ViewBag.PuntajeCliente.Neutro
-                    </div>
-                    <div class="col-sm-4 editor-field">
-                        <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                        @Html.DisplayName("Negativo")
-                        @ViewBag.PuntajeCliente.Negativo
-                    </div>
-                    <div class="col-sm-4 editor-field">
-                        @Html.DisplayName("Total")
-                        @ViewBag.PuntajeCliente.Total
-                    </div>
+            <br />
+            <h4>
+                <legend class="text-warning">
+                    @Html.DisplayName("Como cliente")
+                </legend>
+            </h4>
+            <div class="col-sm-2 editor-field">
+                <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                @Html.DisplayName("Positivo:")
+                @ViewBag.PuntajeCliente.Positivo
             </div>
-           
+            <div class="col-sm-2 editor-field">
+                <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                @Html.DisplayName("Neutro:")
+                @ViewBag.PuntajeCliente.Neutro
+            </div>
+            <div class="col-sm-2 editor-field">
+                <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                @Html.DisplayName("Negativo:")
+                @ViewBag.PuntajeCliente.Negativo
+            </div>
+            <div class="col-sm-2 editor-field">
+                <span class="text-info"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                @Html.DisplayName("Total:") <span class="badge">
+                    @ViewBag.PuntajeCliente.Total </span>
+            </div>
         </div>
-    </div> 
-    
+    </div>
     <div class="col-md-9">
-        <div class="col-md-8">
-       
+        <br />
+        <br />
+        <br />
+        <div class="col-md-12">
             @foreach (var item in ViewBag.ListaPublicaciones)
             {
                 foreach (var item2 in ViewBag.ListaPuntajes)
                 {
-
                     if (item2.IdPublicacion == item.Id)
                     {
-                    <h3>@item.Rubro.Nombre   
-                
-                          @if (item.SubRubro != null)
-                          {
-                              @item.SubRubro.Nombre
-                          }                      
-                              
-                     <a href="/Publicacion/VisualizarPublicacion/@item.Id">@item.Titulo</a>                           
-                </h3>
-                    
-                <div class="row">
-                    <div class="col-sm-4 editor-field">
-                        <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
-                        @Html.DisplayName("Positivo")
-                        @item2.Positivo
-                    </div>
-                    <div class="col-sm-4 editor-field">
-                        <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
-                        @Html.DisplayName("Neutro")
-                        @item2.Neutro
-                    </div>
-                    <div class="col-sm-4 editor-field">
-                        <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
-                        @Html.DisplayName("Negativo")
-                        @item2.Negativo
-                    </div>
-                    <div class="col-sm-4 editor-field">
-                        @Html.DisplayName("Total")
-                        @item2.Total
-                    </div>
-                </div>
-                    
-                    }
+                <h4>
+                    <legend class="text-warning">@item.Rubro.Nombre
+                        @if (item.SubRubro != null)
+                        {
+                            @item.SubRubro.Nombre
+                        }
+                        <span class="text-primary"><i class="glyphicon glyphicon-chevron-right"></i><a href="/Publicacion/VisualizarPublicacion/@item.Id">@item.Titulo</a>
+                    </legend>
+                </h4>
 
+                <div class="col-sm-2 editor-field">
+                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                    @Html.DisplayName("Positivo:")
+                    @item2.Positivo
+                </div>
+                <div class="col-sm-2 editor-field">
+                    <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                    @Html.DisplayName("Neutro:")
+                    @item2.Neutro
+                </div>
+                <div class="col-sm-2 editor-field">
+                    <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                    @Html.DisplayName("Negativo:")
+                    @item2.Negativo
+                </div>
+                <div class="col-sm-2 editor-field">
+                    <span class="text-info"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                    @Html.DisplayName("Total:") <span class="badge">
+                        @item2.Total</span>
+                </div>            
+                <br />
+                <br />
+                <br />                    
+                    }
                 }
             }
-       
-
-
-            
         </div>
-        
     </div>
 </div>
