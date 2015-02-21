@@ -75,6 +75,8 @@
                         if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
                         {
                 @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
+                
+                 
                         }
 
                         else
@@ -83,13 +85,22 @@
                             {
                 
                 @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
+                
+                           
                             }
                         }
+                <div class="text-center">
+                    <small class="text-muted ">No es posible contratar esta publicación en este momento.</small>
+                </div>  
                     }
                 }
                 else
                 {  
                 @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
+                
+                <div class="text-center">
+                    <small class="text-muted ">No es posible contratar esta publicación en este momento.</small>
+                </div>  
                 }
             }
         </div>
@@ -684,7 +695,8 @@
                     }
                     else
                     { 
-                <small class="text-muted">Lo sentimos. Los usuarios penalizados no pueden hacer preguntas hasta que su período de sanción termine.</small>                
+                <small class="text-muted">Lo sentimos. Los usuarios penalizados no pueden hacer preguntas
+                    hasta que su período de sanción termine.</small>                
                     }
                 }
             }
