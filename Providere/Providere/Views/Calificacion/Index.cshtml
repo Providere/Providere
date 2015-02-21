@@ -40,7 +40,10 @@
                         <br />
                         <div class="encabezado">
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                            <strong><a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                            <strong>
+                                <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">
+                                    @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                                </a>
                                 <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
                                 </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                             </strong>
@@ -182,7 +185,10 @@
                         <div>
                             <br />
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                            <strong><a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                            <strong>
+                                <a href="/Usuario/VerPerfil/@item.Contratacion.Publicacion.Usuario.Id">
+                                    @item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido
+                                </a>
                                 <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
                                 </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                             </strong>
@@ -354,9 +360,12 @@
                                         <div class="row">
                                             <div>
                                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                <strong><a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
-                                                    <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
-                                                    </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                                                <strong>
+                                                <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">
+                                                    @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                                                </a>
+                                                <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
+                                                </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                                                 </strong>
                                             </div>
                                             <div>
@@ -494,9 +503,12 @@
                                         <div class="row">
                                             <div>
                                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                <strong><a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
-                                                    <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
-                                                    </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                                                <strong>
+                                                <a href="/Usuario/VerPerfil/@item.Contratacion.Publicacion.Usuario.Id">
+                                                    @item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido
+                                                </a>
+                                                <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
+                                                </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                                                 </strong>
                                             </div>
                                             <div>
@@ -653,9 +665,12 @@
                         <div>
                             <br />
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                            <strong><a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
-                                <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
-                                </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                            <strong>
+                            <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">
+                                @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                            </a>
+                            <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
+                            </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                             </strong>
                         </div>
                         <div class="cuerpo-calificacion">
@@ -746,7 +761,10 @@
                         <div>
                             <br />
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                            <strong><a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
+                            <strong>
+                                <a href="/Usuario/VerPerfil/@item.Contratacion.Publicacion.Usuario.Id">
+                                    @item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido
+                                </a>
                                 <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
                                 </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                             </strong>
@@ -870,7 +888,10 @@
                                         <div class="row">
                                             <div>
                                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                <strong><a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                                <strong>
+                                                    <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">
+                                                        @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                                                    </a>
                                                     <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i>
                                                     </span><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                                                 </strong>
@@ -964,9 +985,11 @@
                                             <div>
                                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
                                                 <strong>
-                                                <a href="#">@item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido</a>
-                                                <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i></span>
-                                                 <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
+                                                    <a href="/Usuario/VerPerfil/@item.Contratacion.Publicacion.Usuario.Id">
+                                                        @item.Contratacion.Publicacion.Usuario.Nombre @item.Contratacion.Publicacion.Usuario.Apellido
+                                                    </a>
+                                                    <span class="text-primary"><i class="glyphicon glyphicon glyphicon-transfer"></i></span>
+                                                    <legend><a href="/Publicacion/VisualizarPublicacion/@item.Contratacion.IdPublicacion">@item.Contratacion.Publicacion.Titulo</a>
                                                  </strong>
                                             </div>
                                             <div>
