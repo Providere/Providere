@@ -11,12 +11,12 @@
 
 .invisible
 {
-    visibility:hidden;
-    }
+    visibility: hidden;
+}
 .alert-success a
 {
     color: cyan;
-    }
+}
 
 /** BASE **/
 
@@ -382,3 +382,7 @@ footer.transparente .container
     position: relative;
 }
 
+.question .fecha
+{
+    margin-left: -3px;
+}
