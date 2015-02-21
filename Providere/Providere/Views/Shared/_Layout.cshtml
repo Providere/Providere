@@ -108,7 +108,7 @@
                                     @User.Identity.Name <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="@Url.Action("VerPerfil", "Usuario", new { id = Session["IdUsuario"] })">Ver perfil</a></li>
+                                    <li><a href="@Url.Action("VerPerfil", "Usuario", new { idUsuario = Session["IdUsuario"] })">Ver perfil</a></li>
                                     @*Puesto por Pau*@
                                     <li><a href="@Url.Action("EditarPerfil", "Usuario")">Editar perfil</a></li>
                                     <li><a href="@Url.Action("ListarPublicaciones", "Publicacion")">Publicaciones</a></li>

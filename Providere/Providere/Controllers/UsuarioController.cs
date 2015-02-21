@@ -370,9 +370,6 @@ namespace Providere.Controllers
             }
         }
 
-
-        // EN ETAPA DE DESARROLLO POR PAU!!!
-
         public ActionResult VerPerfil(int idUsuario)
         {
             Usuario usuario = us.traerUsuario(idUsuario);
@@ -393,12 +390,5 @@ namespace Providere.Controllers
 
             return View(usuario);
         }
-
-
-
-
-
-
-
     }
 }
