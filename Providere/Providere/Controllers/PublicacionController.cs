@@ -220,6 +220,9 @@ namespace Providere.Controllers
 
             ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
 
+
+            ViewBag.SancionPublicante = ss.ObtenerSancionDeUsuario(miPublicacion.Usuario);
+
             return View("VisualizarMiPublicacion", miPublicacion);
         }
 

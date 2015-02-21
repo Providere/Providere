@@ -75,9 +75,19 @@
                 {
                     if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
                     {
-
+                        if (ViewBag.SancionPublicante != null)
+                        {
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })              
+                        
+                <div class="text-center">
+                    <small class="text-muted ">No es posible contratar esta publicación en este momento.</small>
+                </div> 
+                        
+                        }
+                        else
+                        {
                 @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block" })
-               
+                        }
                     }
                     else
                     {
@@ -98,7 +108,7 @@
                            
                             }
                         }
-                    <div class="text-center">
+                <div class="text-center">
                     @if (HttpContext.Current.Session["IdUsuario"] != null)
                     {
                
@@ -109,7 +119,8 @@
                     {
                         
                             
-                        <small class="text-muted ">Para contratar debe estar <a href="@Url.Action("RegistrarUsuario", "Usuario")">registrado</a>.</small>
+                        <small class="text-muted ">Para contratar debe estar <a href="@Url.Action("RegistrarUsuario", "Usuario")">
+                            registrado</a>.</small>
                     }
                 </div> 
                     }
