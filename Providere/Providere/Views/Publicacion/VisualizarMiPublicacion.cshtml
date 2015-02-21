@@ -77,7 +77,7 @@
                     {
                         if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
                         {
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block" })
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
                         }
 
                         else
@@ -648,7 +648,7 @@
                 </div>
                 <div>
                     <br />
-                    @Html.TextArea("preguntar", new { @class = "form-control ", placeholder = "Escribe tu pregunta..." })
+                    @Html.TextArea("preguntar", new { @class = "form-control", maxlength="140", placeholder = "Escribe tu pregunta..." })
                     <p class="text-info">
                         <span class="glyphicon glyphicon-exclamation-sign"></span>No podes compartir datos
                         personales por aquí</p>
@@ -663,7 +663,7 @@
                 {
                 <div>
                     <br />
-                    @Html.TextArea("preguntar", new { @class = "form-control", placeholder = "Escribe tu pregunta..." })
+                    @Html.TextArea("preguntar", new { @class = "form-control", maxlength="140", placeholder = "Escribe tu pregunta..." })
                     <p class="text-info">
                         <span class="glyphicon glyphicon-exclamation-sign"></span>No podes compartir datos
                         personales por aquí</p>
@@ -677,7 +677,7 @@
                     {               
                 <div>
                     <br />
-                    @Html.TextArea("preguntar", new { @class = "form-control", placeholder = "Escribe tu pregunta..." })
+                    @Html.TextArea("preguntar", new { @class = "form-control", maxlength="140", placeholder = "Escribe tu pregunta..." })
                     <p class="text-info">
                         <span class="glyphicon glyphicon-exclamation-sign"></span>No podes compartir datos
                         personales por aquí</p>
