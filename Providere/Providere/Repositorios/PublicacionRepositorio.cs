@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +15,7 @@ namespace Providere.Repositorios
 
         internal List<Publicacion> traerPublicacionesPorZona(String zona, int limite)
         {
-            var publicaciones = buscarPorRubroSubRubroUbicacion(null,null,zona).Take(limite).ToList();
+            var publicaciones = buscarPorRubroSubRubroUbicacion(null, null, zona).Take(limite).ToList();
             return publicaciones;
         }
 
@@ -115,11 +115,11 @@ namespace Providere.Repositorios
             return resultado;
         }
 
-       
+
         internal Publicacion TraerPublicacionPorId(int idPublicacion)
         {
             var publicacion = (from publicaciones in context.Publicacion
-                               where (publicaciones.Id == idPublicacion) 
+                               where (publicaciones.Id == idPublicacion)
                                select publicaciones).FirstOrDefault();
             return publicacion;
         }
@@ -212,26 +212,6 @@ namespace Providere.Repositorios
 
             context.SaveChanges();
         }
-
-        public Publicacion VerificarRubro(int idUsuario, int idRubro)
-        {
-            var publicacion = (from publicaciones in context.Publicacion
-                               
-                               where (publicaciones.IdUsuario == idUsuario && publicaciones.IdRubro == idRubro
-                                &&  publicaciones.IdRubro<20)
-                               select publicaciones).First();
-            return publicacion;
-        }
-
-        public Publicacion VerificarSubrubro(int idUsuario, int? idSubRubro)
-        {
-            var publicacion = (from publicaciones in context.Publicacion
-
-                               where (publicaciones.IdUsuario == idUsuario && publicaciones.IdSubRubro == idSubRubro)
-                               select publicaciones).First();
-            return publicacion;
-        }
-
 
         public List<Publicacion> TraerPublicacionesUsuariosCercanos(List<Usuario> usuariosCercanos)
         {

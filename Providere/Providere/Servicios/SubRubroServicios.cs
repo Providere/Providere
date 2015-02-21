@@ -33,5 +33,31 @@ namespace Providere.Servicios
             }
             return listadoParaJson;
         }
+
+        public bool VerificarSubrubro(int idUsuario, int? idSubRubro)
+        {
+            try
+            {
+                Publicacion publicacion = sr.VerificarSubrubro(idUsuario, idSubRubro);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        internal bool VerificarSubrubroEditar(int idUsuario, int? idSubRubro, int id)
+        {
+            try
+            {
+                Publicacion publicacion = sr.VerificarSubrubroEditar(idUsuario, idSubRubro, id);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

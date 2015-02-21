@@ -23,5 +23,25 @@ namespace Providere.Repositorios
         {
             return context.Rubro.ToList();
         }
+
+        public Publicacion VerificarRubro(int idUsuario, int idRubro)
+        {
+            var publicacion = (from publicaciones in context.Publicacion
+                               where (publicaciones.IdUsuario == idUsuario && publicaciones.IdRubro == idRubro
+                                && publicaciones.IdRubro < 20)
+                               select publicaciones).First();
+            return publicacion;
+        }
+
+
+
+        internal Publicacion VerificarRubroEditar(int idUsuario, int idRubro, int id)
+        {
+            var publicacion = (from publicaciones in context.Publicacion
+                               where (publicaciones.IdUsuario == idUsuario && publicaciones.IdRubro == idRubro
+                                && publicaciones.IdRubro < 20 && publicaciones.Id == id)
+                               select publicaciones).First();
+            return publicacion;
+        }
     }
 }
