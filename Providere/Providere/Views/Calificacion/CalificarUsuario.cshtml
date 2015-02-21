@@ -12,15 +12,15 @@
        
         if (ViewBag.IdTipoCalificacion == 1)
         { 
-            <legend>Califique al usuario @ViewBag.Contratacion.Publicacion.Usuario.Nombre @ViewBag.Contratacion.Publicacion.Usuario.Apellido
-                @ViewBag.Texto <a href="/Publicacion/VisualizarPublicacion/@ViewBag.Contratacion.Publicacion.Id">@ViewBag.Contratacion.Publicacion.Titulo</a>
-            </legend>
+        <legend>Califique al usuario @ViewBag.Contratacion.Publicacion.Usuario.Nombre @ViewBag.Contratacion.Publicacion.Usuario.Apellido
+            @ViewBag.Texto <a href="/Publicacion/VisualizarPublicacion/@ViewBag.Contratacion.Publicacion.Id">@ViewBag.Contratacion.Publicacion.Titulo</a>
+        </legend>
         }
         else
         { 
-            <legend>Califique al usuario @ViewBag.Contratacion.Usuario.Nombre @ViewBag.Contratacion.Usuario.Apellido
-                @ViewBag.Texto <a href="/Publicacion/VisualizarPublicacion/@ViewBag.Contratacion.Publicacion.Id">@ViewBag.Contratacion.Publicacion.Titulo</a>
-            </legend>
+        <legend>Califique al usuario @ViewBag.Contratacion.Usuario.Nombre @ViewBag.Contratacion.Usuario.Apellido
+            @ViewBag.Texto <a href="/Publicacion/VisualizarPublicacion/@ViewBag.Contratacion.Publicacion.Id">@ViewBag.Contratacion.Publicacion.Titulo</a>
+        </legend>
         }
         
         <div id="page-wrapper">
@@ -48,6 +48,8 @@
                 </div>
                 <div class="col-sm-4 editor-field">
                     @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", maxlength = "140" })
+                    <p class="text-info">
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>M&aacute;ximo 140 caracteres</p>
                 </div>
             </div>
             <div class="form-group">

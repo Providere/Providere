@@ -232,5 +232,21 @@ namespace Providere.Repositorios
             return publicacion;
         }
 
+
+        public List<Publicacion> TraerPublicacionesUsuariosCercanos(List<Usuario> usuariosCercanos)
+        {
+            List<int> listaUsuarios = new List<int>();
+
+            foreach (var item in usuariosCercanos)
+            {
+                listaUsuarios.Add(item.Id);
+            }
+
+            var resultado = (from publi in context.Publicacion
+                             where listaUsuarios.Contains(publi.IdUsuario)
+                             select publi).ToList();
+
+            return resultado;
+        }
     }
 }

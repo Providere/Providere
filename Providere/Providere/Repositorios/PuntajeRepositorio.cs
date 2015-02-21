@@ -56,5 +56,18 @@ namespace Providere.Repositorios
             return resultado.ToList();
         }
 
+
+        public List<Puntaje> TraerPuntajeUsuariosCercano(List<Publicacion> publicacionesUsuariosCercanos)
+        {
+            List<int> listaPublicaciones = new List<int>();
+            foreach (var item in publicacionesUsuariosCercanos)
+            {
+                listaPublicaciones.Add(item.Id);
+            }
+            var resultados = (from puntaje in context.Puntaje
+                              where listaPublicaciones.Contains(puntaje.IdPublicacion)
+                              select puntaje).ToList();
+            return resultados;
+        }
     }
 }

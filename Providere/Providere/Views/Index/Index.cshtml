@@ -59,7 +59,7 @@
             <div class="container">
                 <div class="row">
                     <div id="contenedor-logo" class="col-md-5 col-xs-12 col-sm-5">
-                        <img class="pull-left" src="../../Content/img/logotransparente.png" alt="Providere"
+                        <img class="pull-left" src="../../Content/img/logocombofull.png" alt="Providere"
                             width="90%" />
                     </div>
                     <div id="contenedor-botones-index" class="col-md-7 col-xs-12 col-sm-7">
@@ -116,9 +116,19 @@
                 @if (ViewBag.Publicaciones.listadoDePublicaciones.Count > 0)
                 {
                     <div class="row">
+
+                     @{ int counter = 0; }
+
                         @foreach (var item in ViewBag.Publicaciones.listadoDePublicaciones)
-                        {         
-                            <div class="col-sm-6 col-md-3">
+                        {       
+                   counter++;  
+                            <div class="col-sm-6 col-md-4 col-lg-3                            
+                    @if (counter == ViewBag.Publicaciones.listadoDePublicaciones.Count)
+                    {
+                        @Html.Raw(" hidden-md ")
+                    }
+
+                    ">
                                 <div class="thumbnail">
                                     <div class="contenedor-img">
                                         <img src="../../Imagenes/Publicacion/@item.imagen.Nombre" alt="plomero" width="100%" />
@@ -128,12 +138,14 @@
                                             @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</h3>
                                         <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
                                         <p class="text-muted">
-                                            @item.publicacion.Titulo</p>
-                                        <p>
-                                            <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" class="btn btn-primary btn-block" role="button">
-                                                Ver la publicación</a>
+                                            @item.publicacion.Titulo
                                         </p>
                                     </div>
+                                    <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id"  role="button">
+                                        <div class="ver-publicacion-btn btn btn-primary btn-block">
+                                            Ver la publicación
+                                        </div>
+                                    </a>
                                 </div>
                             </div>        
                         }
@@ -149,28 +161,7 @@
         </div>
     </div>
     <br />
-    <footer>
-        <div class="container">
-            <div class="col-md-4">
-                <img src="../../Content/img/logoSquare.png" alt="logo" width="12%" />
-                <span class="text-info">©2015 | Todos los derechos reservados</span>
-            </div>
-           <div class="col-md-4 text-center">
-                 <span class="text-info">
-                    <a data-toggle="modal" href="#myModalProvidere">Acerca de Providere</a> | <a href="@Url.Action("FAQ", "Shared")">FAQ</a> | <a href="mailto:providere_arg@gmail.com">
-                        Contacto</a> 
-                </span>
-            </div>
-            <div class="iconos-sociales col-md-4">
-                <a href="#">
-                    <img src="../../Content/img/facebook.png" alt="facebook" width="12%" />
-                </a><a href="#" class="margin-top">
-                    <img src="../../Content/img/twitter.png" alt="twitter" width="12%" />
-                </a>
-            </div>
-        </div>
-        <!--container del footer-->
-    </footer>
+    @Html.Partial("~/Views/Shared/footer.cshtml")
     <!-- Modal Como Funciona-->
     <div class="modal" id="myModalProvidere">
         <div class="modal-dialog">
@@ -244,4 +235,5 @@
         left: 621px; top: 456px;">
     </div>
 </body>
+@Scripts.Render("~/bundles/jqueryellipsis")
 </html>

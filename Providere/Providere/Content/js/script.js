@@ -1,80 +1,84 @@
-$(function() {
+$(function () {
 
-	$('.IdRubro').change(function(event) {
-		var rubro = $(this);
+    $('.IdRubro').change(function (event) {
+        var rubro = $(this);
 
-		$.ajax({
-			url: '/SubRubro/Lista/'+rubro.find(":selected").val(),
-			type: 'POST',
-			success: function(msg){
+        $.ajax({
+            url: '/SubRubro/Lista/' + rubro.find(":selected").val(),
+            type: 'POST',
+            success: function (msg) {
 
-				var msg = jQuery.parseJSON( msg );
+                var msg = jQuery.parseJSON(msg);
 
-					var contenedorTotal = rubro.parents('.combo-rubro-subrubro');
-					var selectConSubRubros = contenedorTotal.find('.subrubros-select');
-					var contenedorSelectConSubRubros = contenedorTotal.find('.subrubros-container');
-					var contenedorUbicacion = contenedorTotal.find('.ubicacion-container');
-					var contenedorRubros = contenedorTotal.find('.rubros-container');
+                var contenedorTotal = rubro.parents('.combo-rubro-subrubro');
+                var selectConSubRubros = contenedorTotal.find('.subrubros-select');
+                var contenedorSelectConSubRubros = contenedorTotal.find('.subrubros-container');
+                var contenedorUbicacion = contenedorTotal.find('.ubicacion-container');
+                var contenedorRubros = contenedorTotal.find('.rubros-container');
 
-				if (msg.length > 0) {
+                if (msg.length > 0) {
 
-					var selectConRubros = '<select class="form-control" id="IdSubRubro" name="IdSubRubro">';
+                    var selectConRubros = '<select class="form-control" id="IdSubRubro" name="IdSubRubro">';
 
-					msg.forEach(function(element, index){
-						selectConRubros += '<option value="'+element['Id']+'">'+element['Nombre']+'</option>';
-					});
+                    msg.forEach(function (element, index) {
+                        selectConRubros += '<option value="' + element['Id'] + '">' + element['Nombre'] + '</option>';
+                    });
 
-					selectConRubros += '</select>';
+                    selectConRubros += '</select>';
 
-					selectConSubRubros.html(selectConRubros);	
+                    selectConSubRubros.html(selectConRubros);
 
-					if (selectConSubRubros.data('estilo') == 'vertical') {
-						contenedorSelectConSubRubros.slideDown();	
-					}else{
+                    if (selectConSubRubros.data('estilo') == 'vertical') {
+                        contenedorSelectConSubRubros.slideDown();
+                    } else {
 
-						contenedorUbicacion.removeClass('col-md-5').addClass('col-md-4');
-						contenedorRubros.removeClass('col-md-5').addClass('col-md-3');	
-						contenedorSelectConSubRubros.fadeIn();	
-					}
+                        contenedorUbicacion.removeClass('col-md-5').addClass('col-md-4');
+                        contenedorRubros.removeClass('col-md-5').addClass('col-md-3');
+                        contenedorSelectConSubRubros.fadeIn();
+                    }
 
-				} else {
-					
-					if (selectConSubRubros.data('estilo') == 'vertical') {
+                } else {
 
-						contenedorSelectConSubRubros.slideUp();	
+                    if (selectConSubRubros.data('estilo') == 'vertical') {
 
-					}else{
+                        contenedorSelectConSubRubros.slideUp();
 
-						if (contenedorSelectConSubRubros.is(':visible')) {
-							contenedorSelectConSubRubros.stop().hide('fade', 250);
-							contenedorUbicacion.removeClass('col-md-4').addClass('col-md-5');
-							contenedorRubros.removeClass('col-md-3').addClass('col-md-5');
+                    } else {
 
-						};
-					}
-					selectConSubRubros.html('<select class="form-control disabled hidden" disabled="disabled" id="IdSubRubro" name="IdSubRubro"><option value="0" selected></option></select>');
-					
-				}
+                        if (contenedorSelectConSubRubros.is(':visible')) {
+                            contenedorSelectConSubRubros.stop().hide('fade', 250);
+                            contenedorUbicacion.removeClass('col-md-4').addClass('col-md-5');
+                            contenedorRubros.removeClass('col-md-3').addClass('col-md-5');
 
-			}
-		}).done(function(msg) {
-			console.log("data "+msg);
-		})
+                        };
+                    }
+                    selectConSubRubros.html('<select class="form-control disabled hidden" disabled="disabled" id="IdSubRubro" name="IdSubRubro"><option value="0" selected></option></select>');
+
+                }
+
+            }
+        }).done(function (msg) {
+            console.log("data " + msg);
+        })
 
 
 
-	
+
     });
 
 
-$(window).scroll(function () {
-    if ($(document).scrollTop() > 150) {
-        $('.header').addClass('shrink');
-        $('#logogrande').attr('src','/Content/img/logoslim.png');
-    } else {
-        $('.header').removeClass('shrink');
-        $('#logogrande').attr('src', '/Content/img/logotransparente.png');
-    }
-});
+    $(window).scroll(function () {
+        if ($(document).scrollTop() > 150) {
+            $('.header').addClass('shrink');
+            $('#logogrande').attr('src', '/Content/img/logocomboslim.png');
+        } else {
+            $('.header').removeClass('shrink');
+            $('#logogrande').attr('src', '/Content/img/logocombofull.png');
+        }
+    });
+
+    $('.cortar_con_ellipsis').ellipsis();
+    $('.listado-publicaciones h3').ellipsis();
+    $('.listado-publicaciones .text-muted').ellipsis();
 
 });
