@@ -255,10 +255,6 @@ footer
     overflow: hidden;
 }
 
-footer .text-info
-{
-    margin-left: 10px;
-}
 .mini-logo
 {
     padding: 0;
@@ -275,7 +271,10 @@ footer .text-info
     width: 80px;
 }
 
-
+footer
+{
+    font-size: 0.8em;
+}
 footer.transparente
 {
     background-color: transparent;
