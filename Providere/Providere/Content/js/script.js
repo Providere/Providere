@@ -78,5 +78,7 @@ $(function () {
     });
 
     $('.cortar_con_ellipsis').ellipsis();
+    $('.listado-publicaciones h3').ellipsis();
+    $('.listado-publicaciones .text-muted').ellipsis();
 
 });

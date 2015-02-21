@@ -118,22 +118,24 @@
                     <div class="row">
                         @foreach (var item in ViewBag.Publicaciones.listadoDePublicaciones)
                         {         
-                            <div class="col-sm-6 col-md-3">
+                            <div class="col-sm-6 col-md-4 col-lg-3">
                                 <div class="thumbnail">
                                     <div class="contenedor-img">
                                         <img src="../../Imagenes/Publicacion/@item.imagen.Nombre" alt="plomero" width="100%" />
                                     </div>
                                     <div class="caption">
-                                        <h3 class="cortar_con_ellipsis">
+                                        <h3>
                                             @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</h3>
                                         <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
                                         <p class="text-muted">
-                                            @item.publicacion.Titulo</p>
-                                        <p>
-                                            <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" class="btn btn-primary btn-block" role="button">
-                                                Ver la publicación</a>
+                                            @item.publicacion.Titulo
                                         </p>
                                     </div>
+                                    <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id"  role="button">
+                                        <div class="ver-publicacion-btn btn btn-primary btn-block">
+                                            Ver la publicación
+                                        </div>
+                                    </a>
                                 </div>
                             </div>        
                         }
@@ -149,9 +151,7 @@
         </div>
     </div>
     <br />
-    
-            @Html.Partial("~/Views/Shared/footer.cshtml")
-
+    @Html.Partial("~/Views/Shared/footer.cshtml")
     <!-- Modal Como Funciona-->
     <div class="modal" id="myModalProvidere">
         <div class="modal-dialog">
@@ -225,6 +225,5 @@
         left: 621px; top: 456px;">
     </div>
 </body>
-
-    @Scripts.Render("~/bundles/jqueryellipsis")
+@Scripts.Render("~/bundles/jqueryellipsis")
 </html>
