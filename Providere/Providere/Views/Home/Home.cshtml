@@ -45,9 +45,16 @@
         <div class="listado-publicaciones" id="ultimas-publicaciones">
             <br />
             <div class="row">
+            @{ int counter = 0; }
                 @foreach (var item in ViewBag.PublicacionesMasRecientes.listadoDePublicaciones)
                 {               
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                     counter++;
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3
+                    @if (counter == ViewBag.LimiteDePrestadores)
+                    {
+                        @Html.Raw(" hidden-md ")
+                    }
+                    ">
                         <a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" >
                             <div class="thumbnail">
                                 <div class="contenedor-img">
@@ -105,9 +112,16 @@
         @if (ViewBag.PrestadoresMejorCalificados.listadoDePublicaciones.Count > 0)
         {        
             <div class="row">
+                @{ int counter = 0; }
                 @foreach (var item in ViewBag.PrestadoresMejorCalificados.listadoDePublicaciones)
                 {
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    counter++;
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3
+                    @if (counter == ViewBag.LimiteDePrestadores)
+                    {
+                        @Html.Raw(" hidden-md ")
+                    }
+                    ">
                         <div class="thumbnail" style="height: 330px">
                             <div class="contenedor-img">
                                 <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
@@ -123,7 +137,7 @@
                     </div>
                 }
             </div>
-            if (ViewBag.PrestadoresMejorCalificadosMas.listadoDePublicaciones.Count > 4)
+                if (ViewBag.PrestadoresMejorCalificadosMas.listadoDePublicaciones.Count > 4)
                 {
             <center>
                 <a href="@Url.Action("VerMasPrestadores", "Publicacion")" class="btn btn-primary"><span
@@ -147,9 +161,16 @@
         @if (ViewBag.UsuariosMasCercanos.Count > 0)
         {
             <div class="row">
+            @{ int counter = 0; }
                 @foreach (var item in ViewBag.UsuariosMasCercanos)
                 {
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                   counter++;
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3
+                    @if (counter == ViewBag.LimiteDePrestadores)
+                    {
+                        @Html.Raw(" hidden-md ")
+                    }
+                    ">
                         <div class="thumbnail" style="height: 360px">
                             <div class="contenedor-img">
                                 <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Id })" alt="plomero" width="100%"/>
