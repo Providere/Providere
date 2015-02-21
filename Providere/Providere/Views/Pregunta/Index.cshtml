@@ -40,7 +40,7 @@
                         <dl class="question" id="1">
                             <dd class="txt">
                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Usuario.Id })" alt="avatar" width="40px"/>
-                                <span><a href="#">@item.Usuario.Nombre @item.Usuario.Apellido</a>
+                                <span><a href="/Usuario/VerPerfil/@item.Usuario.Id">@item.Usuario.Nombre @item.Usuario.Apellido</a>
                                     <br />
                                     @item.Pregunta</span>
                             </dd>
@@ -88,7 +88,7 @@
                         {
                             <dd class="col-md-offset-1">
                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Publicacion.IdUsuario })" alt="avatar" width="40px"/>
-                                <span><a href="#">@item.Publicacion.Usuario.Nombre @item.Publicacion.Usuario.Apellido</a>
+                                <span><a href="/Usuario/VerPerfil/@item.Publicacion.Usuario.Id">@item.Publicacion.Usuario.Nombre @item.Publicacion.Usuario.Apellido</a>
                                     <br />
                                     @item.Respuesta</span>
                                 <br />
