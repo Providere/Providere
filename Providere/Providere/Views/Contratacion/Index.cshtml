@@ -81,11 +81,42 @@
                                         {
                                             if (item2.IdContratacion == item.Id)
                                             {
-                                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                                
+                                               @* @item2.IdCalificado  @item2.Contratacion.Publicacion.Usuario.Nombre  @item2.Contratacion.Publicacion.Usuario.Apellido
+                                                        <br/>
+                                                         @item2.IdCalificador  @item2.Contratacion.Usuario.Nombre @item2.Contratacion.Usuario.Apellido
+                                                        <br/>
+                                                         @item2.Descripcion
+                                                        <br/>
+                                                        @item2.IdContratacion
+                                                        <br/>
+                                                        @item2.IdTipoEvaluacion
+                                                        <br/> *@
+                                        
+                                                if (item2.IdTipoEvaluacion == 1)
+                                                {
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                    @item2.Descripcion
+                                                }
+                                                else
+                                                {
+                                                    if (item2.IdTipoEvaluacion == 2)
+                                                    {
+                                                        <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                        @item2.Descripcion
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                        @item2.Descripcion 
+                                                    }
+                                                }
+                                                
+                                                
+                                               @* <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                                                  Ver Calificaci&oacute;n
                                                 </button>
-                                       
-                                        
+      
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                   <div class="modal-dialog">
@@ -113,12 +144,11 @@
                                                       </div>
                                                     </div>
                                                   </div>
-                                                </div>
+                                                </div> *@
                                             }
-                                            
+
                                         }
-                                            
-                                            
+
                                     }
                                 </td>
                             </tr>
@@ -174,8 +204,32 @@
                                         @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 2 }, null)
                                     }
                                     else
-                                    { 
-                                        @Html.DisplayName("Ver CALIFICACION")
+                                    {
+                                        foreach (var item2 in ViewBag.calificacionesACliente)
+                                        {
+                                            if (item2.IdContratacion == item.Id)
+                                            {                                    
+                                                if (item2.IdTipoEvaluacion == 1)
+                                                {
+                                                    <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
+                                                    @item2.Descripcion
+                                                }
+                                                else
+                                                {
+                                                    if (item2.IdTipoEvaluacion == 2)
+                                                    {
+                                                        <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span>
+                                                        @item2.Descripcion
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                                        @item2.Descripcion 
+                                                    }
+                                                }
+                                            }
+
+                                        }
                                     }
                                 </td>
                             </tr>
