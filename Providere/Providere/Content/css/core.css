@@ -168,12 +168,13 @@ hr
 {
     margin-top: 1em;
 }
+
 .iconos-sociales img
 {
     float: right;
     margin-left: 10px;
 }
-
+ 
 .precio-detalle
 {
     font-size: 2em;
@@ -250,12 +251,28 @@ footer
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 57px;
+    height: 57px;    
+    overflow: hidden;
 }
 
 footer .text-info
 {
     margin-left: 10px;
+}
+.mini-logo 
+{
+    padding:0
+}
+
+.mini-logo img
+{
+max-width: 48px;
+min-width: 40px;
+}
+
+.mini-logo img, .iconos-sociales img, footer img
+{
+    width:80px;
 }
 
 
@@ -356,3 +373,4 @@ footer.transparente .container
     top: 3px;
     position: relative;
 }
+
