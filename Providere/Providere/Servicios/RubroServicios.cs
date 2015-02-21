@@ -20,6 +20,19 @@ namespace Providere.Servicios
             return rr.traerDatosPorId(id);
         }
 
+        public bool VerificarRubro(int idUsuario, int idRubro)
+        {
+            try
+            {
+                Publicacion publicacion = rr.VerificarRubro(idUsuario, idRubro);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
 
+        
     }
 }

@@ -18,7 +18,6 @@ namespace Providere.Controllers
 
         public ActionResult Index()
         {
-            //ViewBag.Publicaciones = ps.traerPublicacionesMejorCalificadas(4);
             ViewBag.Publicaciones = ps.traerPublicacionesMasRecientes(4);
 
             return View();

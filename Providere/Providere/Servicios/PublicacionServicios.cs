@@ -116,32 +116,6 @@ namespace Providere.Servicios
             pr.CambiarEstadoPublicacion(id);
         }
 
-        public bool VerificarRubro(int idUsuario, int idRubro)
-        {
-            try
-            {
-                Publicacion publicacion = pr.VerificarRubro(idUsuario, idRubro);
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public bool VerificarSubrubro(int idUsuario, int? idSubRubro)
-        {
-            try
-            {
-                Publicacion publicacion = pr.VerificarSubrubro(idUsuario, idSubRubro);
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
-        }
-
         public List<Publicacion> TraerPublicacionesUsuariosCercanos(List<Usuario> usuariosCercanos)
         {
             return pr.TraerPublicacionesUsuariosCercanos(usuariosCercanos);
