@@ -117,7 +117,7 @@
                                 if (item.IdTipoEvaluacion == 2)
                                 {
                                 <div class="col-md-5 row">
-                                    <br />
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
@@ -165,14 +165,14 @@
                                 if (item.IdTipoEvaluacion == 3)
                                 {
                                 <div class="col-md-5 row">
-                                    <br />
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
                                 </div>
                                 }
                             }
-                            <br />
+                            
                         </div>
                     </div> 
                         }
@@ -259,7 +259,7 @@
                                 if (item.IdTipoEvaluacion == 2)
                                 {
                                 <div class="col-md-5 row">
-                                    <br />
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
@@ -306,14 +306,14 @@
                                 if (item.IdTipoEvaluacion == 3)
                                 {
                                 <div class="col-md-5 row">
-                                    <br />
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
                                 </div>
                                 }
                             }
-                            <br />
+                            
                         </div>
                     </div> 
                         }
@@ -662,8 +662,8 @@
                             @if (item.IdTipoEvaluacion == 1) //Positiva
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span> <em>@item.Descripcion</em>
-                                <dd class="col-sm-12 col-sm-offset-2">
-                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <dd>
+                                   <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span> <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>                               
                                 foreach (var rep in ViewBag.Replicas)
                                 {
@@ -679,7 +679,7 @@
                             @if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 1) //Neutro
                             {
                                 <div class="col-md-5 row">
-                                    <br />
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
@@ -690,8 +690,8 @@
                                 if (item.IdTipoEvaluacion == 2)
                                 {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span> <em>@item.Descripcion</em>
-                                <dd class="col-sm-offset-2">
-                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <dd>
+                                   <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span> <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                               
                                     foreach (var rep in ViewBag.Replicas)
@@ -709,7 +709,7 @@
                             @if (item.IdTipoEvaluacion == 3 && item.FlagDenunciado == 1) //Negativo
                             {
                                 <div class="col-md-5 row">
-                                    <br />
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
@@ -720,8 +720,8 @@
                                 if (item.IdTipoEvaluacion == 3)
                                 {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span> <em>@item.Descripcion</em>
-                                <dd class="col-sm-12 col-sm-offset-2">
-                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <dd>
+                                   <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span> <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                                 
                                     foreach (var rep in ViewBag.Replicas)
@@ -736,7 +736,7 @@
                                     }
                                 }
                             }
-                            <br />
+                            
                         </div>
                     </div>
                         }
@@ -755,8 +755,8 @@
                             @if (item.IdTipoEvaluacion == 1) //Positiva
                             {
                                 <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span> <em>@item.Descripcion</em>
-                                <dd class="col-sm-offset-2">
-                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <dd>
+                                   <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span> <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                                
                                 foreach (var rep in ViewBag.Replicas)
@@ -773,7 +773,7 @@
                             @if (item.IdTipoEvaluacion == 2 && item.FlagDenunciado == 1) //Neutro
                             {
                                 <div class="col-md-5 row">
-                                    <br />
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign"></span><span>@ViewBag.Texto</span>
                                     </div>
@@ -784,8 +784,8 @@
                                 if (item.IdTipoEvaluacion == 2)
                                 {
                                 <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span> <em>@item.Descripcion</em>
-                                <dd class="col-sm-12 col-sm-offset-2">
-                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <dd>
+                                   <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span> <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                                
                                     foreach (var rep in ViewBag.Replicas)
@@ -803,7 +803,7 @@
                             @if (item.IdTipoEvaluacion == 3 && item.FlagDenunciado == 1) //Negativo
                             {
                                 <div class="col-md-5 row">
-                                    <br />
+                                    
                                     <div class="alert alert-danger alert-dismissable">
                                         <span class="glyphicon glyphicon-warning-sign">@ViewBag.Texto</span>
                                     </div>
@@ -814,8 +814,8 @@
                                 if (item.IdTipoEvaluacion == 3)
                                 {
                                 <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span> <em>@item.Descripcion</em>
-                                <dd class="col-sm-12 col-sm-offset-2">
-                                    <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                                <dd>
+                                   <span class="invisible text-primary"><i class="glyphicon glyphicon-record"></i></span> <small><span class="help-block">@item.FechaCalificacion.ToString("dd/MM/yyyy hh:mm tt")</span></small>
                                 </dd>
                                
                                     foreach (var rep in ViewBag.Replicas)
@@ -830,7 +830,7 @@
                                     }
                                 }
                             }
-                            <br />
+                            
                         </div>
                     </div>     
                         }

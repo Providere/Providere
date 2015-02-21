@@ -395,7 +395,9 @@ footer.transparente .container
 }
 
 #obtenidas .invisible, 
-#obtenidas .help-block 
+#obtenidas .help-block ,
+#otorgadas .invisible, 
+#otorgadas .help-block 
 {
 float:left
 }
