@@ -15,6 +15,7 @@ namespace Providere.Controllers
         UsuarioServicios us = new UsuarioServicios();
         SancionServicios ss = new SancionServicios();
         PreguntaServicios prs = new PreguntaServicios();
+        PuntajeServicios pur = new PuntajeServicios();
 
         public ActionResult Home()
         {
@@ -30,7 +31,16 @@ namespace Providere.Controllers
 
             ViewBag.PrestadoresMejorCalificados = ps.traerPublicacionesMejorCalificadas(limite);
 
-            ViewBag.UsuariosMasCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), limite);
+           
+            List <Usuario> usuariosCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), limite);
+            ViewBag.UsuariosMasCercanos = usuariosCercanos;
+
+            //Para mostrar rubro y puntaje en Prestadores de mi zona
+            List<Publicacion> publicacionesUsuariosCercanos = ps.TraerPublicacionesUsuariosCercanos(usuariosCercanos);
+            ViewBag.PublicacionesUsuariosCercanos = publicacionesUsuariosCercanos;
+            List<Puntaje> puntajeUsuariosCercanos = pur.TraerPuntajeUsuariosCercanos(publicacionesUsuariosCercanos);
+            ViewBag.PuntajeUsuariosCercanos = puntajeUsuariosCercanos;
+
 
             ViewBag.Sancion = ss.ObtenerSancionDeUsuario(us.ObtenerUsuarioEditar(Convert.ToInt16(this.Session["IdUsuario"])));
 

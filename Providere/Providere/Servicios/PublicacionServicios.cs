@@ -140,6 +140,11 @@ namespace Providere.Servicios
                 return false;
             }
             return true;
-        }       
+        }
+
+        public List<Publicacion> TraerPublicacionesUsuariosCercanos(List<Usuario> usuariosCercanos)
+        {
+            return pr.TraerPublicacionesUsuariosCercanos(usuariosCercanos);
+        }
     }
 }

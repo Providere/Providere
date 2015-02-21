@@ -123,7 +123,7 @@
                     </div>
                 }
             </div>
-            if (ViewBag.PrestadoresMejorCalificadosMas.listadoDePublicaciones.Count > 4)
+                if (ViewBag.PrestadoresMejorCalificadosMas.listadoDePublicaciones.Count > 4)
                 {
             <center>
                 <a href="@Url.Action("VerMasPrestadores", "Publicacion")" class="btn btn-primary"><span
@@ -158,6 +158,21 @@
                                 <h4>
                                     <a href="#">
                                         @item.Nombre @item.Apellido</a></h4>
+                                @foreach (var item2 in ViewBag.PublicacionesUsuariosCercanos)
+                                {
+                                    if (item2.Usuario.Id == item.Id)
+                                    {
+                                        foreach (var item3 in ViewBag.PuntajeUsuariosCercanos)
+                                        {
+                                            if (item2.Id == item3.IdPublicacion)
+                                            {
+                                    <span><strong>@item2.Rubro.Nombre</strong> <span class="badge">@item3.Total</span>
+                                        <br />
+                                    </span>
+                                            }
+                                        }
+                                    }
+                                }
                                 <br />
                             </div>
                         </div>

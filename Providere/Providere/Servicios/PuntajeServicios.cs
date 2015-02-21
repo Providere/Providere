@@ -23,6 +23,9 @@ namespace Providere.Servicios
         }
 
 
-
+        public List<Puntaje> TraerPuntajeUsuariosCercanos(List<Publicacion> publicacionesUsuariosCercanos)
+        {
+            return pur.TraerPuntajeUsuariosCercano(publicacionesUsuariosCercanos);
+        }
     }
 }
