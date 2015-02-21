@@ -70,29 +70,28 @@
                     if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1 && HttpContext.Current.Session["IdUsuario"] != null)
                     {
 
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block" })
+                        @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block" })
                
                     }
                     else
                     {
                         if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
                         {
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
+                            @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
                         }
 
                         else
                         {
                             if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 0)
                             {
-                
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
+                                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
                             }
                         }
                     }
                 }
                 else
                 {  
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
+                    @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
                 }
             }
         </div>
@@ -129,7 +128,9 @@
                     <div class="col-md-12">
                         <div>
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                            <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                            <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">    
+                                @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                            </a>
                         </div>
                         <div>
                             <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item.Descripcion</em>
@@ -158,7 +159,9 @@
                     <div class="col-md-12">
                         <div>
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                            <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                            <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">
+                                @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                            </a>
                         </div>
                         <div>
                             <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span><em>@item.Descripcion</em>
@@ -199,7 +202,9 @@
                     <div class="col-md-12">
                         <div>
                             <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                            <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                            <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">    
+                                @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                            </a>
                         </div>
                         <div>
                             <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
@@ -282,7 +287,9 @@
                                             <div>
                                                 <div>
                                                     <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                    <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                                    <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">
+                                                        @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                                                    </a>
                                                 </div>
                                                 <div>
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item.Descripcion</em>
@@ -311,7 +318,9 @@
                                             <div>
                                                 <div>
                                                     <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                    <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                                    <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">
+                                                        @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                                                    </a>
                                                 </div>
                                                 <div>
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span><em>@item.Descripcion</em>
@@ -352,7 +361,9 @@
                                             <div>
                                                 <div>
                                                     <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.IdCalificador })" alt="avatar" width="40px"/>
-                                                    <a href="#">@item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido</a>
+                                                    <a href="/Usuario/VerPerfil/@item.Contratacion.Usuario.Id">
+                                                        @item.Contratacion.Usuario.Nombre @item.Contratacion.Usuario.Apellido
+                                                    </a>
                                                 </div>
                                                 <div>
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
@@ -402,7 +413,9 @@
                                             <div>
                                                 <div>
                                                     <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item1.IdCalificador })" alt="avatar" width="40px"/>
-                                                    <a href="#">@item1.Contratacion.Usuario.Nombre @item1.Contratacion.Usuario.Apellido</a>
+                                                    <a href="/Usuario/VerPerfil/@item1.Contratacion.Usuario.Id">
+                                                        @item1.Contratacion.Usuario.Nombre @item1.Contratacion.Usuario.Apellido
+                                                    </a>
                                                 </div>
                                                 <div>
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span><em>@item1.Descripcion</em>
@@ -442,7 +455,9 @@
                                             <div>
                                                 <div>
                                                     <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item2.IdCalificador })" alt="avatar" width="40px"/>
-                                                    <a href="#">@item2.Contratacion.Usuario.Nombre @item2.Contratacion.Usuario.Apellido</a>
+                                                    <a href="/Usuario/VerPerfil/@item2.Contratacion.Usuario.Id">
+                                                        @item2.Contratacion.Usuario.Nombre @item2.Contratacion.Usuario.Apellido
+                                                    </a>
                                                 </div>
                                                 <div>
                                                     <span class="text-primary"><i class="glyphicon glyphicon-record"></i></span><em>@item2.Descripcion</em>
@@ -484,7 +499,9 @@
                                             <div>
                                                 <div>
                                                     <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item3.IdCalificador })" alt="avatar" width="40px"/>
-                                                    <a href="#">@item3.Contratacion.Usuario.Nombre @item3.Contratacion.Usuario.Apellido</a>
+                                                    <a href="/Usuario/VerPerfil/@item3.Contratacion.Usuario.Id">
+                                                        @item3.Contratacion.Usuario.Nombre @item3.Contratacion.Usuario.Apellido
+                                                    </a>
                                                 </div>
                                                 <div>
                                                     <span class="text-warning"><i class="glyphicon glyphicon-minus-sign"></i></span>
@@ -558,14 +575,16 @@
     <div class="col-md-3">
         <div id="ficha-publicante" class="ficha-publicante ">
             <div class="contenedor-imagen-publicacion">
-                @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
-                {               
-                    <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />             
-                }
-                else
-                {
-                    <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = Model.IdUsuario })" alt="avatar" width="100%"/>
-                }
+                <a href="/Usuario/VerPerfil/@Model.Usuario.Id">
+                    @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+                    {               
+                        <img class="img-thumbnail" src="@Url.Action("MostrarImagen", "Usuario", new { id = Session["IdUsuario"] })" alt="avatar" width="100%" />             
+                    }
+                    else
+                    {
+                        <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = Model.IdUsuario })" alt="avatar" width="100%"/>
+                    }
+                </a>
             </div>
             <div class="contenedor-info-publicante">
                 <h2>

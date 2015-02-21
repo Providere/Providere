@@ -123,13 +123,17 @@
                     }
                     ">
                         <div class="thumbnail" style="height: 330px">
-                            <div class="contenedor-img">
-                                <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
+                            <div class="contenedor-img">  
+                                <a href="/Usuario/VerPerfil/@item.publicacion.Usuario.Id">
+                                    <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.publicacion.IdUsuario })" alt="plomero" width="100%"/>
+                                </a>
                             </div>
                             <div class="caption text-center">
                                 <h4>
-                                    <a href="#">
-                                        @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                    <a href="/Usuario/VerPerfil/@item.publicacion.Usuario.Id">
+                                        @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido
+                                    </a>
+                                </h4>
                                 <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
                                 <br />
                             </div>
@@ -173,12 +177,16 @@
                     ">
                         <div class="thumbnail" style="height: 360px">
                             <div class="contenedor-img">
+                                <a href="/Usuario/VerPerfil/@item.Id">
                                 <img class="" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Id })" alt="plomero" width="100%"/>
+                                </a>
                             </div>
                             <div class="caption text-center">
                                 <h4>
-                                    <a href="#">
-                                        @item.Nombre @item.Apellido</a></h4>
+                                    <a href="/Usuario/VerPerfil/@item.Id">
+                                        @item.Nombre @item.Apellido
+                                    </a>
+                                </h4>
                                 @foreach (var item2 in ViewBag.PublicacionesUsuariosCercanos)
                                 {
                                     if (item2.Usuario.Id == item.Id)
