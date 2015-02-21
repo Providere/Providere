@@ -149,28 +149,9 @@
         </div>
     </div>
     <br />
-    <footer>
-        <div class="container">
-            <div class="col-md-4">
-                <img src="../../Content/img/logoSquare.png" alt="logo" width="12%" />
-                <span class="text-info">©2015 | Todos los derechos reservados</span>
-            </div>
-           <div class="col-md-4 text-center">
-                 <span class="text-info">
-                    <a data-toggle="modal" href="#myModalProvidere">Acerca de Providere</a> | <a href="@Url.Action("FAQ", "Shared")">FAQ</a> | <a href="mailto:providere_arg@gmail.com">
-                        Contacto</a> 
-                </span>
-            </div>
-            <div class="iconos-sociales col-md-4">
-                <a href="#">
-                    <img src="../../Content/img/facebook.png" alt="facebook" width="12%" />
-                </a><a href="#" class="margin-top">
-                    <img src="../../Content/img/twitter.png" alt="twitter" width="12%" />
-                </a>
-            </div>
-        </div>
-        <!--container del footer-->
-    </footer>
+    
+            @Html.Partial("~/Views/Shared/footer.cshtml")
+
     <!-- Modal Como Funciona-->
     <div class="modal" id="myModalProvidere">
         <div class="modal-dialog">
