@@ -33,6 +33,9 @@
                 Servicios que contraté</h2>
            <br />
             <div class="col-md-12">
+
+                @if (ViewBag.ContratacionesRealizadas.Count != 0)
+                {
                 <table class="tabla-contrataciones table table-bordered table-hover">
                     <thead>
                         <tr class="default">
@@ -49,7 +52,7 @@
                                 @Html.DisplayName("Teléfono")
                             </th>
                             <th>
-                                Acción
+                                @Html.DisplayName("Acción")
                             </th>
                         </tr>
                     </thead>
@@ -81,18 +84,6 @@
                                         {
                                             if (item2.IdContratacion == item.Id)
                                             {
-                                                
-                                               @* @item2.IdCalificado  @item2.Contratacion.Publicacion.Usuario.Nombre  @item2.Contratacion.Publicacion.Usuario.Apellido
-                                                        <br/>
-                                                         @item2.IdCalificador  @item2.Contratacion.Usuario.Nombre @item2.Contratacion.Usuario.Apellido
-                                                        <br/>
-                                                         @item2.Descripcion
-                                                        <br/>
-                                                        @item2.IdContratacion
-                                                        <br/>
-                                                        @item2.IdTipoEvaluacion
-                                                        <br/> *@
-                                        
                                                 if (item2.IdTipoEvaluacion == 1)
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
@@ -111,50 +102,19 @@
                                                         @item2.Descripcion 
                                                     }
                                                 }
-                                                
-                                                
-                                               @* <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                                                 Ver Calificaci&oacute;n
-                                                </button>
-      
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                  <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                      <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title" id="myModalLabel">Calificaci&oacute;n otorgada</h4>
-                                                      </div>
-                                                      <div class="modal-body">
-                                                
-                                                        idCalificado: @item2.IdCalificado , @item2.Contratacion.Publicacion.Usuario.Nombre , @item2.Contratacion.Publicacion.Usuario.Apellido
-                                                        <br/>
-                                                        idCalificador es el logueado: @item2.IdCalificador , @item2.Contratacion.Usuario.Nombre, @item2.Contratacion.Usuario.Apellido
-                                                        <br/>
-                                                        Comentario: @item2.Descripcion
-                                                        <br/>
-                                                        idContratacion: @item2.IdContratacion
-                                                        <br/>
-                                                        ID TIPO EVALUACION: @item2.IdTipoEvaluacion
-
-                                                      </div>
-                                                      <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div> *@
                                             }
-
                                         }
-
                                     }
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
+                }
+                else
+                {
+                    <span>A&uacute;n no contrataste ning&uacute;n servicio</span>
+                }
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="meContrataron">
@@ -162,6 +122,8 @@
                 Servicios por los que me contrataron</h2>
            <br />
             <div class="col-md-12">
+                @if (ViewBag.QuienesMeContrataron.Count != 0)
+                {
                 <table class="tabla-contrataciones table table-bordered table-hover">
                     <thead>
                         <tr class="default">
@@ -178,7 +140,7 @@
                                 @Html.DisplayName("Teléfono")
                             </th>
                             <th>
-                                Acción
+                                @Html.DisplayName("Acción")
                             </th>
                         </tr>
                     </thead>
@@ -200,7 +162,13 @@
                                 </td>
                                 <td>
                                     @if (item.FlagCalificoProveedor == 0)
-                                    { 
+                                    {
+
+                                       @* using (Html.BeginForm("CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 2 }, FormMethod.Post, new { @class = "form-horizontal" }))
+                                        {                     
+                                            <input type="submit" id="btnConfirmar2" value="Calificar usuario" class="btn btn-primary btn-xs" />                    
+                                        } *@
+
                                         @Html.ActionLink("Calificar usuario", "CalificarUsuario", "Calificacion", new { idContratacion = item.Id, idTipoCalificacion = 2 }, null)
                                     }
                                     else
@@ -208,7 +176,7 @@
                                         foreach (var item2 in ViewBag.calificacionesACliente)
                                         {
                                             if (item2.IdContratacion == item.Id)
-                                            {                                    
+                                            {
                                                 if (item2.IdTipoEvaluacion == 1)
                                                 {
                                                     <span class="text-success"><i class="glyphicon glyphicon-plus-sign"></i></span>
@@ -236,6 +204,11 @@
                        }
                     </tbody>
                 </table>
+                }
+                else
+                {
+                    <span>A&uacute;n no te contrataron</span>
+                }
             </div>
         </div>
     </div>
