@@ -361,7 +361,7 @@ namespace Providere.Controllers
                 }
 
             }
-            return View("ListarPublicaciones");
+            return RedirectToAction("ListarPublicaciones");
         }
 
 

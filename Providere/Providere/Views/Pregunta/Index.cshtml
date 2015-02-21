@@ -39,7 +39,11 @@
                     <div>
                         <dl class="question" id="1">
                             <dd class="txt">
-                                <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span> @item.Pregunta</span></dd>
+                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Usuario.Id })" alt="avatar" width="40px"/>
+                                <span><a href="#">@item.Usuario.Nombre @item.Usuario.Apellido</a>
+                                    <br />
+                                    @item.Pregunta</span>
+                            </dd>
                         </dl>
                     </div>
                     @using (Html.BeginForm("Responder", "Pregunta", new { id = item.Id }, FormMethod.Post))
@@ -75,20 +79,23 @@
 
                 <div class="col-md-12">
                     <legend><a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
-                   <dl class="question" id="pregunta">
+                    <dl class="question" id="pregunta">
                         <dd class="txt">
-                            <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span> @item.Pregunta</span>
+                            <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
                         </dd>
                         <br />
                         @if (item.Respuesta != null)
                         {
-                           <dd class="col-md-offset-1">
-                            <span class="text-info"><i class="glyphicon glyphicon-user"></i></span> @item.Respuesta
-                            <br />
-                        </dd>
-                        <dd class="col-sm-offset-2">
-                            <small><span class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                        </dd>      
+                            <dd class="col-md-offset-1">
+                                <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Publicacion.IdUsuario })" alt="avatar" width="40px"/>
+                                <span><a href="#">@item.Publicacion.Usuario.Nombre @item.Publicacion.Usuario.Apellido</a>
+                                    <br />
+                                    @item.Respuesta</span>
+                                <br />
+                            </dd>
+                            <dd class="col-sm-offset-2">
+                                <small><span class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</span></small>
+                            </dd>      
                         }
                         <button name="btnBorrar" class="btn btn-primary btn-sm" type="submit">
                             <span class="glyphicon glyphicon-trash"></span>Borrar pregunta</button>
