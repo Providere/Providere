@@ -77,7 +77,7 @@
                     {
                         if (ViewBag.accionPadre != "VisualizarMiPublicacion" && Model.Estado == 1)
                         {
-                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block" })
+                @Html.ActionLink("Contratar", "ContratarPublicacion", "Publicacion", Model, new { @class = "contratar-btn btn btn-primary btn-lg btn-block disabled" })
                         }
 
                         else
