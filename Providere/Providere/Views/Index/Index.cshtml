@@ -116,9 +116,19 @@
                 @if (ViewBag.Publicaciones.listadoDePublicaciones.Count > 0)
                 {
                     <div class="row">
+
+                     @{ int counter = 0; }
+
                         @foreach (var item in ViewBag.Publicaciones.listadoDePublicaciones)
-                        {         
-                            <div class="col-sm-6 col-md-4 col-lg-3">
+                        {       
+                   counter++;  
+                            <div class="col-sm-6 col-md-4 col-lg-3                            
+                    @if (counter == ViewBag.Publicaciones.listadoDePublicaciones.Count)
+                    {
+                        @Html.Raw(" hidden-md ")
+                    }
+
+                    ">
                                 <div class="thumbnail">
                                     <div class="contenedor-img">
                                         <img src="../../Imagenes/Publicacion/@item.imagen.Nombre" alt="plomero" width="100%" />

@@ -30,6 +30,7 @@ namespace Providere.Controllers
             ViewBag.PublicacionesMasRecientes = ps.traerPublicacionesMasRecientes(limite);
 
             ViewBag.PrestadoresMejorCalificados = ps.traerPublicacionesMejorCalificadas(limite);
+            ViewBag.LimiteDePrestadores = limite;
 
            
             List <Usuario> usuariosCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), limite);
