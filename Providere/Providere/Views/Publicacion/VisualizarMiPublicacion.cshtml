@@ -629,7 +629,7 @@
             @ViewBag.NoExistenPreguntas
             @foreach (var item in ViewBag.MostrarPrimerasPreguntas)
             {
-                <dl class="question" id="pregunta">
+                <dl class="question" >
                     <dd class="txt">
                         <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
                     </dd>
@@ -656,7 +656,7 @@
                 @foreach (var item in ViewBag.MostrarPreguntas)
                 {
                     <br />
-                    <dl class="question" id="pregunta2">
+                    <dl class="question" >
                         <dd class="txt">
                             <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
                         </dd>
