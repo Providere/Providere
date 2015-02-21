@@ -15,13 +15,11 @@ namespace Providere.Models
         {
             [Required(ErrorMessage = "Campo Obligatorio.")]
             [StringLength(25, ErrorMessage = "Máximo 25 caracteres.")]
-            [RegularExpression("^[A-Z a-z]*$", ErrorMessage = "Ingresa solo letras.")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Nombre { get; set; }
 
             [Required(ErrorMessage = "Campo Obligatorio.")]
             [StringLength(25, ErrorMessage = "Máximo 25 caracteres.")]
-            [RegularExpression("^[A-Z a-z]*$",ErrorMessage = "Ingresa solo letras.")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             public object Apellido { get; set; }
 

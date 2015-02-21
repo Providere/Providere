@@ -213,26 +213,6 @@ namespace Providere.Repositorios
             context.SaveChanges();
         }
 
-        public Publicacion VerificarRubro(int idUsuario, int idRubro)
-        {
-            var publicacion = (from publicaciones in context.Publicacion
-                               
-                               where (publicaciones.IdUsuario == idUsuario && publicaciones.IdRubro == idRubro
-                                &&  publicaciones.IdRubro<20)
-                               select publicaciones).First();
-            return publicacion;
-        }
-
-        public Publicacion VerificarSubrubro(int idUsuario, int? idSubRubro)
-        {
-            var publicacion = (from publicaciones in context.Publicacion
-
-                               where (publicaciones.IdUsuario == idUsuario && publicaciones.IdSubRubro == idSubRubro)
-                               select publicaciones).First();
-            return publicacion;
-        }
-
-
         public List<Publicacion> TraerPublicacionesUsuariosCercanos(List<Usuario> usuariosCercanos)
         {
             List<int> listaUsuarios = new List<int>();

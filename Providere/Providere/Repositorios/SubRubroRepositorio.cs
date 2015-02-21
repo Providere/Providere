@@ -28,5 +28,12 @@ namespace Providere.Repositorios
             return subrubro;
 
         }
+        public Publicacion VerificarSubrubro(int idUsuario, int? idSubRubro)
+        {
+            var publicacion = (from publicaciones in context.Publicacion
+                               where (publicaciones.IdUsuario == idUsuario && publicaciones.IdSubRubro == idSubRubro)
+                               select publicaciones).First();
+            return publicacion;
+        }
     }
 }

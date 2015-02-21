@@ -21,6 +21,8 @@ namespace Providere.Controllers
         DenunciaServicios ds = new DenunciaServicios();
         PuntajeServicios pus = new PuntajeServicios();
         ReplicaServicios rs = new ReplicaServicios();
+        RubroServicios rus = new RubroServicios();
+        SubRubroServicios srus = new SubRubroServicios();
 
         SancionServicios ss = new SancionServicios();
 
@@ -47,7 +49,7 @@ namespace Providere.Controllers
         [HttpPost]
         public ActionResult NuevaPublicacion(int idUsuario, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio, IEnumerable<HttpPostedFileBase> files)
         {
-            if (ps.VerificarRubro(idUsuario, idRubro) || ps.VerificarSubrubro(idUsuario, idSubRubro))
+            if (rus.VerificarRubro(idUsuario, idRubro) || srus.VerificarSubrubro(idUsuario, idSubRubro))
             {
                 TempData["Error"] = "Ya tenés una publicación creada en ese rubro o subrubro.";
                 return RedirectToAction("NuevaPublicacion");
@@ -258,53 +260,62 @@ namespace Providere.Controllers
         [HttpPost]
         public ActionResult EditarPublicacion(int idUsuario, int id, int idRubro, int? idSubRubro, string titulo, string descripcion, int precioOpcion, decimal? precio, decimal? oculto, IEnumerable<HttpPostedFileBase> files)
         {
-            if (ModelState.IsValid)
+            if (rus.VerificarRubro(idUsuario, idRubro) || srus.VerificarSubrubro(idUsuario, idSubRubro))
             {
-                try
-                {
-                    if (idRubro != 21) {
-                        idSubRubro = null;
-                    }
-                    ps.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio, oculto);
-                    int verificar = ps.VerificarCantidadImagenes(id); // Verifico para no pasar la cant de 4 imagenes.Devuelve la cantidad real o sino 0
-                    int cant = files.Count();
-                    int total = (verificar + cant);
-                    if (files.First() != null && total < 5)
-                    {
-                        foreach (var file in files)
-                        {
-
-                            string extension = Path.GetExtension(file.FileName);
-                            if (file.ContentLength > 0 && extension == ".jpg")
-                            {
-                                string uniqueFileName = Path.ChangeExtension(file.FileName, Convert.ToString(idUsuario));
-                                string path = Path.Combine(Server.MapPath("~/Imagenes/Publicacion"),
-                                            Path.GetFileName(uniqueFileName + extension));
-                                file.SaveAs(path);
-                                string pathImagen = uniqueFileName + extension;
-
-                                ps.CargarImagenesEdicion(pathImagen, idUsuario, id);
-                            }
-                        }
-                        TempData["Exito"] = "Publicación editada correctamente.";
-                        return RedirectToAction("ListarPublicaciones");
-                    }
-                    else
-                    {
-                        TempData["Exito"] = "Publicación editada correctamente.";
-                        return RedirectToAction("ListarPublicaciones");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ClientException.LogException(ex, "Error al editar la publicación.");
-                    return RedirectToAction("Error", "Shared");
-                }
+                TempData["Error"] = "Ya tenés una publicación creada en ese rubro o subrubro.";
+                return RedirectToAction("EditarPublicacion", new { id = id });
             }
             else
             {
-                TempData["Error"] = "No se pudo editar la publicación, intentalo nuevamente.";
-                return RedirectToAction("EditarPublicacion", new { id = id });
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        if (idRubro != 21)
+                        {
+                            idSubRubro = null;
+                        }
+                        ps.ModificarPublicacion(id, idRubro, idSubRubro, titulo, descripcion, precioOpcion, precio, oculto);
+                        int verificar = ps.VerificarCantidadImagenes(id); // Verifico para no pasar la cant de 4 imagenes.Devuelve la cantidad real o sino 0
+                        int cant = files.Count();
+                        int total = (verificar + cant);
+                        if (files.First() != null && total < 5)
+                        {
+                            foreach (var file in files)
+                            {
+                                string extension = Path.GetExtension(file.FileName);
+                                if (file.ContentLength > 0 && extension == ".jpg")
+                                {
+                                    string uniqueFileName = Path.ChangeExtension(file.FileName, Convert.ToString(idUsuario));
+                                    string path = Path.Combine(Server.MapPath("~/Imagenes/Publicacion"),
+                                                Path.GetFileName(uniqueFileName + extension));
+                                    file.SaveAs(path);
+                                    string pathImagen = uniqueFileName + extension;
+
+                                    ps.CargarImagenesEdicion(pathImagen, idUsuario, id);
+                                }
+                            }
+                            TempData["Exito"] = "Publicación editada correctamente.";
+                            return RedirectToAction("ListarPublicaciones");
+                        }
+                        else
+                        {
+                            TempData["Exito"] = "Publicación editada correctamente.";
+                            return RedirectToAction("ListarPublicaciones");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ClientException.LogException(ex, "Error al editar la publicación.");
+                        return RedirectToAction("Error", "Shared");
+                    }
+                }
+
+                else
+                {
+                    TempData["Error"] = "No se pudo editar la publicación, intentalo nuevamente.";
+                    return RedirectToAction("EditarPublicacion", new { id = id });
+                }
             }
         }
 
