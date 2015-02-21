@@ -33,6 +33,19 @@ namespace Providere.Servicios
             return true;
         }
 
-        
+
+
+        internal bool VerificarRubroEditar(int idUsuario, int idRubro, int id)
+        {
+            try
+            {
+                Publicacion publicacion = rr.VerificarRubroEditar(idUsuario, idRubro,id);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

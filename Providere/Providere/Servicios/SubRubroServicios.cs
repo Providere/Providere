@@ -46,5 +46,18 @@ namespace Providere.Servicios
             }
             return true;
         }
+
+        internal bool VerificarSubrubroEditar(int idUsuario, int? idSubRubro, int id)
+        {
+            try
+            {
+                Publicacion publicacion = sr.VerificarSubrubroEditar(idUsuario, idSubRubro, id);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
