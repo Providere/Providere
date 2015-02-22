@@ -15,7 +15,7 @@
                 <div class="row">
                     @foreach (var item in ViewBag.VerMasPublicacionesMasRecientes.listadoDePublicaciones)
                     {
-                        <div class="col-xs-3">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                             <a href="/publicacion/VisualizarPublicacion/@item.publicacion.Id" >
                                 <div class="thumbnail">
                                     <div class="contenedor-img">
@@ -23,8 +23,16 @@
                                     </div>
                                     <div class="caption text-center">
                                         <h4>
-                                            <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span></h4>
-                                        <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                            <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" class="cortar_con_ellipsis">@item.publicacion.Titulo</a></span></h4>
+                                        @if (@item.publicacion.SubRubro != null){
+                                        
+                                            
+                                        <strong>@item.publicacion.Rubro.Nombre</strong>}
+                                        else
+                                        {
+                                        <strong>@item.publicacion.Rubro.Nombre</strong>
+                                        } 
+                                        <span class="badge">@item.puntaje.Total</span>
                                         <h4>
                                             @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</h4>
                                         <p>

@@ -314,6 +314,10 @@ footer.transparente .container
     margin-top: 5px;
 }
 
+.listado-publicaciones .thumbnail
+{
+    min-height:390px}
+
 
 .mensaje-sin-registros
 {
