@@ -37,12 +37,12 @@
     </div>
     <hr />
     <br />
-    <div class="listado-publicaciones" id="ultimas-publicaciones">
+   @* <div class="listado-publicaciones" id="ultimas-publicaciones">*@
         @if (Model.listadoDePublicaciones.Count > 0)
         {
             foreach (var item in Model.listadoDePublicaciones)
             {
-            <div class="col-xs-3">
+            <div class="col-md-3">
                 <a href="/publicacion/VisualizarPublicacion/@item.publicacion.Id" >
                     <div class="thumbnail">
                         <div class="contenedor-img">
@@ -50,23 +50,22 @@
                         </div>
                         <div class="caption text-center">
                             <h4>
-                                <a href="#">
-                                    @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
+                                <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span></h4>
                             <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
-                            <br />
-                            <span><a href="/publicacion/VisualizarPublicacion/@item.publicacion.Id">@item.publicacion.Titulo</a></span>
-                            <br />
-                            @if (@item.publicacion.PrecioOpcion == 1)
-                            {
-                   
-                                @Html.Label("A Convenir") 
-                            }
-                            else
-                            {
-                                @Html.Label("$") 
-                                @String.Format("{0:0.00}", @item.publicacion.Precio)                     
-                   
-                            }
+                            <h4>
+                                @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</h4>
+                            <p>
+                                @if (@item.publicacion.PrecioOpcion == 1)
+                                {
+                                       
+                                    @Html.Label("A Convenir") 
+                                }
+                                else
+                                {
+                                    @Html.Label("$") 
+                                    @String.Format("{0:0.00}", @item.publicacion.Precio)                                       
+                                }
+                            </p>
                         </div>
                     </div>
                 </a>
@@ -79,5 +78,5 @@
                 <span class="text-muted">No hubo resultados</span>
             </div>
         }
-    </div>
+    @*</div>*@
 </div>
