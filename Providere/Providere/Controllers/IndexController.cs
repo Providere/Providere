@@ -20,7 +20,14 @@ namespace Providere.Controllers
         {
             ViewBag.Publicaciones = ps.traerPublicacionesMasRecientes(4);
 
-            return View();
+            if (this.Session["IdUsuario"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Home", "Home");
+            }
         }
 
     }

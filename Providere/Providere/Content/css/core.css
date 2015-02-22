@@ -67,7 +67,10 @@ body
 {
     width: 70%;
 }
-
+.header.shrink #buscador
+{
+    margin-left:0%;
+    }
 .header.shrink #btnBuscar
 {
     width: auto;
@@ -275,7 +278,8 @@ footer
 
 .mini-logo img, .iconos-sociales img, footer img
 {
-    width: 80px;
+   max-width: 43px;
+margin: 2px;
 }
 
 footer
