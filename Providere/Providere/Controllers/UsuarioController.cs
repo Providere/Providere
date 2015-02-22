@@ -291,7 +291,7 @@ namespace Providere.Controllers
             }
             else
             {
-                TempData["Error"] = "No se pudo eliminar tu cuenta, intentalo nuevamente.";
+                TempData["Error"] = "No se pudo desactivar tu cuenta, intentalo nuevamente.";
                 return RedirectToAction("Home", "Home");
             }
         }

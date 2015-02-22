@@ -206,5 +206,10 @@ namespace Providere.Servicios
         {
             return ur.UsuarioBloqueado(model);
         }
+
+        internal List<Usuario> traerPrestadoresPorZona(Usuario usuario, int limite)
+        {
+            return ur.traerPrestadoresPorZona(usuario, limite);
+        }
     }
 }

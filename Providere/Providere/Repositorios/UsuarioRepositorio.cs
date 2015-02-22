@@ -201,5 +201,13 @@ namespace Providere.Repositorios
             bool usuarioBloqueado = context.Usuario.Any(user => user.Mail == model.Mail && user.IdEstado == 2); //Estado bloqueado
             return usuarioBloqueado;
         }
+
+        internal List<Usuario> traerPrestadoresPorZona(Usuario user, int limite)
+        {
+            var listaDeIdUserConPublicacion = context.Publicacion.Select(x => x.IdUsuario);
+
+            return context.Usuario.Where(e => e.Ubicacion.Equals(user.Ubicacion)).Where(e => !e.Id.Equals(user.Id)).Where(u=> listaDeIdUserConPublicacion.Contains(u.Id)).Shuffle().Take(limite).ToList();
+    
+        }
     }
 }

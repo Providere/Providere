@@ -84,12 +84,11 @@ namespace Providere.Controllers
             try
             {
                 prs.CambiarDeEstado(id);//No se elimina cambia de estado
-                TempData["Exito"] = "Pregunta eliminada correctamente."; 
                 return RedirectToAction("Index", "Pregunta");
             }
             catch(Exception ex)
             {
-                ClientException.LogException(ex, "Error al eliminar la pregunta.");
+                ClientException.LogException(ex, "Error al quitar la pregunta.");
                 return RedirectToAction("Error", "Shared");
             }
         }
