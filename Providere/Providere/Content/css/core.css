@@ -387,21 +387,22 @@ footer.transparente .container
     margin-left: -3px;
 }
 
-.cuerpo-calificacion 
+.cuerpo-calificacion
 {
     margin-left: 40px;
     padding-left: 4px;
-
 }
 
-#obtenidas .invisible, 
-#obtenidas .help-block ,
-#otorgadas .invisible, 
-#otorgadas .help-block 
+#obtenidas .invisible, #obtenidas .help-block, #otorgadas .invisible, #otorgadas .help-block
 {
-float:left
+    float: left;
+    margin-top:0;
 }
 
-.cuerpo-calificacion .help-block
-{    margin-left: 3px;
-    }
+.cuerpo-calificacion .help-block,.cuerpo-calificacion .text-muted
+{
+    margin-left: 3px;
+}
+
+.cuerpo .glyphicon {  top: 1px;}
+.encabezado .glyphicon {  top: 4px;}
