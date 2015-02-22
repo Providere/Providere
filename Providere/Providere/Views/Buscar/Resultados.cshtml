@@ -37,12 +37,12 @@
     </div>
     <hr />
     <br />
-    <div class="listado-publicaciones" id="ultimas-publicaciones">
+   @* <div class="listado-publicaciones" id="ultimas-publicaciones">*@
         @if (Model.listadoDePublicaciones.Count > 0)
         {
             foreach (var item in Model.listadoDePublicaciones)
             {
-            <div class="col-xs-3">
+            <div class="col-md-3">
                 <a href="/publicacion/VisualizarPublicacion/@item.publicacion.Id" >
                     <div class="thumbnail">
                         <div class="contenedor-img">
@@ -78,5 +78,5 @@
                 <span class="text-muted">No hubo resultados</span>
             </div>
         }
-    </div>
+    @*</div>*@
 </div>
