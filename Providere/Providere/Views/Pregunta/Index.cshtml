@@ -36,15 +36,20 @@
                 <br />              
                 <div class="col-md-12">
                     <legend><a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
-                    <div>
+                    <div class="row">
                         <dl class="question" id="1">
                             <dd class="txt">
+                                <div class="float-left">
                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Usuario.Id })" alt="avatar" width="40px"/>
+                                 </div>
+                                <div class="float-left">
                                 <span><a href="/Usuario/VerPerfil/@item.Usuario.Id">@item.Usuario.Nombre @item.Usuario.Apellido</a>
                                     <br />
                                     @item.Pregunta</span>
+                                           </div>
                             </dd>
                         </dl>
+                        
                     </div>
                     @using (Html.BeginForm("Responder", "Pregunta", new { id = item.Id }, FormMethod.Post))
                     {  
