@@ -24,14 +24,14 @@
                                     <div class="caption text-center">
                                         <h4>
                                             <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" class="cortar_con_ellipsis">@item.publicacion.Titulo</a></span></h4>
-                                        @if (@item.publicacion.SubRubro != null){
+                                       @* @if (@item.publicacion.SubRubro != null){
                                         
                                             
-                                        <strong>@item.publicacion.Rubro.Nombre</strong>}
+                                        <strong>@item.publicacion.SubRubro.Nombre</strong>}
                                         else
-                                        {
+                                        {*@
                                         <strong>@item.publicacion.Rubro.Nombre</strong>
-                                        } 
+                                       @* } *@
                                         <span class="badge">@item.puntaje.Total</span>
                                         <h4>
                                             @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</h4>
