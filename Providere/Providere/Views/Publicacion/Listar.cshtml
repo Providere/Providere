@@ -24,14 +24,14 @@
                                     <div class="caption text-center">
                                         <h4>
                                             <span><a href="/Publicacion/VisualizarPublicacion/@item.publicacion.Id" class="cortar_con_ellipsis">@item.publicacion.Titulo</a></span></h4>
-                                       @* @if (@item.publicacion.SubRubro != null){
-                                        
+                                        @if (@item.publicacion.SubRubro != null)
+                                        {                                        
                                             
-                                        <strong>@item.publicacion.SubRubro.Nombre</strong>}
+                                            <strong>Service @item.publicacion.SubRubro.Nombre</strong>}
                                         else
-                                        {*@
-                                        <strong>@item.publicacion.Rubro.Nombre</strong>
-                                       @* } *@
+                                        {
+                                            <strong>@item.publicacion.Rubro.Nombre</strong>
+                                        }
                                         <span class="badge">@item.puntaje.Total</span>
                                         <h4>
                                             @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</h4>
@@ -82,7 +82,14 @@
                                     <h4>
                                         <a href="/Usuario/VerPerfil/@item.publicacion.Usuario.Id">
                                             @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</a></h4>
-                                    <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                      @if (@item.publicacion.SubRubro != null)
+                                        {                                        
+                                            
+                                            <strong>Service @item.publicacion.SubRubro.Nombre</strong>}
+                                        else
+                                        {
+                                            <strong>@item.publicacion.Rubro.Nombre</strong>
+                                        } <span class="badge">@item.puntaje.Total</span>
                                     <br />
                                 </div>
                             </div>

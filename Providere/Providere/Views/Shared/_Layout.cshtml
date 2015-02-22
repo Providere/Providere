@@ -95,9 +95,18 @@
         <div class="container">
             <div class="row">
                 <div id="contenedor-logo" class="col-md-4 col-sm-5 col-xs-6 ">
-                    <a href="@Url.Action("Home", "Home")">
-                        <img src="../../Content/img/logocomboslim.png" alt="providere" width="100%" />
-                    </a>
+                    @if (@HttpContext.Current.Session["IdUsuario"] != null)
+                    {
+                        <a href="@Url.Action("Home", "Home")">
+                            <img src="../../Content/img/logocomboslim.png" alt="providere" width="100%" />
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index", "Index")">
+                            <img src="../../Content/img/logocomboslim.png" alt="providere" width="100%" />
+                        </a>
+                    }
                 </div>
                 <div class="col-md-8">
                     @if (@HttpContext.Current.Session["IdUsuario"] != null)
@@ -108,7 +117,8 @@
                                     @User.Identity.Name <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="@Url.Action("VerPerfil", "Usuario", new { idUsuario = Session["IdUsuario"] })">Ver perfil</a></li>
+                                    <li><a href="@Url.Action("VerPerfil", "Usuario", new { idUsuario = Session["IdUsuario"] })">
+                                        Ver perfil</a></li>
                                     @*Puesto por Pau*@
                                     <li><a href="@Url.Action("EditarPerfil", "Usuario")">Editar perfil</a></li>
                                     <li><a href="@Url.Action("ListarPublicaciones", "Publicacion")">Publicaciones</a></li>
@@ -135,11 +145,7 @@
             @RenderBody()
         </div>
     </div>
-    
-
-            @Html.Partial("~/Views/Shared/footer.cshtml")
-   
-
+    @Html.Partial("~/Views/Shared/footer.cshtml")
     <!-- Modal Como Funciona-->
     <div class="modal" id="myModalProvidere">
         <div class="modal-dialog">

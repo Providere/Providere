@@ -56,7 +56,6 @@
 <body data-twttr-rendered="true">
     <div id="contenedor-hasta-footer">
         <div class="portada">
-
             <nav class="navbar">
               <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -69,7 +68,7 @@
                   </button>
                   <a class="navbar-brand" href="#">
                   <img class="pull-left visible-xs " src="../../Content/img/logocomboslim.png" alt="Providere" width="90%" style="    max-width: 335px;">
-            <img class="pull-left hidden-xs " src="../../Content/img/logocombofull.png" alt="Providere" width="90%" style="    max-width: 350px;"></a>
+            <img class="pull-left hidden-xs " src="../../Content/img/logocombofull.png" alt="Providere" width="100%" style="    max-width: 350px;"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -93,7 +92,6 @@
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
             </nav>
-
             <div class="container">
                 <h2>
                     La aplicación de los servicios para el hogar</h2>
@@ -145,7 +143,14 @@
                                     <div class="caption">
                                         <h3>
                                             @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido</h3>
-                                        <strong>@item.publicacion.Rubro.Nombre</strong> <span class="badge">@item.puntaje.Total</span>
+                                        @if (@item.publicacion.SubRubro != null)
+                                        {                                        
+                                            
+                                            <strong>Service @item.publicacion.SubRubro.Nombre</strong>}
+                                        else
+                                        {
+                                            <strong>@item.publicacion.Rubro.Nombre</strong>
+                                        } <span class="badge"> @item.puntaje.Total</span>
                                         <p class="text-muted">
                                             @item.publicacion.Titulo
                                         </p>
