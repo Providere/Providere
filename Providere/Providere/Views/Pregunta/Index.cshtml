@@ -34,10 +34,10 @@
                 foreach (var item in ViewBag.PreguntasSinResponder)
                 { 
                 <br />              
-                <div class="col-md-12">
+                <div>
                     <legend><a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
                     <div class="row">
-                        <dl class="question" id="1">
+                        <dl class="question col-md-12" id="1">
                             <dd class="txt">
                                 <div class="float-left">
                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Usuario.Id })" alt="avatar" width="40px"/>
@@ -50,10 +50,8 @@
                             </dd>
                         </dl>
                         
-                    </div>
                     @using (Html.BeginForm("Responder", "Pregunta", new { id = item.Id }, FormMethod.Post))
                     {  
-                        <div class="row">
                             <div class="form-group col-md-7">
                                 @Html.TextArea("responder", null, new { @class = "form-control", placeholder = "Escribe tu respuesta..." })
                             </div>
@@ -61,8 +59,8 @@
                                 <button name="btnEnviar" class="btn btn-primary btn-lg" type="submit">
                                     Enviar</button>
                             </div>
-                        </div>
                     }
+                        </div>
                 </div> 
                 }
             }
@@ -91,16 +89,19 @@
                         <br />
                         @if (item.Respuesta != null)
                         {
-                            <dd class="col-md-offset-1">
+                            <div class="col-md-offset-1 col-md-12">
+                                <div class="float-left">
                                 <img class="img-thumbnail" src="@Url.Action("MostrarFotoPerfil", "Publicacion", new { id = @item.Publicacion.IdUsuario })" alt="avatar" width="40px"/>
-                                <span><a href="/Usuario/VerPerfil/@item.Publicacion.Usuario.Id">@item.Publicacion.Usuario.Nombre @item.Publicacion.Usuario.Apellido</a>
+                                
+                                </div><div class="float-left"><span><a href="/Usuario/VerPerfil/@item.Publicacion.Usuario.Id">@item.Publicacion.Usuario.Nombre @item.Publicacion.Usuario.Apellido</a>
                                     <br />
                                     @item.Respuesta</span>
-                                <br />
-                            </dd>
-                            <dd class="col-sm-offset-2">
-                                <small><span class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</span></small>
-                            </dd>      
+                               
+                                </div>
+                            </div>
+                            <div class="col-md-offset-1 col-md-12">
+                                <small class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</small>
+                            </div>      
                         }
                         <button name="btnBorrar" class="btn btn-primary btn-sm" type="submit">
                             <span class="glyphicon glyphicon-trash"></span>Borrar pregunta</button>

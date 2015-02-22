@@ -303,6 +303,11 @@ footer.transparente .container
     padding-top: 20px;
 }
 
+#responder .img-thumbnail ,
+#pregunta .img-thumbnail 
+{
+    margin-right:5px
+    }
 
 .listado-publicaciones strong
 {
