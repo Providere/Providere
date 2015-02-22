@@ -321,7 +321,16 @@ footer.transparente .container
 
 .listado-publicaciones .thumbnail
 {
-    min-height:390px}
+    min-height:390px;
+    position:relative}
+.listado-publicaciones .thumbnail .ver-publicacion-btn
+{position: absolute;
+bottom: 0px;
+margin: 3%;
+width: 91%;
+}
+    
+    
 
 
 .mensaje-sin-registros

@@ -24,13 +24,27 @@ namespace Providere.Repositorios
         }
 
 
-        internal object establecerSancion(Usuario usuario)
+        internal void establecerSancion(Usuario usuario)
         {
             Sancion sancion = new Sancion();
             sancion.Usuario = usuario;
             sancion.FechaInicio = DateTime.Now;
             sancion.FechaFin = DateTime.Now.AddDays(15);
-            throw new NotImplementedException();
+
+            Estado estado = new Estado();
+            estado.Id = 2;
+            usuario.Estado = estado;
+
+            context.SaveChanges();
+        }
+
+        internal void retirarSancion(Usuario usuario)
+        {
+            Estado estado = new Estado();
+            estado.Id = 1;
+            usuario.Estado = estado;
+
+            context.SaveChanges();
         }
     }
 }

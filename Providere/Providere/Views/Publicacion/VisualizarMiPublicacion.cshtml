@@ -14,7 +14,7 @@
         }
         else
         {
-            <span>Su cuenta esta actualmente bloqueada por lo cual su publicación no puede ser contratada.
+            <span>Su cuenta esta actualmente bloqueada por lo cual su publicación no puede ser editada ni contratada.
             </span>
             
         }
@@ -46,10 +46,17 @@
     <div>
         <h1 class="titulo text-center col-md-12">
             @Html.DisplayFor(model => model.Titulo)
-            @if (ViewBag.accionPadre == "VisualizarMiPublicacion")
+
+            @if (ViewBag.accionPadre == "VisualizarMiPublicacion" || ViewBag.idUsuario == Model.Usuario.Id)
             {
-                
+                if (ViewBag.Sancion == null)
+                {
                 @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "editar-btn btn btn-primary btn-lg pull-right " })
+                }
+                else
+                {  
+                    @Html.ActionLink("Editar", "EditarPublicacion", "Publicacion", new { Id = Model.Id }, new { @class = "editar-btn disabled btn btn-primary btn-lg pull-right " })
+                }
             }
         </h1>
     </div>
@@ -763,7 +770,8 @@
                     }
                 }
             }
-            else { 
+            else
+            { 
                 <small class="text-muted ">Para hacerle una pregunta al prestador puede <a href="/Usuario/RegistrarUsuario">
                             registrarse</a>.</small>
             }
