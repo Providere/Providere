@@ -19,7 +19,7 @@ namespace Providere.Servicios
         {
             //ENVIO DE MAIL:
             msj.To.Add(new MailAddress(model.Mail));
-            msj.From = new MailAddress("unlampw3@gmail.com");
+            msj.From = new MailAddress("providere.arg@gmail.com");
             msj.Subject = "Activación de cuenta";
             msj.SubjectEncoding = System.Text.Encoding.UTF8;
             string body = "Hola " + model.Nombre.Trim() + ",";
@@ -36,7 +36,7 @@ namespace Providere.Servicios
 
             client.Host = "smtp.gmail.com";
             client.EnableSsl = true;
-            NetworkCredential netcred = new NetworkCredential("unlampw3", "unlampw1c-2014");
+            NetworkCredential netcred = new NetworkCredential("providere.arg", "providere15");
             client.UseDefaultCredentials = true;
             client.Credentials = netcred;
             client.Port = 587;
@@ -47,7 +47,7 @@ namespace Providere.Servicios
         {
             //ENVIO DE MAIL:
             msj.To.Add(new MailAddress(model.Mail));
-            msj.From = new MailAddress("unlampw3@gmail.com");
+            msj.From = new MailAddress("providere.arg@gmail.com");
             msj.Subject = "Recupera tu contraseña de Providere";
             msj.SubjectEncoding = System.Text.Encoding.UTF8;
             string body = "Hola " + model.Mail.Trim() + ",";
@@ -64,7 +64,7 @@ namespace Providere.Servicios
 
             client.Host = "smtp.gmail.com";
             client.EnableSsl = true;
-            NetworkCredential netcred = new NetworkCredential("unlampw3", "unlampw1c-2014");
+            NetworkCredential netcred = new NetworkCredential("providere.arg", "providere15");
             client.UseDefaultCredentials = true;
             client.Credentials = netcred;
             client.Port = 587;
