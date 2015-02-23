@@ -39,8 +39,10 @@ namespace Providere.Controllers
 
         public ActionResult NuevaPublicacion()
         {
-            ViewBag.IdRubro = new SelectList(context.Rubro, "Id", "Nombre");
-            ViewBag.IdSubRubro = new SelectList(context.SubRubro, "Id", "Nombre");
+            RubroServicios rs = new RubroServicios();
+            SubRubroServicios srs = new SubRubroServicios();
+            ViewBag.IdRubro = new SelectList(rs.obtenerTodosEnumerables(), "Id", "Nombre");
+            ViewBag.IdSubRubro = new SelectList(srs.obtenerTodosEnumerables(), "Id", "Nombre");
             ViewBag.Error = TempData["Error"];
 
             return View();

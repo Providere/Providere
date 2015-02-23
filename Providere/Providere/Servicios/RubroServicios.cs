@@ -47,5 +47,7 @@ namespace Providere.Servicios
             }
             return true;
         }
+
+        internal IEnumerable<Rubro> obtenerTodosEnumerables() { return rr.obtenerTodosEnumerables(); }
     }
 }

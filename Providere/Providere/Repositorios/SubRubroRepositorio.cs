@@ -19,6 +19,15 @@ namespace Providere.Repositorios
             return subRubros;
         }
 
+        internal IEnumerable<SubRubro> obtenerTodosEnumerables()
+        {
+            return context.SubRubro.OrderBy(item => item.Nombre);
+        }
+        internal IEnumerable<SubRubro> obtenerTodos()
+        {
+            return context.SubRubro.OrderBy(item => item.Nombre).ToList();
+        }
+
 
         internal SubRubro traerDatosPorId(int id)
         {

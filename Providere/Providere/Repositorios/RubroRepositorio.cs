@@ -23,6 +23,10 @@ namespace Providere.Repositorios
         {
             return context.Rubro.OrderBy(item => item.Nombre).ToList();
         }
+        internal IEnumerable<Rubro> obtenerTodosEnumerables()
+        {
+            return context.Rubro.OrderBy(item => item.Nombre);
+        }
 
         public Publicacion VerificarRubro(int idUsuario, int idRubro)
         {
