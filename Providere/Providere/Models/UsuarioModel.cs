@@ -31,7 +31,6 @@ namespace Providere.Models
             public object Mail { get; set; }
 
             [Required(ErrorMessage = "Campo Obligatorio.")]
-            //[StringLength(10, ErrorMessage = "Mínimo 5 y máximo 10 caracteres.")]
             [DataType(DataType.Password)]
             [RegularExpression(@"^(?=(.*\d){1})(?=(.*[A-Z]){1}).{5,10}$", ErrorMessage = "Formato de contraseña inválido.")]
             [DisplayFormat(ConvertEmptyStringToNull = false)]
