@@ -148,7 +148,7 @@
                                 {
                                     <strong>@item.publicacion.Rubro.Nombre</strong>
                                 }
-                                <span class="badge"> @item.puntaje.Total</span>
+                                <span class="badge">@item.puntaje.Total</span>
                                 <br />
                             </div>
                         </div>
@@ -211,13 +211,13 @@
                                             if (item2.Id == item3.IdPublicacion)
                                             {
                                     <span>
-                                        @if (@item.publicacion.SubRubro != null)
+                                        @if (@item2.SubRubro != null)
                                         {                                        
                                             
-                                            <strong>Service @item.publicacion.SubRubro.Nombre</strong>}
+                                            <strong>Service @item2.SubRubro.Nombre</strong>}
                                         else
                                         {
-                                            <strong>@item.publicacion.Rubro.Nombre</strong>
+                                            <strong>@item2.Rubro.Nombre</strong>
                                         }
                                         <span class="badge">@item3.Total</span>
                                         <br />
