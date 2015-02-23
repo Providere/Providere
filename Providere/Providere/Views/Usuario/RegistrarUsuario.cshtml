@@ -58,6 +58,16 @@
                     </div>
                     <br />
                     <div class="row">
+                        @Html.Label("Contraseña", new { @class = "col-sm-5 control-label" })
+                        <div class="col-xs-3">
+                            @Html.PasswordFor(m => m.Contrasenia, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Contrasenia)
+                            <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Entre
+                                5 y 10 caracteres. Debe contener, al menos, 1 n&uacute;mero y 1 may&uacute;scula.</small>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
                         @Html.Label("Número telefónico", new { @class = "col-sm-5 control-label" })
                         <div class="col-xs-3">
                             @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
@@ -66,16 +76,6 @@
                             <br />
                             <small class="text-info"><span class="glyphicon glyphicon-lock"></span>Solo ser&aacute;
                                 visible por tu contraparte cuando contrates un servicio.</small>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        @Html.Label("Contraseña", new { @class = "col-sm-5 control-label" })
-                        <div class="col-xs-3">
-                            @Html.PasswordFor(m => m.Contrasenia, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Contrasenia)
-                            <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Entre
-                                5 y 10 caracteres. Debe contener, al menos, 1 n&uacute;mero y 1 may&uacute;scula.</small>
                         </div>
                     </div>
                     <br />
