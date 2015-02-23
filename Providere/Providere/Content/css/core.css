@@ -80,6 +80,23 @@ body
     margin-top: -25px;
 }
 
+
+.header.shrink #contenedor-botones-index li
+{
+    margin-top: 22px;
+}
+
+
+.header.shrink #contenedor-botones-index .texto
+{
+    display: none;
+}
+
+.header.shrink #contenedor-botones-index span
+{
+    margin-right: 0;
+}
+
 .portada, .header
 {
     background: -webkit-linear-gradient(top,#f7f7f7,#f4f4f4);
@@ -321,7 +338,7 @@ footer.transparente .container
 {
     margin-top: 5px;
 }
- .thumbnail
+.thumbnail
 {
     overflow: hidden;
 }
@@ -440,12 +457,11 @@ footer.transparente .container
     top: 4px;
 }
 
-button.close 
+button.close
 {
-    
-    color:grey}
-button.close:active,
-button.close:hover 
+    color: grey;
+}
+button.close:active, button.close:hover
 {
-    
-    color:#0995B2}
+    color: #0995B2;
+}

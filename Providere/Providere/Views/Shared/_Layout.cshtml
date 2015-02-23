@@ -134,6 +134,23 @@
                         </div>
                     </ul>
                     }
+                    else
+                    {
+                          <ul id="contenedor-botones-index" class="nav navbar-nav pull-right hidden-sm hidden-xs">
+                                      <li>
+                                            <div class="modalBox">
+                                                <a href="/Usuario/RegistrarUsuario" class="btn btn-primary btn-large">
+                                                    <span class="glyphicon glyphicon-list"></span><span class="texto">Registrarme</span></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="modalBox2">
+                                                <a href="/Usuario/IniciarSesion" class="btn btn-primary btn-large">
+                                                    <span class="glyphicon glyphicon-user"></span><span class="texto">Iniciar Sesion</span></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                    }
                 </div>
             </div>
             @Html.Partial("~/Views/Shared/buscador.cshtml")
