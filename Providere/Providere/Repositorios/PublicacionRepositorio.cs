@@ -226,6 +226,14 @@ namespace Providere.Repositorios
                              where listaUsuarios.Contains(publi.IdUsuario)
                              select publi).ToList();
 
+            foreach (var item in resultado) {
+                var punt = context.Puntaje.Where(p => p.IdPublicacion == item.Id).FirstOrDefault();
+                if (punt != null)
+                {
+                    item.Puntaje.Add(punt);
+                }
+            }
+
             return resultado;
         }
     }

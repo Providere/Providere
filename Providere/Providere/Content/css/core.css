@@ -69,8 +69,8 @@ body
 }
 .header.shrink #buscador
 {
-    margin-left:0%;
-    }
+    margin-left: 0%;
+}
 .header.shrink #btnBuscar
 {
     width: auto;
@@ -278,8 +278,8 @@ footer
 
 .mini-logo img, .iconos-sociales img, footer img
 {
-   max-width: 43px;
-margin: 2px;
+    max-width: 43px;
+    margin: 2px;
 }
 
 footer
@@ -307,11 +307,10 @@ footer.transparente .container
     padding-top: 20px;
 }
 
-#responder .img-thumbnail ,
-#pregunta .img-thumbnail 
+#responder .img-thumbnail, #pregunta .img-thumbnail
 {
-    margin-right:5px
-    }
+    margin-right: 5px;
+}
 
 .listado-publicaciones strong
 {
@@ -322,19 +321,25 @@ footer.transparente .container
 {
     margin-top: 5px;
 }
+ .thumbnail
+{
+    overflow: hidden;
+}
 
 .listado-publicaciones .thumbnail
 {
-    min-height:390px;
-    position:relative}
-.listado-publicaciones .thumbnail .ver-publicacion-btn
-{position: absolute;
-bottom: 0px;
-margin: 3%;
-width: 91%;
+    min-height: 390px;
+    position: relative;
 }
-    
-    
+.listado-publicaciones .thumbnail .ver-publicacion-btn
+{
+    position: absolute;
+    bottom: 0px;
+    margin: 3%;
+    width: 91%;
+}
+
+
 
 
 .mensaje-sin-registros
@@ -418,13 +423,29 @@ width: 91%;
 #obtenidas .invisible, #obtenidas .help-block, #otorgadas .invisible, #otorgadas .help-block
 {
     float: left;
-    margin-top:0;
+    margin-top: 0;
 }
 
-.cuerpo-calificacion .help-block,.cuerpo-calificacion .text-muted
+.cuerpo-calificacion .help-block, .cuerpo-calificacion .text-muted
 {
     margin-left: 3px;
 }
 
-.cuerpo .glyphicon {  top: 1px;}
-.encabezado .glyphicon {  top: 4px;}
+.cuerpo .glyphicon
+{
+    top: 1px;
+}
+.encabezado .glyphicon
+{
+    top: 4px;
+}
+
+button.close 
+{
+    
+    color:grey}
+button.close:active,
+button.close:hover 
+{
+    
+    color:#0995B2}

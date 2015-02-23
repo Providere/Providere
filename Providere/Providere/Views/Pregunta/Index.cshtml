@@ -81,7 +81,12 @@
                 <br />
 
                 <div class="col-md-12">
-                    <legend><a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a></legend>
+                    <legend><a href="/Publicacion/VisualizarPublicacion/@item.Publicacion.Id">@item.Publicacion.Titulo</a>
+                    
+
+                            <button type="submit" class="close" >
+            ×</button>
+                            </legend>
                     <dl class="question" id="pregunta">
                         <dd class="txt">
                             <span class="text-info"><i class="glyphicon glyphicon-comment"></i></span><span>@item.Pregunta</span>
@@ -103,8 +108,7 @@
                                 <small class="help-block">@item.FechaRespuesta.ToString("dd/MM/yyyy hh:mm tt")</small>
                             </div>      
                         }
-                        <button name="btnBorrar" class="btn btn-primary btn-sm" type="submit">
-                            <span class="glyphicon glyphicon-trash"></span>Borrar pregunta</button>
+                        
                     </dl>
                     <br />
                 </div>

@@ -52,6 +52,7 @@ namespace Providere
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Index", action = "Index", id = UrlParameter.Optional }
             );     
+
         }
     }
 }

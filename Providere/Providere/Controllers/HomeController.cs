@@ -19,7 +19,7 @@ namespace Providere.Controllers
 
         public ActionResult Home()
         {
-            
+
             ViewBag.Exito = TempData["Exito"];
             ViewBag.Error = TempData["Error"];
 
@@ -32,13 +32,14 @@ namespace Providere.Controllers
             ViewBag.PrestadoresMejorCalificados = ps.traerPublicacionesMejorCalificadas(limite);
             ViewBag.LimiteDePrestadores = limite;
 
-           
-            List <Usuario> usuariosCercanos = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), limite);
+
+            List<Usuario> usuariosCercanos = us.traerPrestadoresPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), limite);
             ViewBag.UsuariosMasCercanos = usuariosCercanos;
 
             //Para mostrar rubro y puntaje en Prestadores de mi zona
             List<Publicacion> publicacionesUsuariosCercanos = ps.TraerPublicacionesUsuariosCercanos(usuariosCercanos);
             ViewBag.PublicacionesUsuariosCercanos = publicacionesUsuariosCercanos;
+
             List<Puntaje> puntajeUsuariosCercanos = pur.TraerPuntajeUsuariosCercanos(publicacionesUsuariosCercanos);
             ViewBag.PuntajeUsuariosCercanos = puntajeUsuariosCercanos;
 
@@ -48,8 +49,8 @@ namespace Providere.Controllers
             //Para verificar si hay mas de 4 y mostrar boton "ver mas"
             ViewBag.PublicacionesMasRecientesMas = ps.traerPublicacionesMasRecientes(5);
             ViewBag.PrestadoresMejorCalificadosMas = ps.traerPublicacionesMejorCalificadas(5);
-            ViewBag.UsuariosMasCercanosMas = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), 5);
-            
+            ViewBag.UsuariosMasCercanosMas = us.traerPrestadoresPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), 5);
+
             return View();
         }
 

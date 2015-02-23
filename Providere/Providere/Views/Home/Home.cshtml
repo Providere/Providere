@@ -140,7 +140,7 @@
                                         @item.publicacion.Usuario.Nombre @item.publicacion.Usuario.Apellido
                                     </a>
                                 </h4>
-                                @if (@item.publicacion.SubRubro != null)
+                                @if (item.publicacion.SubRubro != null)
                                 {                                        
                                             
                                     <strong>Service @item.publicacion.SubRubro.Nombre</strong>}
@@ -206,24 +206,33 @@
                                 {
                                     if (item2.Usuario.Id == item.Id)
                                     {
-                                        foreach (var item3 in ViewBag.PuntajeUsuariosCercanos)
-                                        {
-                                            if (item2.Id == item3.IdPublicacion)
-                                            {
+                                        
                                     <span>
-                                        @if (@item2.SubRubro != null)
+
+                                        @if (item2.SubRubro != null)
                                         {                                        
                                             
-                                            <strong>Service @item2.SubRubro.Nombre</strong>}
+                                            <strong>Service @item2.SubRubro.Nombre</strong>
+                                            }
                                         else
                                         {
                                             <strong>@item2.Rubro.Nombre</strong>
                                         }
-                                        <span class="badge">@item3.Total</span>
+                                        
+                                        @if (item2.Puntaje.Count != 0)
+                                        {                                        
+                                        foreach (var punt in item2.Puntaje)
+                                        {
+                                        <span class="badge">@punt.Total</span>
+                                        }
+                                        }
+                                        else
+                                        {
+                                        <span class="badge">0</span>
+                                        }
+
                                         <br />
                                     </span>
-                                            }
-                                        }
                                     }
                                 }
                                 <br />

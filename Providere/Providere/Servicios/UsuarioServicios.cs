@@ -105,10 +105,10 @@ namespace Providere.Servicios
             return miUsuario.Id;
         }
 
-        public List<Usuario> traerPorZona(Usuario user,int limite)
-        {
-            return ur.traerPorZona(user,limite);
-        }
+        //public List<Usuario> traerPorZona(Usuario user,int limite)
+        //{
+        //    return ur.traerPorZona(user,limite);
+        //}
 
         public List<Usuario> traerPorZonaTodos(Usuario user)
         {
@@ -205,6 +205,11 @@ namespace Providere.Servicios
         public bool UsuarioBloqueado(Usuario model)
         {
             return ur.UsuarioBloqueado(model);
+        }
+
+        internal List<Usuario> traerPrestadoresPorZona(Usuario usuario, int limite)
+        {
+            return ur.traerPrestadoresPorZona(usuario, limite);
         }
     }
 }

@@ -33,7 +33,7 @@
         <li role="presentation" class="@if (ViewBag.ActivePanel == 3)
                                        { 
                                                  @:active 
-                                                 }"><a href="#eliminar" role="tab" data-toggle="tab">Eliminar cuenta</a></li>
+                                                 }"><a href="#eliminar" role="tab" data-toggle="tab">Desactivar cuenta</a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -203,17 +203,18 @@
             {
                 <div>
                     <h2>
-                        ¿Desea eliminar su cuenta?</h2>
+                        ¿Desea desactivar su cuenta?</h2>
                     <hr />
                     <p class="text-info">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Al
-                        eliminar tu cuenta no podrás volver a utilizarla.</p>
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 
+                        Al desactivar tu cuenta todas tus publicaciones se ocultarán y no podrán contratarte. La próxima vez que inicies sesión la cuenta se activara automáticamente.
+                        </p>
                     <br />
                     <div class="row">
                         <div class="col-xs-3">
                             @Html.CheckBox("ckbEliminar")
                             <label>
-                                Sí, quiero eliminar mi cuenta
+                                Sí, quiero desactivar mi cuenta
                             </label>
                         </div>
                     </div>
@@ -221,7 +222,7 @@
                     <div class="form-group">
                         <div class="col-md-offset-5">
                             <button type="submit" id="btnConfirmar" class="btn btn-info btn-sm">
-                                Confirmar</button>
+                                Confirmar y cerrar sesión</button>
                             @Html.ActionLink("Cancelar", "Home", "Home", null, new { @class = "btn btn-warning btn-sm" })
                         </div>
                     </div>

@@ -167,14 +167,16 @@ namespace Providere.Repositorios
             context.SaveChanges();
         }
 
-        internal List<Usuario> traerPorZona(Usuario user, int limite)
-        {
-            return context.Usuario.Where(e => e.Ubicacion.Equals(user.Ubicacion)).Where(e => !e.Id.Equals(user.Id)).Shuffle().Take(limite).ToList();
-        }
+        //internal List<Usuario> traerPorZona(Usuario user, int limite)
+        //{
+        //    return context.Usuario.Where(e => e.Ubicacion.Equals(user.Ubicacion)).Where(e => !e.Id.Equals(user.Id)).Shuffle().Take(limite).ToList();
+        //}
 
         internal List<Usuario> traerPorZonaTodos(Usuario user)
         {
-            return context.Usuario.Where(e => e.Ubicacion.Equals(user.Ubicacion)).Where(e => !e.Id.Equals(user.Id)).Shuffle().ToList();
+            var listaDeIdUserConPublicacion = context.Publicacion.Select(x => x.IdUsuario);
+
+            return context.Usuario.Where(e => e.Ubicacion.Equals(user.Ubicacion)).Where(e => !e.Id.Equals(user.Id)).Where(u => listaDeIdUserConPublicacion.Contains(u.Id)).Shuffle().ToList();
         }
 
         internal Usuario traerPorId(int id)
@@ -200,6 +202,14 @@ namespace Providere.Repositorios
         {
             bool usuarioBloqueado = context.Usuario.Any(user => user.Mail == model.Mail && user.IdEstado == 2); //Estado bloqueado
             return usuarioBloqueado;
+        }
+
+        internal List<Usuario> traerPrestadoresPorZona(Usuario user, int limite)
+        {
+            var listaDeIdUserConPublicacion = context.Publicacion.Select(x => x.IdUsuario);
+
+            return context.Usuario.Where(e => e.Ubicacion.Equals(user.Ubicacion)).Where(e => !e.Id.Equals(user.Id)).Where(u=> listaDeIdUserConPublicacion.Contains(u.Id)).Shuffle().Take(limite).ToList();
+    
         }
     }
 }
