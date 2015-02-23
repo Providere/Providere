@@ -9,6 +9,8 @@ AND idUsuario IN (
 Select idUsuario WHERE AVG(Shoesize)
 
 )
+AND idUsuario IN (SELECT Count(id) FROM Calificacion AS c WHERE c.IdTipoEvaluacion = 3, Count(denuncia.id) > 1 AND c.IdUsuario =idUsuario)
+
 
 
  List<Calificacion> calificacionesNegativas = cs.obtenerNegativasDeUsuario(usuario);
