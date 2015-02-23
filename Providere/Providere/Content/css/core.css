@@ -130,7 +130,7 @@ hr
 
 #contenedor-logo
 {
-    padding-top: 18px;
+    padding-top: 14px;
 }
 
 #buscador
@@ -465,3 +465,4 @@ button.close:active, button.close:hover
 {
     color: #0995B2;
 }
+

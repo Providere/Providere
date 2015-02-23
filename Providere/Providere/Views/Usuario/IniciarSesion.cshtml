@@ -32,7 +32,7 @@
                 <hr />
                 <div class="row">
                     @Html.Label("Correo electrónico", new { @class = "col-sm-5 control-label" })
-                    <div class="col-xs-3">
+                    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
                         @Html.TextBoxFor(m => m.Mail, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Mail)
                     </div>
@@ -40,7 +40,7 @@
                 <br />
                 <div class="row">
                     @Html.Label("Contraseña", new { @class = "col-sm-5 control-label" })
-                    <div class="col-xs-3">
+                    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
                         @Html.PasswordFor(m => m.Contrasenia, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Contrasenia)
                         <small class="text-info"><span class="glyphicon glyphicon-exclamation-sign"></span>Entre
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-5">
+                    <div class="col-md-offset-5 col-xs-offset-4 col-sm-offset-5">
                         <button id="btnIngresar" type="submit" class="btn btn-info">
                             Ingresar
                         </button>
