@@ -70,10 +70,10 @@ $(function () {
     $(window).scroll(function () {
         if ($(document).scrollTop() > 150) {
             $('.header').addClass('shrink');
-            $('#logogrande').attr('src', '/Content/img/logocomboslim.png');
+            $('#logogrande').attr('src', '../../../Content/img/logocomboslim.png');
         } else {
             $('.header').removeClass('shrink');
-            $('#logogrande').attr('src', '/Content/img/logocombofull.png');
+            $('#logogrande').attr('src', '../../../Content/img/logocombofull.png');
         }
     });
 

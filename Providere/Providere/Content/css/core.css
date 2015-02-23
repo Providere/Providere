@@ -81,18 +81,18 @@ body
 }
 
 
-.header.shrink #contenedor-botones-index li
+.header.shrink #contenedor-botones-index.interior li
 {
     margin-top: 22px;
 }
 
 
-.header.shrink #contenedor-botones-index .texto
+.header.shrink #contenedor-botones-index.interior .texto
 {
     display: none;
 }
 
-.header.shrink #contenedor-botones-index span
+.header.shrink #contenedor-botones-index.interior span
 {
     margin-right: 0;
 }
