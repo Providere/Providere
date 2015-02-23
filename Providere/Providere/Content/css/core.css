@@ -43,7 +43,7 @@ body
     z-index: 1000;
     transition: all 0.4s ease;
 }
-footer{    font-size: .92em;}
+footer{    font-size: 13px!important;}
 .header.shrink
 {
     height: 80px;
