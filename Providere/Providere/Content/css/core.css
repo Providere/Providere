@@ -298,11 +298,6 @@ footer
     max-width: 43px;
     margin: 2px;
 }
-
-footer
-{
-    font-size: 0.8em;
-}
 footer.transparente
 {
     background-color: transparent;
