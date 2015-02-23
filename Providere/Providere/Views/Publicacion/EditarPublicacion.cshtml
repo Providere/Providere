@@ -114,7 +114,7 @@
                                 @Html.DropDownListFor(model => model.PrecioOpcion, listPrecio, new { @class = "form-control", name = "pg1", onchange = "d1(this)" })
                             </div>
                             <div class="col-xs-6 col-sm-2 col-md-2 col-lg-1">
-                                @Html.Hidden("oculto", Model.Precio);
+                                @Html.Hidden("oculto", Model.Precio)
                                 @Html.TextBoxFor(model => model.Precio, new { @class = "form-control", name = "2", id = "prg1", disabled = "disabled" })
                                 @Html.ValidationMessageFor(model => model.Precio)
                             </div>
