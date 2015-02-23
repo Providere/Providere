@@ -21,7 +21,7 @@ namespace Providere.Repositorios
 
         internal List<Rubro> obtenerTodos()
         {
-            return context.Rubro.ToList();
+            return context.Rubro.OrderBy(item => item.Nombre).ToList();
         }
 
         public Publicacion VerificarRubro(int idUsuario, int idRubro)

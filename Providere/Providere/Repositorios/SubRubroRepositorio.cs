@@ -15,7 +15,7 @@ namespace Providere.Repositorios
         {
             var subRubros = (from im in context.SubRubro
                              where im.IdRubro == rubro.Id
-                             select im).ToList();
+                             select im).OrderBy(item => item.Nombre).ToList();
             return subRubros;
         }
 
