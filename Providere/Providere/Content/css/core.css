@@ -187,7 +187,7 @@ hr
     max-height: 200px;
     overflow: hidden;
 }
-.contenedor-img > img
+.contenedor-img img
 {
     min-height: 200px;
 }
