@@ -105,10 +105,10 @@ namespace Providere.Servicios
             return miUsuario.Id;
         }
 
-        public List<Usuario> traerPorZona(Usuario user,int limite)
-        {
-            return ur.traerPorZona(user,limite);
-        }
+        //public List<Usuario> traerPorZona(Usuario user,int limite)
+        //{
+        //    return ur.traerPorZona(user,limite);
+        //}
 
         public List<Usuario> traerPorZonaTodos(Usuario user)
         {

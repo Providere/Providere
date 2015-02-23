@@ -39,6 +39,7 @@ namespace Providere.Controllers
             //Para mostrar rubro y puntaje en Prestadores de mi zona
             List<Publicacion> publicacionesUsuariosCercanos = ps.TraerPublicacionesUsuariosCercanos(usuariosCercanos);
             ViewBag.PublicacionesUsuariosCercanos = publicacionesUsuariosCercanos;
+
             List<Puntaje> puntajeUsuariosCercanos = pur.TraerPuntajeUsuariosCercanos(publicacionesUsuariosCercanos);
             ViewBag.PuntajeUsuariosCercanos = puntajeUsuariosCercanos;
 
@@ -48,7 +49,7 @@ namespace Providere.Controllers
             //Para verificar si hay mas de 4 y mostrar boton "ver mas"
             ViewBag.PublicacionesMasRecientesMas = ps.traerPublicacionesMasRecientes(5);
             ViewBag.PrestadoresMejorCalificadosMas = ps.traerPublicacionesMejorCalificadas(5);
-            ViewBag.UsuariosMasCercanosMas = us.traerPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), 5);
+            ViewBag.UsuariosMasCercanosMas = us.traerPrestadoresPorZona(us.traerUsuario(Convert.ToInt16(this.Session["IdUsuario"])), 5);
 
             return View();
         }
